@@ -53,7 +53,7 @@
 
 						<li class="nav-item">
 							<a href="<?php echo base_url() ?>" class="nav-link ">
-								<i class="fas fa-plus"></i>
+								<i class="far fa-circle nav-icon"></i>
 								<p>Add/View Banner</p>
 							</a>
 						</li>
