@@ -30,7 +30,6 @@
 						</div>
 						<div class="col-sm-2">
 							<div class="my-4 w-25 h-50">
-								<!-- <?php echo base_url() . $b_img_path; ?> -->
 								<img class="w-100 h-100" src="<?php echo base_url() . $b_img_path; ?>">
 							</div>
 						</div>
@@ -43,7 +42,7 @@
 							</div>
 						</div>
 						<div class="col-sm-2">
-							<input type="checkbox" id="b_isvisible" <?= $b_isvisible ? 'checked' : null; ?> name="b_isvisible" class="form-control" />
+							<input type="checkbox" id="b_isvisible"  name="b_isvisible" class="form-control" />
 						</div>
 					</div>
 					<div class="form-group">

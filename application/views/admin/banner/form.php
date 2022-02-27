@@ -1,5 +1,17 @@
 <!-- Main content -->
 <section class="content">
+  <?php if ($this->session->flashdata('message') != null) {  ?>
+    <div class="alert <?= $this->session->flashdata('class_name') ?> alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <?php echo $this->session->flashdata('message'); ?>
+    </div>
+  <?php } ?>
+  <?php if ($this->session->flashdata('exception') != null) {  ?>
+    <div class="alert <?= $this->session->flashdata('class_name') ?> alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <?php echo $this->session->flashdata('exception'); ?>
+    </div>
+  <?php } ?>
   <div class="row">
     <!-- Save -->
     <div class="col-sm-4">
@@ -10,44 +22,46 @@
         <div class="card-body">
           <div class="row">
             <div class="col-md-12">
-              <form role="form" action="<?php echo site_url('admin/ban/create') ?>" method="post" id="save_type_form">
+              <form role="form" action="<?php echo site_url('admin/banner/create') ?>" method="post" id="save_type_form" enctype="multipart/form-data">
                 <?php echo form_hidden('b_id', $input->b_id) ?>
                 <div class="row">
                   <!-- banner_title -->
                   <div class="col-sm-12">
                     <div class="form-group">
-                      <label for="b_title"><?php echo ('Title'); ?></label> <small class="req"> *</small>
-                      <input name="b_title" class="form-control form-control-sm" type="text" placeholder="<?php echo ('Title') ?>" id="b_title" value="<?php echo $input->b_title; ?>" data-toggle="tooltip" title="<?php echo ('Banner Title'); ?>">
+                      <label for="b_title"><?php echo ('Banner Title'); ?></label> <small class="req"> *</small>
+                      <input name="b_title" class="form-control form-control-sm" type="text" placeholder="<?php echo ('Title') ?>" id="b_title" value="<?php echo $input->b_title ?>" data-toggle="tooltip" title="<?php echo ('Banner Title'); ?>">
                       <?php echo form_error('b_title', '<span class="badge bg-danger p-1">', '</span>'); ?>
                     </div>
                   </div>
-                  <!-- Description -->
-                  <!-- <div class="col-sm-12">
-                  <div class="form-group">
-                    <label for="ps_desc"><?php echo ('description'); ?></label> <small class="req"> *</small>
-                    <input name="ps_desc" class="form-control " type="text" placeholder="<?php echo ('description') ?>" id="ps_desc" value="<?php echo $input->ps_desc; ?>" data-toggle="tooltip" title="<?php echo ('description'); ?>">
-                    <?php echo form_error('ps_desc', '<span class="badge bg-danger p-1">', '</span>'); ?>
-                  </div>
-                </div> -->
-                  <!-- Satus -->
-                  <div class="col-sm-12">
-                    <div class="form-group ">
-                      <label for="dept_status"><?php echo ('Status'); ?></label>
-                      <div class="form-check row form-inline form-control-sm">
-                        <div class="col-6 form-inline">
-                          <label class=" radio-inline">
-                            <input type="radio" name="dept_status" value="1" <?= ($input->dept_status == '1') ? 'checked' : null; ?> data-toggle="tooltip" title="Active status">&nbsp;
-                            <?php echo ('Active') ?>
-                          </label>
-                        </div>
-                        <div class="col-6 form-inline">
-                          <label class=" radio-inline">
-                            <input type="radio" name="dept_status" value="0" <?= ($input->dept_status == '0') ? 'checked' : null; ?> data-toggle="tooltip" title="Disabled status"> &nbsp;<?php echo ('Inactive') ?>
-                          </label>
-                        </div>
-                        <br>
+                  <!-- image -->
+                  <div class="form-group row col-sm-12">
+                    <label for="b_img_path" class="col-sm-12 col-form-label"><?php echo ('Banner Image') ?> </label>
+                    <div class="col-sm-12">
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" name="b_img_path" id="b_img_path">
+                        <label class="custom-file-label" for="b_img_path">Choose file</label>
+                        <input type="hidden" name="b_img_path_old" value="<?php echo $input->b_img_path ?>">
                       </div>
-                      <?php echo form_error('dept_status', '<span class="badge bg-danger p-1">', '</span>'); ?>
+                    </div>
+                  </div>
+                  <!-- if setting image is already uploaded -->
+                  <?php if (!empty($input->b_img_path)) {  ?>
+                    <div class="form-group row">
+                      <label for="b_img_path" class="col-sm-3 col-form-label"></label>
+                      <div class="col-sm-9">
+                        <img src="<?php echo base_url($input->b_img_path) ?>" alt="b_img_path" class="img-thumbnail w-50 h-100" />
+                      </div>
+                    </div>
+                  <?php } ?>
+                  <!-- Satus -->
+                  <div class="form-group col-sm-12">
+                    <div class="row">
+                      <div class="col-sm-2">
+                        <label for="b_isvisible"><?php echo ('Visible'); ?></label>
+                      </div>
+                      <div class="col-sm-4">
+                        <input type="checkbox" <?= $input->b_isvisible ? 'checked' : null ?> name="b_isvisible">
+                      </div>
                     </div>
                   </div>
                   <!-- </div> 
@@ -86,9 +100,9 @@
             <thead>
               <tr>
                 <th><?php echo ('Unique Id') ?></th>
-                <th><?php echo ('Name') ?></th>
-                <!-- <th><?php echo ('parent') ?></th> -->
-                <th><?php echo ('Status') ?></th>
+                <th><?php echo ('Title') ?></th>
+                <th><?php echo ('Visible') ?></th>
+                <!-- <th><?php echo ('Image') ?></th> -->
                 <th><?php echo ('Action') ?></th>
               </tr>
             </thead>
@@ -98,16 +112,21 @@
                 <?php foreach ($banner as $ban) { ?>
                   <tr>
                     <td><?php echo $sl; ?></td>
-                    <td><?php echo $ban->dept_name ?></td>
+                    <td><?php echo $ban->b_title ?></td>
                     <td class="text-center">
-                      <?php echo ($ban->dept_status) ?
+                      <?php echo ($ban->b_isvisible) ?
                         '<i class="fa fa-check" aria-hidden="true"></i>' :
                         '<i class="fa fa-times" aria-hidden="true"></i>'; ?>
                     </td>
+                    <!-- <td>
+                      <div class="w-100 h-100">
+                        <img class="w-25 h-25" src="<?php echo base_url() . $ban->b_img_path; ?>">
+                      </div>
+                    </td> -->
                     <td class="text-center" width="100">
-                      <?php if (!in_array($ban->dept_id, [])) { ?>
-                        <a href="<?php echo base_url("admin/ban/edit/$ban->dept_id") ?>" class="btn btn-xs btn-success"><i class="fa fa-edit"></i></a>
-                        <a href="<?php echo base_url("admin/ban/delete/$ban->dept_id/") ?>" class="btn btn-xs btn-danger" onclick="return confirm('<?php echo ('are_you_sure') ?>') "><i class="fa fa-trash"></i></a>
+                      <?php if (!in_array($ban->b_id, [])) { ?>
+                        <a href="<?php echo base_url("admin/banner/edit/$ban->b_id") ?>" class="btn btn-xs btn-success"><i class="fa fa-edit"></i></a>
+                        <a href="<?php echo base_url("admin/banner/delete/$ban->b_id") ?>" class="btn btn-xs btn-danger" onclick="return confirm('<?php echo ('Are You Sure') ?>') "><i class="fa fa-trash"></i></a>
                       <?php } ?>
                     </td>
                   </tr>

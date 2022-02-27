@@ -17,7 +17,11 @@ class BannerModel extends CI_Model
             ->get()
             ->result();
     }
+    public function setVisible()
+    {
 
+        return $this->db->update($this->table, array('b_isvisible' => '0'));
+    }
     public function read_as_array()
     {
         return $this->db->select("*")
@@ -30,12 +34,12 @@ class BannerModel extends CI_Model
     {
         $result = $this->db->select("*")
             ->from($this->table)
-            ->order_by('dept_id', 'asc')
+            ->order_by('b_id', 'asc')
             ->get()
             ->result();
         $list[''] = ('Select Department');
         foreach ($result as $row) {
-            $list[$row->dept_id] = $row->dept_name;
+            $list[$row->b_id] = $row->dept_name;
         }
         return $list;
     }
@@ -45,12 +49,12 @@ class BannerModel extends CI_Model
         $result = $this->db->select("*")
             ->from($this->table)
             ->where('dept_status', 1)
-            ->order_by('dept_id', 'asc')
+            ->order_by('b_id', 'asc')
             ->get()
             ->result();
         $list[''] = ('select_property_type');
         foreach ($result as $row) {
-            $list[$row->dept_id] = $row->dept_name;
+            $list[$row->b_id] = $row->dept_name;
         }
         return $list;
     }
@@ -59,7 +63,7 @@ class BannerModel extends CI_Model
     {
         return $this->db->select("*")
             ->from($this->table)
-            ->where('dept_id', $id)
+            ->where('b_id', $id)
             ->get()
             ->row_array();
     }
@@ -67,13 +71,13 @@ class BannerModel extends CI_Model
 
     public function update($data = [])
     {
-        return $this->db->where('dept_id', $data['dept_id'])
+        return $this->db->where('b_id', $data['b_id'])
             ->update($this->table, $data);
     }
 
-    public function delete($dept_id = null)
+    public function delete($b_id = null)
     {
-        $this->db->where('dept_id', $dept_id)
+        $this->db->where('b_id', $b_id)
             ->delete($this->table);
 
         if ($this->db->affected_rows() > 0) {
@@ -83,20 +87,20 @@ class BannerModel extends CI_Model
         }
     }
 
-    public function read_by_id($dept_id = null)
+    public function read_by_id($b_id = null)
     {
         return $this->db->select("*")
             ->from($this->table)
-            ->where('dept_id', $dept_id)
+            ->where('b_id', $b_id)
             ->get()
             ->row_array();
     }
 
-    public function read_by_id_as_obj($dept_id = null)
+    public function read_by_id_as_obj($b_id = null)
     {
         return $this->db->select("*")
             ->from($this->table)
-            ->where('dept_id', $dept_id)
+            ->where('b_id', $b_id)
             ->get()
             ->row();
     }
