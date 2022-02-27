@@ -46,6 +46,25 @@
 				<!-- Banner -->
 				<li class="nav-item">
 					<a href="#" class="nav-link">
+						<i class="nav-icon fas fa-chart-pie"></i>
+						<p>
+							Charts
+							<i class="right fas fa-angle-left"></i>
+						</p>
+					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a href="chartjs.html" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>ChartJS</p>
+							</a>
+						</li>
+
+					</ul>
+				</li>
+				<!-- Banner -->
+				<li class="nav-item">
+					<a href="#" class="nav-link">
 						<i class="fa fa-ad"></i>
 						<p>Banner<i class="right fas fa-angle-left"></i></p>
 					</a>
