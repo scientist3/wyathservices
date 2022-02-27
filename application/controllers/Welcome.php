@@ -8,6 +8,8 @@ class Welcome extends CI_Controller
 	{
 		echo "Hello world";
 		$this->load->view('welcome_message');
+		echo "test umar";
+		
 	}
 }
 
