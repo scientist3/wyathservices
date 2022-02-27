@@ -46,9 +46,9 @@
 				<!-- Banner -->
 				<li class="nav-item">
 					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-chart-pie"></i>
+						<i class="nav-icon fas fa-ad"></i>
 						<p>
-							Charts
+							Banner
 							<i class="right fas fa-angle-left"></i>
 						</p>
 					</a>
@@ -56,208 +56,198 @@
 						<li class="nav-item">
 							<a href="chartjs.html" class="nav-link">
 								<i class="far fa-circle nav-icon"></i>
-								<p>ChartJS</p>
+								<p>Add / View Banner</p>
 							</a>
 						</li>
 
-					</ul>
-				</li>
-				<!-- Banner -->
-				<li class="nav-item">
-					<a href="#" class="nav-link">
-						<i class="fa fa-ad"></i>
-						<p>Banner<i class="right fas fa-angle-left"></i></p>
-					</a>
-					<ul class="nav nav-treeview">
-
-						<li class="nav-item">
-							<a href="<?php echo base_url() ?>" class="nav-link ">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Add/View Banner</p>
-							</a>
-						</li>
 					</ul>
 				</li>
 
 				<!-- Slider -->
 				<li class="nav-item">
 					<a href="#" class="nav-link">
-						<i class="fas fa-photo-video"></i>
+						<i class="nav-icon fas fa-photo-video"></i>
 						<p>
 							Slider
 							<i class="right fas fa-angle-left"></i>
 						</p>
 					</a>
 					<ul class="nav nav-treeview">
-
 						<li class="nav-item">
-							<a href="<?php echo base_url() ?>" class="nav-link ">
-								<i class="fas fa-plus"></i>
-								<p>Add/View Slider</p>
+							<a href="chartjs.html" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Add / View Slider</p>
 							</a>
 						</li>
+
 					</ul>
 				</li>
 
 				<!-- Projects -->
 				<li class="nav-item">
 					<a href="#" class="nav-link">
-						<i class="fas fa-project-diagram"></i>
+						<i class="nav-icon fas fa-project-diagram"></i>
 						<p>
 							Projects
 							<i class="right fas fa-angle-left"></i>
 						</p>
 					</a>
 					<ul class="nav nav-treeview">
-
 						<li class="nav-item">
-							<a href="<?php echo base_url() ?>" class="nav-link ">
-								<i class="fas fa-plus"></i>
-								<p>Add/View Projects</p>
+							<a href="chartjs.html" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Add / View Projects</p>
 							</a>
 						</li>
+
 					</ul>
 				</li>
+
 
 				<!-- Partners -->
 				<li class="nav-item">
 					<a href="#" class="nav-link">
-						<i class="fa fa-handshake nav-icon"></i>
+						<i class="nav-icon fas fa-handshake"></i>
 						<p>
 							Partners
 							<i class="right fas fa-angle-left"></i>
 						</p>
 					</a>
 					<ul class="nav nav-treeview">
-
 						<li class="nav-item">
-							<a href="<?php echo base_url() ?>" class="nav-link ">
-								<i class="fas fa-plus"></i>
-								<p>Add/View Partners</p>
+							<a href="chartjs.html" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Add / View Partners</p>
 							</a>
 						</li>
+
 					</ul>
 				</li>
+
 
 				<!-- About Us -->
 				<li class="nav-item">
 					<a href="#" class="nav-link">
-						<i class="fas fa-address-card"></i>
+						<i class="nav-icon fas fa-address-card"></i>
 						<p>
 							About Us
 							<i class="right fas fa-angle-left"></i>
 						</p>
 					</a>
 					<ul class="nav nav-treeview">
-
 						<li class="nav-item">
-							<a href="<?php echo base_url() ?>" class="nav-link ">
-								<i class="fas fa-plus"></i>
-								<p>Add/View About Us</p>
+							<a href="chartjs.html" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Add / View About Us</p>
 							</a>
 						</li>
+
 					</ul>
 				</li>
+
 
 				<!-- News -->
 				<li class="nav-item">
 					<a href="#" class="nav-link">
-						<i class="fas fa-newspaper"></i>
+						<i class="nav-icon fas fa-newspaper"></i>
 						<p>
 							News
 							<i class="right fas fa-angle-left"></i>
 						</p>
 					</a>
 					<ul class="nav nav-treeview">
-
 						<li class="nav-item">
-							<a href="<?php echo base_url() ?>" class="nav-link ">
-								<i class="fas fa-plus"></i>
-								<p>Add/View News</p>
+							<a href="chartjs.html" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Add / View News</p>
 							</a>
 						</li>
+
 					</ul>
 				</li>
+
 
 				<!-- Initiatives -->
 				<li class="nav-item">
 					<a href="#" class="nav-link">
-						<i class="far fa-lightbulb"></i>
+						<i class="nav-icon far fa-lightbulb"></i>
 						<p>
 							Initiatives
 							<i class="right fas fa-angle-left"></i>
 						</p>
 					</a>
 					<ul class="nav nav-treeview">
-
 						<li class="nav-item">
-							<a href="<?php echo base_url() ?>" class="nav-link ">
-								<i class="fas fa-plus"></i>
-								<p>Add/View Initiatives</p>
+							<a href="chartjs.html" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Add / View Initiatives</p>
 							</a>
 						</li>
+
 					</ul>
 				</li>
-
 				<!-- Services -->
 				<li class="nav-item">
 					<a href="#" class="nav-link">
-						<i class="fa fa-tools"></i>
+						<i class="nav-icon fa fa-tools"></i>
 						<p>
 							Services
 							<i class="right fas fa-angle-left"></i>
 						</p>
 					</a>
 					<ul class="nav nav-treeview">
-
 						<li class="nav-item">
-							<a href="<?php echo base_url() ?>" class="nav-link ">
-								<i class="fas fa-plus"></i>
-								<p>Add/View Services</p>
+							<a href="chartjs.html" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Add / View Services</p>
 							</a>
 						</li>
+
 					</ul>
 				</li>
+
 
 				<!-- Contact Us -->
 				<li class="nav-item">
 					<a href="#" class="nav-link">
-						<i class="fas fa-address-book"></i>
+						<i class="nav-icon fas fa-address-book"></i>
 						<p>
 							Contact Us
 							<i class="right fas fa-angle-left"></i>
 						</p>
 					</a>
 					<ul class="nav nav-treeview">
-
 						<li class="nav-item">
-							<a href="<?php echo base_url() ?>" class="nav-link ">
-								<i class="fas fa-plus"></i>
-								<p>Add/View Contact Us</p>
+							<a href="chartjs.html" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Add / Contact Us</p>
 							</a>
 						</li>
+
 					</ul>
 				</li>
+
 
 				<!-- Gallery -->
 				<li class="nav-item">
 					<a href="#" class="nav-link">
-						<i class="fas fa-images"></i>
+						<i class=" nav-icon fas fa-images"></i>
 						<p>
 							Gallery
 							<i class="right fas fa-angle-left"></i>
 						</p>
 					</a>
 					<ul class="nav nav-treeview">
-
 						<li class="nav-item">
-							<a href="<?php echo base_url() ?>" class="nav-link ">
-								<i class="fas fa-plus"></i>
-								<p>Add/View Gallery</p>
+							<a href="chartjs.html" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Add / View Gallery</p>
 							</a>
 						</li>
+
 					</ul>
 				</li>
+
 
 			</ul>
 		</nav>
