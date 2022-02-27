@@ -45,13 +45,13 @@ class Login extends CI_Controller
           'fullname'      => $check_user->row()->u_name,
           'user_role'     => $check_user->row()->u_user_role,
           'picture'       => !empty($check_user->row()->u_picture) ? $check_user->row()->u_picture : 'uploads/noimageold.png',
-          'create_date'     => $check_user->row()->u_doc,
+          'create_date'   => $check_user->row()->u_doc,
           /* Saving Setting Into Session*/
           'title'         => (!empty($setting->title) ? $setting->title : null),
           'address'       => (!empty($setting->description) ? $setting->description : null),
           'logo'          => (!empty($setting->logo) ? $setting->logo : null),
-          'favicon'          => (!empty($setting->favicon) ? $setting->favicon : null),
-          'footer_text'     => (!empty($setting->footer_text) ? $setting->footer_text : null),
+          'favicon'       => (!empty($setting->favicon) ? $setting->favicon : null),
+          'footer_text'   => (!empty($setting->footer_text) ? $setting->footer_text : null),
         ]);
         $this->redirectTo($data['user']['u_role']);
         redirect('login');
@@ -72,17 +72,10 @@ class Login extends CI_Controller
       case 1:
         redirect('admin/banner/index');    // Admin
         break;
-
       case 2:
-        redirect('faculty/home/index');     // Faculty
         break;
-
-        // case 3:
-        // 	redirect('teacher/home/index');     // Teacher
-        // 	break;
       default:
         $this->logout();
-        //redirect('login');
         break;
     }
   }
