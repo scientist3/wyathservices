@@ -33,32 +33,15 @@
 		<!-- Sidebar Menu -->
 		<nav class="mt-2">
 			<ul class="nav nav-pills nav-sidebar flex-column my-3" data-widget="treeview" role="menu" data-accordion="false">
-<<<<<<< HEAD
-				<!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
-
-				<!-- DASHBOARD -->
-				<li class="nav-item">
-					<a href="<?php echo base_url() ?>" class="nav-link">
-=======
 				<!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 				<li class="nav-item">
 					<a href="<?php echo base_url() ?>/dashboard" class="nav-link <?php //echo (($title == "Setting") ? "active" : null) 
 																																				?>">
->>>>>>> feature/banner/temporary_changes
 						<i class="nav-icon fas fa-tachometer-alt"></i>
 						<p>Dashboard</p>
 					</a>
 				</li>
-<<<<<<< HEAD
-
-				<!-- Banner -->
-				<li class="nav-item">
-					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-ad"></i>
-						<p>
-							Banner
-=======
 				<li class="nav-item">
 					<a href="<?php echo base_url() ?>" class="nav-link <?php //echo (($title == "Profile") ? "active" : null) 
 																															?>">
@@ -73,209 +56,11 @@
 						<i class="fa fa-eye nav-icon"></i>
 						<p>
 							Front Site Section
->>>>>>> feature/banner/temporary_changes
 							<i class="right fas fa-angle-left"></i>
 						</p>
 					</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-<<<<<<< HEAD
-							<a href="chartjs.html" class="nav-link">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Add / View Banner</p>
-							</a>
-						</li>
-
-					</ul>
-				</li>
-
-				<!-- Slider -->
-				<li class="nav-item">
-					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-photo-video"></i>
-						<p>
-							Slider
-							<i class="right fas fa-angle-left"></i>
-						</p>
-					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a href="chartjs.html" class="nav-link">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Add / View Slider</p>
-							</a>
-						</li>
-
-					</ul>
-				</li>
-
-				<!-- Projects -->
-				<li class="nav-item">
-					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-project-diagram"></i>
-						<p>
-							Projects
-							<i class="right fas fa-angle-left"></i>
-						</p>
-					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a href="chartjs.html" class="nav-link">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Add / View Projects</p>
-							</a>
-						</li>
-
-					</ul>
-				</li>
-
-
-				<!-- Partners -->
-				<li class="nav-item">
-					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-handshake"></i>
-						<p>
-							Partners
-							<i class="right fas fa-angle-left"></i>
-						</p>
-					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a href="chartjs.html" class="nav-link">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Add / View Partners</p>
-							</a>
-						</li>
-
-					</ul>
-				</li>
-
-
-				<!-- About Us -->
-				<li class="nav-item">
-					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-address-card"></i>
-						<p>
-							About Us
-							<i class="right fas fa-angle-left"></i>
-						</p>
-					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a href="chartjs.html" class="nav-link">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Add / View About Us</p>
-							</a>
-						</li>
-
-					</ul>
-				</li>
-
-
-				<!-- News -->
-				<li class="nav-item">
-					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-newspaper"></i>
-						<p>
-							News
-							<i class="right fas fa-angle-left"></i>
-						</p>
-					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a href="chartjs.html" class="nav-link">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Add / View News</p>
-							</a>
-						</li>
-
-					</ul>
-				</li>
-
-
-				<!-- Initiatives -->
-				<li class="nav-item">
-					<a href="#" class="nav-link">
-						<i class="nav-icon far fa-lightbulb"></i>
-						<p>
-							Initiatives
-							<i class="right fas fa-angle-left"></i>
-						</p>
-					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a href="chartjs.html" class="nav-link">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Add / View Initiatives</p>
-							</a>
-						</li>
-
-					</ul>
-				</li>
-				<!-- Services -->
-				<li class="nav-item">
-					<a href="#" class="nav-link">
-						<i class="nav-icon fa fa-tools"></i>
-						<p>
-							Services
-							<i class="right fas fa-angle-left"></i>
-						</p>
-					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a href="chartjs.html" class="nav-link">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Add / View Services</p>
-							</a>
-						</li>
-
-					</ul>
-				</li>
-
-
-				<!-- Contact Us -->
-				<li class="nav-item">
-					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-address-book"></i>
-						<p>
-							Contact Us
-							<i class="right fas fa-angle-left"></i>
-						</p>
-					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a href="chartjs.html" class="nav-link">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Add / Contact Us</p>
-							</a>
-						</li>
-
-					</ul>
-				</li>
-
-
-				<!-- Gallery -->
-				<li class="nav-item">
-					<a href="#" class="nav-link">
-						<i class=" nav-icon fas fa-images"></i>
-						<p>
-							Gallery
-							<i class="right fas fa-angle-left"></i>
-						</p>
-					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a href="chartjs.html" class="nav-link">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Add / View Gallery</p>
-							</a>
-						</li>
-
-					</ul>
-				</li>
-
-
-=======
 							<a href="<?php echo base_url() ?>" class="nav-link <?php //echo (($title == "Home") ? "active" : null) 
 																																	?>">
 								<i class="fa fa-home nav-icon"></i>
@@ -298,7 +83,6 @@
 						<p>Can Use Other Tabs</p>
 					</a>
 				</li>
->>>>>>> feature/banner/temporary_changes
 			</ul>
 		</nav>
 		<!-- /.sidebar-menu -->
