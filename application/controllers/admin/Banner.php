@@ -135,54 +135,6 @@ class Banner extends CI_Controller
 }
 
 /*
-	public function index()
-	{
-		$data['banner_details'] = $this->BannerModel->getBannerDetails();
-		$banner = $data['banner_details'];
-
-		$data['b_title'] = $banner['b_title'];
-		$data['title'] = "Banner";
-		$data['b_isvisible'] = $banner['b_isvisible'];
-		$data['b_img_path'] =  $banner['b_img_path'];
-		$this->b_img_path = $banner['b_img_path'];
-		$data['content'] = $this->load->view('admin/banner/index', $data, true);
-		$this->load->view('admin/layout/wrapper', $data);
-	}
-	public function update()
-	{
-		$this->form_validation->set_rules('b_title', 'Title', 'required');
-		$picture = $this->fileupload->do_upload(
-			'upload/images/banner/',
-			'b_img_path'
-		);
-		if ($this->form_validation->run() == true) {
-			$data['input'] = [
-				'b_title' => $this->input->post('b_title'),
-				'b_isvisible' => ($this->input->post('b_isvisible') == 'on') ? 1 : 0,
-				'b_img_path' => $picture
-			];
-			if (empty($data['input']['b_img_path'])) {
-				$data['input']['b_img_path'] = $this->b_img_path;
-			}
-			if ($this->BannerModel->update($data['input'])) {
-				$this->session->set_flashdata('message', 'Data Inserted Successfully');
-				$this->session->set_flashdata('class_name', 'alert-success');
-				redirect('Banner/index');
-			} else {
-				$this->session->set_flashdata('message', 'Error While Inserting Data');
-				$this->session->set_flashdata('class_name', 'alert-danger');
-				redirect('Banner/index');
-			}
-		} else {
-			$this->session->set_flashdata('message', 'Error While Inserting Data Into Database');
-			$this->session->set_flashdata('class_name', 'alert-danger');
-			redirect('Banner/index');
-		}
-	}
-}
-*/
-/*
-
 
 #-------------------------------#
 		//picture upload

@@ -45,7 +45,6 @@
 
 				<!-- Banner -->
 				<li class="nav-item <?php echo ($this->uri->segment(2) == "banner") ? "menu-open" : null; ?>">
-
 					<a href="#" class="nav-link <?php echo ($this->uri->segment(2) == "banner") ? "active" : null; ?>">
 						<i class="nav-icon fas fa-ad"></i>
 						<p>
@@ -55,7 +54,7 @@
 					</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="<?php echo base_url('admin/banner/index') ?>" class="nav-link <?php echo $this->uri->segment(3) == 'index' ? 'active' : null ?>">
+							<a href="<?php echo base_url('admin/banner/index') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'banner' ? 'active' : null ?>">
 								<i class="far fa-circle nav-icon"></i>
 								<p>Add / View Banner</p>
 							</a>
@@ -65,8 +64,8 @@
 				</li>
 
 				<!-- Slider -->
-				<li class="nav-item">
-					<a href="#" class="nav-link">
+				<li class="nav-item <?php echo ($this->uri->segment(2) == "slider") ? "menu-open" : null; ?>">
+					<a href="#" class="nav-link <?php echo $this->uri->segment(2) == 'slider' ? 'active' : null ?>">
 						<i class="nav-icon fas fa-photo-video"></i>
 						<p>
 							Slider
@@ -75,7 +74,7 @@
 					</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="chartjs.html" class="nav-link">
+							<a href="<?php echo base_url('admin/slider/index') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'slider' ? 'active' : null ?>" class="nav-link">
 								<i class="far fa-circle nav-icon"></i>
 								<p>Add / View Slider</p>
 							</a>
@@ -85,8 +84,8 @@
 				</li>
 
 				<!-- Projects -->
-				<li class="nav-item">
-					<a href="#" class="nav-link">
+				<li class="nav-item <?php echo ($this->uri->segment(2) == "projects") ? "menu-open" : null; ?>">
+					<a href="#" class="nav-link <?php echo $this->uri->segment(2) == 'projects' ? 'active' : null ?>">
 						<i class="nav-icon fas fa-project-diagram"></i>
 						<p>
 							Projects
@@ -95,7 +94,7 @@
 					</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="chartjs.html" class="nav-link">
+							<a href="<?php echo base_url('admin/projects/index') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'projects' ? 'active' : null ?>" class="nav-link">
 								<i class="far fa-circle nav-icon"></i>
 								<p>Add / View Projects</p>
 							</a>
@@ -106,8 +105,8 @@
 
 
 				<!-- Partners -->
-				<li class="nav-item">
-					<a href="#" class="nav-link">
+				<li class="nav-item <?php echo ($this->uri->segment(2) == "partners") ? "menu-open" : null; ?>">
+					<a href="#" class="nav-link <?php echo $this->uri->segment(2) == 'partners' ? 'active' : null ?>">
 						<i class="nav-icon fas fa-handshake"></i>
 						<p>
 							Partners
@@ -115,8 +114,8 @@
 						</p>
 					</a>
 					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a href="chartjs.html" class="nav-link">
+						<li class="nav-item ">
+							<a href="<?php echo base_url('admin/partners/index') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'partners' ? 'active' : null ?>">
 								<i class="far fa-circle nav-icon"></i>
 								<p>Add / View Partners</p>
 							</a>
@@ -124,32 +123,45 @@
 
 					</ul>
 				</li>
-
-
-				<!-- About Us -->
-				<li class="nav-item">
-					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-address-card"></i>
+				<!-- Initiatives -->
+				<li class="nav-item <?php echo ($this->uri->segment(2) == "FeaturedInitiatives") ? "menu-open" : null; ?>">
+					<a href="#" class="nav-link <?php echo $this->uri->segment(2) == 'FeaturedInitiatives' ? 'active' : null ?>">
+						<i class="nav-icon far fa-lightbulb"></i>
 						<p>
-							About Us
+							Featured Initiatives
 							<i class="right fas fa-angle-left"></i>
 						</p>
 					</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="chartjs.html" class="nav-link">
+							<a href="<?php echo base_url('admin/FeaturedInitiatives/index') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'FeaturedInitiatives' ? 'active' : null ?>">
 								<i class="far fa-circle nav-icon"></i>
-								<p>Add / View About Us</p>
+								<p>Add / View Initiatives</p>
 							</a>
 						</li>
-
 					</ul>
 				</li>
-
-
+				<!-- Services -->
+				<li class="nav-item <?php echo ($this->uri->segment(2) == "Services") ? "menu-open" : null; ?>">
+					<a href="#" class="nav-link <?php echo $this->uri->segment(2) == 'Services' ? 'active' : null ?>">
+						<i class="nav-icon far fa-lightbulb"></i>
+						<p>
+							Services
+							<i class="right fas fa-angle-left"></i>
+						</p>
+					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a href="<?php echo base_url('admin/Services/index') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'Services' ? 'active' : null ?>">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Add / View Services</p>
+							</a>
+						</li>
+					</ul>
+				</li>
 				<!-- News -->
-				<li class="nav-item">
-					<a href="#" class="nav-link">
+				<li class="nav-item <?php echo ($this->uri->segment(2) == "Event") ? "menu-open" : null; ?>">
+					<a href="#" class="nav-link <?php echo $this->uri->segment(2) == 'Event' ? 'active' : null ?>">
 						<i class="nav-icon fas fa-newspaper"></i>
 						<p>
 							News
@@ -158,73 +170,11 @@
 					</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="chartjs.html" class="nav-link">
+							<a href="<?php echo base_url('admin/Event/index') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'Event' ? 'active' : null ?>" class="nav-link">
 								<i class="far fa-circle nav-icon"></i>
 								<p>Add / View News</p>
 							</a>
 						</li>
-
-					</ul>
-				</li>
-
-
-				<!-- Initiatives -->
-				<li class="nav-item">
-					<a href="#" class="nav-link">
-						<i class="nav-icon far fa-lightbulb"></i>
-						<p>
-							Initiatives
-							<i class="right fas fa-angle-left"></i>
-						</p>
-					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a href="chartjs.html" class="nav-link">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Add / View Initiatives</p>
-							</a>
-						</li>
-
-					</ul>
-				</li>
-				<!-- Services -->
-				<li class="nav-item">
-					<a href="#" class="nav-link">
-						<i class="nav-icon fa fa-tools"></i>
-						<p>
-							Services
-							<i class="right fas fa-angle-left"></i>
-						</p>
-					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a href="chartjs.html" class="nav-link">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Add / View Services</p>
-							</a>
-						</li>
-
-					</ul>
-				</li>
-
-
-				<!-- Contact Us -->
-				<li class="nav-item">
-					<a href="#" class="nav-link">
-						<i class="nav-icon fas fa-address-book"></i>
-						<p>
-							Contact Us
-							<i class="right fas fa-angle-left"></i>
-						</p>
-					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a href="chartjs.html" class="nav-link">
-								<i class="far fa-circle nav-icon"></i>
-								<p>Add / Contact Us</p>
-							</a>
-						</li>
-
 					</ul>
 				</li>
 				<!-- Gallery -->
@@ -243,11 +193,44 @@
 								<p>Add / View Gallery</p>
 							</a>
 						</li>
-
 					</ul>
 				</li>
-
-
+				<!-- About Us -->
+				<li class="nav-item <?php echo ($this->uri->segment(2) == "Aboutus") ? "menu-open" : null; ?>">
+					<a href="#" class="nav-link <?php echo $this->uri->segment(2) == 'Aboutus' ? 'active' : null ?>">
+						<i class="nav-icon fas fa-address-card"></i>
+						<p>
+							About Us
+							<i class="right fas fa-angle-left"></i>
+						</p>
+					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a href="<?php echo base_url('admin/Aboutus/index') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'Aboutus' ? 'active' : null ?>" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Add / View About Us</p>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<!-- Contact Us -->
+				<li class="nav-item">
+					<a href="#" class="nav-link">
+						<i class="nav-icon fas fa-address-book"></i>
+						<p>
+							Contact Us
+							<i class="right fas fa-angle-left"></i>
+						</p>
+					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a href="chartjs.html" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Add / Contact Us</p>
+							</a>
+						</li>
+					</ul>
+				</li>
 			</ul>
 		</nav>
 		<!-- /.sidebar-menu -->

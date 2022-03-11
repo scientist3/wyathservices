@@ -4,7 +4,7 @@ class BannerModel extends CI_Model
 {
 
     private $table = "banner_tbl";
-
+    private $timezone = 'Asia/Kolkata';
     public function create($data = [])
     {
         return $this->db->insert($this->table, $data);
@@ -37,9 +37,9 @@ class BannerModel extends CI_Model
             ->order_by('b_id', 'asc')
             ->get()
             ->result();
-        $list[''] = ('Select Department');
+        $list[''] = ('Select Banner');
         foreach ($result as $row) {
-            $list[$row->b_id] = $row->dept_name;
+            $list[$row->b_id] = $row->b_title;
         }
         return $list;
     }
@@ -48,13 +48,13 @@ class BannerModel extends CI_Model
     {
         $result = $this->db->select("*")
             ->from($this->table)
-            ->where('dept_status', 1)
+            ->where('b_isvisible', 1)
             ->order_by('b_id', 'asc')
             ->get()
             ->result();
-        $list[''] = ('select_property_type');
+        $list[''] = ('select_banner_type');
         foreach ($result as $row) {
-            $list[$row->b_id] = $row->dept_name;
+            $list[$row->b_id] = $row->b_title_name;
         }
         return $list;
     }
@@ -71,6 +71,8 @@ class BannerModel extends CI_Model
 
     public function update($data = [])
     {
+        date_default_timezone_set($this->timezone);
+        $data['b_dou'] = date('Y-m-d h:i:sa');
         return $this->db->where('b_id', $data['b_id'])
             ->update($this->table, $data);
     }
@@ -105,32 +107,3 @@ class BannerModel extends CI_Model
             ->row();
     }
 }
-
-
-/*class BannerModel extends CI_Model
-{
-    public function update($data)
-    {
-        $id = $this->db->get('banner_tbl')->row_array();
-        $this->db->where('b_id', $id);
-        return $this->db->update('banner_tbl', $data);
-    }
-    public function getBannerDetails()
-    {
-        return $this->db->get('banner_tbl')->row_array();
-    }
-    // public function getAdminProfile()
-    // {
-    //     return $this->db->get('admin')->row_array();
-    // }
-    // public function update($data)
-    // {
-    //     $this->db->where('set_id', 1);
-    //     return $this->db->update('setting', $data);
-    // }
-    // public function updateProfile($data)
-    // {
-    //     $this->db->where('admin_id', 1);
-    //     return $this->db->update('admin', $data);
-    // }
-}*/
