@@ -1,17 +1,6 @@
 <!-- Main content -->
 <section class="content">
-  <?php if ($this->session->flashdata('message') != null) {  ?>
-    <div class="alert <?= $this->session->flashdata('class_name') ?> alert-dismissable">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <?php echo $this->session->flashdata('message'); ?>
-    </div>
-  <?php } ?>
-  <?php if ($this->session->flashdata('exception') != null) {  ?>
-    <div class="alert <?= $this->session->flashdata('class_name') ?> alert-dismissable">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <?php echo $this->session->flashdata('exception'); ?>
-    </div>
-  <?php } ?>
+
   <div class="row">
     <!-- Save -->
     <div class="col-sm-4">
@@ -69,7 +58,7 @@
                       <div class="form-check row form-inline form-control-sm">
                         <div class="col-6 form-inline">
                           <label class=" radio-inline">
-                            <input type="radio" name="par_status" value="1" <?= ($input->par_status == '1') ? 'checked' : null; ?> data-toggle="tooltip" title="Active status">&nbsp;
+                            <input type="radio" name="par_status" value="1" <?= ($input->par_status == '1' || ($input->par_status != '0')) ? 'checked' : null; ?> data-toggle="tooltip" title="Active status">&nbsp;
                             <?php echo ('Active') ?>
                           </label>
                         </div>

@@ -13,10 +13,13 @@ class Front extends CI_Controller
   }
   public function index()
   {
-    $data['title'] = "Home";
-    $data['featured_initatives'] = $this->front_model->get_featured_initatives();
-    $data['projects'] = $this->front_model->get_projects();
-    $data['partners'] = $this->front_model->get_partners();
+    $data['title']                = "Home";
+    $data['featured_initatives']  = $this->front_model->get_featured_initatives();
+    $data['projects']             = $this->front_model->get_projects();
+    $data['partners']             = $this->front_model->get_partners();
+    $data['sliders']              = $this->front_model->get_sliders();
+    $data['what_we_dos']          = $this->front_model->get_what_we_do();
+
     $data['content'] = $this->load->view('frontsite/home/index', $data, true);
     $this->load->view('frontsite/layout/wrapper_view', $data);
   }

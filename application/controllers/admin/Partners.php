@@ -55,7 +55,6 @@ class Partners extends CI_Controller
     if ($picture === false) {
       $this->session->set_flashdata('message', ('invalid_picture'));
     }
-    // $picture_thumb = $this->fileupload->create_thumbnail('uploads/images/partners/thumb', 120, 50);
 
     $data['input'] = (object)$postDataInp = array(
       'par_id'        => $this->input->post('par_id'),

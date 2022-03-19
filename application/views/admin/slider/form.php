@@ -1,17 +1,5 @@
 <!-- Main content -->
 <section class="content">
-  <?php if ($this->session->flashdata('message') != null) {  ?>
-    <div class="alert <?= $this->session->flashdata('class_name') ?> alert-dismissable">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <?php echo $this->session->flashdata('message'); ?>
-    </div>
-  <?php } ?>
-  <?php if ($this->session->flashdata('exception') != null) {  ?>
-    <div class="alert <?= $this->session->flashdata('class_name') ?> alert-dismissable">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <?php echo $this->session->flashdata('exception'); ?>
-    </div>
-  <?php } ?>
   <div class="row">
     <!-- Save -->
     <div class="col-sm-4">
@@ -60,7 +48,7 @@
                       <div class="form-check row form-inline form-control-sm">
                         <div class="col-6 form-inline">
                           <label class=" radio-inline">
-                            <input type="radio" name="s_status" value="1" <?= ($input->s_status == '1') ? 'checked' : null; ?> data-toggle="tooltip" title="Active status">&nbsp;
+                            <input type="radio" name="s_status" value="1" <?= ($input->s_status == '1' || ($input->s_status != '0')) ? 'checked' : null; ?> data-toggle="tooltip" title="Active status">&nbsp;
                             <?php echo ('Active') ?>
                           </label>
                         </div>
@@ -111,8 +99,8 @@
               <tr>
                 <th><?php echo ('Unique Id') ?></th>
                 <th><?php echo ('Title') ?></th>
+                <th><?php echo ('Image') ?></th>
                 <th><?php echo ('Status') ?></th>
-                <!-- <th><?php echo ('Image') ?></th> -->
                 <th><?php echo ('Action') ?></th>
               </tr>
             </thead>
@@ -123,16 +111,12 @@
                   <tr>
                     <td><?php echo $sl; ?></td>
                     <td><?php echo $sli->s_title ?></td>
+                    <td><img src="<?= base_url($sli->s_img_thumb); ?>" alt=""></td>
                     <td class="text-center">
                       <?php echo ($sli->s_status) ?
                         '<i class="fa fa-check" aria-hidden="true"></i>' :
                         '<i class="fa fa-times" aria-hidden="true"></i>'; ?>
                     </td>
-                    <!-- <td>
-                      <div class="w-100 h-100">
-                        <img class="w-25 h-25" src="<?php echo base_url() . $sli->s_img_path; ?>">
-                      </div>
-                    </td> -->
                     <td class="text-center" width="100">
                       <?php if (!in_array($sli->s_id, [])) { ?>
                         <a href="<?php echo base_url("admin/slider/edit/$sli->s_id") ?>" class="btn btn-xs btn-success"><i class="fa fa-edit"></i></a>

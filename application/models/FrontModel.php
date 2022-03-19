@@ -32,4 +32,24 @@ class FrontModel extends CI_Model
       ->get()
       ->result();
   }
+
+  // sliders
+  public function get_sliders()
+  {
+    return $this->db->select("*")
+      ->from('slider_tbl')
+      ->where('s_status', 1)
+      ->get()
+      ->result();
+  }
+
+  // what_we_do_tbl
+  public function get_what_we_do()
+  {
+    return $this->db->select("*")
+      ->from('what_we_do_tbl')
+      ->where('w_status', 1)
+      ->get()
+      ->result();
+  }
 }

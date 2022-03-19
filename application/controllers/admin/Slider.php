@@ -31,10 +31,35 @@ class Slider extends CI_Controller
       'uploads/images/slider/',
       's_img_path'
     );
+
+    $pic_thumb = '';
+    if ($picture !== false && $picture != null) {
+      $pic_thumb = $this->fileupload->create_thumbnail(
+        $picture,
+        'uploads/images/slider/',
+        120,
+        50
+      );
+    }
+
+    // If uploaded sucessfully do resize
+    if ($picture !== false && $picture != null) {
+      $this->fileupload->do_resize(
+        $picture,
+        1900,
+        1000
+      );
+    }
+    //if picture is not uploaded
+    if ($picture === false) {
+      $this->session->set_flashdata('message', ('invalid_picture'));
+    }
+
     $data['input'] = (object)$postDataInp = array(
       's_id'     => $this->input->post('s_id'),
       's_title'   => $this->input->post('s_title'),
       's_img_path'     => (!empty($picture) ? $picture : $this->input->post('s_img_path_old')),
+      's_img_thumb'  => (!empty($pic_thumb) ? $pic_thumb : $this->input->post('s_img_thumb_old')),
       's_status' => ($this->input->post('s_status')),
     );
 
@@ -44,6 +69,7 @@ class Slider extends CI_Controller
       's_id'     => $input->s_id,
       's_title'   => $input->s_title,
       's_img_path'   => $input->s_img_path,
+      's_img_thumb'   => $input->s_img_thumb,
       's_status' => $input->s_status
     );
     #----------------- Location Object -------------#
@@ -109,6 +135,7 @@ class Slider extends CI_Controller
       's_id'     => $input->s_id,
       's_title'   => $input->s_title,
       's_img_path'   => $input->s_img_path,
+      's_img_thumb' => $input->s_img_thumb,
       's_status' => $input->s_status
     );
     $data['slider'] = $this->SliderModel->read();
