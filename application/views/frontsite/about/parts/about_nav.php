@@ -75,17 +75,24 @@
         <li class="c-state_active">
           <a href="<?= base_url('front/partners'); ?>" <?php echo ($this->uri->segment(2) == "partners") ? 'class="c-font-brown-3"' : null; ?>>Partners</a>
         </li>
-        <li>
-          |
-        </li>
-        <li class="c-state_active">
-          <a href="<?= base_url('front/areacovered'); ?>" <?php echo ($this->uri->segment(2) == "areacovered") ? 'class="c-font-brown-3"' : null; ?>>Areas Covered</a>
-        </li>
-        <li>
+        <style>
+          .d-none {
+            display: none !important;
+          }
+        </style>
+
+        <li class="d-none">
           |
         </li>
 
-        <li class="c-state_active">
+        <li class="c-state_active d-none">
+          <a href="<?= base_url('front/areacovered'); ?>" <?php echo ($this->uri->segment(2) == "areacovered") ? 'class="c-font-brown-3"' : null; ?>>Areas Covered</a>
+        </li>
+        <li class="d-none">
+          |
+        </li>
+
+        <li class="c-state_active d-none">
           <a href="<?= base_url('front/news'); ?>" <?php echo ($this->uri->segment(2) == "news") ? 'class="c-font-brown-3"' : null; ?>>News</a>
         </li>
 
