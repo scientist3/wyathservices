@@ -258,15 +258,15 @@
               <div class="c-content-counter-1 c-opt-1 c-content-box">
                 <div class="c-content-v-center c-theme-bg">
                   <div class="c-wrapper">
-                    <div class="c-body" style="padding: 0px;">
+                    <div class="c-body" style="padding: 0px;padding-bottom:22px">
                       <div class=" c-font-bold c-font-85 c-center c-font-white" data-counter="counterup">
-                        5000
+                        <?php echo $students_impacted; ?>
                       </div>
                       <h3 class="c-font-black c-font-bold c-center">Students /Beneficaries impacted by Wyath
                         Services in the last 5 years</h3>
                     </div>
 
-                    <div class="c-body" style="padding: 0px; padding-bottom:22px">
+                    <div class="c-body c-hide" style="padding: 0px; padding-bottom:22px">
                       <div class=" c-font-bold c-font-85 c-center c-font-white" data-counter="counterup">
                         73
                       </div>

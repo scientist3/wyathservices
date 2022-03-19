@@ -52,4 +52,46 @@ class FrontModel extends CI_Model
       ->get()
       ->result();
   }
+
+  // get_about_us
+  public function get_about_us()
+  {
+    return $this->db->select("*")
+      ->from('about_tbl')
+      ->where('ab_status', 1)
+      ->get()
+      ->row();
+  }
+
+  // get get_students_impacted
+  public function get_students_impacted()
+  {
+    return $this->db->select("ab_students_impacted")
+      ->from('about_tbl')
+      ->where('ab_status', 1)
+      ->get()
+      ->row()->ab_students_impacted;
+  }
+
+  // get_initiatives
+  public function get_initiatives()
+  {
+    return $this->db->select("*")
+      ->from('init_services_tbl')
+      ->where('init_ser_status', 1)
+      ->where('init_ser_page', 'initiatives')
+      ->get()
+      ->result();
+  }
+
+  // get_services
+  public function get_services()
+  {
+    return $this->db->select("*")
+      ->from('init_services_tbl')
+      ->where('init_ser_status', 1)
+      ->where('init_ser_page', 'services')
+      ->get()
+      ->result();
+  }
 }

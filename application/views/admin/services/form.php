@@ -135,7 +135,11 @@
                   <tr>
                     <td><?php echo $sl; ?></td>
                     <td><?php echo $ser->init_ser_title ?></td>
-                    <td><?php echo $ser->init_ser_desc ?></td>
+                    <td>
+                      <?php
+                      echo strlen($ser->init_ser_desc) > 20 ? substr($ser->init_ser_desc, 0, 20) . "..." : $ser->init_ser_desc;
+                      ?>
+                    </td>
                     <td class="text-center">
                       <?php echo ($ser->init_ser_status) ?
                         '<i class="fa fa-check" aria-hidden="true"></i>' :
