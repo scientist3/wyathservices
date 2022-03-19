@@ -33,6 +33,7 @@
                         <input type="file" class="custom-file-input" name="par_img_path" id="par_img_path">
                         <label class="custom-file-label" for="par_img_path">Choose file</label>
                         <input type="hidden" name="par_img_path_old" value="<?php echo $input->par_img_path ?>">
+                        <input type="hidden" name="par_img_thumb_old" value="<?php echo $input->par_img_thumb ?>">
                       </div>
                     </div>
                   </div>
@@ -51,6 +52,14 @@
                       <label for="par_url"><?php echo ('Partner Url'); ?></label> <small class="req"> *</small>
                       <input name="par_url" class="form-control form-control-sm" type="text" placeholder="<?php echo ('URL') ?>" id="par_url" value="<?php echo $input->par_url ?>" data-toggle="tooltip" title="<?php echo ('Project URl'); ?>">
                       <?php echo form_error('par_url', '<span class="badge bg-danger p-1">', '</span>'); ?>
+                    </div>
+                  </div>
+                  <!-- Description -->
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <label for="par_desc"><?php echo ('Partner Description'); ?></label>
+                      <input name="par_desc" class="form-control form-control-sm" type="text" placeholder="<?php echo ('Description') ?>" id="par_desc" value="<?php echo $input->par_desc ?>" data-toggle="tooltip" title="<?php echo ('Project Description'); ?>">
+                      <?php echo form_error('par_desc', '<span class="badge bg-danger p-1">', '</span>'); ?>
                     </div>
                   </div>
                   <!-- Satus -->
@@ -110,7 +119,9 @@
             <thead>
               <tr>
                 <th><?php echo ('Unique Id') ?></th>
+                <th><?php echo ('Image') ?></th>
                 <th><?php echo ('Page Url') ?></th>
+                <th><?php echo ('Description') ?></th>
                 <th><?php echo ('Status') ?></th>
                 <th><?php echo ('Action') ?></th>
               </tr>
@@ -121,7 +132,14 @@
                 <?php foreach ($partners as $par) { ?>
                   <tr>
                     <td><?php echo $sl; ?></td>
+                    <td><img src="<?= base_url($par->par_img_thumb); ?>" alt=""></td>
                     <td><?php echo $par->par_url ?></td>
+                    <td>
+                      <?php
+                      echo $par->par_desc == null  ? 'Not Available' : $par->par_desc;
+                      ?>
+
+                    </td>
                     <td class="text-center">
                       <?php echo ($par->par_status) ?
                         '<i class="fa fa-check" aria-hidden="true"></i>' :

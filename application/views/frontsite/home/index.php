@@ -326,77 +326,24 @@
     </div>
     <div class="c-content-feature-2-grid" data-auto-height="true" data-mode="base-height">
       <div class="row">
-        <div class="col-md-4 col-sm-6">
-          <div class="c-content-feature-2" data-wow-delay1="2s" data-height="height">
-            <div class="c-icon-wrapper">
-              <div class="c-content-line-icon c-theme c-icon-globe">
+
+        <?php if (valArr($featured_initatives)) { ?>
+          <?php foreach ($featured_initatives as $key => $initative) { ?>
+            <div class="col-md-4 col-sm-6">
+              <div class="c-content-feature-2" data-wow-delay1="2s" data-height="height">
+                <div class="c-icon-wrapper">
+                  <div class="c-content-line-icon c-theme c-icon-globe">
+                  </div>
+                </div>
+                <h3 class="c-font-uppercase c-font-bold c-title"><a href="#"><?= $initative->fi_title; ?></a></h3>
+                <p>
+                  <?= $initative->fi_desc; ?>
+                </p>
               </div>
             </div>
-            <h3 class="c-font-uppercase c-font-bold c-title"><a href="Bridge.html">Bridge</a></h3>
-            <p>
-              A Large Industry-Institute Interaction Event of India
-            </p>
-          </div>
-        </div>
-        <div class="col-md-4 col-sm-6">
-          <div class="c-content-feature-2" data-wow-delay1="2s" data-height="height">
-            <div class="c-icon-wrapper">
-              <div class="c-content-line-icon c-theme c-icon-39">
-              </div>
-            </div>
-            <h3 class="c-font-uppercase c-font-bold c-title"><a href="Journals.html">JOURNALS</a></h3>
-            <p>
-              Peer-Reviewed International Journals </p>
-          </div>
-        </div>
-        <div class="col-md-4 col-sm-6">
-          <div class="c-content-feature-2" data-wow-delay1="2s" data-height="height">
-            <div class="c-icon-wrapper">
-              <div class="c-content-line-icon c-theme c-icon-25">
-              </div>
-            </div>
-            <h3 class="c-font-uppercase c-font-bold c-title"><a href="Youth-Empowerment.html">YOUTH</a></h3>
-            <p>
-              The New Gen Leader
-            </p>
-          </div>
-        </div>
-        <div class="col-md-4 col-sm-6">
-          <div class="c-content-feature-2" data-wow-delay1="2s" data-height="height">
-            <div class="c-icon-wrapper">
-              <div class="c-content-line-icon c-theme c-icon-bulb">
-              </div>
-            </div>
-            <h3 class="c-font-uppercase c-font-bold c-title"><a href="https://digitalliteracy.in/" target="_blank">Wyath Services Digital Literacy Mission</a></h3>
-            <p>
-              Creating Digitally Enabled India
-            </p>
-          </div>
-        </div>
-        <div class="col-md-4 col-sm-6">
-          <div class="c-content-feature-2" data-wow-delay1="2s" data-height="height">
-            <div class="c-icon-wrapper">
-              <div class="c-content-line-icon c-theme c-icon-34">
-              </div>
-            </div>
-            <h3 class="c-font-uppercase c-font-bold c-title"><a href="PowerSeminar.html">POWER SEMINAR</a></h3>
-            <p>
-              Empowering Students
-            </p>
-          </div>
-        </div>
-        <div class="col-md-4 col-sm-6">
-          <div class="c-content-feature-2" data-wow-delay1="2s" data-height="height">
-            <div class="c-icon-wrapper">
-              <div class="c-content-line-icon c-theme c-icon-18">
-              </div>
-            </div>
-            <h3 class="c-font-uppercase c-font-bold c-title"><a href="https://www.ictacademy.in/IPD2015/" target="_blank">Wyath Services Placement Drive</a></h3>
-            <p>
-              Exclusively for Wyath Services Member College Students
-            </p>
-          </div>
-        </div>
+        <?php }
+        } ?>
+
       </div>
     </div>
   </div>
@@ -414,60 +361,30 @@
             <div class="c-wrapper">
               <div class="c-body">
                 <div class="c-content-title-1">
-                  <h3 class="c-font-uppercase c-font-bold c-left c-font-white" style="padding-top:20px;">Projects<a href="Projects.html" class="c-font-uppercase c-font-white c-theme-link c-font-15 c-font-sbold">&nbsp;&nbsp;|&nbsp;&nbsp;View
+                  <h3 class="c-font-uppercase c-font-bold c-left c-font-white" style="padding-top:20px;">Projects<a href="Projects.html" class="c-font-uppercase c-font-white c-theme-link c-font-15 c-font-sbold c-hide">&nbsp;&nbsp;|&nbsp;&nbsp;View
                       All</a></h3>
                   <div class="c-line-left">
                   </div>
 
                 </div>
                 <div class="row">
-                  <div class="col-md-6 col-sm-6 col-xs-6">
-                    <a href="https://pmkvyofficial.org/" target="_blank">
-                      <div class="c-content-color-demo tooltips" data-original-title="Click to view the projects">
-                        <div class="c-color-view c-bg-white c-bg-white-font c-font-14 c-font-bold c-font-uppercase">
-                          <img src="<?= base_url('frontsite'); ?>/assets/base/img/content/client-logos/tnsdc.jpg" class="img-responsive" style="display:inline;" />
-                        </div>
-                        <div class="c-color-info c-bg-white c-font-12 c-font-sbold c-font-uppercase">
-                          Pradhan Mantri Kaushal Vikas Yojana (PMKVY)
-                        </div>
+                  <?php if (valArr($projects)) { ?>
+                    <?php foreach ($projects as $key => $project) { ?>
+                      <div class="col-md-6 col-sm-6 col-xs-6">
+                        <a href="<?= $project->pr_url; ?>" target="_blank">
+                          <div class="c-content-color-demo tooltips" data-original-title="Click to view the projects">
+                            <div class="c-color-view c-bg-white c-bg-white-font c-font-14 c-font-bold c-font-uppercase">
+                              <img src="<?= base_url($project->pr_img_path); ?>" class="img-responsive" style="display:inline;" />
+                            </div>
+                            <div class="c-color-info c-bg-white c-font-12 c-font-sbold c-font-uppercase">
+                              <?= $project->pr_caption; ?>
+                            </div>
+                          </div>
+                        </a>
                       </div>
-                  </div>
-                  <div class="col-md-6 col-sm-6 col-xs-6">
-                    <a href="https://nulm.gov.in/" target="_blank">
-                      <div class="c-content-color-demo tooltips" data-original-title="Click to view the projects">
-                        <div class="c-color-view c-bg-white c-bg-white-font c-font-14 c-font-bold c-font-uppercase">
-                          <img src="<?= base_url('frontsite'); ?>/assets/base/img/content/client-logos/aicte_logo.jpg" class="img-responsive" style="display:inline;" />
-                        </div>
-                        <div class="c-color-info c-bg-white c-font-12 c-font-sbold c-font-uppercase">
-                          National Urban Livelihoods Mission
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                  <div class="col-md-6 col-sm-6 col-xs-6">
-                    <a href="https://www.jkssdm.org/" target="_blank">
-                      <div class="c-content-color-demo tooltips" data-original-title="Click to view the projects">
-                        <div class="c-color-view c-bg-white c-bg-white-font c-font-14 c-font-bold c-font-uppercase">
-                          <img src="<?= base_url('frontsite'); ?>/assets/base/img/content/client-logos/edi.jpg" class="img-responsive" style="display:inline;" />
-                        </div>
-                        <div class="c-color-info c-bg-white c-font-12 c-font-sbold c-font-uppercase">
-                          J&K Skill Development Mission Society
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                  <div class="col-md-6 col-sm-6 col-xs-6">
-                    <a href="https://www.facebook.com/smartschoolkashmir/" target="_blank">
-                      <div class="c-content-color-demo tooltips" data-original-title="Click to view the projects">
-                        <div class="c-color-view c-bg-white c-bg-white-font c-font-14 c-font-bold c-font-uppercase">
-                          <img src="<?= base_url('frontsite'); ?>/assets/base/img/content/client-logos/ictacp.jpg" class="img-responsive" style="display:inline;" />
-                        </div>
-                        <div class="c-color-info c-bg-white c-font-12 c-font-sbold c-font-uppercase">
-                          DIGITAL EDUCATION SYSTEM, KASHMIR
-                        </div>
-                      </div>
-                    </a>
-                  </div>
+                  <?php }
+                  } ?>
+
                 </div>
               </div>
             </div>
@@ -608,33 +525,15 @@
         <!-- End-->
         <!-- Begin: Owlcarousel -->
         <div class="owl-carousel owl-theme c-theme owl-bordered1">
-          <div class="item">
-            <img src="<?= base_url('frontsite'); ?>/assets/base/img/content/client-logos/1.jpg" class="img-responsive" alt="" />
-          </div>
-          <div class="item">
-            <img src="<?= base_url('frontsite'); ?>/assets/base/img/content/client-logos/2.jpg" class="img-responsive" alt="" />
-          </div>
-          <div class="item">
-            <img src="<?= base_url('frontsite'); ?>/assets/base/img/content/client-logos/3.jpg" class="img-responsive" alt="" />
-          </div>
-          <div class="item">
-            <img src="<?= base_url('frontsite'); ?>/assets/base/img/content/client-logos/4.jpg" class="img-responsive" alt="" />
-          </div>
-
-          <div class="item">
-            <img src="<?= base_url('frontsite'); ?>/assets/base/img/content/client-logos/6.jpg" class="img-responsive" alt="" />
-          </div>
-          <div class="item">
-            <img src="<?= base_url('frontsite'); ?>/assets/base/img/content/client-logos/7.jpg" class="img-responsive" alt="" />
-          </div>
-          <div class="item">
-            <img src="<?= base_url('frontsite'); ?>/assets/base/img/content/client-logos/8.jpg" class="img-responsive" alt="" />
-          </div>
-          <div class="item">
-            <img src="<?= base_url('frontsite'); ?>/assets/base/img/content/client-logos/9.jpg" class="img-responsive" alt="" />
-          </div>
-
-
+          <?php if (valArr($partners)) : ?>
+            <?php foreach ($partners as $key => $partner) : ?>
+              <div class="item">
+                <a href="<?= $partner->par_url ?>" target="_BLANK">
+                  <img src="<?= base_url($partner->par_img_path); ?>" class="img-responsive" alt="" />
+                </a>
+              </div>
+          <?php endforeach;
+          endif; ?>
 
         </div>
         <!-- End-->

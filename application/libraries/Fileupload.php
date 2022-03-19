@@ -16,7 +16,8 @@ class Fileupload
             $ci->load->helper('url');
 
             //folder upload
-            $file_path = $upload_path . date('Y-m-d') . "/";
+            // $file_path = $upload_path . date('Y-m-d') . "/";
+            $file_path = $upload_path;
             if (!is_dir($file_path))
                 mkdir($file_path, 0755, true);
             //ends of folder upload 
@@ -57,5 +58,26 @@ class Fileupload
         ];
         $ci->image_lib->initialize($config);
         $ci->image_lib->resize();
+    }
+
+    function create_thumbnail($file_path, $new_file_path, $width, $height)
+    {
+
+        $ci = &get_instance();
+        $ci->load->library('image_lib');
+        $config['image_library']  = 'gd2';
+        $config['source_image']   = $file_path;
+        $config['create_thumb']   = TRUE;
+        $config['maintain_ratio'] = false;
+        $config['width']          = $width;
+        $config['height']         = $height;
+        $config['new_image']      = $new_file_path;
+        $ci->image_lib->initialize($config);
+        if (!$ci->image_lib->resize()) {
+            echo $ci->image_lib->display_errors();
+        } else {
+            $file = $ci->upload->data();
+            return $new_file_path . $file['raw_name'] . '_thumb' . $file['file_ext'];
+        }
     }
 }

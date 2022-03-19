@@ -24,18 +24,46 @@ class Partners extends CI_Controller
     $par_id = $this->input->post('par_id');
     #----------- Validation ----------------#
     {
-      $this->form_validation->set_rules('par_url', ('URL'),  'required');
+      // $this->form_validation->set_rules('par_url', ('URL'),  'required');
       $this->form_validation->set_rules('par_status', ('Status'),    'required');
     }
     $picture = $this->fileupload->do_upload(
       'uploads/images/partners/',
       'par_img_path'
     );
+
+
+    $pic_thumb = '';
+    if ($picture !== false && $picture != null) {
+      $pic_thumb = $this->fileupload->create_thumbnail(
+        $picture,
+        'uploads/images/partners/',
+        120,
+        50
+      );
+    }
+
+    // If uploaded sucessfully do resize
+    if ($picture !== false && $picture != null) {
+      $this->fileupload->do_resize(
+        $picture,
+        230,
+        128
+      );
+    }
+    //if picture is not uploaded
+    if ($picture === false) {
+      $this->session->set_flashdata('message', ('invalid_picture'));
+    }
+    // $picture_thumb = $this->fileupload->create_thumbnail('uploads/images/partners/thumb', 120, 50);
+
     $data['input'] = (object)$postDataInp = array(
       'par_id'        => $this->input->post('par_id'),
       'par_img_path'  => (!empty($picture) ? $picture : $this->input->post('par_img_path_old')),
+      'par_img_thumb'  => (!empty($pic_thumb) ? $pic_thumb : $this->input->post('par_img_thumb_old')),
       'par_status'    => ($this->input->post('par_status')),
       'par_url'       => $this->input->post('par_url'),
+      'par_desc'       => $this->input->post('par_desc'),
     );
 
     $input = $data['input'];
@@ -43,7 +71,9 @@ class Partners extends CI_Controller
     $data['user'] = (object)$postDataUser = array(
       'par_id'        => $input->par_id,
       'par_url'       => $input->par_url,
+      'par_desc'       => $input->par_desc,
       'par_img_path'  => $input->par_img_path,
+      'par_img_thumb'  => $input->par_img_thumb,
       'par_status'    => $input->par_status
     );
     #----------------- Location Object -------------#
@@ -108,7 +138,9 @@ class Partners extends CI_Controller
     $data['input'] = (object)$postDataUser = array(
       'par_id'     => $input->par_id,
       'par_img_path'   => $input->par_img_path,
+      'par_img_thumb'  => $input->par_img_thumb,
       'par_url'   => $input->par_url,
+      'par_desc'  => $input->par_desc,
       'par_status' => $input->par_status
     );
     $data['partners'] = $this->PartnersModel->read();

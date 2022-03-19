@@ -204,14 +204,29 @@
                   <tr>
                     <td><?php echo $sl; ?></td>
                     <td><?php echo $ab->ab_title ?></td>
-                    <td><?php echo $ab->ab_subtitle ?></td>
-                    <td><?php echo $ab->ab_desc ?></td>
+                    <td>
+                      <?php
+                      echo strlen($ab->ab_subtitle) > 50 ? substr($ab->ab_subtitle, 0, 50) . "..." : $ab->ab_subtitle;
+                      ?>
+                    </td>
+                    <td>
+                      <?php
+                      echo strlen($ab->ab_desc) > 50 ? substr($ab->ab_desc, 0, 50) . "..." : $ab->ab_desc;
+                      ?>
+                    </td>
                     <td><?php echo $ab->ab_district_covered ?></td>
                     <td><?php echo $ab->ab_centres_established ?></td>
                     <td><?php echo $ab->ab_students_impacted ?></td>
                     <td><?php echo $ab->ab_corporate_engaged ?></td>
-                    <td><?php echo $ab->ab_vision_des ?></td>
-                    <td><?php echo $ab->ab_mission_des ?></td>
+                    <td>
+                      <?php
+                      echo strlen($ab->ab_vision_des) > 50 ? substr($ab->ab_vision_des, 0, 50) . "..." : $ab->ab_vision_des;
+                      ?>
+                    <td>
+                      <?php
+                      echo strlen($ab->ab_mission_des) > 50 ? substr($ab->ab_mission_des, 0, 50) . "..." : $ab->ab_mission_des;
+                      ?>
+                    </td>
                     <td class="text-center">
                       <?php echo ($ab->ab_status) ?
                         '<i class="fa fa-check" aria-hidden="true"></i>' :

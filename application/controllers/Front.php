@@ -8,12 +8,15 @@ class Front extends CI_Controller
     parent::__construct();
 
     $this->load->model(array(
-      'front_model',
+      'FrontModel' => 'front_model',
     ));
   }
   public function index()
   {
     $data['title'] = "Home";
+    $data['featured_initatives'] = $this->front_model->get_featured_initatives();
+    $data['projects'] = $this->front_model->get_projects();
+    $data['partners'] = $this->front_model->get_partners();
     $data['content'] = $this->load->view('frontsite/home/index', $data, true);
     $this->load->view('frontsite/layout/wrapper_view', $data);
   }
@@ -87,18 +90,21 @@ class Front extends CI_Controller
     $data['content'] = $this->load->view('frontsite/about/news', $data, true);
     $this->load->view('frontsite/layout/wrapper_view', $data);
   }
+
   public function initiatives()
   {
     $data['title'] = "Initiatives";
     $data['content'] = $this->load->view('frontsite/about/initiatives', $data, true);
     $this->load->view('frontsite/layout/wrapper_view', $data);
   }
+
   public function services()
   {
     $data['title'] = "Services";
     $data['content'] = $this->load->view('frontsite/about/services', $data, true);
     $this->load->view('frontsite/layout/wrapper_view', $data);
   }
+
   public function contact()
   {
     $data['title'] = "Contact";
