@@ -250,6 +250,25 @@
 						</li>
 					</ul>
 				</li>
+
+				<!-- Pillers -->
+				<li class="nav-item <?php echo ($this->uri->segment(2) == "Pillers") ? "menu-open" : null; ?>">
+					<a href="#" class="nav-link <?php echo $this->uri->segment(2) == 'Pillers' ? 'active' : null ?>">
+						<i class="nav-icon fas fa-address-card"></i>
+						<p>
+							Pillers
+							<i class="right fas fa-angle-left"></i>
+						</p>
+					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a href="<?php echo base_url('admin/Pillers/index') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'Pillers' ? 'active' : null ?>" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Add / View Pillers</p>
+							</a>
+						</li>
+					</ul>
+				</li>
 			</ul>
 		</nav>
 		<!-- /.sidebar-menu -->
