@@ -34,17 +34,29 @@ class Contactdetails extends CI_Controller
     $data['input'] = (object)$postDataInp = array(
       'cont_id'     => $this->input->post('cont_id'),
       'cont_address'   => $this->input->post('cont_address'),
+      'cont_area' => ($this->input->post('cont_area')),
+      'cont_pincode' => ($this->input->post('cont_pincode')),
+      'cont_state' => ($this->input->post('cont_state')),
+      'cont_country' => ($this->input->post('cont_country')),
+      'cont_email' => ($this->input->post('cont_email')),
+      'cont_phone_no' => ($this->input->post('cont_phone_no')),
       'cont_status' => ($this->input->post('cont_status')),
     );
 
-    $input = $data['input'];
-    #----------------- User Object -------------#
-    $data['user'] = (object)$postDataUser = array(
-      'cont_id'     => $input->cont_id,
-      'cont_address'   => $input->cont_address,
-      'cont_status' => $input->cont_status,
-    );
-    #----------------- Location Object -------------#
+    // $input = $data['input'];
+    // #----------------- User Object -------------#
+    // $data['user'] = (object)$postDataInp = array(
+    //   'cont_id'     => $input->cont_id,
+    //   'cont_address'   => $input->cont_address,
+    //   'cont_area'   => $input->cont_area,
+    //   'cont_pincode	'   => $input->cont_pincode,
+    //   'cont_state'   => $input->cont_state,
+    //   'cont_country'   => $input->cont_country,
+    //   'cont_email	'   => $input->cont_email,
+    //   'cont_phone_no'   => $input->cont_phone_no,
+    //   'cont_status' => $input->cont_status,
+    // );
+
 
     /*-----------CHECK ID -----------*/
     if (empty($cont_id)) {
@@ -53,7 +65,7 @@ class Contactdetails extends CI_Controller
         // if ($input->cont_status == '1') {
         // 	$this->ContactdetailsModel->setVisible();
         // }
-        if ($this->ContactdetailsModel->create($postDataUser)) {
+        if ($this->ContactdetailsModel->create($postDataInp)) {
           #set success message
           $this->session->set_flashdata('message', ('Saved Successfully'));
           $this->session->set_flashdata('class_name', ('alert-success'));
@@ -75,7 +87,7 @@ class Contactdetails extends CI_Controller
     } else {
       /*-----------UPDATE A RECORD-----------*/
       if ($this->form_validation->run() === true) {
-        if ($this->ContactdetailsModel->update($postDataUser)) {
+        if ($this->ContactdetailsModel->update($postDataInp)) {
           #set success message
           $this->session->set_flashdata('message', ('Updated Successfully'));
           $this->session->set_flashdata('class_name', ('alert-success'));
@@ -84,12 +96,12 @@ class Contactdetails extends CI_Controller
           $this->session->set_flashdata('message', ('Please Try Again'));
           $this->session->set_flashdata('class_name', ('alert-danger'));
         }
-        redirect('admin/Contactdetails/edit/' . $postDataUser['cont_id']);
+        redirect('admin/Contactdetails/edit/' . $postDataInp['cont_id']);
       } else {
         #set exception message
         $this->session->set_flashdata('exception', ('Please Try Again') . "" . validation_errors());
         $this->session->set_flashdata('class_name', ('alert-danger'));
-        redirect('admin/Contactdetails/edit/' . $postDataUser['cont_id']);
+        redirect('admin/Contactdetails/edit/' . $postDataInp['cont_id']);
       }
     }
   }
@@ -102,12 +114,18 @@ class Contactdetails extends CI_Controller
     $data['title'] = ('Add View Contact Details');
     $data['subtitle'] = ('Add New Contact Detail');
     #-------------------------------#
-    $input = $this->ContactdetailsModel->read_by_id_as_obj($cont_id);
-    $data['input'] = (object)$postDataUser = array(
-      'cont_id'     => $input->cont_id,
-      'event_title'   => $input->event_title,
-      'event_desc'   => $input->event_desc,
-      'cont_status' => $input->cont_status
+    $_input = $this->ContactdetailsModel->read_by_id_as_obj($cont_id);
+
+    $data['input'] = (object)array(
+      'cont_id'         => $_input->cont_id,
+      'cont_address'    => $_input->cont_address,
+      'cont_area'       => $_input->cont_area,
+      'cont_pincode'    => $_input->cont_pincode,
+      'cont_state'      => $_input->cont_state,
+      'cont_country'    => $_input->cont_country,
+      'cont_email'      => $_input->cont_email,
+      'cont_phone_no'   => $_input->cont_phone_no,
+      'cont_status'     => $_input->cont_status,
     );
     $data['contactdetails'] = $this->ContactdetailsModel->read();
     $data['content'] = $this->load->view('admin/contactdetails/form', $data, true);

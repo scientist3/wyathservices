@@ -1,17 +1,6 @@
 <!-- Main content -->
 <section class="content">
-  <?php if ($this->session->flashdata('message') != null) {  ?>
-    <div class="alert <?= $this->session->flashdata('class_name') ?> alert-dismissable">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <?php echo $this->session->flashdata('message'); ?>
-    </div>
-  <?php } ?>
-  <?php if ($this->session->flashdata('exception') != null) {  ?>
-    <div class="alert <?= $this->session->flashdata('class_name') ?> alert-dismissable">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <?php echo $this->session->flashdata('exception'); ?>
-    </div>
-  <?php } ?>
+
   <div class="row">
     <!-- Save -->
     <div class="col-sm-4">
@@ -33,6 +22,7 @@
                         <input type="file" class="custom-file-input" name="par_img_path" id="par_img_path">
                         <label class="custom-file-label" for="par_img_path">Choose file</label>
                         <input type="hidden" name="par_img_path_old" value="<?php echo $input->par_img_path ?>">
+                        <input type="hidden" name="par_img_thumb_old" value="<?php echo $input->par_img_thumb ?>">
                       </div>
                     </div>
                   </div>
@@ -53,6 +43,14 @@
                       <?php echo form_error('par_url', '<span class="badge bg-danger p-1">', '</span>'); ?>
                     </div>
                   </div>
+                  <!-- Description -->
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <label for="par_desc"><?php echo ('Partner Description'); ?></label>
+                      <input name="par_desc" class="form-control form-control-sm" type="text" placeholder="<?php echo ('Description') ?>" id="par_desc" value="<?php echo $input->par_desc ?>" data-toggle="tooltip" title="<?php echo ('Project Description'); ?>">
+                      <?php echo form_error('par_desc', '<span class="badge bg-danger p-1">', '</span>'); ?>
+                    </div>
+                  </div>
                   <!-- Satus -->
                   <div class="col-sm-12">
                     <div class="form-group ">
@@ -60,7 +58,7 @@
                       <div class="form-check row form-inline form-control-sm">
                         <div class="col-6 form-inline">
                           <label class=" radio-inline">
-                            <input type="radio" name="par_status" value="1" <?= ($input->par_status == '1') ? 'checked' : null; ?> data-toggle="tooltip" title="Active status">&nbsp;
+                            <input type="radio" name="par_status" value="1" <?= ($input->par_status == '1' || ($input->par_status != '0')) ? 'checked' : null; ?> data-toggle="tooltip" title="Active status">&nbsp;
                             <?php echo ('Active') ?>
                           </label>
                         </div>
@@ -110,7 +108,9 @@
             <thead>
               <tr>
                 <th><?php echo ('Unique Id') ?></th>
+                <th><?php echo ('Image') ?></th>
                 <th><?php echo ('Page Url') ?></th>
+                <th><?php echo ('Description') ?></th>
                 <th><?php echo ('Status') ?></th>
                 <th><?php echo ('Action') ?></th>
               </tr>
@@ -121,7 +121,14 @@
                 <?php foreach ($partners as $par) { ?>
                   <tr>
                     <td><?php echo $sl; ?></td>
+                    <td><img src="<?= base_url($par->par_img_thumb); ?>" alt=""></td>
                     <td><?php echo $par->par_url ?></td>
+                    <td>
+                      <?php
+                      echo $par->par_desc == null  ? 'Not Available' : $par->par_desc;
+                      ?>
+
+                    </td>
                     <td class="text-center">
                       <?php echo ($par->par_status) ?
                         '<i class="fa fa-check" aria-hidden="true"></i>' :

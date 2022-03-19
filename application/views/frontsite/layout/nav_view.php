@@ -369,13 +369,13 @@
             <li class="c-search-toggler-wrapper">
               <div class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-dark c-btn-square c-btn-uppercase c-btn-sbold" style="padding-left:2px; padding-right:2px; width:120px;">
                 <div style="width:30px; float:left; padding:5px 0px;"><i class="icon-user"></i></div>
-                <div class="c-font-open c-font-10" style="text-align:left;"><span id="Label2"><a class='c-font-dark c-font-white-hover' href='https://sg3plcpnl0089.prod.sin3.secureserver.net:2096/'>Login<br>My Account</a></span>
+                <div class="c-font-open c-font-10" style="text-align:left;"><span id="Label2"><a class='c-font-dark c-font-white-hover' href='https://sg3plcpnl0089.prod.sin3.secureserver.net:2096/'>Login<br>Email Account</a></span>
                 </div>
               </div>
             </li>
 
-            <li class="c-search-toggler-wrapper">
-
+            <li>
+              <a href="<?= base_url('login'); ?>" class="c-link">Login</a>
             </li>
 
             <li class="c-quick-sidebar-toggler-wrapper">
