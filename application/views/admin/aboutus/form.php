@@ -4,13 +4,13 @@
     <!-- Save -->
     <div class="col-sm-12">
       <?php if ($this->session->flashdata('message') != null) {  ?>
-        <div class="alert <?= $this->session->flashdata('class_name') ?> alert-dismissable">
+        <div class="alert <?php $this->session->flashdata('class_name') ?> alert-dismissable">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
           <?php echo $this->session->flashdata('message'); ?>
         </div>
       <?php } ?>
       <?php if ($this->session->flashdata('exception') != null) {  ?>
-        <div class="alert <?= $this->session->flashdata('class_name') ?> alert-dismissable">
+        <div class="alert <?php $this->session->flashdata('class_name') ?> alert-dismissable">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
           <?php echo $this->session->flashdata('exception'); ?>
         </div>
@@ -129,13 +129,13 @@
                       <div class="form-check row form-inline form-control-sm">
                         <div class="col-6 form-inline">
                           <label class=" radio-inline">
-                            <input type="radio" name="ab_status" value="1" <?= ($input->ab_status == '1') ? 'checked' : null; ?> data-toggle="tooltip" title="Active status">&nbsp;
+                            <input type="radio" name="ab_status" value="1" <?php ($input->ab_status == '1') ? 'checked' : null; ?> data-toggle="tooltip" title="Active status">&nbsp;
                             <?php echo ('Active') ?>
                           </label>
                         </div>
                         <div class="col-6 form-inline">
                           <label class=" radio-inline">
-                            <input type="radio" name="ab_status" value="0" <?= ($input->ab_status == '0') ? 'checked' : null; ?> data-toggle="tooltip" title="Disabled status"> &nbsp;<?php echo ('Inactive') ?>
+                            <input type="radio" name="ab_status" value="0" <?php ($input->ab_status == '0') ? 'checked' : null; ?> data-toggle="tooltip" title="Disabled status"> &nbsp;<?php echo ('Inactive') ?>
                           </label>
                         </div>
                         <br>

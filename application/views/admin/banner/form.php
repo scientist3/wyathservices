@@ -1,13 +1,13 @@
 <!-- Main content -->
 <section class="content">
   <?php if ($this->session->flashdata('message') != null) {  ?>
-    <div class="alert <?= $this->session->flashdata('class_name') ?> alert-dismissable">
+    <div class="alert <?php $this->session->flashdata('class_name') ?> alert-dismissable">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
       <?php echo $this->session->flashdata('message'); ?>
     </div>
   <?php } ?>
   <?php if ($this->session->flashdata('exception') != null) {  ?>
-    <div class="alert <?= $this->session->flashdata('class_name') ?> alert-dismissable">
+    <div class="alert <?php $this->session->flashdata('class_name') ?> alert-dismissable">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
       <?php echo $this->session->flashdata('exception'); ?>
     </div>
@@ -60,7 +60,7 @@
                         <label for="b_isvisible"><?php echo ('Visible'); ?></label>
                       </div>
                       <div class="col-sm-4">
-                        <input type="checkbox" <?= $input->b_isvisible ? 'checked' : null ?> name="b_isvisible">
+                        <input type="checkbox" <?php $input->b_isvisible ? 'checked' : null ?> name="b_isvisible">
                       </div>
                     </div>
                   </div>
