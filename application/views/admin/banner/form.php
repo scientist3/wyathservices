@@ -45,10 +45,10 @@
                   <div class="form-group col-sm-12">
                     <div class="row">
                       <div class="col-sm-2">
-                        <label for="b_isvisible"><?php echo ('Visible'); ?></label>
+                        <label for="b_isvisible"><?php echo ('Visible '); ?></label>
                       </div>
                       <div class="col-sm-4">
-                        <input type="checkbox" <?php $input->b_isvisible ? 'checked' : null ?> name="b_isvisible">
+                        <input type="checkbox" <?php echo $input->b_isvisible == 1 ? 'checked' : null ?> name="b_isvisible">
                       </div>
                     </div>
                   </div>

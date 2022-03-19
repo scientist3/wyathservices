@@ -10,7 +10,7 @@
         <div class="card-body">
           <div class="row">
             <div class="col-md-12">
-              <form role="form" action="<?php echo site_url('admin/pillers/create') ?>" method="post" id="save_type_form" enctype="multipart/form-data">
+              <form role="form" action="<?php echo site_url('admin/Pillers/create') ?>" method="post" id="save_type_form" enctype="multipart/form-data">
                 <?php echo form_hidden('pil_id', $input->pil_id) ?>
                 <div class="row">
                   <!-- FeaturedInitiatives_title -->

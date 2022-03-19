@@ -97,7 +97,7 @@ class Pillers extends CI_Controller
       redirect('admin/Pillers/create');
     }
     $data['title'] = ('Add View Pillers');
-    $data['subtitle'] = ('Add New Piller');
+    $data['subtitle'] = ('Add New Piller edit');
     #-------------------------------#
     $input = $this->PillersModel->read_by_id_as_obj($pil_id);
     $data['input'] = (object)$postDataUser = array(
@@ -106,8 +106,8 @@ class Pillers extends CI_Controller
       'pil_desc'   => $input->pil_desc,
       'pil_status' => $input->pil_status
     );
-    $data['event'] = $this->PillersModel->read();
-    $data['pillers'] = $this->load->view('admin/pillers/form', $data, true);
+    $data['pillers'] = $this->PillersModel->read();
+    $data['content'] = $this->load->view('admin/pillers/form', $data, true);
     $this->load->view('admin/layout/wrapper', $data);
   }
 
@@ -125,6 +125,7 @@ class Pillers extends CI_Controller
       $this->session->set_flashdata('message', ('Please Try Again'));
       $this->session->set_flashdata('class_name', ('alert-danger'));
     }
+
     redirect('admin/Pillers/create');
   }
 }

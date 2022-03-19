@@ -71,7 +71,7 @@ class KeyDiffImpact extends CI_Controller
         $data['keydiffimpact'] = $this->KeyDiffImpactModel->read();
         // print_r($data['KeyDiffImpact']);
         // die();
-        $data['content'] = $this->load->view('admin/KeyDiffImpact/form', $data, true);
+        $data['content'] = $this->load->view('admin/keydiffimpact/form', $data, true);
         $this->load->view('admin/layout/wrapper', $data);
       }
     } else {
@@ -113,7 +113,7 @@ class KeyDiffImpact extends CI_Controller
       'kd_page' => $input->kd_page
     );
     $data['keydiffimpact'] = $this->KeyDiffImpactModel->read();
-    $data['content'] = $this->load->view('admin/KeyDiffImpact/form', $data, true);
+    $data['content'] = $this->load->view('admin/keydiffimpact/form', $data, true);
     $this->load->view('admin/layout/wrapper', $data);
   }
 
