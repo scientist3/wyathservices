@@ -188,9 +188,7 @@
                         '<i class="fa fa-times" aria-hidden="true"></i>'; ?>
                     </td>
                     <td class="text-center">
-                      <?php echo ($bm->bm_page == "directors") ?
-                        '<i class="fa fa-check" aria-hidden="true"></i>' :
-                        '<i class="fa fa-times" aria-hidden="true"></i>'; ?>
+                      <?php echo $bm->bm_page ?>
                     </td>
                     <td class="text-center" width="100">
                       <?php if (!in_array($bm->bm_id, [])) { ?>
