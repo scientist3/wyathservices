@@ -8,14 +8,9 @@
 			<div class="container">
 				<div class="c-content-product-1 c-opt-1">
 					<div class="c-content-title-1">
-						<?php
-
-
-						?>
 						<h3 class="c-center c-font-uppercase c-font-bold"><?php echo $about_us->ab_title; ?></h3>
 						<p class="c-font-uppercase c-center">
 							<?php echo $about_us->ab_subtitle; ?>
-
 						</p>
 						<div class="c-line-center">
 						</div>
