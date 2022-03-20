@@ -302,7 +302,7 @@ INSERT INTO `partners_tbl` (`par_id`, `par_img_path`, `par_img_thumb`, `par_desc
 
 CREATE TABLE `pillers_tbl` (
   `pil_id` int(11) NOT NULL,
-  `pil_tiitle` varchar(100) NOT NULL,
+  `pil_title` varchar(100) NOT NULL,
   `pil_desc` text NOT NULL,
   `pil_status` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='This table contains the data about the pillers';

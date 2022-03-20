@@ -288,6 +288,25 @@
 						</li>
 					</ul>
 				</li>
+				<!-- Board Members -->
+				<li class="nav-item <?php echo ($this->uri->segment(2) == "BoardMembers") ? "menu-open" : null; ?>">
+					<a href="#" class="nav-link <?php echo $this->uri->segment(2) == 'BoardMembers' ? 'active' : null ?>">
+						<i class="nav-icon fas fa-address-card"></i>
+						<p>
+							BoardMembers
+							<i class="right fas fa-angle-left"></i>
+						</p>
+					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a href="<?php echo base_url('admin/BoardMembers/index') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'BoardMembers' ? 'active' : null ?>" class="nav-link">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Add / View Boardmember</p>
+							</a>
+						</li>
+					</ul>
+				</li>
+
 			</ul>
 		</nav>
 		<!-- /.sidebar-menu -->
