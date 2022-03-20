@@ -64,6 +64,8 @@ class Front extends CI_Controller
 	public function ourimpact()
 	{
 		$data['title'] = "Our Impact";
+		$data['our_impact']		= $this->front_model->get_our_impact();
+		$data['students_impacted']    = $this->front_model->get_students_impacted();
 		$data['content'] = $this->load->view('frontsite/about/ourimpact', $data, true);
 		$this->load->view('frontsite/layout/wrapper_view', $data);
 	}
