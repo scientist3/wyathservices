@@ -46,132 +46,42 @@
 
 
   <!-- Key Differentiators ROW 1 -->
-  <div class="c-content-box c-bg-brown-3">
-    <div class="featured_section56">
-      <!-- Key Differentiators Left-->
-      <div class="left">
-        <div class="cont">
-          <div class="c-content-title-1">
-            <h3 class="c-center c-font-uppercase c-font-bold c-font-dark">Honesty & Integrity</h3>
-            <div class="c-line-center"> </div>
-            <p class="c-font-open c-center">
-              We take seriously the promises we make, we have to do what we say we do.
-            </p>
+  <?php if (valArr($our_impact)) : ?>
+    <?php foreach ($our_impact as $key => $impact) : ?>
+      <?php if (($key + 2) % 2 == 0) : ?>
+        <div class="c-content-box c-bg-brown-3">
+          <div class="featured_section56">
+            <!-- Key Differentiators Left-->
+            <div class="left">
+              <div class="cont">
+                <div class="c-content-title-1">
+                  <h3 class="c-center c-font-uppercase c-font-bold c-font-dark"><?php echo $impact->kd_title ?></h3>
+                  <div class="c-line-center"> </div>
+                  <p class="c-font-open c-center">
+                    <?php echo $impact->kd_des ?>
+                  </p>
+                </div>
+              </div>
+            </div>
+          <?php else : ?>
+
+            <!-- Key Differentiators Right -->
+            <div class="right">
+              <div class="cont">
+                <div class="c-content-title-1">
+                  <h3 class="c-center c-font-uppercase c-font-bold c-font-dark"><?php echo $impact->kd_title ?> </h3>
+                  <div class="c-line-center"> </div>
+                  <p class="c-font-open c-center">
+                    <?php echo $impact->kd_des ?>
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-
-
-      <!-- Key Differentiators Right -->
-      <div class="right">
-        <div class="cont">
-          <div class="c-content-title-1">
-            <h3 class="c-center c-font-uppercase c-font-bold c-font-dark">Transparency </h3>
-            <div class="c-line-center"> </div>
-            <p class="c-font-open c-center">
-              To be ethical, sincere and open in all our transactions.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Key Differentiators ROW 2 -->
-  <div class="c-content-box c-bg-brown-3">
-    <div class="featured_section56">
-      <!-- Key Differentiators Right -->
-      <div class="right">
-        <div class="cont">
-          <div class="c-content-title-1">
-            <h3 class="c-center c-font-uppercase c-font-bold c-font-dark">Trust</h3>
-            <div class="c-line-center"> </div>
-            <p class="c-font-open c-center">
-              We believe in relationships, not transactions.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Key Differentiators Left-->
-      <div class="left">
-        <div class="cont">
-          <div class="c-content-title-1">
-            <h3 class="c-center c-font-uppercase c-font-bold c-font-dark">Satisfaction </h3>
-            <div class="c-line-center"> </div>
-            <p class="c-font-open c-center">
-              We actively listen and act upon the requirements of our clients / candidate; and strive to exceed their expectations.
-            </p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- Key Differentiators ROW 3 -->
-  <div class="c-content-box c-bg-brown-3">
-    <div class="featured_section56">
-      <!-- Key Differentiators Left-->
-      <div class="left">
-        <div class="cont">
-          <div class="c-content-title-1">
-            <h3 class="c-center c-font-uppercase c-font-bold c-font-dark">Passion </h3>
-            <div class="c-line-center"> </div>
-            <p class="c-font-open c-center">
-              We value teamwork, realizing that we are stronger together than as individuals.
-            </p>
-          </div>
-        </div>
-      </div>
-
-
-      <!-- Key Differentiators Right -->
-      <div class="right">
-        <div class="cont">
-          <div class="c-content-title-1">
-            <h3 class="c-center c-font-uppercase c-font-bold c-font-dark">Perfection</h3>
-            <div class="c-line-center"> </div>
-            <p class="c-font-open c-center">
-              We dare to innovate, we always seek to improve.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Key Differentiators ROW 4 -->
-  <div class="c-content-box c-bg-brown-3">
-    <div class="featured_section56">
-      <!-- Key Differentiators Right -->
-      <div class="right">
-        <div class="cont">
-          <div class="c-content-title-1">
-            <h3 class="c-center c-font-uppercase c-font-bold c-font-dark">Excel</h3>
-            <div class="c-line-center"> </div>
-            <p class="c-font-open c-center">
-              Ensuring rapid turn-around-times, and managing highest standards of quality and service.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Key Differentiators Left -->
-      <div class="left">
-        <div class="cont">
-          <div class="c-content-title-1">
-            <h3 class="c-center c-font-uppercase c-font-bold c-font-dark">Servicess</h3>
-            <div class="c-line-center"> </div>
-            <p class="c-font-open c-center">
-              “Our services are tailored to meet crucial challenges of providing quality profiles in order to build a strong talent pool for our clients.”
-            </p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
+      <?php endif; ?>
+    <?php endforeach; ?>
+  <?php endif; ?>
 
   <!-- 	Key Differentiators ROW 5 -->
 
@@ -183,12 +93,12 @@
       <div class="c-content-counter-1 c-opt-1 c-content-box">
 
         <div class="row">
-          <div class="col-md-12 c-size-md">
+          <div class="col-md-12 c-size-md c-theme-bg">
             <br /><br />
             <div class=" c-font-bold c-font-75 c-center c-font-white" data-counter="counterup">
-              5000
+              <?= $students_impacted; ?>
             </div>
-            <h4 class="c-title c-first c-font-uppercase c-font-bold c-font-brown-3">Students/Beneficiaries impacted by Wyath Services in the last 5 years</h4>
+            <h4 class="c-font-25 c-font-black c-font-bold c-center  ">Students/Beneficiaries impacted by Wyath Services in the last 5 years</h4>
           </div>
 
         </div>

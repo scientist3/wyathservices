@@ -94,4 +94,14 @@ class FrontModel extends CI_Model
       ->get()
       ->result();
   }
+  // get_our_impact
+  public function get_our_impact()
+  {
+    return $this->db->select("*")
+      ->from('key_differentiators_impact_tbl')
+      ->where('kd_status', 1)
+      ->where('kd_page', 'our_impact')
+      ->get()
+      ->result();
+  }
 }
