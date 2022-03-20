@@ -1,6 +1,5 @@
 <!-- Main content -->
 <section class="content">
-
   <div class="row">
     <!-- Save -->
     <div class="col-sm-4">
