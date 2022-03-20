@@ -10,8 +10,8 @@
         <div class="card-body">
           <div class="row">
             <div class="col-md-12">
-              <form role="form" action="<?php echo site_url('admin/keydiffimpact/create') ?>" method="post" id="save_type_form" enctype="multipart/form-data">
-                <?php echo form_hidden('kd_title', $input->kd_title) ?>
+              <form role="form" action="<?php echo site_url('admin/KeyDiffImpact/create') ?>" method="post" id="save_type_form" enctype="multipart/form-data">
+                <?php echo form_hidden('kd_id', $input->kd_id) ?>
                 <div class="row">
                   <!-- keydiffimpact_title -->
                   <div class="col-sm-12">
