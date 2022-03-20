@@ -2,7 +2,7 @@
 <div class="c-layout-breadcrumbs-1 c-bgimage c-subtitle c-fonts-uppercase c-fonts-bold c-bg-img-center" style="background-image: url(<?= base_url('frontsite/'); ?>assets/base/img/content/backgrounds/bg1.jpg)">
   <div class="container">
     <div class="c-page-title c-pull-left">
-      <h3 class="c-font-uppercase c-font-bold c-font-white c-font-20 c-font-slim">Initatives</h3>
+      <h3 class="c-font-uppercase c-font-bold c-font-white c-font-20 c-font-slim"><?php echo $pageTitle ?></h3>
       <h4 class="c-font-white c-font-thin c-opacity-07">
       </h4>
     </div>
@@ -13,14 +13,8 @@
       <li class="c-font-white">
         /
       </li>
-      <li>
-        <a href="<?= base_url('front/initiatives'); ?>" class="c-font-white">Initatives</a>
-      </li>
-      <li class="c-font-white">
-        /
-      </li>
       <li class="c-state_active c-font-brown-3">
-        Initatives
+        <?php echo $pageTitle ?>
       </li>
     </ul>
   </div>
@@ -33,7 +27,7 @@
 
       <ul class="c-page-breadcrumbs c-theme-nav c-font-open  c-font-13 c-font-thin">
         <li>
-          <a href="Initiatives.html" class="c-font-brown-3">Initiatives</a>
+          <a href="#" class="c-font-brown-3">Initiatives</a>
         </li>
         <li>
           |
