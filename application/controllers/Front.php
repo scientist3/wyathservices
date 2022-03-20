@@ -27,9 +27,9 @@ class Front extends CI_Controller
 
   public function aboutwyathservices()
   {
-    $data['title'] = "About Wyath Services";
-    $data['about_us']             = $this->front_model->get_about_us();
-    $data['content'] = $this->load->view('frontsite/about/aboutwyathservices', $data, true);
+    $data['title']      = "About Wyath Services";
+    $data['about_us']    = $this->front_model->get_about_us();
+    $data['content']    = $this->load->view('frontsite/about/aboutwyathservices', $data, true);
     $this->load->view('frontsite/layout/wrapper_view', $data);
   }
 
@@ -98,15 +98,17 @@ class Front extends CI_Controller
 
   public function initiatives()
   {
-    $data['title'] = "Initiatives";
+    $data['title']        = "Initiatives";
+    $data['pageTitle'] = "Initiatives";
     $data['initiatives']  = $this->front_model->get_initiatives();
-    $data['content'] = $this->load->view('frontsite/initiatives/initiatives', $data, true);
+    $data['content']      = $this->load->view('frontsite/initiatives/initiatives', $data, true);
     $this->load->view('frontsite/layout/wrapper_view', $data);
   }
 
   public function services()
   {
     $data['title'] = "Services";
+    $data['pageTitle'] = "Services";
     $data['services']  = $this->front_model->get_services();
     $data['content'] = $this->load->view('frontsite/services/services', $data, true);
     $this->load->view('frontsite/layout/wrapper_view', $data);
