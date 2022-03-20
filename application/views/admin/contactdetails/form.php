@@ -116,132 +116,67 @@
   </div>
   <!-- Search -->
   <!-- Display -->
-  <div class="col-sm-12">
-    <div class="card">
-      <div class="card-header bg-dark">
-        <h3 class="card-title">
-          <i class="fa fa-list"></i> Contact Details
-        </h3>
-        <!-- <a class="btn btn-warning pull-right" href="< ?= base_url('admin/transaction/payment_report/').$search->start_date.'/'.$search->end_date; ?>"><i class="fa fa-print"></i></a> -->
-      </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header bg-dark">
+          <h3 class="card-title">
+            <i class="fa fa-list"></i> Contact Details
+          </h3>
+          <!-- <a class="btn btn-warning pull-right" href="< ?= base_url('admin/transaction/payment_report/').$search->start_date.'/'.$search->end_date; ?>"><i class="fa fa-print"></i></a> -->
+        </div>
 
-      <div class="card-body">
-        <table width="100%" class="datatable_colvis table table-striped table-bordered table-hover table-sm">
-          <thead>
-            <tr>
-              <th><?php echo ('Unique Id') ?></th>
-              <th><?php echo ('Address') ?></th>
-              <th><?php echo ('Area') ?></th>
-              <th><?php echo ('Pincode') ?></th>
-              <th><?php echo ('State') ?></th>
-              <th><?php echo ('Country') ?></th>
-              <th><?php echo ('Email') ?></th>
-              <th><?php echo ('Phone No') ?></th>
-              <th><?php echo ('Status') ?></th>
-              <th><?php echo ('Action') ?></th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php if (!empty($contactdetails)) { ?>
-              <?php $sl = 1; ?>
-              <?php foreach ($contactdetails as $cd) { ?>
-                <tr>
-                  <td><?php echo $sl; ?></td>
-                  <td><?php echo $cd->cont_address ?></td>
-                  <td><?php echo $cd->cont_area ?></td>
-                  <td><?php echo $cd->cont_pincode ?></td>
-                  <td><?php echo $cd->cont_state ?></td>
-                  <td><?php echo $cd->cont_country ?></td>
-                  <td><?php echo $cd->cont_email ?></td>
-                  <td><?php echo $cd->cont_phone_no ?></td>
+        <div class="card-body">
+          <table width="100%" class="datatable_colvis table table-striped table-bordered table-hover table-sm">
+            <thead>
+              <tr>
+                <th><?php echo ('Unique Id') ?></th>
+                <th><?php echo ('Address') ?></th>
+                <th><?php echo ('Area') ?></th>
+                <th><?php echo ('Pincode') ?></th>
+                <th><?php echo ('State') ?></th>
+                <th><?php echo ('Country') ?></th>
+                <th><?php echo ('Email') ?></th>
+                <th><?php echo ('Phone No') ?></th>
+                <th><?php echo ('Status') ?></th>
+                <th><?php echo ('Action') ?></th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php if (!empty($contactdetails)) { ?>
+                <?php $sl = 1; ?>
+                <?php foreach ($contactdetails as $cd) { ?>
+                  <tr>
+                    <td><?php echo $sl; ?></td>
+                    <td><?php echo $cd->cont_address ?></td>
+                    <td><?php echo $cd->cont_area ?></td>
+                    <td><?php echo $cd->cont_pincode ?></td>
+                    <td><?php echo $cd->cont_state ?></td>
+                    <td><?php echo $cd->cont_country ?></td>
+                    <td><?php echo $cd->cont_email ?></td>
+                    <td><?php echo $cd->cont_phone_no ?></td>
 
-                  <td class="text-center">
-                    <?php echo ($cd->cont_status) ?
-                      '<i class="fa fa-check" aria-hidden="true"></i>' :
-                      '<i class="fa fa-times" aria-hidden="true"></i>'; ?>
-                  <td class="text-center" width="100">
-                    <?php if (!in_array($cd->cont_id, [])) { ?>
-                      <a href="<?php echo base_url("admin/Contactdetails/edit/$cd->cont_id") ?>" class="btn btn-xs btn-success"><i class="fa fa-edit"></i></a>
-                      <a href="<?php echo base_url("admin/Contactdetails/delete/$cd->cont_id") ?>" class="btn btn-xs btn-danger" onclick="return confirm('<?php echo ('Are You Sure') ?>') "><i class="fa fa-trash"></i></a>
-                    <?php } ?>
-                  </td>
-                </tr>
-                <?php $sl++; ?>
+                    <td class="text-center">
+                      <?php echo ($cd->cont_status) ?
+                        '<i class="fa fa-check" aria-hidden="true"></i>' :
+                        '<i class="fa fa-times" aria-hidden="true"></i>'; ?>
+                    <td class="text-center" width="100">
+                      <?php if (!in_array($cd->cont_id, [])) { ?>
+                        <a href="<?php echo base_url("admin/Contactdetails/edit/$cd->cont_id") ?>" class="btn btn-xs btn-success"><i class="fa fa-edit"></i></a>
+                        <a href="<?php echo base_url("admin/Contactdetails/delete/$cd->cont_id") ?>" class="btn btn-xs btn-danger" onclick="return confirm('<?php echo ('Are You Sure') ?>') "><i class="fa fa-trash"></i></a>
+                      <?php } ?>
+                    </td>
+                  </tr>
+                  <?php $sl++; ?>
+                <?php } ?>
               <?php } ?>
-            <?php } ?>
-          </tbody>
-        </table> <!-- /.table-responsive -->
+            </tbody>
+          </table> <!-- /.table-responsive -->
+        </div>
       </div>
     </div>
   </div>
-
-  </div>
 </section>
-
 
 <!-- jQuery -->
 <script src="<?php echo base_url('vendor/almasaeed2010/adminlte/') ?>plugins/jquery/jquery.min.js"></script>
-<!-- <script src="<?php echo base_url('vendor/almasaeed2010/adminlte/'); ?>plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script> -->
-
-<!-- jquery-validation -->
-<!-- <script src="<?php echo base_url('vendor/almasaeed2010/adminlte/'); ?>plugins/jquery-validation/jquery.validate.min.js"></script>
-
-<script src="<?php echo base_url('vendor/almasaeed2010/adminlte/'); ?>plugins/jquery-validation/additional-methods.min.js"></script> -->
-
-<script type="text/javascript">
-  $(document).ready(function() {
-    $(function() {
-      // $('#save_type_form').validate({
-      //   rules: {
-      //     s_title: {
-      //       required: true,
-      //     },
-      //     u_status: {
-      //       required: true,
-      //     }
-      //   },
-      //   messages: {
-      //     s_title: {
-      //       required: "Please provide a Property label Name"
-      //     },
-      //     u_status: {
-      //       required: "Please select status"
-      //     }
-      //   },
-      //   errorElement: 'span',
-      //   errorPlacement: function(error, element) {
-      //     error.addClass('badge badge-danger invalid-feedback');
-      //     element.siblings('span.invalid-feedback').remove();
-      //     element.closest('.form-group').append(error);
-      //   },
-      //   highlight: function(element, errorClass, validClass) {
-      //     $(element).addClass('is-invalid');
-      //   },
-      //   unhighlight: function(element, errorClass, validClass) {
-      //     $(element).removeClass('is-invalid');
-      //   }
-      // });
-    });
-    //$('[data-toggle="tooltip"]').tooltip();
-    //bsCustomFileInput.init();
-
-    // $('.datatable2').Datatable({
-    //   responsive: true,
-    //   dom: "<'row'<'col-sm-6 btn-sm'B><'col-sm-6 p-1'f>>tp",
-    //   "lengthChange": false,
-    //   "autoWidth": false,
-    //   // "lengthMenu": [
-    //   //   [10, 25, 50, -1],
-    //   //   [10, 25, 50, "All"]
-    //   // ],
-    //   buttons: [{
-    //     extend: 'colvis',
-    //     className: 'btn-sm'
-    //   }]
-    // });
-    // $(".datatables_wrapper > div > div")[0].remove();
-    // $(".datatables_wrapper > div > div").each(function() {
-    //   $(this).addClass('col-sm-6');
-    // });
-  });
-</script>

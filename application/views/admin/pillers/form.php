@@ -10,44 +10,44 @@
         <div class="card-body">
           <div class="row">
             <div class="col-md-12">
-              <form role="form" action="<?php echo site_url('admin/event/create') ?>" method="post" id="save_type_form" enctype="multipart/form-data">
-                <?php echo form_hidden('event_id', $input->event_id) ?>
+              <form role="form" action="<?php echo site_url('admin/pillers/create') ?>" method="post" id="save_type_form" enctype="multipart/form-data">
+                <?php echo form_hidden('pil_id', $input->pil_id) ?>
                 <div class="row">
                   <!-- FeaturedInitiatives_title -->
                   <div class="col-sm-12">
                     <div class="form-group">
-                      <label for="event_title"><?php echo ('Event Title'); ?></label> <small class="req"> *</small>
-                      <input name="event_title" class="form-control form-control-sm" type="text" placeholder="<?php echo ('Title') ?>" id="event_title" value="<?php echo $input->event_title ?>" data-toggle="tooltip" title="<?php echo ('Event Title'); ?>">
-                      <?php echo form_error('event_title', '<span class="badge bg-danger p-1">', '</span>'); ?>
+                      <label for="pil_title"><?php echo ('Piller Title'); ?></label> <small class="req"> *</small>
+                      <input name="pil_title" class="form-control form-control-sm" type="text" placeholder="<?php echo ('Title') ?>" id="pil_title" value="<?php echo $input->pil_title ?>" data-toggle="tooltip" title="<?php echo ('pillers Title'); ?>">
+                      <?php echo form_error('pil_title', '<span class="badge bg-danger p-1">', '</span>'); ?>
                     </div>
                   </div>
                   <!-- FeaturedInitiatives_description -->
                   <div class="col-sm-12">
                     <div class="form-group">
-                      <label for="event_desc"><?php echo ('Event Description'); ?></label> <small class="req"> *</small>
-                      <textarea name="event_desc" class="form-control form-control-sm" type="tex" placeholder="<?php echo ('Description') ?>" id="event_desc" data-toggle="tooltip" title="<?php echo ('Event Description'); ?>"><?php echo $input->event_desc ?></textarea>
-                      <?php echo form_error('event_desc', '<span class="badge bg-danger p-1">', '</span>'); ?>
+                      <label for="pil_desc"><?php echo ('Piller Description'); ?></label> <small class="req"> *</small>
+                      <textarea name="pil_desc" class="form-control form-control-sm" type="tex" placeholder="<?php echo ('Description') ?>" id="pil_desc" data-toggle="tooltip" title="<?php echo ('pillers Description'); ?>"><?php echo $input->pil_desc ?></textarea>
+                      <?php echo form_error('pil_desc', '<span class="badge bg-danger p-1">', '</span>'); ?>
                     </div>
                   </div>
                   <!-- Satus -->
                   <div class="col-sm-12">
                     <div class="form-group ">
-                      <label for="event_status"><?php echo ('Status'); ?></label>
+                      <label for="pil_status"><?php echo ('Status'); ?></label>
                       <div class="form-check row form-inline form-control-sm">
                         <div class="col-6 form-inline">
                           <label class=" radio-inline">
-                            <input type="radio" name="event_status" value="1" <?= ($input->event_status == '1' || ($input->event_status != '0')) ? 'checked' : null; ?> data-toggle="tooltip" title="Active status">&nbsp;
+                            <input type="radio" name="pil_status" value="1" <?= ($input->pil_status == '1' || ($input->pil_status != '0')) ? 'checked' : null; ?> data-toggle="tooltip" title="Active status">&nbsp;
                             <?php echo ('Active') ?>
                           </label>
                         </div>
                         <div class="col-6 form-inline">
                           <label class=" radio-inline">
-                            <input type="radio" name="event_status" value="0" <?= ($input->event_status == '0') ? 'checked' : null; ?> data-toggle="tooltip" title="Disabled status"> &nbsp;<?php echo ('Inactive') ?>
+                            <input type="radio" name="pil_status" value="0" <?= ($input->pil_status == '0') ? 'checked' : null; ?> data-toggle="tooltip" title="Disabled status"> &nbsp;<?php echo ('Inactive') ?>
                           </label>
                         </div>
                         <br>
                       </div>
-                      <?php echo form_error('event_status', '<span class="badge bg-danger p-1">', '</span>'); ?>
+                      <?php echo form_error('pil_status', '<span class="badge bg-danger p-1">', '</span>'); ?>
                     </div>
                   </div>
                   <!-- </div> 
@@ -77,7 +77,7 @@
       <div class="card">
         <div class="card-header bg-dark">
           <h3 class="card-title">
-            <i class="fa fa-list"></i> Event List
+            <i class="fa fa-list"></i> Pillers List
           </h3>
           <!-- <a class="btn btn-warning pull-right" href="< ?= base_url('admin/transaction/payment_report/').$search->start_date.'/'.$search->end_date; ?>"><i class="fa fa-print"></i></a> -->
         </div>
@@ -93,22 +93,22 @@
               </tr>
             </thead>
             <tbody>
-              <?php if (!empty($event)) { ?>
+              <?php if (!empty($pillers)) { ?>
                 <?php $sl = 1; ?>
-                <?php foreach ($event as $ev) { ?>
+                <?php foreach ($pillers as $pil) { ?>
                   <tr>
                     <td><?php echo $sl; ?></td>
-                    <td><?php echo $ev->event_title ?></td>
-                    <td><?php echo $ev->event_desc ?></td>
+                    <td><?php echo $pil->pil_title ?></td>
+                    <td><?php echo $pil->pil_desc ?></td>
                     <td class="text-center">
-                      <?php echo ($ev->event_status) ?
+                      <?php echo ($pil->pil_status) ?
                         '<i class="fa fa-check" aria-hidden="true"></i>' :
                         '<i class="fa fa-times" aria-hidden="true"></i>'; ?>
                     </td>
                     <td class="text-center" width="100">
-                      <?php if (!in_array($ev->event_id, [])) { ?>
-                        <a href="<?php echo base_url("admin/Event/edit/$ev->event_id") ?>" class="btn btn-xs btn-success"><i class="fa fa-edit"></i></a>
-                        <a href="<?php echo base_url("admin/Event/delete/$ev->event_id") ?>" class="btn btn-xs btn-danger" onclick="return confirm('<?php echo ('Are You Sure') ?>') "><i class="fa fa-trash"></i></a>
+                      <?php if (!in_array($pil->pil_id, [])) { ?>
+                        <a href="<?php echo base_url("admin/Pillers/edit/$pil->pil_id") ?>" class="btn btn-xs btn-success"><i class="fa fa-edit"></i></a>
+                        <a href="<?php echo base_url("admin/Pillers/delete/$pil->pil_id") ?>" class="btn btn-xs btn-danger" onclick="return confirm('<?php echo ('Are You Sure') ?>') "><i class="fa fa-trash"></i></a>
                       <?php } ?>
                     </td>
                   </tr>
