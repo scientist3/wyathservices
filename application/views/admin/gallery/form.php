@@ -11,55 +11,65 @@
           <div class="row">
             <div class="col-md-12">
               <form role="form" action="<?php echo site_url('admin/gallery/create') ?>" method="post" id="save_type_form" enctype="multipart/form-data">
-                <?php echo form_hidden('s_id', $input->s_id) ?>
+                <?php echo form_hidden('gal_id', $input->gal_id) ?>
                 <div class="row">
-                  <!-- Slider Title -->
+                  <!-- Image Caption -->
                   <div class="col-sm-12">
                     <div class="form-group">
-                      <label for="s_title"><?php echo ('Slider Title'); ?></label> <small class="req"> *</small>
-                      <input name="s_title" class="form-control form-control-sm" type="text" placeholder="<?php echo ('Title') ?>" id="s_title" value="<?php echo $input->s_title ?>" data-toggle="tooltip" title="<?php echo ('slider Title'); ?>">
-                      <?php echo form_error('s_title', '<span class="badge bg-danger p-1">', '</span>'); ?>
+                      <label for="gal_img_caption"><?php echo ('Image Caption'); ?></label> <small class="req"> *</small>
+                      <input name="gal_img_caption" class="form-control form-control-sm" type="text" placeholder="<?php echo ('Title') ?>" id="gal_img_caption" value="<?php echo $input->gal_img_caption ?>" data-toggle="tooltip" title="<?php echo ('Image Caption'); ?>">
+                      <?php echo form_error('gal_img_caption', '<span class="badge bg-danger p-1">', '</span>'); ?>
+                    </div>
+                  </div>
+
+                  <!-- Event  -->
+
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label><?php echo ('Select Event'); ?></label>
+                      <?php echo form_dropdown('gal_event_id', $event_list, $input->gal_event_id, 'class="form-control" id="gal_event_id" '); ?>
+                      <?php echo form_error('gal_event_id', '<span class="badge badge-danger text-xs d-block p-1 mt-1"> ', '</span>'); ?>
                     </div>
                   </div>
                   <!-- image -->
                   <div class="form-group row col-sm-12">
-                    <label for="s_img_path" class="col-sm-12 col-form-label"><?php echo ('slider Image') ?> </label>
+                    <label for="gal_img_path" class="col-sm-12 col-form-label"><?php echo ('Upload Image') ?> </label>
                     <div class="col-sm-12">
                       <div class="custom-file">
-                        <input type="file" class="custom-file-input" name="s_img_path" id="s_img_path">
-                        <label class="custom-file-label" for="s_img_path">Choose file</label>
-                        <input type="hidden" name="s_img_path_old" value="<?php echo $input->s_img_path ?>">
+                        <input type="file" class="custom-file-input" name="gal_img_path" id="gal_img_path">
+                        <label class="custom-file-label" for="gal_img_path">Choose file</label>
+                        <input type="hidden" name="gal_img_path_old" value="<?php echo $input->gal_img_path ?>">
                       </div>
                     </div>
                   </div>
                   <!-- if setting image is already uploaded -->
-                  <?php if (!empty($input->s_img_path)) {  ?>
+                  <?php if (!empty($input->gal_img_path)) {  ?>
                     <div class="form-group row">
-                      <label for="s_img_path" class="col-sm-3 col-form-label"></label>
+                      <label for="gal_img_path" class="col-sm-3 col-form-label"></label>
                       <div class="col-sm-9">
-                        <img src="<?php echo base_url($input->s_img_path) ?>" alt="s_img_path" class="img-thumbnail w-50 h-100" />
+                        <img src="<?php echo base_url($input->gal_img_path) ?>" alt="s_img_path" class="img-thumbnail w-50 h-100" />
                       </div>
                     </div>
                   <?php } ?>
                   <!-- Satus -->
                   <div class="col-sm-12">
                     <div class="form-group ">
-                      <label for="s_status"><?php echo ('Status'); ?></label>
+                      <label for="gal_status"><?php echo ('Status'); ?></label>
                       <div class="form-check row form-inline form-control-sm">
                         <div class="col-6 form-inline">
                           <label class=" radio-inline">
-                            <input type="radio" name="s_status" value="1" <?= ($input->s_status == '1' || ($input->s_status != '0')) ? 'checked' : null; ?> data-toggle="tooltip" title="Active status">&nbsp;
+                            <input type="radio" name="gal_status" value="1" <?= ($input->gal_status == '1' || ($input->gal_status != '0')) ? 'checked' : null; ?> data-toggle="tooltip" title="Active status">&nbsp;
                             <?php echo ('Active') ?>
                           </label>
                         </div>
                         <div class="col-6 form-inline">
                           <label class=" radio-inline">
-                            <input type="radio" name="s_status" value="0" <?= ($input->s_status == '0') ? 'checked' : null; ?> data-toggle="tooltip" title="Disabled status"> &nbsp;<?php echo ('Inactive') ?>
+                            <input type="radio" name="gal_status" value="0" <?= ($input->gal_status == '0') ? 'checked' : null; ?> data-toggle="tooltip" title="Disabled status"> &nbsp;<?php echo ('Inactive') ?>
                           </label>
                         </div>
                         <br>
                       </div>
-                      <?php echo form_error('s_status', '<span class="badge bg-danger p-1">', '</span>'); ?>
+                      <?php echo form_error('gal_status', '<span class="badge bg-danger p-1">', '</span>'); ?>
                     </div>
                   </div>
                   <!-- </div> 
@@ -97,7 +107,8 @@
           <table width="100%" class="datatable_colvis table table-striped table-bordered table-hover table-sm">
             <thead>
               <tr>
-                <th><?php echo ('Unique Id') ?></th>
+                <!-- <th><?php echo ('Unique Id') ?></th> -->
+                <th><?php echo ('Event') ?></th>
                 <th><?php echo ('Title') ?></th>
                 <th><?php echo ('Image') ?></th>
                 <th><?php echo ('Status') ?></th>
@@ -105,22 +116,23 @@
               </tr>
             </thead>
             <tbody>
-              <?php if (!empty($slider)) { ?>
+              <?php if (!empty($gallery)) { ?>
                 <?php $sl = 1; ?>
-                <?php foreach ($slider as $sli) { ?>
+                <?php foreach ($gallery as $image) { ?>
                   <tr>
-                    <td><?php echo $sl; ?></td>
-                    <td><?php echo $sli->s_title ?></td>
-                    <td><img src="<?= base_url($sli->s_img_thumb); ?>" alt=""></td>
+                    <!-- <td><?php echo $sl; ?></td> -->
+                    <td><?php echo $event_list[$image->gal_event_id]  ?></td>
+                    <td><?php echo $image->gal_img_caption ?></td>
+                    <td><img src="<?= base_url($image->gal_img_thumb); ?>" alt=""></td>
                     <td class="text-center">
-                      <?php echo ($sli->s_status) ?
+                      <?php echo ($image->gal_status) ?
                         '<i class="fa fa-check" aria-hidden="true"></i>' :
                         '<i class="fa fa-times" aria-hidden="true"></i>'; ?>
                     </td>
                     <td class="text-center" width="100">
-                      <?php if (!in_array($sli->s_id, [])) { ?>
-                        <a href="<?php echo base_url("admin/gallery/edit/$sli->s_id") ?>" class="btn btn-xs btn-success"><i class="fa fa-edit"></i></a>
-                        <a href="<?php echo base_url("admin/gallery/delete/$sli->s_id") ?>" class="btn btn-xs btn-danger" onclick="return confirm('<?php echo ('Are You Sure') ?>') "><i class="fa fa-trash"></i></a>
+                      <?php if (!in_array($image->gal_id, [])) { ?>
+                        <a href="<?php echo base_url("admin/gallery/edit/$image->gal_id") ?>" class="btn btn-xs btn-success"><i class="fa fa-edit"></i></a>
+                        <a href="<?php echo base_url("admin/gallery/delete/$image->gal_id") ?>" class="btn btn-xs btn-danger" onclick="return confirm('<?php echo ('Are You Sure') ?>') "><i class="fa fa-trash"></i></a>
                       <?php } ?>
                     </td>
                   </tr>

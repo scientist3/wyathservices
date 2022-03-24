@@ -177,8 +177,9 @@
 						</li>
 					</ul>
 				</li>
+
 				<!-- Gallery -->
-				<li class="nav-item <?php echo ($this->uri->segment(2) == "Gallery") ? "menu-open" : null; ?>">
+				<li class="nav-item <?php echo ($this->uri->segment(2) == "Gallery" || $this->uri->segment(2) == 'EventGallery') ? "menu-open" : null; ?>">
 					<a href="#" class="nav-link">
 						<i class=" nav-icon fas fa-images"></i>
 						<p>
@@ -187,6 +188,13 @@
 						</p>
 					</a>
 					<ul class="nav nav-treeview">
+
+						<li class="nav-item">
+							<a href="<?php echo base_url('admin/EventGallery/index') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'EventGallery' ? 'active' : null ?>">
+								<i class="far fa-circle nav-icon"></i>
+								<p>Add / View Event Gallery</p>
+							</a>
+						</li>
 
 						<li class="nav-item">
 							<a href="<?php echo base_url('admin/Gallery/index') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'Gallery' ? 'active' : null ?>">

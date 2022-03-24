@@ -1,10 +1,10 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 
-class GalleryModel extends CI_Model
+class EventGalleryModel extends CI_Model
 {
 
-  private $table = "gallery_tbl";
-  private $timezone = 'Asia/Kolkata';
+  private $table = "event_gallery_tbl";
+
   public function create($data = [])
   {
     return $this->db->insert($this->table, $data);
@@ -34,12 +34,12 @@ class GalleryModel extends CI_Model
   {
     $result = $this->db->select("*")
       ->from($this->table)
-      ->order_by('gal_id', 'asc')
+      ->order_by('ev_gl_id', 'asc')
       ->get()
       ->result();
     $list[''] = ('Select Slider');
     foreach ($result as $row) {
-      $list[$row->gal_id] = $row->dept_name;
+      $list[$row->ev_gl_id] = $row->dept_name;
     }
     return $list;
   }
@@ -48,13 +48,13 @@ class GalleryModel extends CI_Model
   {
     $result = $this->db->select("*")
       ->from($this->table)
-      ->where('s_status', 1)
-      ->order_by('gal_id', 'asc')
+      // ->where('s_status', 1)
+      ->order_by('ev_gl_id', 'asc')
       ->get()
       ->result();
-    $list[''] = ('select_slideer_type');
+    $list[''] = ('Select Event');
     foreach ($result as $row) {
-      $list[$row->gal_id] = $row->s_title;
+      $list[$row->ev_gl_id] = $row->ev_gl_name;
     }
     return $list;
   }
@@ -63,7 +63,7 @@ class GalleryModel extends CI_Model
   {
     return $this->db->select("*")
       ->from($this->table)
-      ->where('gal_id', $id)
+      ->where('ev_gl_id', $id)
       ->get()
       ->row_array();
   }
@@ -71,15 +71,13 @@ class GalleryModel extends CI_Model
 
   public function update($data = [])
   {
-    date_default_timezone_set($this->timezone);
-    // $data['s_dou'] = mdate('%Y-%m-%d %H:%i:%s', now());
-    return $this->db->where('gal_id', $data['gal_id'])
+    return $this->db->where('ev_gl_id', $data['ev_gl_id'])
       ->update($this->table, $data);
   }
 
-  public function delete($gal_id = null)
+  public function delete($ev_gl_id = null)
   {
-    $this->db->where('gal_id', $gal_id)
+    $this->db->where('ev_gl_id', $ev_gl_id)
       ->delete($this->table);
 
     if ($this->db->affected_rows() > 0) {
@@ -89,20 +87,20 @@ class GalleryModel extends CI_Model
     }
   }
 
-  public function read_by_id($gal_id = null)
+  public function read_by_id($ev_gl_id = null)
   {
     return $this->db->select("*")
       ->from($this->table)
-      ->where('gal_id', $gal_id)
+      ->where('ev_gl_id', $ev_gl_id)
       ->get()
       ->row_array();
   }
 
-  public function read_by_id_as_obj($gal_id = null)
+  public function read_by_id_as_obj($ev_gl_id = null)
   {
     return $this->db->select("*")
       ->from($this->table)
-      ->where('gal_id', $gal_id)
+      ->where('ev_gl_id', $ev_gl_id)
       ->get()
       ->row();
   }
