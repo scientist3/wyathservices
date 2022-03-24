@@ -146,7 +146,7 @@
 					<a href="#" class="nav-link <?php echo $this->uri->segment(2) == 'Services' ? 'active' : null ?>">
 						<i class="nav-icon far fa-lightbulb"></i>
 						<p>
-							Services
+							Services / Initatives
 							<i class="right fas fa-angle-left"></i>
 						</p>
 					</a>

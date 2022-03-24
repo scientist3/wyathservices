@@ -37,14 +37,14 @@
 			</li>-->
 
           <li>
-            <a href="#">News</a>
+            <a href="<?= base_url('front/notification'); ?>">News</a>
           </li>
           <li class="c-divider">
             |
           </li>
 
           <li>
-            <a href="Gallery.html">Gallery</a>
+            <a href="<?= base_url('front/gallery'); ?>">Gallery</a>
           </li>
           <li class="c-divider">
             |
@@ -75,7 +75,7 @@
 
         <!-- BEGIN: BRAND -->
         <div class="c-brand c-pull-left">
-          <a href="index-2.html" class="c-logo">
+          <a href="<?php echo base_url('front'); ?>" class="c-logo">
             <img src="<?= base_url('frontsite'); ?>/assets/base/img/layout/logos/logo-3.png" alt="Wyath Services" class="c-desktop-logo">
             <img src="<?= base_url('frontsite'); ?>/assets/base/img/layout/logos/logo-3.png" alt="Wyath Services" class="c-desktop-logo-inverse">
             <img src="<?= base_url('frontsite'); ?>/assets/base/img/layout/logos/logo-1.png" alt="Wyath Services" class="c-mobile-logo">

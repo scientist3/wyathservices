@@ -122,4 +122,17 @@ class Front extends CI_Controller
 		$data['content']	= $this->load->view('frontsite/contact/contact', $data, true);
 		$this->load->view('frontsite/layout/wrapper_view', $data);
 	}
+
+	public function gallery()
+	{
+		$data['title']		= "Gallery";
+		$data['gallery'] = [['img_path' => 'uploads/images/partners/1.jpg'], ['img_path' => 'uploads/images/partners/2.jpg'],];
+		$data['content']	= $this->load->view('frontsite/gallery/gallery_view', $data, true);
+		$this->load->view('frontsite/layout/wrapper_view', $data);
+	}
+
+	public function notification()
+	{
+		echo "News";
+	}
 }
