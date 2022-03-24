@@ -8,7 +8,7 @@
     </div>
     <ul class="c-page-breadcrumbs c-theme-nav c-pull-right c-fonts-regular">
       <li>
-        <a href="Index-3.html" class="c-font-white">Home</a>
+        <a href="<?= base_url(); ?>" class="c-font-white">Home</a>
       </li>
       <li class="c-font-white">
         /
