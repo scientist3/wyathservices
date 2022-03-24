@@ -53,6 +53,7 @@ class Front extends CI_Controller
 	public function pillars()
 	{
 		$data['title']		= "5 Core Pillars";
+		$data['pillars']  = $this->front_model->get_pillars();
 		$data['content']	= $this->load->view('frontsite/about/pillars', $data, true);
 		$this->load->view('frontsite/layout/wrapper_view', $data);
 	}

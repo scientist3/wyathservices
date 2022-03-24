@@ -170,4 +170,14 @@ class FrontModel extends CI_Model
 
     return $list;
   }
+
+  // get_pillars
+  public function get_pillars()
+  {
+    return $this->db->select("*")
+      ->from('pillers_tbl')
+      ->where('pil_status', 1)
+      ->get()
+      ->result();
+  }
 }
