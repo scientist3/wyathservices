@@ -180,4 +180,15 @@ class FrontModel extends CI_Model
       ->get()
       ->result();
   }
+
+  // get_chairman_msg
+  public function get_chairman_msg()
+  {
+    return $this->db->select("*")
+      ->from('board_members_tbl')
+      ->where('bm_status', 1)
+      ->where('bm_ischairman', 1)
+      ->get()
+      ->row();
+  }
 }
