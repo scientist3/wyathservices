@@ -51,8 +51,8 @@ class BoardMembers extends CI_Controller
     if ($picture !== false && $picture != null) {
       $this->fileupload->do_resize(
         $picture,
-        230,
-        128
+        320,
+        320
       );
     }
     //if picture is not uploaded
