@@ -178,7 +178,7 @@
 					</ul>
 				</li>
 				<!-- Gallery -->
-				<li class="nav-item">
+				<li class="nav-item <?php echo ($this->uri->segment(2) == "Gallery") ? "menu-open" : null; ?>">
 					<a href="#" class="nav-link">
 						<i class=" nav-icon fas fa-images"></i>
 						<p>
@@ -187,12 +187,14 @@
 						</p>
 					</a>
 					<ul class="nav nav-treeview">
+
 						<li class="nav-item">
-							<a href="chartjs.html" class="nav-link">
+							<a href="<?php echo base_url('admin/Gallery/index') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'Gallery' ? 'active' : null ?>">
 								<i class="far fa-circle nav-icon"></i>
 								<p>Add / View Gallery</p>
 							</a>
 						</li>
+
 					</ul>
 				</li>
 				<!-- About Us -->
