@@ -156,6 +156,7 @@
           <li data-index="rs-<?php echo $key; ?>" data-transition="random-premium" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="300" data-thumb="<?php echo base_url($image->s_img_path); ?>" data-rotate="0" data-saveperformance="off" data-title="<?php echo $image->s_title; ?>" data-param1="Photography" data-description="">
             <!-- MAIN IMAGE -->
             <img src="<?php echo base_url($image->s_img_path); ?>" alt="" data-lazyload="<?php echo base_url($image->s_img_path); ?>" data-bgposition="center center" data-kenburns="on" data-duration="30000" data-ease="Linear.easeNone" data-scalestart="100" data-scaleend="120" data-rotatestart="0" data-rotateend="0" data-blurstart="0" data-blurend="0" data-offsetstart="0 0" data-offsetend="0 0" class="rev-slidebg" data-no-retina>
+            <?php print_r() ?>
             <!-- LAYERS -->
 
             <!-- LAYER NR. 1 -->
