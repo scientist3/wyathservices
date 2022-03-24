@@ -17,7 +17,7 @@
   <!-- BEGIN: FEATURES 4.3 -->
   <div id="1f" class="c-content-box c-size-md c-no-padding c-bg-white">
     <div class="c-content-feature-4">
-      <div class="c-bg-parallax c-feature-bg c-content-right c-diagonal c-border-left-white" style="background-image: url(assets/base/img/content/backgrounds/1.jpg)">
+      <div class="c-bg-parallax c-feature-bg c-content-right c-diagonal c-border-left-white" style="background-image: url(<?= base_url('frontsite/'); ?>assets/base/img/content/backgrounds/1.jpg)">
       </div>
       <div class="c-content-area c-content-left">
       </div>
@@ -62,7 +62,7 @@
   <!-- BEGIN: FEATURES 4.4 -->
   <div id="1s" class="c-content-box c-size-md c-no-padding c-bg-dark-2">
     <div class="c-content-feature-4">
-      <div class="c-bg-parallax c-feature-bg c-content-left c-diagonal c-border-right-dark-2" style="background-image: url(assets/base/img/content/backgrounds/2.jpg)">
+      <div class="c-bg-parallax c-feature-bg c-content-left c-diagonal c-border-right-dark-2" style="background-image: url(<?= base_url('frontsite/'); ?>assets/base/img/content/backgrounds/2.jpg)">
       </div>
       <div class="c-content-area c-content-right">
       </div>
@@ -104,7 +104,7 @@
   <!-- BEGIN: FEATURES 4.3 -->
   <div id="1e" class="c-content-box c-size-md c-no-padding c-bg-white">
     <div class="c-content-feature-4">
-      <div class="c-bg-parallax c-feature-bg c-content-right c-diagonal c-border-left-white" style="background-image: url(assets/base/img/content/backgrounds/3.jpg)">
+      <div class="c-bg-parallax c-feature-bg c-content-right c-diagonal c-border-left-white" style="background-image: url(<?= base_url('frontsite/'); ?>assets/base/img/content/backgrounds/3.jpg)">
       </div>
       <div class="c-content-area c-content-left">
       </div>
@@ -144,7 +144,7 @@
   <!-- BEGIN: FEATURES 4.4 -->
   <div id="1y" class="c-content-box c-size-md c-no-padding c-bg-dark-2">
     <div class="c-content-feature-4">
-      <div class="c-bg-parallax c-feature-bg c-content-left c-diagonal c-border-right-dark-2" style="background-image: url(assets/base/img/content/backgrounds/4.jpg)">
+      <div class="c-bg-parallax c-feature-bg c-content-left c-diagonal c-border-right-dark-2" style="background-image: url(<?= base_url('frontsite/'); ?>assets/base/img/content/backgrounds/4.jpg)">
       </div>
       <div class="c-content-area c-content-right">
       </div>
@@ -193,7 +193,7 @@
   <!-- BEGIN: FEATURES 4.3 -->
   <div id="1f" class="c-content-box c-size-md c-no-padding c-bg-white">
     <div class="c-content-feature-4">
-      <div class="c-bg-parallax c-feature-bg c-content-right c-diagonal c-border-left-white" style="background-image: url(assets/base/img/content/backgrounds/1.jpg)">
+      <div class="c-bg-parallax c-feature-bg c-content-right c-diagonal c-border-left-white" style="background-image: url(<?= base_url('frontsite/'); ?>assets/base/img/content/backgrounds/1.jpg)">
       </div>
       <div class="c-content-area c-content-left">
       </div>
