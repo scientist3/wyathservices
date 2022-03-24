@@ -123,7 +123,7 @@
                     <!-- <td><?php echo $sl; ?></td> -->
                     <td><?php echo $event_list[$image->gal_event_id]  ?></td>
                     <td><?php echo $image->gal_img_caption ?></td>
-                    <td><img src="<?= base_url($image->gal_img_thumb); ?>" alt=""></td>
+                    <td><img height="50px" width="120px" src="<?= base_url($image->gal_img_thumb); ?>" alt=""></td>
                     <td class="text-center">
                       <?php echo ($image->gal_status) ?
                         '<i class="fa fa-check" aria-hidden="true"></i>' :

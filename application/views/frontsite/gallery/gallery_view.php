@@ -40,112 +40,31 @@
           </div>
 
           <div class="col-md-12">
-
+            <style>
+              .lb-data .lb-caption {
+                font-size: 27px;
+              }
+            </style>
             <!-- Gallery -->
-            <div class="row">
-              <?php if (valArr($gallery)) : ?>
-                <?php foreach ($gallery as $key => $img) : ?>
-                  <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
-                    <a href="<?php echo base_url($img['img_path']); ?>" data-lightbox="roadtrip" data-title="My caption">
-                      <img src="<?php echo base_url($img['img_path']); ?>" class="w-100 shadow-1-strong rounded mb-4" alt="Boat on Calm Water" />
-                    </a>
-                  </div>
-                <?php endforeach; ?>
-              <?php endif; ?>
+            <!-- <div class="row" style="display: flex;flex-wrap: wrap;"> -->
+            <?php if (valArr($event_gallery)) : ?>
+              <?php foreach ($event_gallery as $event_id => $arrGallery) : ?>
+                <h1><?= $event_list[$event_id]; ?></h1>
+                <div class="row" style="display: flex;flex-wrap: wrap;;">
+                  <?php foreach ($arrGallery as $key => $image) : ?>
+                    <div class="col-lg-4 col-md-12 mb-4 mb-lg-0 label">
+                      <a href="<?php echo base_url($image->gal_img_path); ?>" data-lightbox="roadtrip" data-title="<?= $image->gal_img_caption; ?>">
+                        <img src="<?php echo base_url($image->gal_img_thumb); ?>" class="w-100 shadow-1-strong img-rounded mb-4" alt="Boat on Calm Water" />
+                      </a>
+                    </div>
+
+                  <?php endforeach; ?>
+                </div>
+              <?php endforeach; ?>
+            <?php endif; ?>
 
 
-              <table class="table table-hover" cellspacing="1" cellpadding="6" rules="all" border="1" id="ContentPlaceHolder1_GridView1">
-                <tr align="center">
-                  <th scope="col" style="width:5%;">S.No</th>
-                  <th class="hide" align="center" scope="col">&nbsp;</th>
-                  <th scope="col" style="width:25%;">Date</th>
-                  <th scope="col" style="width:50%;">Event Name</th>
-                  <th scope="col">Photo Gallery</th>
-                  <th scope="col">Video Gallery</th>
-                </tr>
-
-                <tr>
-                  <td align="center" style="width:5%;">
-                    <span id="ContentPlaceHolder1_GridView1_sno_0">1</span>
-                  </td>
-                  <td class="hide" align="center">28</td>
-                  <td align="center" style="width:10%;">07 Jan 2018</td>
-                  <td align="left" style="width:50%;">Wyath Services Gallery</td>
-                  <td class="sp" align="center">
-                    <a id="ContentPlaceHolder1_GridView1_HyperLink1_0" class="btn c-btn-red-2 c-btn-uppercase c-btn-bold c-btn-border-1x" href="https://photos.app.goo.gl/0rwkFreiVtrisjaJ3" target="_blank">View</a>
-                  </td>
-                  <td class="sp">
-                    <a id="ContentPlaceHolder1_GridView1_HyperLink2_0" class="btn c-btn-red-2 c-btn-uppercase c-btn-bold c-btn-border-1x" href="https://youtu.be/iboO2d3zGys" target="_blank">View</a>
-                  </td>
-                </tr>
-
-
-
-
-                <tr>
-                  <td align="center" style="width:5%;">
-                    <span id="ContentPlaceHolder1_GridView1_sno_1">2</span>
-                  </td>
-                  <td class="hide" align="center">27</td>
-                  <td align="center" style="width:10%;">24 Feb 2018</td>
-                  <td align="left" style="width:50%;">Wyath Services Gallery</td>
-                  <td class="sp" align="center">
-                    <a id="ContentPlaceHolder1_GridView1_HyperLink1_1" class="btn c-btn-red-2 c-btn-uppercase c-btn-bold c-btn-border-1x" href="https://photos.app.goo.gl/VhYCDACJKZ96G2cM2" target="_blank">View</a>
-                  </td>
-                  <td class="sp">
-                    <a id="ContentPlaceHolder1_GridView1_HyperLink2_1" class="btn c-btn-red-2 c-btn-uppercase c-btn-bold c-btn-border-1x" href="https://youtu.be/iboO2d3zGys" target="_blank">View</a>
-                  </td>
-                </tr>
-
-
-                <!--
-		<tr>
-			<td align="center" style="width:5%;">
-               <span id="ContentPlaceHolder1_GridView1_sno_2">3</span>
-            </td>
-			<td class="hide" align="center">26</td>
-			<td align="center" style="width:10%;">23 Feb 2016</td>
-			<td align="left" style="width:50%;">Event Name and Description 3</td>
-			<td class="sp" align="center">
-               <a id="ContentPlaceHolder1_GridView1_HyperLink1_2" class="btn c-btn-red-2 c-btn-uppercase c-btn-bold c-btn-border-1x" href="https://goo.gl/photos/dWxsBNifQCaXs9SL6" target="_blank">View</a>
-             </td>
-			 <td class="sp">
-                <a id="ContentPlaceHolder1_GridView1_HyperLink2_2" class="btn c-btn-red-2 c-btn-uppercase c-btn-bold c-btn-border-1x" href="https://www.youtube.com/watch?v=X0lGY64LKOA&amp;list=PLD9-cYfAv3m1sm21j2UGKiryywBXBwxSI" target="_blank">View</a>
-             </td>
-		</tr>
-		
-		<tr>
-			<td align="center" style="width:5%;">
-                <span id="ContentPlaceHolder1_GridView1_sno_3">4</span>
-            </td>
-			<td class="hide" align="center">25</td>
-			<td align="center" style="width:10%;">30 Jan 2016</td>
-			<td align="left" style="width:50%;">Event Name and Description 4</td>
-			<td class="sp" align="center">
-				<a id="ContentPlaceHolder1_GridView1_HyperLink1_3" class="btn c-btn-red-2 c-btn-uppercase c-btn-bold c-btn-border-1x" href="https://goo.gl/photos/jTbGwQSQSbcFEDMV6" target="_blank">View</a>
-             </td>
-			 <td class="sp">
-                <a id="ContentPlaceHolder1_GridView1_HyperLink2_3" class="btn c-btn-red-2 c-btn-uppercase c-btn-bold c-btn-border-1x" href="https://www.youtube.com/watch?v=9DC7V2jzTEY&amp;list=PLD9-cYfAv3m1VyrAiPQal66zfkaiqQHMD" target="_blank">View</a>
-              </td>
-		</tr>
-		
-		<tr>
-			<td align="center" style="width:5%;">
-                <span id="ContentPlaceHolder1_GridView1_sno_4">5</span>
-             </td>
-			 <td class="hide" align="center">21</td>
-			 <td align="center" style="width:10%;">28 Oct 2015</td>
-			 <td align="left" style="width:50%;">Event Name and Description 5</td>
-			 <td class="sp" align="center">
-                 <a id="ContentPlaceHolder1_GridView1_HyperLink1_4" class="btn c-btn-red-2 c-btn-uppercase c-btn-bold c-btn-border-1x" href="https://goo.gl/photos/B3qRY2PfyR4FJ2fi7" target="_blank">View</a>
-              </td>
-			  <td class="sp">
-                  <a id="ContentPlaceHolder1_GridView1_HyperLink2_4" class="btn c-btn-red-2 c-btn-uppercase c-btn-bold c-btn-border-1x" href="https://www.youtube.com/watch?v=-kriFDL96MA&amp;list=PLD9-cYfAv3m2v25dtBdbwOeCgwCwgylfi" target="_blank">View</a>
-              </td>
-		</tr> -->
-
-              </table>
-            </div>
+            <!-- </div> -->
           </div>
         </div>
 

@@ -31,7 +31,7 @@ class Gallery extends CI_Controller
     }
     $picture = $this->fileupload->do_upload(
       'uploads/images/gallery/',
-      's_img_path'
+      'gal_img_path'
     );
 
     $pic_thumb = '';
@@ -39,8 +39,8 @@ class Gallery extends CI_Controller
       $pic_thumb = $this->fileupload->create_thumbnail(
         $picture,
         'uploads/images/gallery/',
-        120,
-        50
+        370,
+        130
       );
     }
 

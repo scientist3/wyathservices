@@ -138,4 +138,36 @@ class FrontModel extends CI_Model
       ->get()
       ->result();
   }
+
+  public function get_event_gallery_as_list_active_only()
+  {
+    $result = $this->db->select("*")
+      ->from('event_gallery_tbl')
+      ->order_by('ev_gl_id', 'asc')
+      ->get()
+      ->result();
+    $list[''] = ('Select Event');
+    foreach ($result as $row) {
+      $list[$row->ev_gl_id] = $row->ev_gl_name;
+    }
+    return $list;
+  }
+
+  public function get_gallery_by_events()
+  {
+    $result =  $this->db->select("*")
+      ->from('gallery_tbl')
+      ->where('gal_status', 1)
+      ->get()
+      ->result();
+
+    $list = [];
+    if (valArr($result)) {
+      foreach ($result as $key => $gal) {
+        $list[$gal->gal_event_id][] = $gal;
+      }
+    }
+
+    return $list;
+  }
 }

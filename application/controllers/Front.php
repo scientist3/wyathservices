@@ -129,7 +129,11 @@ class Front extends CI_Controller
 	public function gallery()
 	{
 		$data['title']		= "Gallery";
-		$data['gallery'] = [['img_path' => 'uploads/images/partners/1.jpg'], ['img_path' => 'uploads/images/partners/2.jpg'],];
+		$data['event_list']  = $this->front_model->get_event_gallery_as_list_active_only();
+		$data['event_gallery']  	= $this->front_model->get_gallery_by_events();
+		// $data['gallery'] 		 = [['img_path' => 'uploads/images/partners/1.jpg'], ['img_path' => 'uploads/images/partners/2.jpg'],];
+
+		// dd($data['event_gallery']);
 		$data['content']	= $this->load->view('frontsite/gallery/gallery_view', $data, true);
 		$this->load->view('frontsite/layout/wrapper_view', $data);
 	}
