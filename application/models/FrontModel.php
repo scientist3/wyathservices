@@ -117,4 +117,25 @@ class FrontModel extends CI_Model
       ->get()
       ->result();
   }
+
+
+  public function get_board_members()
+  {
+    return $this->db->select("*")
+      ->from('board_members_tbl')
+      ->where('bm_status', 1)
+      ->where('bm_page', 'directors')
+      ->get()
+      ->result();
+  }
+
+  public function get_advisory_members()
+  {
+    return $this->db->select("*")
+      ->from('board_members_tbl')
+      ->where('bm_status', 1)
+      ->where('bm_page', 'advisory')
+      ->get()
+      ->result();
+  }
 }

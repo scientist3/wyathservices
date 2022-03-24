@@ -36,15 +36,17 @@ class Front extends CI_Controller
 
 	public function boardofdirectors()
 	{
-		$data['title']		= "Board Of Directors";
-		$data['content']	= $this->load->view('frontsite/about/boardofdirectors', $data, true);
+		$data['title']				= "Board Of Directors";
+		$data['boardmembers'] = $this->front_model->get_board_members();
+		$data['content']			= $this->load->view('frontsite/about/boardofdirectors', $data, true);
 		$this->load->view('frontsite/layout/wrapper_view', $data);
 	}
 
 	public function boardofadvisors()
 	{
-		$data['title']		= "Board of Advisors ";
-		$data['content']	= $this->load->view('frontsite/about/boardofadvisors', $data, true);
+		$data['title']						= "Board of Advisors ";
+		$data['advisorymembers'] 	= $this->front_model->get_advisory_members();
+		$data['content']					= $this->load->view('frontsite/about/boardofadvisors', $data, true);
 		$this->load->view('frontsite/layout/wrapper_view', $data);
 	}
 
