@@ -10,7 +10,7 @@
 <!-- BEGIN: PAGE CONTENT -->
 <div class="bts-popup" role="alert" onLoad="self.focus();" style="z-index: 99999;">
   <div class="bts-popup-container">
-    <img src="<?= base_url('frontsite'); ?>/assets/base/img/layout/popup.jpg" alt="" width="100%" />
+    <img src="<?= !empty($banner->b_img_path) ? base_url($banner->b_img_path) : '#'; ?>" alt="" width="100%" />
 
     <div class="bts-popup-button">
 
@@ -314,3 +314,34 @@
   </div>
 
 </div>
+<!-- Jquery and Bootstrap -->
+<script src="<?= base_url('frontsite'); ?>/assets/plugins/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+  jQuery(document).ready(function($) {
+
+    window.onload = function() {
+      $(".bts-popup").delay(1000).addClass('is-visible');
+    }
+
+    //open popup
+
+    $('.bts-popup-trigger').on('click', function(event) {
+      event.preventDefault();
+      $('.bts-popup').addClass('is-visible');
+    });
+
+    //close popup
+    $('.bts-popup').on('click', function(event) {
+      if ($(event.target).is('.bts-popup-close') || $(event.target).is('.bts-popup')) {
+        event.preventDefault();
+        $(this).removeClass('is-visible');
+      }
+    });
+    //close popup when clicking the esc keyboard button
+    $(document).keyup(function(event) {
+      if (event.which == '27') {
+        $('.bts-popup').removeClass('is-visible');
+      }
+    });
+  });
+</script>

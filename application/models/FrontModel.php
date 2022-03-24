@@ -3,6 +3,19 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class FrontModel extends CI_Model
 {
+
+
+  // get_banner
+  public function get_banner()
+  {
+    return $this->db->select("*")
+      ->from('banner_tbl')
+      ->where('b_isvisible', 1)
+      ->where('b_status', 1)
+      ->get()
+      ->row();
+  }
+
   // Featured Initatives
   public function get_featured_initatives()
   {
