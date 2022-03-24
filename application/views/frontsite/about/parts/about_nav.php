@@ -48,7 +48,7 @@
           |
         </li>
         <li class="c-state_active">
-          <a href="<?= base_url('front/fourpillars'); ?>" <?php echo ($this->uri->segment(2) == "fourpillars") ? 'class="c-font-brown-3"' : null; ?>>5 Core Pillars</a>
+          <a href="<?= base_url('front/pillars'); ?>" <?php echo ($this->uri->segment(2) == "pillars") ? 'class="c-font-brown-3"' : null; ?>>5 Core Pillars</a>
         </li>
         <li>
           |

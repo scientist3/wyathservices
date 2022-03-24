@@ -50,10 +50,10 @@ class Front extends CI_Controller
 		$this->load->view('frontsite/layout/wrapper_view', $data);
 	}
 
-	public function fourpillars()
+	public function pillars()
 	{
 		$data['title']		= "5 Core Pillars";
-		$data['content']	= $this->load->view('frontsite/about/fourpillars', $data, true);
+		$data['content']	= $this->load->view('frontsite/about/pillars', $data, true);
 		$this->load->view('frontsite/layout/wrapper_view', $data);
 	}
 

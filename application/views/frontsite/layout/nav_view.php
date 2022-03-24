@@ -122,7 +122,7 @@
                   <a class="<?= ($this->uri->segment(2) == 'boardofadvisors') ? 'c-font-brown-3' : null; ?>" href="<?= base_url('front/boardofadvisors'); ?>">Board of Advisors</a>
                 </li>
                 <li>
-                  <a class="<?= ($this->uri->segment(2) == 'fourpillars') ? 'c-font-brown-3' : null; ?>" href="<?= base_url('front/fourpillars'); ?>">5 Core Pillars</a>
+                  <a class="<?= ($this->uri->segment(2) == 'pillars') ? 'c-font-brown-3' : null; ?>" href="<?= base_url('front/pillars'); ?>">5 Core Pillars</a>
                 </li>
                 <li>
                   <a class="<?= ($this->uri->segment(2) == 'chairmansmessage') ? 'c-font-brown-3' : null; ?>" href="<?= base_url('front/chairmansmessage'); ?>">Chairman's Message</a>
