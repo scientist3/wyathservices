@@ -77,6 +77,7 @@ class Front extends CI_Controller
 	public function chairmansmessage()
 	{
 		$data['title']		= "Chairman's Message";
+		$data['chairman_msg']		= $this->front_model->get_chairman_msg();
 		$data['content']	= $this->load->view('frontsite/about/chairmansmessage', $data, true);
 		$this->load->view('frontsite/layout/wrapper_view', $data);
 	}
