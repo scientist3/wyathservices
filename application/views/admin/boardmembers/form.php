@@ -152,14 +152,13 @@
           <table width="100%" class="datatable_colvis table table-striped table-bordered table-hover table-sm">
             <thead>
               <tr>
-                <th><?php echo ('Unique Id') ?></th>
                 <th><?php echo ('Name') ?></th>
                 <th><?php echo ('Image') ?></th>
                 <th><?php echo ('Designation') ?></th>
                 <th><?php echo ('Chairman') ?></th>
                 <th><?php echo ('Chairman Message') ?></th>
                 <th><?php echo ('Status') ?></th>
-                <th><?php echo ('Directors Page') ?></th>
+                <th><?php echo ('Page') ?></th>
                 <th><?php echo ('Action') ?></th>
               </tr>
             </thead>
@@ -168,19 +167,19 @@
                 <?php $sl = 1; ?>
                 <?php foreach ($boardmember as $bm) { ?>
                   <tr>
-                    <td><?php echo $sl; ?></td>
-                    <td><?php echo $bm->bm_name ?></td>
+                    <td><small><?php echo $bm->bm_name ?></small></td>
                     <td><img src="<?= base_url($bm->bm_img_thumb); ?>" alt=""></td>
-                    <td><?php echo $bm->bm_desig ?></td>
+                    <td><small><?php echo $bm->bm_desig ?></small></td>
                     <td class="text-center">
                       <?php echo ($bm->bm_ischairman) ?
                         '<i class="fa fa-check" aria-hidden="true"></i>' :
                         '<i class="fa fa-times" aria-hidden="true"></i>'; ?>
                     </td>
-                    <td>
-                      <?php
-                      echo strlen($bm->bm_chairman_msg) > 20 ? substr($bm->bm_chairman_msg, 0, 20) . "..." : $bm->bm_chairman_msg;
-                      ?>
+                    <td><small>
+                        <?php
+                        $message_content =  (strlen($bm->bm_chairman_msg) > 20) ? (substr($bm->bm_chairman_msg, 0, 20) . "...") : $bm->bm_chairman_msg;
+                        echo htmlspecialchars($message_content);
+                        ?></small>
                     </td>
                     <td class="text-center">
                       <?php echo ($bm->bm_status) ?

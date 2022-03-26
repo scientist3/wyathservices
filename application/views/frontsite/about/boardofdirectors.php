@@ -58,7 +58,11 @@
 											<?= $member->bm_desig; ?>
 										</div>
 										<p>
-
+											<?php if ($member->bm_ischairman != 1) { ?>
+												<button type="button" class="btn btn-xs btn-success btn_show_model" data-toggle="modal" data-target="#modal-message" data-message="<?= htmlspecialchars($member->bm_chairman_msg); ?>">
+													<i class="fa fa-eye"> Read more</i>
+												</button>
+											<?php } ?>
 										</p>
 									</div>
 								</div>
@@ -79,3 +83,44 @@
 	<!-- END: PAGE CONTENT -->
 </div>
 <!-- END: PAGE CONTAINER -->
+
+
+<!-- Model -->
+<div class="bts-popup" role="alert" onLoad="self.focus();" style="z-index: 99999;">
+	<div class="bts-popup-container bg-primary">
+		<p id="msg_content" style="color: black;background-color: whitesmoke;"></p>
+		<!-- <a href="#0" class="bts-popup-close img-replace">Close</a> -->
+	</div>
+</div>
+
+<!-- Jquery and Bootstrap -->
+<script src="<?= base_url('frontsite'); ?>/assets/plugins/jquery.min.js" type="text/javascript"></script>
+
+<script>
+	$(document).ready(function() {
+		$('.btn_show_model').on('click', function() {
+			// Prepare data
+			$('#msg_content').html($(this).data('message'));
+			$(".bts-popup").delay(1000).addClass('is-visible');
+		});
+
+		//open popup
+		$('.bts-popup-trigger').on('click', function(event) {
+			event.preventDefault();
+			$('.bts-popup').addClass('is-visible');
+		});
+		//close popup
+		$('.bts-popup').on('click', function(event) {
+			if ($(event.target).is('.bts-popup-close') || $(event.target).is('.bts-popup')) {
+				event.preventDefault();
+				$(this).removeClass('is-visible');
+			}
+		});
+		//close popup when clicking the esc keyboard button
+		$(document).keyup(function(event) {
+			if (event.which == '27') {
+				$('.bts-popup').removeClass('is-visible');
+			}
+		});
+	});
+</script>
