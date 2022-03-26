@@ -36,46 +36,60 @@
         </div>
 
         <div class="row" data-auto-height=".c-height">
+          <?php if ($this->session->flashdata('message') != null) {  ?>
+            <div class="alert alert-success alert-dismissible show" role="alert">
+              <strong></strong> <?php echo $this->session->flashdata('message'); ?>.
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
 
+          <?php } ?>
+          <?php if ($this->session->flashdata('exception') != null) {  ?>
+            <div class="alert <?= $this->session->flashdata('class_name') ?> alert-dismissable">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <?php echo $this->session->flashdata('exception'); ?>
+            </div>
+          <?php } ?>
 
           <div class="col-sm-8 c-body">
             <div class="row">
               <div class="col-sm-12">
 
 
-                <form class="row">
+                <form class="row" action="<?= base_url('front/contact'); ?>" method="post">
                   <!-- Name -->
                   <div class="form-group col-sm-4 col-12">
                     <label for="con_us_name">Name</label>
-                    <input type="text" class="form-control" id="con_us_name" aria-describedby="namehelp" placeholder="Enter your name" name="con_us_name">
+                    <input type="text" class="form-control" id="con_us_name" aria-describedby="namehelp" placeholder="Enter your name" name="con_us_name" value="<?= $input->con_us_name; ?>">
                     <?php echo form_error('con_us_name', '<small class="form-text text-danger bg-danger label">', '</small>'); ?>
                   </div>
 
                   <!-- Email -->
                   <div class="form-group col-sm-4 col-12">
                     <label for="con_us_email">Email</label>
-                    <input type="email" class="form-control" id="con_us_email" aria-describedby="con_us_email_help" placeholder="Enter your Email" name="con_us_email">
+                    <input type="email" class="form-control" id="con_us_email" aria-describedby="con_us_email_help" placeholder="Enter your Email" name="con_us_email" value="<?= $input->con_us_email; ?>">
                     <?php echo form_error('con_us_email', '<small class="form-text text-danger bg-danger label">', '</small>'); ?>
                   </div>
 
                   <!-- Phone Number -->
                   <div class="form-group col-sm-4 col-12">
                     <label for="con_us_phoneno">Phone Number</label>
-                    <input type="text" class="form-control" id="con_us_phoneno" aria-describedby="con_us_phoneno_help" placeholder="Enter your Phone Number" name="con_us_phoneno">
+                    <input type="text" class="form-control" id="con_us_phoneno" aria-describedby="con_us_phoneno_help" placeholder="Enter your Phone Number" name="con_us_phoneno" value="<?= $input->con_us_phoneno; ?>">
                     <?php echo form_error('con_us_phoneno', '<small class="form-text text-danger bg-danger label">', '</small>'); ?>
                   </div>
 
                   <!-- Subject -->
                   <div class="form-group col-sm-12 col-12">
                     <label for="con_us_subject">Subject</label>
-                    <input type="text" class="form-control" id="con_us_subject" aria-describedby="con_us_subject_help" placeholder="Enter your subject" name="con_us_subject">
+                    <input type="text" class="form-control" id="con_us_subject" aria-describedby="con_us_subject_help" placeholder="Enter your subject" name="con_us_subject" value="<?= $input->con_us_subject; ?>">
                     <?php echo form_error('con_us_subject', '<small class="form-text text-danger bg-danger label">', '</small>'); ?>
                   </div>
 
                   <!-- Message -->
                   <div class="form-group col-sm-12 col-12">
                     <label for="con_us_message">Name</label>
-                    <textarea type="text" class="form-control" id="con_us_message" aria-describedby="con_us_message_help" placeholder="Enter your message." name="con_us_message" rows="6"></textarea>
+                    <textarea type="text" class="form-control" id="con_us_message" aria-describedby="con_us_message_help" placeholder="Enter your message." name="con_us_message" rows="6"><?= $input->con_us_message; ?></textarea>
                     <?php echo form_error('con_us_message', '<small class="form-text text-danger bg-danger label">', '</small>'); ?>
                   </div>
 

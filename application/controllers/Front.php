@@ -124,10 +124,39 @@ class Front extends CI_Controller
 
 	public function contact()
 	{
-
-		$data['title']		= "Contact";
-		$data['content']	= $this->load->view('frontsite/contact/contact', $data, true);
-		$this->load->view('frontsite/layout/wrapper_view', $data);
+		#----------- Validation ----------------#
+		{
+			$this->form_validation->set_rules('con_us_name', ('Name'),  'required');
+			$this->form_validation->set_rules('con_us_email', ('Email'),  'required');
+			$this->form_validation->set_rules('con_us_phoneno', ('Phone No'),  'required');
+			$this->form_validation->set_rules('con_us_subject', ('Subject'),  'required');
+			$this->form_validation->set_rules('con_us_message', ('Message'),  'required');
+		}
+		// ?con_us_name=&con_us_email=&con_us_phoneno=&con_us_subject=&con_us_message=
+		// Prepare date
+		$data['input'] = (object)$postDataInp = array(
+			'con_us_id'				=> $this->input->post('con_us_id', true),
+			'con_us_name'			=> $this->input->post('con_us_name', true),
+			'con_us_email'		=> $this->input->post('con_us_email', true),
+			'con_us_phoneno'	=> $this->input->post('con_us_phoneno', true),
+			'con_us_subject'	=> $this->input->post('con_us_subject', true),
+			'con_us_message'	=> $this->input->post('con_us_message', true),
+			'con_us_status'		=> 1,
+		);
+		if ($this->form_validation->run() === true) {
+			if ($this->front_model->save_message($postDataInp)) {
+				#set success message
+				$this->session->set_flashdata('message', ('Message Sent Successfully'));
+			} else {
+				#set exception message
+				$this->session->set_flashdata('message', ('Please Try Again'));
+			}
+			redirect('front/contact');
+		} else {
+			$data['title']		= "Contact";
+			$data['content']	= $this->load->view('frontsite/contact/contact', $data, true);
+			$this->load->view('frontsite/layout/wrapper_view', $data);
+		}
 	}
 
 	public function gallery()
