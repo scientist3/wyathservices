@@ -201,4 +201,9 @@ class FrontModel extends CI_Model
       ->get()
       ->row();
   }
+
+  public function save_message($data = [])
+  {
+    return $this->db->insert('contact_us_tbl', $data);
+  }
 }
