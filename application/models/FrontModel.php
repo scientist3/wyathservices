@@ -107,6 +107,16 @@ class FrontModel extends CI_Model
       ->get()
       ->result();
   }
+  // get_key_differentiators
+  public function get_key_differentiators()
+  {
+    return $this->db->select("*")
+      ->from('key_differentiators_impact_tbl')
+      ->where('kd_status', 1)
+      ->where('kd_page', 'key_differentiators')
+      ->get()
+      ->result();
+  }
   // get_our_impact
   public function get_our_impact()
   {
@@ -118,7 +128,7 @@ class FrontModel extends CI_Model
       ->result();
   }
 
-
+  // get_board_members
   public function get_board_members()
   {
     return $this->db->select("*")
@@ -128,7 +138,7 @@ class FrontModel extends CI_Model
       ->get()
       ->result();
   }
-
+  // get_advisory_members
   public function get_advisory_members()
   {
     return $this->db->select("*")
