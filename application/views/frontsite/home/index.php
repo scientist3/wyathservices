@@ -8,7 +8,7 @@
   openModal();
 </script>
 <!-- BEGIN: PAGE CONTENT -->
-<?php if ($banner->b_isvisible == 1) : ?>
+<?php if (!empty($banner->b_isvisible) && $banner->b_isvisible == 1) : ?>
   <div class="bts-popup" role="alert" onLoad="self.focus();" style="z-index: 99999;">
     <div class="bts-popup-container">
       <img src="<?= !empty($banner->b_img_path) ? base_url($banner->b_img_path) : '#'; ?>" alt="" width="100%" />
