@@ -6,7 +6,7 @@ class Event extends CI_Controller
   public function __construct()
   {
     parent::__construct();
-    $this->load->model('admin/EventModel');
+    $this->load->model(['admin/NewsNotificationEventsModel' => 'EventModel']);
     if ($this->session->userdata('isLogIn') == false || $this->session->userdata('user_role') != 1)
       redirect('login/logout');
     $this->user_id = $this->session->userdata('user_id');
@@ -19,38 +19,30 @@ class Event extends CI_Controller
   # used functional
   public function create()
   {
-    $event_id = $this->input->post('event_id');
+    $news_id = $this->input->post('news_id');
     #----------- Validation ----------------#
     {
-      $this->form_validation->set_rules('event_title', ('Title'),  'required|max_length[50]');
-      $this->form_validation->set_rules('event_desc', ('Description'),  'required');
-      $this->form_validation->set_rules('event_status', ('Status'),    'required');
+      $this->form_validation->set_rules('news_title', ('Title'),  'required|max_length[100]');
+      $this->form_validation->set_rules('news_desc', ('Description'),  'required');
+      $this->form_validation->set_rules('news_type', ('Type'),    'required');
+      $this->form_validation->set_rules('news_status', ('Status'),    'required');
     }
     $data['input'] = (object)$postDataInp = array(
-      'event_id'     => $this->input->post('event_id'),
-      'event_title'   => $this->input->post('event_title'),
-      'event_desc'   => $this->input->post('event_desc'),
-      'event_status' => ($this->input->post('event_status')),
+      'news_id'     => $this->input->post('news_id'),
+      'news_type'     => $this->input->post('news_type'),
+      'news_title'   => $this->input->post('news_title'),
+      'news_desc'   => $this->input->post('news_desc'),
+      'news_link'   => $this->input->post('news_link'),
+      'news_status' => ($this->input->post('news_status')),
     );
 
     $input = $data['input'];
-    #----------------- User Object -------------#
-    $data['user'] = (object)$postDataUser = array(
-      'event_id'     => $input->event_id,
-      'event_title'   => $input->event_title,
-      'event_desc'   => $input->event_desc,
-      'event_status' => $input->event_status,
-    );
-    #----------------- Location Object -------------#
 
     /*-----------CHECK ID -----------*/
-    if (empty($event_id)) {
+    if (empty($news_id)) {
       /*-----------CREATE A NEW RECORD-----------*/
       if ($this->form_validation->run() === true) {
-        // if ($input->event_status == '1') {
-        // 	$this->EventModel->setVisible();
-        // }
-        if ($this->EventModel->create($postDataUser)) {
+        if ($this->EventModel->create($postDataInp)) {
           #set success message
           $this->session->set_flashdata('message', ('Saved Successfully'));
           $this->session->set_flashdata('class_name', ('alert-success'));
@@ -63,16 +55,16 @@ class Event extends CI_Controller
         }
       } else {
         #------------- Default Form Section Display ---------#
-        $data['title'] = ('Add View Events');
-        $data['subtitle'] = ('Add New Event');
-        $data['event'] = $this->EventModel->read();
+        $data['title'] = ('Add/View News | Notification | Events');
+        $data['subtitle'] = ('Add New News|Notification|Events');
+        $data['news'] = $this->EventModel->read();
         $data['content'] = $this->load->view('admin/event/form', $data, true);
         $this->load->view('admin/layout/wrapper', $data);
       }
     } else {
       /*-----------UPDATE A RECORD-----------*/
       if ($this->form_validation->run() === true) {
-        if ($this->EventModel->update($postDataUser)) {
+        if ($this->EventModel->update($postDataInp)) {
           #set success message
           $this->session->set_flashdata('message', ('Updated Successfully'));
           $this->session->set_flashdata('class_name', ('alert-success'));
@@ -81,43 +73,45 @@ class Event extends CI_Controller
           $this->session->set_flashdata('message', ('Please Try Again'));
           $this->session->set_flashdata('class_name', ('alert-danger'));
         }
-        redirect('admin/Event/edit/' . $postDataUser['event_id']);
+        redirect('admin/Event/edit/' . $postDataInp['news_id']);
       } else {
         #set exception message
         $this->session->set_flashdata('exception', ('Please Try Again') . "" . validation_errors());
         $this->session->set_flashdata('class_name', ('alert-danger'));
-        redirect('admin/Event/edit/' . $postDataUser['event_id']);
+        redirect('admin/Event/edit/' . $postDataInp['news_id']);
       }
     }
   }
   # used functional
-  public function edit($event_id = null)
+  public function edit($news_id = null)
   {
-    if (empty($event_id)) {
+    if (empty($news_id)) {
       redirect('admin/Event/create');
     }
-    $data['title'] = ('Add View Events');
-    $data['subtitle'] = ('Add New Event');
+    $data['title'] = ('Add/View News | Notification | Events');
+    $data['subtitle'] = ('Edit News|Notification|Events');
     #-------------------------------#
-    $input = $this->EventModel->read_by_id_as_obj($event_id);
-    $data['input'] = (object)$postDataUser = array(
-      'event_id'     => $input->event_id,
-      'event_title'   => $input->event_title,
-      'event_desc'   => $input->event_desc,
-      'event_status' => $input->event_status
+    $input = $this->EventModel->read_by_id_as_obj($news_id);
+    $data['input'] = (object)$postDataInp = array(
+      'news_id'     => $input->news_id,
+      'news_type'   => $input->news_type,
+      'news_title'  => $input->news_title,
+      'news_desc'   => $input->news_desc,
+      'news_link'   => $input->news_link,
+      'news_status' => $input->news_status
     );
-    $data['event'] = $this->EventModel->read();
+    $data['news'] = $this->EventModel->read();
     $data['content'] = $this->load->view('admin/event/form', $data, true);
     $this->load->view('admin/layout/wrapper', $data);
   }
 
   # Used
-  public function delete($event_id = null)
+  public function delete($news_id = null)
   {
-    if (empty($event_id)) {
+    if (empty($news_id)) {
       redirect('admin/Event/create');
     }
-    if ($this->EventModel->delete($event_id)) {
+    if ($this->EventModel->delete($news_id)) {
       // $this->location_model->delete($loc_id);
       $this->session->set_flashdata('message', ('Deleted Successfully'));
       $this->session->set_flashdata('class_name', ('alert-success'));

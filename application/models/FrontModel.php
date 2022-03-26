@@ -206,4 +206,37 @@ class FrontModel extends CI_Model
   {
     return $this->db->insert('contact_us_tbl', $data);
   }
+
+  public function get_news()
+  {
+    return $this->db->select("*")
+      ->from('news_notification_tbl')
+      ->where('news_status', 1)
+      ->where('news_type', 'news')
+      ->order_by('news_doc', 'desc')
+      ->get()
+      ->result();
+  }
+
+  public function get_notification()
+  {
+    return $this->db->select("*")
+      ->from('news_notification_tbl')
+      ->where('news_status', 1)
+      ->where('news_type', 'notification')
+      ->order_by('news_doc', 'desc')
+      ->get()
+      ->result();
+  }
+
+  public function get_events()
+  {
+    return $this->db->select("*")
+      ->from('news_notification_tbl')
+      ->where('news_status', 1)
+      ->where('news_type', 'event')
+      ->order_by('news_doc', 'desc')
+      ->get()
+      ->result();
+  }
 }

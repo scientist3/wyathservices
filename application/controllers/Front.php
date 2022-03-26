@@ -173,6 +173,13 @@ class Front extends CI_Controller
 
 	public function notification()
 	{
-		echo "News";
+		$data['title']		= "News / Notification / Events";
+
+		$data['news']  		= $this->front_model->get_news();
+		$data['notices']	= $this->front_model->get_notification();
+		$data['events'] 	= $this->front_model->get_events();
+
+		$data['content']	= $this->load->view('frontsite/notification/notification_view', $data, true);
+		$this->load->view('frontsite/layout/wrapper_view', $data);
 	}
 }

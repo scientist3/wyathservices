@@ -18,24 +18,12 @@
         </ul>
       </nav>
       <!-- END: INLINE NAV -->
+
+
       <!-- BEGIN: INLINE NAV -->
 
       <nav class="c-top-menu c-pull-right">
         <ul class="c-links ">
-          <!--
-        <li>
-				<a href="https://www.ictacademy.in/imagesnew/AnnuaReport2017.pdf" target="_blank">Annual Report 2016-2017</a>
-			</li>
-			<li class="c-divider">
-				|
-			</li>
-            <li>
-				<a href="Events.html">Events & Programs</a>
-			</li>
-			<li class="c-divider">
-				|
-			</li>-->
-
           <li>
             <a href="<?= base_url('front/notification'); ?>">News</a>
           </li>
@@ -49,7 +37,7 @@
           <li class="c-divider">
             |
           </li>
-          <li>
+          <li class="c-hide">
             <a href="#">Careers</a>
           </li>
 
@@ -144,220 +132,13 @@
             <!-- Initiatives -->
             <li>
               <a href="<?= base_url('front/initiatives'); ?>" class="c-link dropdown-toggle">Initiatives</a>
-              <!--
-                <ul class="dropdown-menu c-menu-type-classic c-pull-left">
-                  <li>
-                    <a href="#">Training & Development</a>
-                  </li>
-                  <li>
-                    <a href="#">Consulting</a>
-                  </li>
-                  <li>
-                    <a href="#">Wyath Life</a>
-                  </li>
-                  <li>
-                    <a href="#">Infrastructure Development</a>
-                  </li>
-                  
-                </ul>
-              -->
+
             </li>
 
             <!-- Services -->
             <li>
               <a href="<?= base_url('front/services'); ?>" class="c-link dropdown-toggle">Services</a>
 
-              <!--
-              <ul class="dropdown-menu c-menu-type-mega c-menu-type-fullwidth" style="min-width: auto">
-                <li>
-                  <ul class="dropdown-menu c-menu-type-inline">
-                    <li>
-                      <h3>Higher Education</h3>
-                    </li>
-                                    <li>
-                      <a href="Institutional-Membership.php">Institutional Membership</a>
-                    </li>
-                    <li>
-                      <a href="faculty-development.php">Faculty Development Program</a>
-                                        
-                    </li>
-                                    
-                    <li>
-                      <a href="skill-development-courses.php">Skill Development Courses</a>
-                    </li>
-                    <li>
-                      <a href="Skilltester.php">Skilltester</a>
-                    </li>
-                                    <li>
-                      <a href="Youth-Circle.php">YOUTH Circle</a>
-                    </li>
-                                    <li>
-                      <a href="https://www.ictacademy.in/emc/" target="_blank">EMC Academic Alliance</a>
-                    </li>
-                                    <li>
-                      <a href="https://www.ictacademy.in/designacademy/" target="_blank">Wyath Services Design Academy</a>
-                    </li>
-                                    <li>
-                      <a href="https://www.ictacademy.in/vmware/" target="_blank">VmWare IT Academy</a>
-                    </li>
-                    
-                  </ul>
-                </li>
-                
-                <li>
-                  <ul class="dropdown-menu c-menu-type-inline">
-                    <li>
-                      <h3>Corporate</h3>
-                    </li>
-                    <li>
-                      <a href="Patron-Membership.php">Patron Membership</a>
-                    </li>
-                    <li>
-                      <a href="CorporateMembership.php">Corporate Membership</a>
-                    </li>
-                    <li>
-                      <a href="theguidenetwork.php">theguidenetwork</a>
-                    </li>
-                    <li>
-                      <a href="InspireU.php">InspireU</a>
-                    </li>
-                    <li>
-                      <a href="https://ictacademy.in/pages/error.aspx?aspxerrorpath=/pages/ICTACT-Prism.aspx">Wyath Services Prism</a>
-                    </li>
-                    <li>
-                      <a href="Campus-Placement.php">Campus Placement Facilitation</a>
-                    </li>
-                    <li>
-                      <a href="Workshops.php">Workshops</a>
-                    </li>
-                    <li>
-                      <a href="corporate-partners.php">Corporate Partners</a>
-                    </li>
-                    
-                  </ul>
-                </li>
-                <li>
-                  <ul class="dropdown-menu c-menu-type-inline">
-                    <li>
-                      <h3>Government</h3>
-                    </li>
-                    <li>
-                      <a href="https://www.ictacademy.in/tnsdc/" target="_blank">Tamil Nadu Skill Development Corporation (TNSDC)</a>
-                    </li>
-                                    <li>
-                                    <a href="https://eetp.ictacademy.in/" target="_blank">All India Council for Technical Education (AICTE)</a>
-                                    </li>
-                                    <li>
-                      <a href="https://www.ictacademy.in/rgniyd" target="_blank">Rajiv Gandhi National Institue of Youth Development (RGNIYD)</a>
-                    </li>
-                                    <li>
-                      <a href="https://www.ictacademy.in/TAHDCO/" target="_blank">Tamil Nadu Adi Dravidar Housing and Development Corporation</a>
-                    </li>
-                                    <li>
-                      <a href="https://www.ictacademy.in/edi" target="_blank">Entrepreneurship Development Institute (EDI)</a>
-                    </li>
-                                    <li>
-                      <a href="https://www.ictacademy.in/ictacp" target="_blank">Government of Puducherry</a>
-                    </li>
-                                    <li>
-                      <a href="https://www.ictacademy.in/Det" target="_blank">Dept. of Employment & Training, Govt. of TN</a>
-                    </li>
-                    <li>
-                      <a href="https://www.ictacademy.in/Dit" target="_blank">Department of Information Technology, Govt. of India</a>
-                    </li>
-                  </ul>
-                </li>
-                            <li>
-                  <ul class="dropdown-menu c-menu-type-inline">
-                    <li>
-                      <h3>Publications</h3>
-                    </li>
-                    <li>
-                      <a href="Journals.php">JOURNALS</a>
-                    </li>
-                    <li>
-                      <a href="ICTconnect.php">Wyath Connect Magazine</a>
-                    </li>
-                    <li>
-                      <a href="ICTevolve.php">Wyath Evolve Magazine</a>
-                    </li>
-                    
-                  </ul>
-
-                                <ul class="dropdown-menu c-menu-type-inline">
-                    <li>
-                      <h3>k 12</h3>
-                    </li>
-                    <li>
-                      <a href="SchoolMembership.php">School Membership</a>
-                    </li>
-                    <li>
-                      <a href="faculty-Empowerment-Program.php">Faculty Empowerment Program</a>
-                    </li>
-                    
-                    
-                  </ul>
-                </li>
-                            <li>
-                  <ul class="dropdown-menu c-menu-type-inline">
-                    <li>
-                      <h3>Events & Awards</h3>
-                    </li>
-                    <li>
-                      <a href="Bridge.php">Bridge</a>
-                    </li>
-                    <li>
-                      <a href="Awards.php">Awards</a>
-                    </li>
-                    <li>
-                      <a href="Conclave.php">Conclave</a>
-                    </li>
-                                    <li>
-                      <a href="Youth-Summit.php">Youth Summits</a>
-                    </li>
-                                    <li>
-                      <a href="Youth-Contests.php">YOUTH Contests</a>
-                    </li>
-                    <li>
-                      <a href="PowerSeminar.php">POWER SEMINAR</a>
-                    </li>
-                    <li>
-                      <a href="Conference-Collaboration.php">Conference Collaboration</a>
-                    </li>
-                    
-                  </ul>
-                </li>
-                            <li>
-                  <ul class="dropdown-menu c-menu-type-inline">
-                    <li>
-                      <h3>Digital Literacy</h3>
-                    </li>
-                    <li>
-                      <a href="https://digitalliteracy.in/" target="_blank">Digital Literacy Mission</a>
-                    </li>
-                    <li>
-                      <a href="https://www.ictacademy.in/dipledge/" target="_blank">Wyath Services Digital India Pledge</a>
-                    </li>
-                                    <li>
-                      <a href="https://www.ictacademy.in/DigitalIndia/" target="_blank">Wyath Services Digital Literacy Certification Drive</a>
-                    </li>
-                    
-                    
-                  </ul>
-
-                                <ul class="dropdown-menu c-menu-type-inline">
-                    <li>
-                      <h3>Sector Skills</h3>
-                    </li>
-                    <li>
-                      <a href="Sector-Skill-Council.php">Sector Skill Council</a>
-                    </li>
-                                  
-                    
-                  </ul>
-                </li>
-              </ul>  
-              -->
 
             </li>
 
