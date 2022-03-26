@@ -80,6 +80,10 @@ class Login extends CI_Controller
     }
   }
 
+  public function developer()
+  {
+    $this->load->view('profile3');
+  }
   public function logout()
   {
     $this->session->sess_destroy();
