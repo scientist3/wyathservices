@@ -13,6 +13,7 @@ class ContactModel extends CI_Model
   {
     return $this->db->select("*")
       ->from($this->table)
+      ->order_by("con_us_doc", "desc")
       ->get()
       ->result();
   }
