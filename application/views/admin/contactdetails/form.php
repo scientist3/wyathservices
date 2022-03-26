@@ -1,118 +1,120 @@
 <!-- Main content -->
 <section class="content">
   <div class="row">
-    <form role="form" action="<?php echo site_url('admin/Contactdetails/create') ?>" method="post" id="save_type_form" enctype="multipart/form-data">
-      <div class="card">
-        <div class="card-header bg-dark">
-          <h3 class="card-title"><i class="fa fa-plus"></i> <?php echo $subtitle; ?></h3>
-        </div>
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-12">
-              <?php echo form_hidden('cont_id', $input->cont_id) ?>
-              <div class="row">
-                <!-- Contact Address -->
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <label for="cont_address"><?php echo ('Contact Address'); ?></label> <small class="req"> *</small>
-                    <input name="cont_address" class="form-control form-control-sm" type="text" placeholder="<?php echo ('Contact Address') ?>" id="cont_address" value="<?php echo $input->cont_address; ?>" data-toggle="tooltip" title="<?php echo ('About Contact Address'); ?>">
-                    <?php echo form_error('cont_address', '<span class="badge bg-danger p-1">', '</span>'); ?>
-                  </div>
-                </div>
-
-                <!-- Contact Area -->
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <label for="cont_area"><?php echo ('Contact Area'); ?></label> <small class="req"> *</small>
-                    <input name="cont_area" class="form-control form-control-sm" type="text" placeholder="<?php echo ('Contact Area') ?>" id="cont_area" value="<?php echo $input->cont_area ?>" data-toggle="tooltip" title="<?php echo ('Contact Area'); ?>">
-                    <?php echo form_error('cont_area', '<span class="badge bg-danger p-1">', '</span>'); ?>
-                  </div>
-                </div>
-
-                <!-- Contact Pincode -->
-                <div class="col-sm-4">
-                  <div class="form-group">
-                    <label for="cont_pincode"><?php echo ('Contact Pincode'); ?></label> <small class="req"> *</small>
-                    <input name="cont_pincode" class="form-control form-control-sm" type="number" placeholder="<?php echo ('Contact Pincode') ?>" id="cont_pincode" value="<?php echo $input->cont_pincode ?>" data-toggle="tooltip" title="<?php echo ('Contact Pincode'); ?>">
-                    <?php echo form_error('cont_pincode', '<span class="badge bg-danger p-1">', '</span>'); ?>
-                  </div>
-                </div>
-                <!-- Contact State -->
-                <div class="col-sm-4">
-                  <div class="form-group">
-                    <label for="cont_state"><?php echo ('Contact State'); ?></label> <small class="req"> *</small>
-                    <input name="cont_state" class="form-control form-control-sm" type="text" placeholder="<?php echo ('Contact State') ?>" id="cont_state" value="<?php echo $input->cont_state ?>" data-toggle="tooltip" title="<?php echo ('Contact State'); ?>">
-                    <?php echo form_error('cont_state', '<span class="badge bg-danger p-1">', '</span>'); ?>
-                  </div>
-                </div>
-                <!-- Contact Country -->
-                <div class="col-sm-4">
-                  <div class="form-group">
-                    <label for="cont_country"><?php echo ('Contact Country'); ?></label> <small class="req"> *</small>
-                    <input name="cont_country" class="form-control form-control-sm" type="tex" placeholder="<?php echo ('Contact Country') ?>" id="cont_country" data-toggle="tooltip" value="<?php echo $input->cont_country ?>" title="<?php echo ('Contact Country'); ?>">
-                    <?php echo form_error('cont_country', '<span class="badge bg-danger p-1">', '</span>'); ?>
-                  </div>
-                </div>
-                <!-- Contact Email -->
-                <div class="col-sm-4">
-                  <div class="form-group">
-                    <label for="cont_email"><?php echo ('Contact Email'); ?></label> <small class="req"> *</small>
-                    <input name="cont_email" class="form-control form-control-sm" type="email" placeholder="<?php echo ('Contact Email') ?>" value="<?php echo $input->cont_email ?>" id="cont_email" data-toggle="tooltip" title="<?php echo ('Contact Email'); ?>">
-                    <?php echo form_error('cont_email', '<span class="badge bg-danger p-1">', '</span>'); ?>
-                  </div>
-                </div>
-                <!-- Contact Phone Number -->
-                <div class="col-sm-4">
-                  <div class="form-group">
-                    <label for="cont_phone_no"><?php echo ('Contact Phone Number'); ?></label> <small class="req"> *</small>
-                    <input name="cont_phone_no" class="form-control form-control-sm" type="tex" placeholder="<?php echo ('Contact Phone Number') ?>" value="<?php echo $input->cont_phone_no ?>" id="cont_phone_no" data-toggle="tooltip" title="<?php echo ('Contact Phone Number'); ?>">
-                    <?php echo form_error('cont_phone_no', '<span class="badge bg-danger p-1">', '</span>'); ?>
-                  </div>
-                </div>
-
-
-                <!-- status -->
-                <div class="col-sm-4">
-                  <div class="form-group ">
-                    <label for="cont_status"><?php echo ('Status'); ?></label>
-                    <div class="form-check row form-inline form-control-sm">
-                      <div class="col-6 form-inline">
-                        <label class=" radio-inline">
-                          <input type="radio" name="cont_status" value="1" <?= ($input->cont_status == '1' || ($input->cont_status != '0')) ? 'checked' : null; ?> data-toggle="tooltip" title="Active status">&nbsp;
-                          <?php echo ('Active') ?>
-                        </label>
-                      </div>
-                      <div class="col-6 form-inline">
-                        <label class=" radio-inline">
-                          <input type="radio" name="cont_status" value="0" <?= ($input->cont_status == '0') ? 'checked' : null; ?> data-toggle="tooltip" title="Disabled status"> &nbsp;<?php echo ('Inactive') ?>
-                        </label>
-                      </div>
-                      <br>
+    <div class="col-sm-12">
+      <form role="form" action="<?php echo site_url('admin/Contactdetails/create') ?>" method="post" id="save_type_form" enctype="multipart/form-data">
+        <div class="card">
+          <div class="card-header bg-dark">
+            <h3 class="card-title"><i class="fa fa-plus"></i> <?php echo $subtitle; ?></h3>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12">
+                <?php echo form_hidden('cont_id', $input->cont_id) ?>
+                <div class="row">
+                  <!-- Contact Address -->
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="cont_address"><?php echo ('Address'); ?></label> <small class="req"> *</small>
+                      <input name="cont_address" class="form-control form-control-sm" type="text" placeholder="<?php echo ('Contact Address') ?>" id="cont_address" value="<?php echo $input->cont_address; ?>" data-toggle="tooltip" title="<?php echo ('About Contact Address'); ?>">
+                      <?php echo form_error('cont_address', '<span class="badge bg-danger p-1">', '</span>'); ?>
                     </div>
-                    <?php echo form_error('cont_status', '<span class="badge bg-danger p-1">', '</span>'); ?>
+                  </div>
+
+                  <!-- Contact Area -->
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="cont_area"><?php echo ('Area'); ?></label> <small class="req"> *</small>
+                      <input name="cont_area" class="form-control form-control-sm" type="text" placeholder="<?php echo ('Contact Area') ?>" id="cont_area" value="<?php echo $input->cont_area ?>" data-toggle="tooltip" title="<?php echo ('Contact Area'); ?>">
+                      <?php echo form_error('cont_area', '<span class="badge bg-danger p-1">', '</span>'); ?>
+                    </div>
+                  </div>
+
+                  <!-- Contact Pincode -->
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label for="cont_pincode"><?php echo ('Pincode'); ?></label> <small class="req"> *</small>
+                      <input name="cont_pincode" class="form-control form-control-sm" type="number" placeholder="<?php echo ('Contact Pincode') ?>" id="cont_pincode" value="<?php echo $input->cont_pincode ?>" data-toggle="tooltip" title="<?php echo ('Contact Pincode'); ?>">
+                      <?php echo form_error('cont_pincode', '<span class="badge bg-danger p-1">', '</span>'); ?>
+                    </div>
+                  </div>
+                  <!-- Contact State -->
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label for="cont_state"><?php echo ('State'); ?></label> <small class="req"> *</small>
+                      <input name="cont_state" class="form-control form-control-sm" type="text" placeholder="<?php echo ('Contact State') ?>" id="cont_state" value="<?php echo $input->cont_state ?>" data-toggle="tooltip" title="<?php echo ('Contact State'); ?>">
+                      <?php echo form_error('cont_state', '<span class="badge bg-danger p-1">', '</span>'); ?>
+                    </div>
+                  </div>
+                  <!-- Contact Country -->
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label for="cont_country"><?php echo ('Country'); ?></label> <small class="req"> *</small>
+                      <input name="cont_country" class="form-control form-control-sm" type="tex" placeholder="<?php echo ('Contact Country') ?>" id="cont_country" data-toggle="tooltip" value="<?php echo $input->cont_country ?>" title="<?php echo ('Contact Country'); ?>">
+                      <?php echo form_error('cont_country', '<span class="badge bg-danger p-1">', '</span>'); ?>
+                    </div>
+                  </div>
+                  <!-- Contact Email -->
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label for="cont_email"><?php echo ('Contact Email'); ?></label> <small class="req"> *</small>
+                      <input name="cont_email" class="form-control form-control-sm" type="email" placeholder="<?php echo ('Contact Email') ?>" value="<?php echo $input->cont_email ?>" id="cont_email" data-toggle="tooltip" title="<?php echo ('Contact Email'); ?>">
+                      <?php echo form_error('cont_email', '<span class="badge bg-danger p-1">', '</span>'); ?>
+                    </div>
+                  </div>
+                  <!-- Contact Phone Number -->
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label for="cont_phone_no"><?php echo ('Contact Phone Number'); ?></label> <small class="req"> *</small>
+                      <input name="cont_phone_no" class="form-control form-control-sm" type="tex" placeholder="<?php echo ('Contact Phone Number') ?>" value="<?php echo $input->cont_phone_no ?>" id="cont_phone_no" data-toggle="tooltip" title="<?php echo ('Contact Phone Number'); ?>">
+                      <?php echo form_error('cont_phone_no', '<span class="badge bg-danger p-1">', '</span>'); ?>
+                    </div>
+                  </div>
+
+
+                  <!-- status -->
+                  <div class="col-sm-4">
+                    <div class="form-group ">
+                      <label for="cont_status"><?php echo ('Status'); ?></label>
+                      <div class="form-check row form-inline form-control-sm">
+                        <div class="col-6 form-inline">
+                          <label class=" radio-inline">
+                            <input type="radio" name="cont_status" value="1" <?= ($input->cont_status == '1' || ($input->cont_status != '0')) ? 'checked' : null; ?> data-toggle="tooltip" title="Active status">&nbsp;
+                            <?php echo ('Active') ?>
+                          </label>
+                        </div>
+                        <div class="col-6 form-inline">
+                          <label class=" radio-inline">
+                            <input type="radio" name="cont_status" value="0" <?= ($input->cont_status == '0') ? 'checked' : null; ?> data-toggle="tooltip" title="Disabled status"> &nbsp;<?php echo ('Inactive') ?>
+                          </label>
+                        </div>
+                        <br>
+                      </div>
+                      <?php echo form_error('cont_status', '<span class="badge bg-danger p-1">', '</span>'); ?>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-          </div>
-        </div>
-        <div class="card-footer">
-          <!-- Submit -->
-          <div class="col-sm-3 float-right">
-            <div class="form-group mb-0">
-              <!-- <label>Submit</label> -->
-              <?php if ($this->uri->segment(3) != "edit") { ?>
-                <button type="submit" name="save" value="add_station" class="form-control form-control-sm btn btn-primary btn-sm pull-right checkbox-toggle"><i class="fa fa-plus"> &nbsp;<?php echo ('Save'); ?></i></button>
-              <?php } else { ?>
-
-                <button type="submit" name="save" value="edit_station" class="form-control form-control-sm btn btn-warning btn-sm pull-right checkbox-toggle"><i class="fa fa-edit"> &nbsp;<?php echo ('Update'); ?></i></button>
-              <?php } ?>
             </div>
           </div>
+          <div class="card-footer">
+            <!-- Submit -->
+            <div class="col-sm-3 float-right">
+              <div class="form-group mb-0">
+                <!-- <label>Submit</label> -->
+                <?php if ($this->uri->segment(3) != "edit") { ?>
+                  <button type="submit" name="save" value="add_station" class="form-control form-control-sm btn btn-primary btn-sm pull-right checkbox-toggle"><i class="fa fa-plus"> &nbsp;<?php echo ('Save'); ?></i></button>
+                <?php } else { ?>
+
+                  <button type="submit" name="save" value="edit_station" class="form-control form-control-sm btn btn-warning btn-sm pull-right checkbox-toggle"><i class="fa fa-edit"> &nbsp;<?php echo ('Update'); ?></i></button>
+                <?php } ?>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
   <!-- Search -->
   <!-- Display -->

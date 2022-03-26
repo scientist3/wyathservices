@@ -28,59 +28,16 @@
         <div class="row">
           <div class="c-logos">
             <div class="row">
-              <div class="col-md-3 col-xs-6 c-logo c-logo-1">
-                <img class="c-img-pos" src="<?= base_url('frontsite'); ?>/assets/base/img/content/client-logos/1.jpg" alt="" />
-              </div>
-              <div class="col-md-3 col-xs-6 c-logo c-logo-2">
-                <img class="c-img-pos" src="<?= base_url('frontsite'); ?>/assets/base/img/content/client-logos/2.jpg" alt="" />
-              </div>
-              <div class="col-md-3 col-xs-6 c-logo c-logo-2">
-                <img class="c-img-pos" src="<?= base_url('frontsite'); ?>/assets/base/img/content/client-logos/3.jpg" alt="" />
-              </div>
-              <div class="col-md-3 col-xs-6 c-logo c-logo-3">
-                <img class="c-img-pos" src="<?= base_url('frontsite'); ?>/assets/base/img/content/client-logos/4.jpg" alt="" />
-              </div>
 
-              <div class="col-md-3 col-xs-6 c-logo c-logo-1">
-                <img class="c-img-pos" src="<?= base_url('frontsite'); ?>/assets/base/img/content/client-logos/5.jpg" alt="" />
-              </div>
-
-
-
-              <div class="col-md-3 col-xs-6 c-logo c-logo-2">
-                <img class="c-img-pos" src="<?= base_url('frontsite'); ?>/assets/base/img/content/client-logos/6.jpg" alt="" />
-              </div>
-              <div class="col-md-3 col-xs-6 c-logo c-logo-3">
-                <img class="c-img-pos" src="<?= base_url('frontsite'); ?>/assets/base/img/content/client-logos/7.jpg" alt="" />
-              </div>
-              <div class="col-md-3 col-xs-6 c-logo c-logo-1">
-                <img class="c-img-pos" src="<?= base_url('frontsite'); ?>/assets/base/img/content/client-logos/8.jpg" alt="" />
-              </div>
-
-
-              <div class="col-md-3 col-xs-6 c-logo c-logo-2">
-                <img class="c-img-pos" src="<?= base_url('frontsite'); ?>/assets/base/img/content/client-logos/99.jpg" alt="" />
-              </div>
-
-              <div class="col-md-3 col-xs-6 c-logo c-logo-3">
-                <img class="c-img-pos" src="<?= base_url('frontsite'); ?>/assets/base/img/content/client-logos/5.png" alt="" />
-              </div>
-              <div class="col-md-3 col-xs-6 c-logo c-logo-1">
-                <img class="c-img-pos" src="<?= base_url('frontsite'); ?>/assets/base/img/content/client-logos/6.png" alt="" />
-              </div>
-              <div class="col-md-3 col-xs-6 c-logo c-logo-1">
-                <img class="c-img-pos" src="<?= base_url('frontsite'); ?>/assets/base/img/content/client-logos/7.png" alt="" />
-              </div>
-              <div class="col-md-3 col-xs-6 c-logo c-logo-1">
-                <img class="c-img-pos" src="<?= base_url('frontsite'); ?>/assets/base/img/content/client-logos/8.png" alt="" />
-              </div>
-              <!--<div class="col-md-3 col-xs-6 c-logo c-logo-2">
-									<img class="c-img-pos" src="<?= base_url('frontsite'); ?>/assets/base/img/content/client-logos/14.jpg" alt=""/>
-								</div>
-                                <div class="col-md-3 col-xs-6 c-logo c-logo-2">
-									<img class="c-img-pos" src="<?= base_url('frontsite'); ?>/assets/base/img/content/client-logos/15.jpg" alt=""/>
-								</div> -->
-
+              <?php if (valArr($partners)) : ?>
+                <?php foreach ($partners as $key => $partner) : ?>
+                  <div class="col-md-3 col-xs-6 c-logo c-logo-1">
+                    <a href="<?= !empty($partner->par_url) ? $partner->par_url : '#'; ?>" <?php if ($partner->par_url) { ?>target="_BLANK" <?php } ?>>
+                      <img class="c-img-pos" src="<?= base_url($partner->par_img_path); ?>" alt="<?= $partner->par_desc ?>" />
+                    </a>
+                  </div>
+                <?php endforeach; ?>
+              <?php endif; ?>
             </div>
           </div>
         </div>
@@ -91,21 +48,5 @@
     </div>
   </div>
 
-
-
-
-
-
-  <!-- BEGIN: CONTENT/SLIDERS/PAST MEMBERS -->
-
-
-
-
-  <!-- END: SLIDERS/PAST MEMBERS -->
-
-
-
-  <!-- END: CONTENT/SLIDERS/TEAM-2 -->
-  <!-- END: PAGE CONTENT -->
 </div>
 <!-- END: PAGE CONTAINER -->

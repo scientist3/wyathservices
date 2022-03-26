@@ -3,6 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 use \Carbon\Carbon;
 
+date_default_timezone_set('Asia/Kolkata');
 if (!function_exists('dd')) {
 
   function dd($data = null, $cont = true)

@@ -85,6 +85,7 @@ class Front extends CI_Controller
 	public function partners()
 	{
 		$data['title']		= "Partners";
+		$data['partners'] = $this->front_model->get_partners();
 		$data['content']	= $this->load->view('frontsite/about/partners', $data, true);
 		$this->load->view('frontsite/layout/wrapper_view', $data);
 	}

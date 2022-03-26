@@ -43,20 +43,6 @@ class Contactdetails extends CI_Controller
       'cont_status' => ($this->input->post('cont_status')),
     );
 
-    // $input = $data['input'];
-    // #----------------- User Object -------------#
-    // $data['user'] = (object)$postDataInp = array(
-    //   'cont_id'     => $input->cont_id,
-    //   'cont_address'   => $input->cont_address,
-    //   'cont_area'   => $input->cont_area,
-    //   'cont_pincode	'   => $input->cont_pincode,
-    //   'cont_state'   => $input->cont_state,
-    //   'cont_country'   => $input->cont_country,
-    //   'cont_email	'   => $input->cont_email,
-    //   'cont_phone_no'   => $input->cont_phone_no,
-    //   'cont_status' => $input->cont_status,
-    // );
-
 
     /*-----------CHECK ID -----------*/
     if (empty($cont_id)) {
