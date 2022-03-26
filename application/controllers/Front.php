@@ -124,6 +124,7 @@ class Front extends CI_Controller
 
 	public function contact()
 	{
+
 		$data['title']		= "Contact";
 		$data['content']	= $this->load->view('frontsite/contact/contact', $data, true);
 		$this->load->view('frontsite/layout/wrapper_view', $data);

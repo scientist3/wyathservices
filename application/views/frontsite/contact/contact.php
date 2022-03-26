@@ -38,7 +38,53 @@
         <div class="row" data-auto-height=".c-height">
 
 
-          <div class="col-sm-8 c-desktop">
+          <div class="col-sm-8 c-body">
+            <div class="row">
+              <div class="col-sm-12">
+
+
+                <form class="row">
+                  <!-- Name -->
+                  <div class="form-group col-sm-4 col-12">
+                    <label for="con_us_name">Name</label>
+                    <input type="text" class="form-control" id="con_us_name" aria-describedby="namehelp" placeholder="Enter your name" name="con_us_name">
+                    <?php echo form_error('con_us_name', '<small class="form-text text-danger bg-danger label">', '</small>'); ?>
+                  </div>
+
+                  <!-- Email -->
+                  <div class="form-group col-sm-4 col-12">
+                    <label for="con_us_email">Email</label>
+                    <input type="email" class="form-control" id="con_us_email" aria-describedby="con_us_email_help" placeholder="Enter your Email" name="con_us_email">
+                    <?php echo form_error('con_us_email', '<small class="form-text text-danger bg-danger label">', '</small>'); ?>
+                  </div>
+
+                  <!-- Phone Number -->
+                  <div class="form-group col-sm-4 col-12">
+                    <label for="con_us_phoneno">Phone Number</label>
+                    <input type="text" class="form-control" id="con_us_phoneno" aria-describedby="con_us_phoneno_help" placeholder="Enter your Phone Number" name="con_us_phoneno">
+                    <?php echo form_error('con_us_phoneno', '<small class="form-text text-danger bg-danger label">', '</small>'); ?>
+                  </div>
+
+                  <!-- Subject -->
+                  <div class="form-group col-sm-12 col-12">
+                    <label for="con_us_subject">Subject</label>
+                    <input type="text" class="form-control" id="con_us_subject" aria-describedby="con_us_subject_help" placeholder="Enter your subject" name="con_us_subject">
+                    <?php echo form_error('con_us_subject', '<small class="form-text text-danger bg-danger label">', '</small>'); ?>
+                  </div>
+
+                  <!-- Message -->
+                  <div class="form-group col-sm-12 col-12">
+                    <label for="con_us_message">Name</label>
+                    <textarea type="text" class="form-control" id="con_us_message" aria-describedby="con_us_message_help" placeholder="Enter your message." name="con_us_message" rows="6"></textarea>
+                    <?php echo form_error('con_us_message', '<small class="form-text text-danger bg-danger label">', '</small>'); ?>
+                  </div>
+
+                  <div class="form-check col-sm-offset-10 col-sm-2 pull-right">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+                </form>
+              </div>
+            </div>
           </div>
           <div class="col-sm-4">
             <div class="c-body">
