@@ -61,6 +61,8 @@ class Front extends CI_Controller
 	public function keydifferentiators()
 	{
 		$data['title']		= "Key Differentiators";
+		$data['key_differentiators']		= $this->front_model->get_key_differentiators();
+		$data['students_impacted']    = $this->front_model->get_students_impacted();
 		$data['content']	= $this->load->view('frontsite/about/keydifferentiators', $data, true);
 		$this->load->view('frontsite/layout/wrapper_view', $data);
 	}
