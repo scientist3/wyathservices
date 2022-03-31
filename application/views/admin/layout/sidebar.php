@@ -44,8 +44,8 @@
 				</li>
 
 				<!-- Contact Us -->
-				<li class="nav-item <?php echo ($this->uri->segment(2) == "Contact") ? "menu-open" : null; ?>">
-					<a href="#" class="nav-link <?php echo $this->uri->segment(2) == 'Contact' ? 'active' : null ?>">
+				<li class="nav-item <?php echo ($this->uri->segment(2) == "contact") ? "menu-open" : null; ?>">
+					<a href="#" class="nav-link <?php echo $this->uri->segment(2) == 'contact' ? 'active' : null ?>">
 						<i class="nav-icon fas fa-envelope"></i>
 						<p>
 							Messages
@@ -54,7 +54,7 @@
 					</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="<?php echo base_url('admin/contact/index') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'Contact' ? 'active' : null ?>">
+							<a href="<?php echo base_url('admin/contact/index') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'contact' ? 'active' : null ?>">
 								<i class="far fa-circle nav-icon"></i>
 								<p>Messages</p>
 							</a>
