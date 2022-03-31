@@ -54,12 +54,12 @@ class FeaturedInitiatives extends CI_Controller
 					#set success message
 					$this->session->set_flashdata('message', ('Saved Successfully'));
 					$this->session->set_flashdata('class_name', ('alert-success'));
-					redirect('admin/FeaturedInitiatives/create');
+					redirect('admin/featuredinitiatives/create');
 				} else {
 					#set exception message
 					$this->session->set_flashdata('message', ('Please Try Again'));
 					$this->session->set_flashdata('class_name', ('alert-danger'));
-					redirect('admin/FeaturedInitiatives/create');
+					redirect('admin/featuredinitiatives/create');
 				}
 			} else {
 				#------------- Default Form Section Display ---------#
@@ -81,12 +81,12 @@ class FeaturedInitiatives extends CI_Controller
 					$this->session->set_flashdata('message', ('Please Try Again'));
 					$this->session->set_flashdata('class_name', ('alert-danger'));
 				}
-				redirect('admin/FeaturedInitiatives/edit/' . $postDataUser['fi_id']);
+				redirect('admin/featuredinitiatives/edit/' . $postDataUser['fi_id']);
 			} else {
 				#set exception message
 				$this->session->set_flashdata('exception', ('Please Try Again') . "" . validation_errors());
 				$this->session->set_flashdata('class_name', ('alert-danger'));
-				redirect('admin/FeaturedInitiatives/edit/' . $postDataUser['fi_id']);
+				redirect('admin/featuredinitiatives/edit/' . $postDataUser['fi_id']);
 			}
 		}
 	}
@@ -94,7 +94,7 @@ class FeaturedInitiatives extends CI_Controller
 	public function edit($fi_id = null)
 	{
 		if (empty($fi_id)) {
-			redirect('admin/FeaturedInitiatives/create');
+			redirect('admin/featuredinitiatives/create');
 		}
 		$data['title'] = ('Add View Featured Initiatives');
 		$data['subtitle'] = ('Add New Featured Initiatives');
@@ -115,7 +115,7 @@ class FeaturedInitiatives extends CI_Controller
 	public function delete($fi_id = null)
 	{
 		if (empty($fi_id)) {
-			redirect('admin/FeaturedInitiatives/create');
+			redirect('admin/featuredinitiatives/create');
 		}
 		if ($this->FeaturedInitiativesModel->delete($fi_id)) {
 			// $this->location_model->delete($loc_id);
@@ -125,7 +125,7 @@ class FeaturedInitiatives extends CI_Controller
 			$this->session->set_flashdata('message', ('Please Try Again'));
 			$this->session->set_flashdata('class_name', ('alert-danger'));
 		}
-		redirect('admin/FeaturedInitiatives/create');
+		redirect('admin/featuredinitiatives/create');
 	}
 }
 

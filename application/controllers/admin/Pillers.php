@@ -54,12 +54,12 @@ class Pillers extends CI_Controller
           #set success message
           $this->session->set_flashdata('message', ('Saved Successfully'));
           $this->session->set_flashdata('class_name', ('alert-success'));
-          redirect('admin/Pillers/create');
+          redirect('admin/pillers/create');
         } else {
           #set exception message
           $this->session->set_flashdata('message', ('Please Try Again'));
           $this->session->set_flashdata('class_name', ('alert-danger'));
-          redirect('admin/Pillers/create');
+          redirect('admin/pillers/create');
         }
       } else {
         #------------- Default Form Section Display ---------#
@@ -81,12 +81,12 @@ class Pillers extends CI_Controller
           $this->session->set_flashdata('message', ('Please Try Again'));
           $this->session->set_flashdata('class_name', ('alert-danger'));
         }
-        redirect('admin/Pillers/edit/' . $postDataUser['pil_id']);
+        redirect('admin/pillers/edit/' . $postDataUser['pil_id']);
       } else {
         #set exception message
         $this->session->set_flashdata('exception', ('Please Try Again') . "" . validation_errors());
         $this->session->set_flashdata('class_name', ('alert-danger'));
-        redirect('admin/Pillers/edit/' . $postDataUser['pil_id']);
+        redirect('admin/pillers/edit/' . $postDataUser['pil_id']);
       }
     }
   }
@@ -94,7 +94,7 @@ class Pillers extends CI_Controller
   public function edit($pil_id = null)
   {
     if (empty($pil_id)) {
-      redirect('admin/Pillers/create');
+      redirect('admin/pillers/create');
     }
     $data['title'] = ('Add View Pillers');
     $data['subtitle'] = ('Add New Piller edit');
@@ -115,7 +115,7 @@ class Pillers extends CI_Controller
   public function delete($pil_id = null)
   {
     if (empty($pil_id)) {
-      redirect('admin/Pillers/create');
+      redirect('admin/pillers/create');
     }
     if ($this->PillersModel->delete($pil_id)) {
       // $this->location_model->delete($loc_id);
@@ -126,7 +126,7 @@ class Pillers extends CI_Controller
       $this->session->set_flashdata('class_name', ('alert-danger'));
     }
 
-    redirect('admin/Pillers/create');
+    redirect('admin/pillers/create');
   }
 }
 

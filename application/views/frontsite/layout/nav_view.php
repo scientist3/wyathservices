@@ -37,12 +37,12 @@
           <li class="c-divider">
             |
           </li>
-          <li class="c-hide">
+          <li class="c-hide" style="display: none;">
             <a href="#">Careers</a>
           </li>
 
 
-          <li class="c-divider">
+          <li class="c-divider" style="display: none;">
             |
           </li>
           <li>

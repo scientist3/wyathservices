@@ -46,12 +46,12 @@ class Event extends CI_Controller
           #set success message
           $this->session->set_flashdata('message', ('Saved Successfully'));
           $this->session->set_flashdata('class_name', ('alert-success'));
-          redirect('admin/Event/create');
+          redirect('admin/event/create');
         } else {
           #set exception message
           $this->session->set_flashdata('message', ('Please Try Again'));
           $this->session->set_flashdata('class_name', ('alert-danger'));
-          redirect('admin/Event/create');
+          redirect('admin/event/create');
         }
       } else {
         #------------- Default Form Section Display ---------#
@@ -73,12 +73,12 @@ class Event extends CI_Controller
           $this->session->set_flashdata('message', ('Please Try Again'));
           $this->session->set_flashdata('class_name', ('alert-danger'));
         }
-        redirect('admin/Event/edit/' . $postDataInp['news_id']);
+        redirect('admin/event/edit/' . $postDataInp['news_id']);
       } else {
         #set exception message
         $this->session->set_flashdata('exception', ('Please Try Again') . "" . validation_errors());
         $this->session->set_flashdata('class_name', ('alert-danger'));
-        redirect('admin/Event/edit/' . $postDataInp['news_id']);
+        redirect('admin/event/edit/' . $postDataInp['news_id']);
       }
     }
   }
@@ -86,7 +86,7 @@ class Event extends CI_Controller
   public function edit($news_id = null)
   {
     if (empty($news_id)) {
-      redirect('admin/Event/create');
+      redirect('admin/event/create');
     }
     $data['title'] = ('Add/View News | Notification | Events');
     $data['subtitle'] = ('Edit News|Notification|Events');
@@ -109,7 +109,7 @@ class Event extends CI_Controller
   public function delete($news_id = null)
   {
     if (empty($news_id)) {
-      redirect('admin/Event/create');
+      redirect('admin/event/create');
     }
     if ($this->EventModel->delete($news_id)) {
       // $this->location_model->delete($loc_id);
@@ -119,7 +119,7 @@ class Event extends CI_Controller
       $this->session->set_flashdata('message', ('Please Try Again'));
       $this->session->set_flashdata('class_name', ('alert-danger'));
     }
-    redirect('admin/Event/create');
+    redirect('admin/event/create');
   }
 }
 

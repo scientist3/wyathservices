@@ -135,8 +135,8 @@
                     </td>
                     <td class="text-center" width="100">
                       <?php if (!in_array($ev->news_id, [])) { ?>
-                        <a href="<?php echo base_url("admin/Event/edit/$ev->news_id") ?>" class="btn btn-xs btn-success"><i class="fa fa-edit"></i></a>
-                        <a href="<?php echo base_url("admin/Event/delete/$ev->news_id") ?>" class="btn btn-xs btn-danger" onclick="return confirm('<?php echo ('Are You Sure') ?>') "><i class="fa fa-trash"></i></a>
+                        <a href="<?php echo base_url("admin/event/edit/$ev->news_id") ?>" class="btn btn-xs btn-success"><i class="fa fa-edit"></i></a>
+                        <a href="<?php echo base_url("admin/event/delete/$ev->news_id") ?>" class="btn btn-xs btn-danger" onclick="return confirm('<?php echo ('Are You Sure') ?>') "><i class="fa fa-trash"></i></a>
                       <?php } ?>
                     </td>
                   </tr>

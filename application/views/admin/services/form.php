@@ -10,7 +10,7 @@
         <div class="card-body">
           <div class="row">
             <div class="col-md-12">
-              <form role="form" action="<?php echo site_url('admin/Services/create') ?>" method="post" id="save_type_form" enctype="multipart/form-data">
+              <form role="form" action="<?php echo site_url('admin/services/create') ?>" method="post" id="save_type_form" enctype="multipart/form-data">
                 <?php echo form_hidden('init_ser_id', $input->init_ser_id) ?>
                 <div class="row">
                   <!-- Services_title -->
@@ -140,8 +140,8 @@
                     </td>
                     <td class="text-center" width="100">
                       <?php if (!in_array($ser->init_ser_id, [])) { ?>
-                        <a href="<?php echo base_url("admin/Services/edit/$ser->init_ser_id") ?>" class="btn btn-xs btn-success"><i class="fa fa-edit"></i></a>
-                        <a href="<?php echo base_url("admin/Services/delete/$ser->init_ser_id") ?>" class="btn btn-xs btn-danger" onclick="return confirm('<?php echo ('Are You Sure') ?>') "><i class="fa fa-trash"></i></a>
+                        <a href="<?php echo base_url("admin/services/edit/$ser->init_ser_id") ?>" class="btn btn-xs btn-success"><i class="fa fa-edit"></i></a>
+                        <a href="<?php echo base_url("admin/services/delete/$ser->init_ser_id") ?>" class="btn btn-xs btn-danger" onclick="return confirm('<?php echo ('Are You Sure') ?>') "><i class="fa fa-trash"></i></a>
                       <?php } ?>
                     </td>
                   </tr>

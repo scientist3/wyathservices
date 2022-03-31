@@ -43,8 +43,8 @@
                         <button type="button" class="btn btn-xs btn-success btn_show_model" data-toggle="modal" data-target="#modal-message" data-name="<?= $message->con_us_name ?>" data-email="<?= $message->con_us_email ?>" data-phone="<?= $message->con_us_phoneno ?>" data-subject="<?= $message->con_us_subject ?>" data-message="<?= $message->con_us_message ?>" data-date="<?= time_elapsed_string("" . $message->con_us_doc); ?>">
                           <i class="fa fa-eye"></i>
                         </button>
-                        <a href="<?php echo base_url("admin/Contact/edit/$message->con_us_id") ?>" class="btn btn-xs btn-success d-none"><i class="fa fa-edit"></i></a>
-                        <a href="<?php echo base_url("admin/Contact/delete/$message->con_us_id") ?>" class="btn btn-xs btn-danger" onclick="return confirm('<?php echo ('Are You Sure') ?>') "><i class="fa fa-trash"></i></a>
+                        <a href="<?php echo base_url("admin/contact/edit/$message->con_us_id") ?>" class="btn btn-xs btn-success d-none"><i class="fa fa-edit"></i></a>
+                        <a href="<?php echo base_url("admin/contact/delete/$message->con_us_id") ?>" class="btn btn-xs btn-danger" onclick="return confirm('<?php echo ('Are You Sure') ?>') "><i class="fa fa-trash"></i></a>
                       <?php } ?>
                     </td>
                   </tr>

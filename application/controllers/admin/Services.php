@@ -57,12 +57,12 @@ class Services extends CI_Controller
           #set success message
           $this->session->set_flashdata('message', ('Saved Successfully'));
           $this->session->set_flashdata('class_name', ('alert-success'));
-          redirect('admin/Services/create');
+          redirect('admin/services/create');
         } else {
           #set exception message
           $this->session->set_flashdata('message', ('Please Try Again'));
           $this->session->set_flashdata('class_name', ('alert-danger'));
-          redirect('admin/Services/create');
+          redirect('admin/services/create');
         }
       } else {
         #------------- Default Form Section Display ---------#
@@ -86,12 +86,12 @@ class Services extends CI_Controller
           $this->session->set_flashdata('message', ('Please Try Again'));
           $this->session->set_flashdata('class_name', ('alert-danger'));
         }
-        redirect('admin/Services/edit/' . $postDataUser['init_ser_id']);
+        redirect('admin/services/edit/' . $postDataUser['init_ser_id']);
       } else {
         #set exception message
         $this->session->set_flashdata('exception', ('Please Try Again') . "" . validation_errors());
         $this->session->set_flashdata('class_name', ('alert-danger'));
-        redirect('admin/Services/edit/' . $postDataUser['init_ser_id']);
+        redirect('admin/services/edit/' . $postDataUser['init_ser_id']);
       }
     }
   }
@@ -99,7 +99,7 @@ class Services extends CI_Controller
   public function edit($init_ser_id = null)
   {
     if (empty($init_ser_id)) {
-      redirect('admin/Services/create');
+      redirect('admin/services/create');
     }
     $data['title'] = ('Add View Services / Initiatives');
     $data['subtitle'] = ('Add New Services / Initiatives');
@@ -121,7 +121,7 @@ class Services extends CI_Controller
   public function delete($init_ser_id = null)
   {
     if (empty($init_ser_id)) {
-      redirect('admin/Services/create');
+      redirect('admin/services/create');
     }
     if ($this->ServicesModel->delete($init_ser_id)) {
       // $this->location_model->delete($loc_id);
@@ -131,7 +131,7 @@ class Services extends CI_Controller
       $this->session->set_flashdata('message', ('Please Try Again'));
       $this->session->set_flashdata('class_name', ('alert-danger'));
     }
-    redirect('admin/Services/create');
+    redirect('admin/services/create');
   }
 }
 

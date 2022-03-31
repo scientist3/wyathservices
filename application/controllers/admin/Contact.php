@@ -26,7 +26,7 @@ class Contact extends CI_Controller
   public function delete($cont_us_id = null)
   {
     if (empty($cont_us_id)) {
-      redirect('admin/Contact/index');
+      redirect('admin/contact/index');
     }
     if ($this->ContactModel->delete($cont_us_id)) {
       // $this->location_model->delete($loc_id);
@@ -36,6 +36,6 @@ class Contact extends CI_Controller
       $this->session->set_flashdata('message', ('Please Try Again'));
       $this->session->set_flashdata('class_name', ('alert-danger'));
     }
-    redirect('admin/Contact/index');
+    redirect('admin/contact/index');
   }
 }

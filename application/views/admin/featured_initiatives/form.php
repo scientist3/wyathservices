@@ -10,7 +10,7 @@
 				<div class="card-body">
 					<div class="row">
 						<div class="col-md-12">
-							<form role="form" action="<?php echo site_url('admin/FeaturedInitiatives/create') ?>" method="post" id="save_type_form" enctype="multipart/form-data">
+							<form role="form" action="<?php echo site_url('admin/featuredinitiatives/create') ?>" method="post" id="save_type_form" enctype="multipart/form-data">
 								<?php echo form_hidden('fi_id', $input->fi_id) ?>
 								<div class="row">
 									<!-- FeaturedInitiatives_title -->
@@ -107,8 +107,8 @@
 										</td>
 										<td class="text-center" width="100">
 											<?php if (!in_array($fi->fi_id, [])) { ?>
-												<a href="<?php echo base_url("admin/FeaturedInitiatives/edit/$fi->fi_id") ?>" class="btn btn-xs btn-success"><i class="fa fa-edit"></i></a>
-												<a href="<?php echo base_url("admin/FeaturedInitiatives/delete/$fi->fi_id") ?>" class="btn btn-xs btn-danger" onclick="return confirm('<?php echo ('Are You Sure') ?>') "><i class="fa fa-trash"></i></a>
+												<a href="<?php echo base_url("admin/featuredinitiatives/edit/$fi->fi_id") ?>" class="btn btn-xs btn-success"><i class="fa fa-edit"></i></a>
+												<a href="<?php echo base_url("admin/featuredinitiatives/delete/$fi->fi_id") ?>" class="btn btn-xs btn-danger" onclick="return confirm('<?php echo ('Are You Sure') ?>') "><i class="fa fa-trash"></i></a>
 											<?php } ?>
 										</td>
 									</tr>

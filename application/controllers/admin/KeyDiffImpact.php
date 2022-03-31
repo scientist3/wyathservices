@@ -57,12 +57,12 @@ class KeyDiffImpact extends CI_Controller
           #set success message
           $this->session->set_flashdata('message', ('Saved Successfully'));
           $this->session->set_flashdata('class_name', ('alert-success'));
-          redirect('admin/KeyDiffImpact/create');
+          redirect('admin/keydiffimpact/create');
         } else {
           #set exception message
           $this->session->set_flashdata('message', ('Please Try Again'));
           $this->session->set_flashdata('class_name', ('alert-danger'));
-          redirect('admin/KeyDiffImpact/create');
+          redirect('admin/keydiffimpact/create');
         }
       } else {
         #------------- Default Form Section Display ---------#
@@ -86,12 +86,12 @@ class KeyDiffImpact extends CI_Controller
           $this->session->set_flashdata('message', ('Please Try Again'));
           $this->session->set_flashdata('class_name', ('alert-danger'));
         }
-        redirect('admin/KeyDiffImpact/edit/' . $postDataUser['kd_id']);
+        redirect('admin/keydiffimpact/edit/' . $postDataUser['kd_id']);
       } else {
         #set exception message
         $this->session->set_flashdata('exception', ('Please Try Again') . "" . validation_errors());
         $this->session->set_flashdata('class_name', ('alert-danger'));
-        redirect('admin/KeyDiffImpact/edit/' . $postDataUser['kd_id']);
+        redirect('admin/keydiffimpact/edit/' . $postDataUser['kd_id']);
       }
     }
   }
@@ -99,7 +99,7 @@ class KeyDiffImpact extends CI_Controller
   public function edit($kd_id = null)
   {
     if (empty($kd_id)) {
-      redirect('admin/KeyDiffImpact/create');
+      redirect('admin/keydiffimpact/create');
     }
     $data['title'] = ('Add View Key Differentiators / Impact');
     $data['subtitle'] = ('Add New Key Differentiators / Impacts');
@@ -121,7 +121,7 @@ class KeyDiffImpact extends CI_Controller
   public function delete($kd_id = null)
   {
     if (empty($kd_id)) {
-      redirect('admin/KeyDiffImpact/create');
+      redirect('admin/keydiffimpact/create');
     }
     if ($this->KeyDiffImpactModel->delete($kd_id)) {
       // $this->location_model->delete($loc_id);
@@ -131,7 +131,7 @@ class KeyDiffImpact extends CI_Controller
       $this->session->set_flashdata('message', ('Please Try Again'));
       $this->session->set_flashdata('class_name', ('alert-danger'));
     }
-    redirect('admin/KeyDiffImpact/create');
+    redirect('admin/keydiffimpact/create');
   }
 }
 

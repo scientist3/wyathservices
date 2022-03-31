@@ -80,19 +80,19 @@ class Aboutus extends CI_Controller
           #set success message
           $this->session->set_flashdata('message', ('Saved Successfully'));
           $this->session->set_flashdata('class_name', ('alert-success'));
-          redirect('admin/Aboutus/create');
+          redirect('admin/aboutus/create');
         } else {
           #set exception message
           $this->session->set_flashdata('message', ('Please Try Again'));
           $this->session->set_flashdata('class_name', ('alert-danger'));
-          redirect('admin/Aboutus/create');
+          redirect('admin/aboutus/create');
         }
       } else {
         #------------- Default Form Section Display ---------#
         $data['title'] = ('Add View About Us');
         $data['subtitle'] = ('Add New About Us');
         $data['aboutus'] = $this->AboutusModel->read();
-        $data['content'] = $this->load->view('admin/Aboutus/form', $data, true);
+        $data['content'] = $this->load->view('admin/aboutus/form', $data, true);
         $this->load->view('admin/layout/wrapper', $data);
       }
     } else {
@@ -110,12 +110,12 @@ class Aboutus extends CI_Controller
           $this->session->set_flashdata('message', ('Please Try Again'));
           $this->session->set_flashdata('class_name', ('alert-danger'));
         }
-        redirect('admin/Aboutus/edit/' . $postDataUser['ab_id']);
+        redirect('admin/aboutus/edit/' . $postDataUser['ab_id']);
       } else {
         #set exception message
         $this->session->set_flashdata('exception', ('Please Try Again') . "" . validation_errors());
         $this->session->set_flashdata('class_name', ('alert-danger'));
-        redirect('admin/Aboutus/edit/' . $postDataUser['ab_id']);
+        redirect('admin/aboutus/edit/' . $postDataUser['ab_id']);
       }
     }
   }
@@ -123,7 +123,7 @@ class Aboutus extends CI_Controller
   public function edit($ab_id = null)
   {
     if (empty($ab_id)) {
-      redirect('admin/Aboutus/create');
+      redirect('admin/aboutus/create');
     }
     $data['title'] = ('Add View About Us');
     $data['subtitle'] = ('Add New About Us');
@@ -152,7 +152,7 @@ class Aboutus extends CI_Controller
   public function delete($ab_id = null)
   {
     if (empty($ab_id)) {
-      redirect('admin/Aboutus/create');
+      redirect('admin/aboutus/create');
     }
     if ($this->AboutusModel->delete($ab_id)) {
       // $this->location_model->delete($loc_id);
@@ -162,7 +162,7 @@ class Aboutus extends CI_Controller
       $this->session->set_flashdata('message', ('Please Try Again'));
       $this->session->set_flashdata('class_name', ('alert-danger'));
     }
-    redirect('admin/Aboutus/create');
+    redirect('admin/aboutus/create');
   }
 }
 

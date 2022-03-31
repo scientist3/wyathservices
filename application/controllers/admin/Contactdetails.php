@@ -55,12 +55,12 @@ class Contactdetails extends CI_Controller
           #set success message
           $this->session->set_flashdata('message', ('Saved Successfully'));
           $this->session->set_flashdata('class_name', ('alert-success'));
-          redirect('admin/Contactdetails/create');
+          redirect('admin/contactdetails/create');
         } else {
           #set exception message
           $this->session->set_flashdata('message', ('Please Try Again'));
           $this->session->set_flashdata('class_name', ('alert-danger'));
-          redirect('admin/Contactdetails/create');
+          redirect('admin/contactdetails/create');
         }
       } else {
         #------------- Default Form Section Display ---------#
@@ -82,12 +82,12 @@ class Contactdetails extends CI_Controller
           $this->session->set_flashdata('message', ('Please Try Again'));
           $this->session->set_flashdata('class_name', ('alert-danger'));
         }
-        redirect('admin/Contactdetails/edit/' . $postDataInp['cont_id']);
+        redirect('admin/contactdetails/edit/' . $postDataInp['cont_id']);
       } else {
         #set exception message
         $this->session->set_flashdata('exception', ('Please Try Again') . "" . validation_errors());
         $this->session->set_flashdata('class_name', ('alert-danger'));
-        redirect('admin/Contactdetails/edit/' . $postDataInp['cont_id']);
+        redirect('admin/contactdetails/edit/' . $postDataInp['cont_id']);
       }
     }
   }
@@ -95,7 +95,7 @@ class Contactdetails extends CI_Controller
   public function edit($cont_id = null)
   {
     if (empty($cont_id)) {
-      redirect('admin/Contactdetails/create');
+      redirect('admin/contactdetails/create');
     }
     $data['title'] = ('Add View Contact Details');
     $data['subtitle'] = ('Add New Contact Detail');
@@ -122,7 +122,7 @@ class Contactdetails extends CI_Controller
   public function delete($cont_id = null)
   {
     if (empty($cont_id)) {
-      redirect('admin/Contactdetails/create');
+      redirect('admin/contactdetails/create');
     }
     if ($this->ContactdetailsModel->delete($cont_id)) {
       // $this->location_model->delete($loc_id);
@@ -132,7 +132,7 @@ class Contactdetails extends CI_Controller
       $this->session->set_flashdata('message', ('Please Try Again'));
       $this->session->set_flashdata('class_name', ('alert-danger'));
     }
-    redirect('admin/Contactdetails/create');
+    redirect('admin/contactdetails/create');
   }
 }
 

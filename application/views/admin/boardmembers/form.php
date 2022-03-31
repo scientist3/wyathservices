@@ -10,7 +10,7 @@
         <div class="card-body">
           <div class="row">
             <div class="col-md-12">
-              <form role="form" action="<?php echo site_url('admin/BoardMembers/create') ?>" method="post" id="save_type_form" enctype="multipart/form-data">
+              <form role="form" action="<?php echo site_url('admin/boardmembers/create') ?>" method="post" id="save_type_form" enctype="multipart/form-data">
                 <?php echo form_hidden('bm_id', $input->bm_id) ?>
                 <div class="row">
                   <!-- Name -->
@@ -191,8 +191,8 @@
                     </td>
                     <td class="text-center" width="100">
                       <?php if (!in_array($bm->bm_id, [])) { ?>
-                        <a href="<?php echo base_url("admin/BoardMembers/edit/$bm->bm_id") ?>" class="btn btn-xs btn-success"><i class="fa fa-edit"></i></a>
-                        <a href="<?php echo base_url("admin/BoardMembers/delete/$bm->bm_id") ?>" class="btn btn-xs btn-danger" onclick="return confirm('<?php echo ('Are You Sure') ?>') "><i class="fa fa-trash"></i></a>
+                        <a href="<?php echo base_url("admin/boardmembers/edit/$bm->bm_id") ?>" class="btn btn-xs btn-success"><i class="fa fa-edit"></i></a>
+                        <a href="<?php echo base_url("admin/boardmembers/delete/$bm->bm_id") ?>" class="btn btn-xs btn-danger" onclick="return confirm('<?php echo ('Are You Sure') ?>') "><i class="fa fa-trash"></i></a>
                       <?php } ?>
                     </td>
                   </tr>

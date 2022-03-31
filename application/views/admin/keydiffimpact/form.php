@@ -10,7 +10,7 @@
         <div class="card-body">
           <div class="row">
             <div class="col-md-12">
-              <form role="form" action="<?php echo site_url('admin/KeyDiffImpact/create') ?>" method="post" id="save_type_form" enctype="multipart/form-data">
+              <form role="form" action="<?php echo site_url('admin/keydiffimpact/create') ?>" method="post" id="save_type_form" enctype="multipart/form-data">
                 <?php echo form_hidden('kd_id', $input->kd_id) ?>
                 <div class="row">
                   <!-- keydiffimpact_title -->
@@ -136,8 +136,8 @@
                     </td>
                     <td class="text-center" width="100">
                       <?php if (!in_array($kdi->kd_id, [])) { ?>
-                        <a href="<?php echo base_url("admin/KeyDiffImpact/edit/$kdi->kd_id") ?>" class="btn btn-xs btn-success"><i class="fa fa-edit"></i></a>
-                        <a href="<?php echo base_url("admin/KeyDiffImpact/delete/$kdi->kd_id") ?>" class="btn btn-xs btn-danger" onclick="return confirm('<?php echo ('Are You Sure') ?>') "><i class="fa fa-trash"></i></a>
+                        <a href="<?php echo base_url("admin/keydiffimpact/edit/$kdi->kd_id") ?>" class="btn btn-xs btn-success"><i class="fa fa-edit"></i></a>
+                        <a href="<?php echo base_url("admin/keydiffimpact/delete/$kdi->kd_id") ?>" class="btn btn-xs btn-danger" onclick="return confirm('<?php echo ('Are You Sure') ?>') "><i class="fa fa-trash"></i></a>
                       <?php } ?>
                     </td>
                   </tr>

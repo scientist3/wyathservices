@@ -96,12 +96,12 @@ class BoardMembers extends CI_Controller
           #set success message
           $this->session->set_flashdata('message', ('Saved Successfully'));
           $this->session->set_flashdata('class_name', ('alert-success'));
-          redirect('admin/BoardMembers/create');
+          redirect('admin/boardmembers/create');
         } else {
           #set exception message
           $this->session->set_flashdata('message', ('Please Try Again'));
           $this->session->set_flashdata('class_name', ('alert-danger'));
-          redirect('admin/BoardMembers/create');
+          redirect('admin/boardmembers/create');
         }
       } else {
         #------------- Default Form Section Display ---------#
@@ -123,12 +123,12 @@ class BoardMembers extends CI_Controller
           $this->session->set_flashdata('message', ('Please Try  database'));
           $this->session->set_flashdata('class_name', ('alert-danger'));
         }
-        redirect('admin/BoardMembers/edit/' . $postDataUser['bm_id']);
+        redirect('admin/boardmembers/edit/' . $postDataUser['bm_id']);
       } else {
         #set exception message
         $this->session->set_flashdata('exception', ('Please Try Again Form') . "" . validation_errors());
         $this->session->set_flashdata('class_name', ('alert-danger'));
-        redirect('admin/BoardMembers/edit/' . $postDataUser['bm_id']);
+        redirect('admin/boardmembers/edit/' . $postDataUser['bm_id']);
       }
     }
   }
@@ -136,7 +136,7 @@ class BoardMembers extends CI_Controller
   public function edit($bm_id = null)
   {
     if (empty($bm_id)) {
-      redirect('admin/BoardMembers/create');
+      redirect('admin/boardmembers/create');
     }
     $data['title'] = ('Add View Board Members');
     $data['subtitle'] = ('Add New Board Member');
@@ -162,7 +162,7 @@ class BoardMembers extends CI_Controller
   public function delete($bm_id = null)
   {
     if (empty($bm_id)) {
-      redirect('admin/BoardMembers/create');
+      redirect('admin/boardmembers/create');
     }
     if ($this->BoardMembersModel->delete($bm_id)) {
       // $this->location_model->delete($loc_id);
@@ -172,7 +172,7 @@ class BoardMembers extends CI_Controller
       $this->session->set_flashdata('message', ('Please Try Again'));
       $this->session->set_flashdata('class_name', ('alert-danger'));
     }
-    redirect('admin/BoardMembers/create');
+    redirect('admin/boardmembers/create');
   }
 }
 

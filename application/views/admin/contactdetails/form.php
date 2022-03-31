@@ -2,7 +2,7 @@
 <section class="content">
   <div class="row">
     <div class="col-sm-12">
-      <form role="form" action="<?php echo site_url('admin/Contactdetails/create') ?>" method="post" id="save_type_form" enctype="multipart/form-data">
+      <form role="form" action="<?php echo site_url('admin/contactdetails/create') ?>" method="post" id="save_type_form" enctype="multipart/form-data">
         <div class="card">
           <div class="card-header bg-dark">
             <h3 class="card-title"><i class="fa fa-plus"></i> <?php echo $subtitle; ?></h3>
@@ -164,8 +164,8 @@
                         '<i class="fa fa-times" aria-hidden="true"></i>'; ?>
                     <td class="text-center" width="100">
                       <?php if (!in_array($cd->cont_id, [])) { ?>
-                        <a href="<?php echo base_url("admin/Contactdetails/edit/$cd->cont_id") ?>" class="btn btn-xs btn-success"><i class="fa fa-edit"></i></a>
-                        <a href="<?php echo base_url("admin/Contactdetails/delete/$cd->cont_id") ?>" class="btn btn-xs btn-danger" onclick="return confirm('<?php echo ('Are You Sure') ?>') "><i class="fa fa-trash"></i></a>
+                        <a href="<?php echo base_url("admin/contactdetails/edit/$cd->cont_id") ?>" class="btn btn-xs btn-success"><i class="fa fa-edit"></i></a>
+                        <a href="<?php echo base_url("admin/contactdetails/delete/$cd->cont_id") ?>" class="btn btn-xs btn-danger" onclick="return confirm('<?php echo ('Are You Sure') ?>') "><i class="fa fa-trash"></i></a>
                       <?php } ?>
                     </td>
                   </tr>
