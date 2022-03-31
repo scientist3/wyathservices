@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class BoardMembers extends CI_Controller
+class Boardmembers extends CI_Controller
 {
   public function __construct()
   {

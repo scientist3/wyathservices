@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class FeaturedInitiatives extends CI_Controller
+class Featuredinitiatives extends CI_Controller
 {
 	public function __construct()
 	{

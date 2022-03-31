@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class KeyDiffImpact extends CI_Controller
+class Keydiffimpact extends CI_Controller
 {
   public function __construct()
   {
