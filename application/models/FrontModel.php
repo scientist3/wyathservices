@@ -239,4 +239,13 @@ class FrontModel extends CI_Model
       ->get()
       ->result();
   }
+
+  public function get_contact_details()
+  {
+    return $this->db->select("*")
+      ->from('contact_det_tbl')
+      ->where('cont_status', 1)
+      ->get()
+      ->row();
+  }
 }

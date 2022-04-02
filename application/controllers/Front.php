@@ -156,6 +156,7 @@ class Front extends CI_Controller
 			redirect('front/contact');
 		} else {
 			$data['title']		= "Contact";
+			$data['contact_details'] = $this->front_model->get_contact_details();
 			$data['content']	= $this->load->view('frontsite/contact/contact', $data, true);
 			$this->load->view('frontsite/layout/wrapper_view', $data);
 		}

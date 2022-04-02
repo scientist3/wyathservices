@@ -105,33 +105,37 @@
               <div class="c-section">
                 <h3>Wyath Services</h3>
               </div>
-              <div class="c-section">
-                <div class="c-content-label c-font-uppercase c-font-bold c-theme-bg">
-                  Address
-                </div>
-                <p>
-                  Top Floor, MEGA MALL, <br />
-                  Pantha Chowk, Srinagar,<br />
-                  (191 101)<br />J & K, India
+              <?php if (isset($contact_details->cont_id)) : ?>
+                <div class="c-section">
+                  <div class="c-content-label c-font-uppercase c-font-bold c-theme-bg">
+                    Address
+                  </div>
+                  <p>
+                    <?= $contact_details->cont_address; ?> <br />
+                    <?= $contact_details->cont_area; ?>,<br />
+                    (<?= $contact_details->cont_pincode; ?>)<br />
+                    <?= $contact_details->cont_state . ", " . $contact_details->cont_country; ?>
 
-                </p>
-                <p>
-                  DAL LOCK GATE, <br />
-                  Dalgate,<br />
-                  Srinagar – 190 001<br />J & K, India
+                  </p>
+                  <p style="display: none;">
+                    DAL LOCK GATE, <br />
+                    Dalgate,<br />
+                    Srinagar – 190 001<br />J & K, India
 
-                </p>
-              </div>
-              <div class="c-section">
-                <div class="c-content-label c-font-uppercase c-font-bold c-theme-bg">
-                  Contacts
+                  </p>
                 </div>
-                <p>
-                  <!--<strong>M </strong>+91 7006 580 488<br/>-->
-                  <strong>L </strong>+91 194 245 1597<br />
-                  <strong>E </strong><a href="mailto:info@wyathservices.com">info@wyathservices.com</a>
-                </p>
-              </div>
+
+                <div class="c-section">
+                  <div class="c-content-label c-font-uppercase c-font-bold c-theme-bg">
+                    Contacts
+                  </div>
+                  <p>
+                    <!--<strong>M </strong>+91 7006 580 488<br/>-->
+                    <strong>L </strong><?= $contact_details->cont_phone_no; ?><br />
+                    <strong>E </strong><a href="mailto:<?= $contact_details->cont_email; ?>"><?= $contact_details->cont_email; ?></a>
+                  </p>
+                </div>
+              <?php endif; ?>
               <div class="c-section">
                 <div class="c-content-label c-font-uppercase c-font-bold c-theme-bg">
                   Social
