@@ -37,16 +37,16 @@
           <li class="c-divider">
             |
           </li>
-          <li class="c-hide" style="display: none;">
-            <a href="#">Careers</a>
+          <li class="c-divider">
+            <a href="<?= base_url('front/carrier'); ?>">Careers</a>
           </li>
 
 
-          <li class="c-divider" style="display: none;">
+          <li class="c-divider">
             |
           </li>
           <li>
-            <a href="https://sg3plcpnl0089.prod.sin3.secureserver.net:2096/">Login</a>
+            <a href="<?= base_url('login'); ?>">Login</a>
           </li>
 
 
@@ -73,8 +73,8 @@
             <span class="c-line"></span>
             <span class="c-line"></span>
           </button>
-          <button class="c-search-toggler" type="button">
-            <a href="javascript:;" data-toggle="modal" data-target="#login-form" class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold"><i class="icon-user"></i></a>
+          <button class="c-search-toggler" type="button" style="display: none;">
+            <a href="javascript:;" data-toggle="modal" data-target="#login-form" class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold"><i class="icon-user "></i></a>
           </button>
         </div>
         <!-- END: BRAND -->
@@ -131,13 +131,13 @@
 
             <!-- Initiatives -->
             <li>
-              <a href="<?= base_url('front/initiatives'); ?>" class="c-link dropdown-toggle">Initiatives</a>
+              <a href="<?= base_url('front/initiatives'); ?>" class="c-link">Initiatives</a>
 
             </li>
 
             <!-- Services -->
             <li>
-              <a href="<?= base_url('front/services'); ?>" class="c-link dropdown-toggle">Services</a>
+              <a href="<?= base_url('front/services'); ?>" class="c-link">Services</a>
 
 
             </li>
@@ -146,18 +146,18 @@
             <li>
               <a href="<?= base_url('front/contact'); ?>" class="c-link">Contact</a>
             </li>
+            <!-- Email -->
+            <li>
+              <a href="https://sg3plcpnl0089.prod.sin3.secureserver.net:2096/" class="c-link">Email</a>
+            </li>
 
-            <li class="c-search-toggler-wrapper">
+            <!-- <li class="c-search-toggler-wrapper">
               <div class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-dark c-btn-square c-btn-uppercase c-btn-sbold" style="padding-left:2px; padding-right:2px; width:120px;">
                 <div style="width:30px; float:left; padding:5px 0px;"><i class="icon-user"></i></div>
-                <div class="c-font-open c-font-10" style="text-align:left;"><span id="Label2"><a class='c-font-dark c-font-white-hover' href='https://sg3plcpnl0089.prod.sin3.secureserver.net:2096/'>Login<br>Email Account</a></span>
+                <div class="c-font-open c-font-13 " style="text-align:left; padding-top:5px"><span id="Label2"><a class='c-font-dark c-font-white-hover' href='https://sg3plcpnl0089.prod.sin3.secureserver.net:2096/'>Email</a></span>
                 </div>
               </div>
-            </li>
-
-            <li>
-              <a href="<?= base_url('login'); ?>" class="c-link">Login</a>
-            </li>
+            </li> -->
 
             <li class="c-quick-sidebar-toggler-wrapper">
               <a href="#" class="c-quick-sidebar-toggler">

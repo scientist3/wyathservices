@@ -19,7 +19,7 @@
                     <div class="form-group">
                       <label><?php echo ('Type'); ?></label><small class="req"> *</small>
                       <?php
-                      $type = ['news' => 'News', 'notification' => 'Notification', 'event' => 'Event'];
+                      $type = ['news' => 'News', 'notification' => 'Notification', 'event' => 'Event', 'carriers' => 'Carrier'];
                       echo form_dropdown('news_type', $type, $input->news_type, 'class="form-control" id="news_type" '); ?>
                       <?php echo form_error('news_type', '<span class="badge badge-danger text-xs d-block p-1 mt-1"> ', '</span>'); ?>
                     </div>
@@ -50,6 +50,17 @@
                       <label for="news_link"><?php echo ('Link'); ?></label>
                       <input name="news_link" class="form-control form-control-sm" type="text" placeholder="<?php echo ('link') ?>" id="news_link" value="<?php echo $input->news_link ?>" data-toggle="tooltip" title="<?php echo ('Link'); ?>">
                       <?php echo form_error('news_link', '<span class="badge bg-danger p-1">', '</span>'); ?>
+                    </div>
+                  </div>
+                  <!-- file -->
+                  <div class="form-group row col-sm-12">
+                    <label for="news_doc_link" class="col-sm-12 col-form-label"><?php echo ('Document') ?> </label>
+                    <div class="col-sm-12">
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" name="news_doc_link" id="news_doc_link">
+                        <label class="custom-file-label" for="news_doc_link">Choose file</label>
+                        <input type="hidden" name="news_doc_link_old" value="<?php echo $input->news_doc_link ?>">
+                      </div>
                     </div>
                   </div>
 

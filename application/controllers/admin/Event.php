@@ -6,6 +6,7 @@ class Event extends CI_Controller
   public function __construct()
   {
     parent::__construct();
+    $this->load->library('fileupload');
     $this->load->model(['admin/NewsNotificationEventsModel' => 'EventModel']);
     if ($this->session->userdata('isLogIn') == false || $this->session->userdata('user_role') != 1)
       redirect('login/logout');
@@ -27,13 +28,19 @@ class Event extends CI_Controller
       $this->form_validation->set_rules('news_type', ('Type'),    'required');
       $this->form_validation->set_rules('news_status', ('Status'),    'required');
     }
+    $picture = $this->fileupload->doc_upload(
+      'uploads/images/newsdoc/',
+      'news_doc_link'
+    );
     $data['input'] = (object)$postDataInp = array(
       'news_id'     => $this->input->post('news_id'),
       'news_type'     => $this->input->post('news_type'),
+      'news_doc_link'     => (!empty($picture) ? $picture : $this->input->post('news_doc_link_old')),
       'news_title'   => $this->input->post('news_title'),
       'news_desc'   => $this->input->post('news_desc'),
       'news_link'   => $this->input->post('news_link'),
       'news_status' => ($this->input->post('news_status')),
+
     );
 
     $input = $data['input'];
@@ -95,6 +102,7 @@ class Event extends CI_Controller
     $data['input'] = (object)$postDataInp = array(
       'news_id'     => $input->news_id,
       'news_type'   => $input->news_type,
+      'news_doc_link'   => $input->news_doc_link,
       'news_title'  => $input->news_title,
       'news_desc'   => $input->news_desc,
       'news_link'   => $input->news_link,

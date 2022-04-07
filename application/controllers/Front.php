@@ -183,4 +183,12 @@ class Front extends CI_Controller
 		$data['content']	= $this->load->view('frontsite/notification/notification_view', $data, true);
 		$this->load->view('frontsite/layout/wrapper_view', $data);
 	}
+
+	public function carrier()
+	{
+		$data['title']		= "Carriers";
+		$data['carriers']	= $this->front_model->get_carriers();
+		$data['content']	= $this->load->view('frontsite/carrier/carriers_view', $data, true);
+		$this->load->view('frontsite/layout/wrapper_view', $data);
+	}
 }
