@@ -248,4 +248,16 @@ class FrontModel extends CI_Model
       ->get()
       ->row();
   }
+
+
+  public function get_carriers()
+  {
+    return $this->db->select("*")
+      ->from('news_notification_tbl')
+      ->where('news_status', 1)
+      ->where('news_type', 'carriers')
+      ->order_by('news_doc', 'desc')
+      ->get()
+      ->result();
+  }
 }

@@ -62,7 +62,13 @@
 												<button type="button" class="btn btn-xs btn-success btn_show_model" data-toggle="modal" data-target="#modal-message" data-message="<?= htmlspecialchars($member->bm_chairman_msg); ?>">
 													<i class="fa fa-eye"> Read more</i>
 												</button>
+											<?php } else {
+											?>
+												<button type="button" class="btn btn-xs btn-success">
+													<i class="fa fa-eye"><a href="<?php echo base_url('front/chairmansmessage'); ?>">Read more</a> </i>
+												</button>
 											<?php } ?>
+
 										</p>
 									</div>
 								</div>

@@ -30,7 +30,7 @@
               <div class="c-content-panel">
 
                 <div class="c-body">
-                  <blockquote class="c-theme-border">
+                  <blockquote class="c-theme-border text-justify">
                     <?php echo $chairman_msg->bm_chairman_msg; ?>
                   </blockquote>
                 </div>
