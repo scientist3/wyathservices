@@ -10,7 +10,7 @@
         <?php
 // print_r($totaldata);
 // echo "<br>";
-// print_r($alldata);
+//  print_r($alldata);
 ?>
         <div class="card-body">
           <table width="100%" class="datatable_colvis table table-striped table-bordered table-hover table-sm">
@@ -30,9 +30,9 @@
             <tbody>
 
 
-                          <?php if (!empty($couselist)) { ?>
+                          <?php if (!empty($alldata)) { ?>
                 <?php $sl = 1; ?>
-                <?php foreach ($couselist as $st) { ?>
+                <?php foreach ($alldata as $st) { ?>
                   <tr>
                     <td><?php echo $st->c_id; ?></td>
                     <td><?php echo $st->c_full_name; ?></td>
