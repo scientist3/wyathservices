@@ -1,7 +1,7 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
 	<!-- Brand Logo -->
-	<a href="<?=base_url('admin/contact');?>" class="brand-link">
+	<a href="<?= base_url('admin/contact'); ?>" class="brand-link">
 		<img src="<?php echo base_url('vendor/almasaeed2010/adminlte/') ?>dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
 		<span class="brand-text font-weight-light">Wyathservices</span>
 	</a>
@@ -43,119 +43,119 @@
 					</a>
 				</li>
 
-		<!-- code by shadow -->
-		
-	
-		<li class="nav-header">CANDIDATE REGISTRATION</li>
-			<li class="nav-item <?php echo ($this->uri->segment(4) == "index" || $this->uri->segment(4) == 'viewstudent' || $this->uri->segment(4) == 'viewstudentlist') ? "menu-open" : null; ?>">
+				<!-- code by shadow -->
+
+
+				<li class="nav-header">BackEnd</li>
+				<li class="nav-item <?php echo ($this->uri->segment(4) == "index" || $this->uri->segment(4) == 'viewstudent' || $this->uri->segment(4) == 'viewstudentlist') ? "menu-open" : null; ?>">
 					<a href="#" class="nav-link <?php echo $this->uri->segment(2) == '' ? 'active' : null ?>">
-					<i class="fa fa-user"></i>
+						<i class="fa fa-user"></i>
+						<p>
+							Candidate
+							<i class="right fas fa-angle-left"></i>
+						</p>
+					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item ">
+							<a href="<?php echo base_url('admin/candidate/registration/index') ?>" class="nav-link <?php echo ($this->uri->segment(3) == 'registration' && $this->uri->segment(4) == 'index') ? 'active' : null ?>">
+								<i class="far fa-circle nav-icon"></i>
 								<p>
-									Candidate
-									<i class="right fas fa-angle-left"></i>
+									Add Candidate
 								</p>
 							</a>
-						<ul class="nav nav-treeview">
-							<li class="nav-item ">
-									<a href="<?php echo base_url('admin/candidate/registration/index') ?>" class="nav-link <?php echo ($this->uri->segment(3) == 'registration' && $this->uri->segment(4) == 'index') ? 'active' : null ?>">
-									<i class="far fa-circle nav-icon"></i>
-												<p>
-													Add Candidate
-												</p>
-									</a>
-									<a href="<?php echo base_url('admin/candidate/registration/viewstudent') ?>" class="nav-link <?php echo ($this->uri->segment(3) == 'registration' && $this->uri->segment(4) == 'viewstudent') ? 'active' : null ?>">
-											<i class="far fa-circle nav-icon"></i>
-												<p>
-													Edit Candidate
-												</p>
-									</a>
-									<a href="<?php echo base_url('admin/candidate/registration/viewstudentlist') ?>" class="nav-link <?php echo ($this->uri->segment(3) == 'registration' && $this->uri->segment(4) == 'viewstudentlist') ? 'active' : null ?>">
-											<i class="far fa-circle nav-icon"></i>
-												<p>
-													View Candidate List
-												</p>
-									</a>
-							</li>
-					 </ul>
+							<a href="<?php echo base_url('admin/candidate/registration/viewstudent') ?>" class="nav-link <?php echo ($this->uri->segment(3) == 'registration' && $this->uri->segment(4) == 'viewstudent') ? 'active' : null ?>">
+								<i class="far fa-circle nav-icon"></i>
+								<p>
+									Edit Candidate
+								</p>
+							</a>
+							<a href="<?php echo base_url('admin/candidate/registration/viewstudentlist') ?>" class="nav-link <?php echo ($this->uri->segment(3) == 'registration' && $this->uri->segment(4) == 'viewstudentlist') ? 'active' : null ?>">
+								<i class="far fa-circle nav-icon"></i>
+								<p>
+									View Candidate List
+								</p>
+							</a>
+						</li>
+					</ul>
 				</li>
-		</li>
+				</li>
 
-		<!-- code by shdow -->
-		
-						<!--7/16/2022  -->
+				<!-- code by shdow -->
 
-						<!-- <li class="nav-header">TRAINING CANTERS</li> -->
+				<!--7/16/2022  -->
 
-<li class="nav-item <?php echo ($this->uri->segment(3) == "trainingcenter") ? "menu-open" : null; ?>">
-   <a href="#" class="nav-link <?php echo $this->uri->segment(3) == '' ? 'active' : null ?>">
-   <i class="fas fa-warehouse"></i>
-      <p>
-       Training Centers
-       <i class="right fas fa-angle-left"></i>
-      </p>
-     </a>
-   <ul class="nav nav-treeview">
-    <li class="nav-item ">
-      <a href="<?php echo base_url('admin/candidate/trainingcenter') ?>" class="nav-link <?php echo ($this->uri->segment(3) == 'trainingcenter' && $this->uri->segment(3) == 'trainingcenter') ? 'active' : null ?>">
-        <i class="far fa-circle nav-icon"></i>
-         <p>
-         Add/View Training Center
-         </p>
-       </a>
-    </li>
-   </ul>
- </li>
-						<!--7/16/2022  -->
+				<!-- <li class="nav-header">TRAINING CANTERS</li> -->
+
+				<li class="nav-item <?php echo ($this->uri->segment(3) == "trainingcenter") ? "menu-open" : null; ?>">
+					<a href="#" class="nav-link <?php echo $this->uri->segment(3) == '' ? 'active' : null ?>">
+						<i class="fas fa-warehouse"></i>
+						<p>
+							Training Centers
+							<i class="right fas fa-angle-left"></i>
+						</p>
+					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item ">
+							<a href="<?php echo base_url('admin/candidate/trainingcenter') ?>" class="nav-link <?php echo ($this->uri->segment(3) == 'trainingcenter' && $this->uri->segment(3) == 'trainingcenter') ? 'active' : null ?>">
+								<i class="far fa-circle nav-icon"></i>
+								<p>
+									Add/View Training Center
+								</p>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<!--7/16/2022  -->
 
 
 
-<!-- after dinner -->
-<li class="nav-item <?php echo ($this->uri->segment(3) == "course") ? "menu-open" : null; ?>">
-   <a href="#" class="nav-link <?php echo $this->uri->segment(3) == '' ? 'active' : null ?>">
-   <i class="fas fa-warehouse"></i>
-      <p>
-       Course
-       <i class="right fas fa-angle-left"></i>
-      </p>
-     </a>
-   <ul class="nav nav-treeview">
-    <li class="nav-item ">
+				<!-- after dinner -->
+				<li class="nav-item <?php echo ($this->uri->segment(3) == "course") ? "menu-open" : null; ?>">
+					<a href="#" class="nav-link <?php echo $this->uri->segment(3) == '' ? 'active' : null ?>">
+						<i class="fas fa-warehouse"></i>
+						<p>
+							Course
+							<i class="right fas fa-angle-left"></i>
+						</p>
+					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item ">
 
-      <a href="<?php echo base_url('admin/candidate/course') ?>" class="nav-link <?php echo ($this->uri->segment(3) == 'course' && $this->uri->segment(3) == 'course') ? 'active' : null ?>">
-        <i class="far fa-circle nav-icon"></i>
-         <p>
-         Add/View Courses
-         </p>
-       </a>
-    </li>
-   </ul>
- </li>
-<!--  -->
-<!-- 3:44pm -->
-<li class="nav-item <?php echo ($this->uri->segment(3) == "batch") ? "menu-open" : null; ?>">
-   <a href="#" class="nav-link <?php echo $this->uri->segment(3) == '' ? 'active' : null ?>">
-   <i class="fas fa-warehouse"></i>
-      <p>
-       Batch
-       <i class="right fas fa-angle-left"></i>
-      </p>
-     </a>
-   <ul class="nav nav-treeview">
-    <li class="nav-item ">
+							<a href="<?php echo base_url('admin/candidate/course') ?>" class="nav-link <?php echo ($this->uri->segment(3) == 'course' && $this->uri->segment(3) == 'course') ? 'active' : null ?>">
+								<i class="far fa-circle nav-icon"></i>
+								<p>
+									Add/View Courses
+								</p>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<!--  -->
+				<!-- 3:44pm -->
+				<li class="nav-item <?php echo ($this->uri->segment(3) == "batch") ? "menu-open" : null; ?>">
+					<a href="#" class="nav-link <?php echo $this->uri->segment(3) == '' ? 'active' : null ?>">
+						<i class="fas fa-warehouse"></i>
+						<p>
+							Batch
+							<i class="right fas fa-angle-left"></i>
+						</p>
+					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item ">
 
-      <a href="<?php echo base_url('admin/candidate/batch') ?>" class="nav-link <?php echo ($this->uri->segment(3) == 'batch' && $this->uri->segment(3) == 'batch') ? 'active' : null ?>">
-        <i class="far fa-circle nav-icon"></i>
-         <p>
-         Add/View Batch
-         </p>
-       </a>
-    </li>
-   </ul>
- </li>
-<!-- afternoon -->
+							<a href="<?php echo base_url('admin/candidate/batch') ?>" class="nav-link <?php echo ($this->uri->segment(3) == 'batch' && $this->uri->segment(3) == 'batch') ? 'active' : null ?>">
+								<i class="far fa-circle nav-icon"></i>
+								<p>
+									Add/View Batch
+								</p>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<!-- afternoon -->
 
 				<!-- Contact Us -->
-				<li class="nav-header">    </li>
+				<li class="nav-header"> FrontEnd</li>
 
 				<li class="nav-item <?php echo ($this->uri->segment(2) == "contact") ? "menu-open" : null; ?>">
 					<a href="#" class="nav-link <?php echo $this->uri->segment(2) == 'contact' ? 'active' : null ?>">
@@ -167,7 +167,7 @@
 					</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-						<a href="<?php echo base_url('admin/contact/index') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'contact' ? 'active' : null ?>">
+							<a href="<?php echo base_url('admin/contact/index') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'contact' ? 'active' : null ?>">
 								<i class="far fa-circle nav-icon"></i>
 								<p>Messages</p>
 							</a>
