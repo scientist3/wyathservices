@@ -1,4 +1,5 @@
 <!-- Main content -->
+<?php $input_height = "form-control-sm"; ?>
 <section class="content">
   <div class="col-sm-12">
     <!-- <span> <?php // echo $this->session->flashdata('message'); 
@@ -33,8 +34,9 @@
               <!-- Dateofbirth -->
               <div class="col-sm-1">
                 <div class="form-group">
-                  <label for="salutation"><?php echo ('Salutation'); ?></label> <small class="req"></small>
-                  <select name="salutation" id="salutation" class="form-control input-lg">
+                  <!-- <label for="salutation"><?php echo ('Salutation'); ?></label> <small class="req"></small> -->
+                  <select name="salutation" id="salutation" class="form-control <?= $input_height; ?>"
+                    data-toggle="tooltip" title="Salutation">
 
                     <?php
                     foreach ($salutation as $row) {
@@ -46,12 +48,12 @@
               </div>
               <div class="col-sm-4">
                 <div class="form-group">
-                  <label for="fullname"><?php echo ('Full Name'); ?></label> <small class="req"> *</small>
+                  <!-- <label for="fullname"><?php echo ('Full Name'); ?></label> <small class="req"> *</small> -->
                   <?php //echo $input->c_full_name 
                   ?>
-                  <input name="fullname" class="form-control form-control-sm" type="text"
+                  <input name="fullname" class="form-control <?= $input_height; ?>" type="text"
                     value="<?= set_value('fullname') ?>" placeholder="<?php echo ('Full Name') ?>" id="fullname"
-                    style="padding:18px;" value="<?= set_value('fullname') ?>">
+                    value="<?= set_value('fullname') ?>" data-toggle="tooltip" title="Full Name">
                   <?php echo form_error("fullname", '<span class="badge bg-danger p-1">', '</span>'); ?>
 
                 </div>
@@ -62,7 +64,7 @@
                 <div class="form-group">
                   <label for="gender"><?php echo ('Gender'); ?></label> <small class="req"> *</small>
 
-                  <select name="gender" id="gender" class="form-control input-lg">
+                  <select name="gender" id="gender" class="form-control <?= $input_height; ?>">
 
                     <option value="">Select Gender</option>
                     <?php
@@ -81,7 +83,7 @@
               <div class="col-sm-2">
                 <div class="form-group">
                   <label for="dob"><?php echo ('Date of Birth'); ?></label> <small class="req"> *</small>
-                  <input type="date" name="dob" class="form-control form-control-sm" type="text"
+                  <input type="date" name="dob" class="form-control <?= $input_height; ?>" type="text"
                     placeholder="<?php echo ('Date od Birth ') ?>" id="dob" style="padding:18px;"
                     value="<?= set_value('dob') ?>">
                   <?php echo form_error("dob", '<span class="badge bg-danger p-1">', '</span>'); ?>
@@ -372,7 +374,8 @@
               <div class="col-sm-4">
                 <div class="form-group">
                   <label for="permanentconstituency"><?php echo ('Permanent Constituency'); ?></label> <small
-                    class="req"> *</small>
+                    class="req">
+                    *</small>
                   <input name="permanentconstituency" class="form-control form-control-sm" type="text"
                     placeholder="<?php echo ('Permanent Constituency') ?>" id="permanentconstituency"
                     style="padding:18px;" value="<?= set_value('permanentconstituency') ?>">
@@ -390,7 +393,8 @@
               <div class="col-sm-5">
                 <div class="form-group">
                   <label for="communicationaddress"><?php echo ('Communication Address.'); ?></label> <small
-                    class="req"> *</small>
+                    class="req">
+                    *</small>
                   <input name="communicationaddress" class="form-control form-control-sm" type="text"
                     placeholder="<?php echo ('Communication Address') ?>" id="communicationaddress"
                     style="padding:18px;" value="<?= set_value('communicationaddress') ?>">
@@ -421,7 +425,8 @@
               <div class="col-sm-3">
                 <div class="form-group">
                   <label for="communicationdistrict"><?php echo ('Communication District'); ?></label> <small
-                    class="req"> *</small>
+                    class="req">
+                    *</small>
                   <input type="text" name="communicationdistrict" id="communicationdistrict" value="" />
                   <!-- 
                     <select name="communicationdistrict"  id="communicationdistrict" class="form-control input-lg">
@@ -507,7 +512,7 @@
 </section>
 <script>
 $(document).ready(function() {
-
+  $('[data-toggle="tooltip"]').tooltip();
   $('#todisability').hide()
   $('#typeofalternateid').hide();
   $('#idno').hide();

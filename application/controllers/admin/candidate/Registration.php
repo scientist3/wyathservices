@@ -11,7 +11,8 @@ class Registration extends CI_Controller
 			'admin/candidate/BatchModel',
 			'common_model',
 			'admin/CSD',
-			'admin/candidate/StateHandleModel'
+			'admin/candidate/StateHandleModel',
+			'admin/candidate/salutationmodel' => 'salutation'
 		]);
 
 		//$this->load->library('fileupload');
@@ -31,7 +32,7 @@ class Registration extends CI_Controller
 		$data['subtitle'] = ('Add New Candidate');
 
 		$data['input'] = ['ab_title' => ''];
-		$data['salutation'] = $this->CandidateModel->salutation();
+		$data['salutation'] = $this->salutation->get_salutation();
 		$data['gender'] = $this->CandidateModel->gender();
 		$data['maritalstatus'] = $this->CandidateModel->maritalstatus();
 		$data['education'] = $this->CandidateModel->GetEducation();
