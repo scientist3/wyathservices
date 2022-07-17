@@ -15,6 +15,24 @@ class CandidateModel extends CI_Model
       ->get()
       ->row();
   }
+//   //getting district for edit candidate
+//   public function getselecteddistrict($c_id)
+//   {
+//     return $this->db->select("c_perm_district")
+//       ->from($this->table)
+//       ->where('c_id', $c_id)
+//       ->get()
+//       ->row();
+//   }
+//   public function getselectedstate($c_id)
+//   {
+//     return $this->db->select("c_perm_state")
+//       ->from($this->table)
+//       ->where('c_id', $c_id)
+//       ->get()
+//       ->row();
+//   }
+  
 
     public function get_count()
     {
@@ -39,15 +57,7 @@ public function studentdelete($student_id = null)
       ->get()
       ->result();
   }
-    // public function read()
-    // {
-    //     // return $this->db->select("*")
-    //     //     ->from($this->table)
-    //     //     ->get()
-    //     //     ->result();
-    //     $query = $this->db->get('candidate_tbl');
-    //     return $query;
-    // }
+    
     public function insert($data = [])
     {
         // return $this->db->insert($this->table, $data);

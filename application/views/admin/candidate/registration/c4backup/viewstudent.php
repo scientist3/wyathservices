@@ -1,3 +1,6 @@
+
+
+
 <!-- Main content -->
 <section class="content">
   <div class="col-sm-12">
@@ -30,7 +33,7 @@
 foreach ($salutation as $row){
 
   ?>
-  <option value="<?php echo "$row" ?>"<?php if($row==$input->salutation) echo 'selected' ?>>
+  <option value="<?php echo "$row" ?>"<?php if($row==$input->c_salutation) echo 'selected' ?>>
 <?php echo $row ?>
 </option>  
   <?php
@@ -60,7 +63,7 @@ foreach ($salutation as $row){
 foreach ($gender as $row){
 
   ?>
-  <option value="<?php echo "$row" ?>"<?php if($row==$input->gender) echo 'selected' ?>>
+  <option value="<?php echo "$row" ?>"<?php if($row==$input->c_gender) echo 'selected' ?>>
 <?php echo $row ?>
 </option>  
   <?php
@@ -358,7 +361,31 @@ foreach ($typeofalternateid as $row) {
                 <div class="col-sm-4">
                   <div class="form-group">
                   <label for="permanentstate"><?php echo ('Permanent State'); ?></label> <small class="req"> *</small>
-                  <?php echo form_dropdown('permanentstate',$state,11,'class="form-control" id="permanentstate"') ?>
+
+                  <select name="state" id="state" class="form-control input-lg">
+
+                  <option value="">Select State</option>
+
+
+
+<?php 
+
+$limit=36;
+for($i=0;$i<$limit;$i++)
+{
+  ?>
+
+  <option value="<?php echo $state[$i]->state_name?>"<?php if($state[$i]->state_name==$input->permanentstate) echo 'selected' ?>>
+<?php echo $state[$i]->state_name ?>
+</option>  
+  <?php
+
+}
+
+ ?>
+ //main
+</select>
+
                       <?php echo form_error("state", '<span class="badge bg-danger p-1">', '</span>'); ?>
 
                   </div>
@@ -507,6 +534,13 @@ foreach ($state as $row) {
                   <?php echo form_error("communicationconstituency", '<span class="badge bg-danger p-1">', '</span>'); ?>
                 </div>
                 </div>
+
+
+
+
+
+
+
                 <div class="col-sm-12 ">
                     <div class="form-group">
                       <!-- <label>Submit</label> -->
@@ -516,6 +550,10 @@ foreach ($state as $row) {
 
                     </div>
                   </div>
+
+
+
+
                 </div>
                 <!-- <hr><hr> -->
 
@@ -529,7 +567,31 @@ foreach ($state as $row) {
       </form>
 
   </div>
+  <!-- Search -->
+  <!-- Display -->
+
 </section>
+
+ <!-- $('#state').change(function(){
+  var state_id = $('#state').val();
+  if(state_id != '')
+  {
+   $.ajax({
+    url:"<?php echo base_url(); ?>/admin/candidate/registration/fetch_district",
+    method:"POST",
+    data:{state_id:state_id},
+    success:function(data)
+    {
+     $('#district').html(data);
+    }
+   });
+  }
+  else
+  {
+   $('#district').html('<option value="">Select District</option>');
+  }
+ }); -->
+
 <script>
 $(document).ready(function(){
 

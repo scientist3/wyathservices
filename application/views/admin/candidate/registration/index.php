@@ -9,18 +9,13 @@
           <div class="card-header bg-dark">
             <h3 class="card-title"><i class="fa fa-plus"></i> <?php echo $subtitle; ?></h3>
           </div>
-
-
-
           <div class="card-body">
             <div class="row">
-
-            <!-- salutation -->
+      <!-- salutation -->
               <div class="col-md-12">
                 <?php //echo form_hidden('ab_id', $input->ab_id) ?>
                 <div class="row">
                 <div class="input-group mb-1">
-
 
           </div>
             <!-- salutation end-->
@@ -32,7 +27,7 @@
                   <div class="form-group">
                   <label for="salutation"><?php echo ('Salutation'); ?></label> <small class="req"></small>
                 <select name="salutation"  id="salutation" class="form-control input-lg">
-
+                    
   <?php
 foreach ($salutation as $row) {
     echo '<option value="' . $row . '">' . $row . '</option>';

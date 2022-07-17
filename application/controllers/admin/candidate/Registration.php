@@ -81,7 +81,7 @@ public function studentdelete($studentid = null)
     $data['subtitle'] = ('Edit Candidate');
     #-------------------------------#
     $data['salutation'] = $this->CandidateModel->salutation();
-    $data['state'] = $this->CSD->fetch_state();
+    $data['state'] = $this->CSD->fetch_state_array();
 
     $data['gender'] = $this->CandidateModel->gender();
     $data['maritalstatus'] = $this->CandidateModel->maritalstatus();
@@ -97,8 +97,8 @@ public function studentdelete($studentid = null)
     $data['input'] = (object)$postDataInp = array(
       'c_id' => $input->c_id,
       'fullname'=>$input->c_full_name,
-      'c_salutation' =>$input->c_salutation,
-      'c_gender'  =>$input->c_gender,
+      'salutation' =>$input->c_salutation,
+      'gender'  =>$input->c_gender,
       'dob'=>$input->c_dob,
       'mobile'=>$input->c_mobile,
       'email'=>$input->c_email,
@@ -134,27 +134,6 @@ public function studentdelete($studentid = null)
 
     $data['content'] = $this->load->view('admin/candidate/registration/viewstudent', $data, true);
     $this->load->view('admin/layout/wrapper', $data);
-
-
-        // $data['title'] = ('Edit Candidate');
-        // $data['subtitle'] = ('Edit Candidate');
-        // $data['salutation'] = $this->CandidateModel->salutation();
-        // $data['gender'] = $this->CandidateModel->gender();
-        // $data['maritalstatus'] = $this->CandidateModel->maritalstatus();
-        // $data['education'] = $this->CandidateModel->GetEducation();
-        // $data['religion'] = $this->CandidateModel->religion();
-        // $data['category'] = $this->CandidateModel->category();
-        // // $data['ab_status'] = ["0"];
-        // $todisability = $this->CandidateModel->todisability();
-        // $data['todisability'] = $todisability;
-
-        // $data['idtype'] = $this->CandidateModel->idtype();
-        // $data['typeofalternateid'] = $this->CandidateModel->typeofalternateid();
-
-        // // $data['aboutus'] = $this->AboutusModel->read();
-
-        // $data['content'] = $this->load->view('admin/candidate/registration/viewstudent', $data, true);
-        // $this->load->view('admin/layout/wrapper', $data);
     }
 
 
