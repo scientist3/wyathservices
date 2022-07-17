@@ -368,320 +368,312 @@
               <div class="col-sm-4">
                 <div class="form-group">
                   <label for="permanentstate"><?php echo ('Permanent State'); ?></label> <small class="req"> *</small>
-                  <<<<<<< HEAD
-                    <?php echo form_dropdown('permanentstate', $state, 11, 'class="form-control" id="permanentstate"') ?>
-                    <?php echo form_error("state", '<span class="badge bg-danger p-1">', '</span>'); ?>=======<select
-                    name="state" id="state" class="form-control input-lg">
-
-                    <option value="">Select State</option>
-
-
-
-                    <?php
-
-                    $limit = 36;
-                    for ($i = 0; $i < $limit; $i++) {
-                    ?>
-
-                    <option value="<?php echo $state[$i]->state_name ?>"
-                      <?php if ($state[$i]->state_name == $input->permanentstate) echo 'selected' ?>>
-                      <?php echo $state[$i]->state_name ?>
-                    </option>
-                    <?php
-
-                    }
-
-                    ?>
-                    //main
-                    </select>
-
-                    <?php echo form_error("state", '<span class="badge bg-danger p-1">', '</span>'); ?>
-                    >>>>>>> fb50908fc99589f9f28e65fa6b173dc60779939c
+                  <?php echo form_dropdown('permanentstate', $state, 11, 'class="form-control" id="permanentstate"') ?>
+                  <?php echo form_error("state", '<span class="badge bg-danger p-1">', '</span>'); ?>
 
                 </div>
-                <<<<<<< HEAD <!-- / input box for district to set it automatically-->
+                <!-- / input box for district to set it automatically-->
 
-                  <input type="hidden" id="districtset" value="<?php $input->permanentdistrict ?>">
-                  <div class="col-sm-3">
-                    <div class="form-group">
-                      <label for="permanentdistrict"><?php echo ('Permanent District'); ?></label> <small class="req">
-                        *</small>
-                      <select name="district" id="district" class="form-control input-lg">
-                        <option value="">Select District</option>
-
-
-                      </select>
-                      <?php echo form_error("district", '<span class="badge bg-danger p-1">', '</span>'); ?>
-                      =======
-                    </div>
-                    <div class="col-sm-3">
-                      <div class="form-group">
-                        <label for="permanentdistrict"><?php echo ('Permanent District'); ?></label> <small class="req">
-                          *</small>
-                        <select name="district" id="district" class="form-control input-lg">
-                          <option value="">Select District</option>
-
-                        </select>
-                        <?php echo form_error("district", '<span class="badge bg-danger p-1">', '</span>'); ?>
-                        >>>>>>> fb50908fc99589f9f28e65fa6b173dc60779939c
-
-                      </div>
-                    </div>
+                <input type="hidden" id="districtset" value="<?php $input->permanentdistrict ?>">
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label for="permanentdistrict"><?php echo ('Permanent District'); ?></label> <small class="req">
+                      *</small>
+                    <select name="district" id="district" class="form-control input-lg">
+                      <option value="">Select District</option>
 
 
-                    <div class="col-sm-3">
-                      <div class="form-group">
-                        <label for="permanenttehsil"><?php echo ('Permanent Tehsil'); ?></label> <small class="req">
-                          *</small>
-                        <input name="permanenttehsil" class="form-control form-control-sm" type="text"
-                          placeholder="<?php echo ('Permanent Tehsil') ?>" id="permanenttehsil" style="padding:18px;"
-                          value="<?php echo $input->permanenttehsil ?>">
-                        <?php echo form_error("permanenttehsil", '<span class="badge bg-danger p-1">', '</span>'); ?>
+                    </select>
+                    <?php echo form_error("district", '<span class="badge bg-danger p-1">', '</span>'); ?>
+                  </div>
+                </div>
 
-                      </div>
-                    </div>
-                    <div class="col-sm-2">
-                      <div class="form-group">
-                        <label for="permanentcity"><?php echo ('Permanent City'); ?></label> <small class="req">
-                          *</small>
-                        <input name="permanentcity" class="form-control form-control-sm" type="text"
-                          placeholder="<?php echo ('Permanent City') ?>" id="permanentcity" style="padding:18px;"
-                          value="<?php echo $input->permanentcity ?>">
-                        <?php echo form_error("permanentcity", '<span class="badge bg-danger p-1">', '</span>'); ?>
 
-                      </div>
-                    </div>
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label for="permanenttehsil"><?php echo ('Permanent Tehsil'); ?></label> <small class="req">
+                      *</small>
+                    <input name="permanenttehsil" class="form-control form-control-sm" type="text"
+                      placeholder="<?php echo ('Permanent Tehsil') ?>" id="permanenttehsil" style="padding:18px;"
+                      value="<?php echo $input->permanenttehsil ?>">
+                    <?php echo form_error("permanenttehsil", '<span class="badge bg-danger p-1">', '</span>'); ?>
+
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label for="permanentcity"><?php echo ('Permanent City'); ?></label> <small class="req">
+                      *</small>
+                    <input name="permanentcity" class="form-control form-control-sm" type="text"
+                      placeholder="<?php echo ('Permanent City') ?>" id="permanentcity" style="padding:18px;"
+                      value="<?php echo $input->permanentcity ?>">
+                    <?php echo form_error("permanentcity", '<span class="badge bg-danger p-1">', '</span>'); ?>
+
+                  </div>
+                </div>
 
 
 
-                    <div class="col-sm-2">
-                      <div class="form-group">
-                        <label for="permanentpincode"><?php echo ('Permanent PINCode'); ?></label> <small class="req">
-                          *</small>
-                        <input name="permanentpincode" class="form-control form-control-sm" type="text"
-                          placeholder="<?php echo ('Permanent PINCode') ?>" id="permanentpincode" style="padding:18px;"
-                          value="<?php echo $input->permanentpincode ?>">
-                        <?php echo form_error("permanentpincode", '<span class="badge bg-danger p-1">', '</span>'); ?>
-                      </div>
-                    </div>
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label for="permanentpincode"><?php echo ('Permanent PINCode'); ?></label> <small class="req">
+                      *</small>
+                    <input name="permanentpincode" class="form-control form-control-sm" type="text"
+                      placeholder="<?php echo ('Permanent PINCode') ?>" id="permanentpincode" style="padding:18px;"
+                      value="<?php echo $input->permanentpincode ?>">
+                    <?php echo form_error("permanentpincode", '<span class="badge bg-danger p-1">', '</span>'); ?>
+                  </div>
+                </div>
 
-                    <div class="col-sm-4">
-                      <div class="form-group">
-                        <label for="permanentconstituency"><?php echo ('Permanent Constituency'); ?></label> <small
-                          class="req"> *</small>
-                        <input name="permanentconstituency" class="form-control form-control-sm" type="text"
-                          placeholder="<?php echo ('Permanent Constituency') ?>" id="permanentconstituency"
-                          style="padding:18px;" value="<?php echo $input->permanentconstituency ?>">
-                        <?php echo form_error("permanentconstituency", '<span class="badge bg-danger p-1">', '</span>'); ?>
-                      </div>
-                    </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label for="permanentconstituency"><?php echo ('Permanent Constituency'); ?></label> <small
+                      class="req"> *</small>
+                    <input name="permanentconstituency" class="form-control form-control-sm" type="text"
+                      placeholder="<?php echo ('Permanent Constituency') ?>" id="permanentconstituency"
+                      style="padding:18px;" value="<?php echo $input->permanentconstituency ?>">
+                    <?php echo form_error("permanentconstituency", '<span class="badge bg-danger p-1">', '</span>'); ?>
+                  </div>
+                </div>
 
-                    &nbsp;
+                &nbsp;
 
-                    <div class="col-sm-10">
-                      <div class="form-group form-check ">
-                        <input type="checkbox" class="form-check-input" name="comm_address" id="comm_address" value="1">
-                        <label class="form-check-label" for="comm_address">Communication Same as Permanent
-                          Address</label>
-                      </div>
-                    </div>
+                <div class="col-sm-10">
+                  <div class="form-group form-check ">
+                    <input type="checkbox" class="form-check-input" name="comm_address" id="comm_address" value="1">
+                    <label class="form-check-label" for="comm_address">Communication Same as Permanent
+                      Address</label>
+                  </div>
+                </div>
 
 
 
 
-                    <!-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <!-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -->
 
-                    <div class="col-sm-5">
-                      <div class="form-group">
-                        <label for="communicationaddress"><?php echo ('Communication Address.'); ?></label> <small
-                          class="req"> *</small>
-                        <input name="communicationaddress" class="form-control form-control-sm" type="text"
-                          placeholder="<?php echo ('Communication Address') ?>" id="communicationaddress"
-                          style="padding:18px;" value="<?php echo $input->communicationaddress ?>">
-                        <?php echo form_error("communicationaddress", '<span class="badge bg-danger p-1">', '</span>'); ?>
+                <div class="col-sm-5">
+                  <div class="form-group">
+                    <label for="communicationaddress"><?php echo ('Communication Address.'); ?></label> <small
+                      class="req"> *</small>
+                    <input name="communicationaddress" class="form-control form-control-sm" type="text"
+                      placeholder="<?php echo ('Communication Address') ?>" id="communicationaddress"
+                      style="padding:18px;" value="<?php echo $input->communicationaddress ?>">
+                    <?php echo form_error("communicationaddress", '<span class="badge bg-danger p-1">', '</span>'); ?>
 
-                      </div>
-                    </div>
+                  </div>
+                </div>
 
 
 
-                    <div class="col-sm-4">
-                      <div class="form-group">
-                        <label for="communicationstate"><?php echo ('Communication State'); ?></label> <small
-                          class="req"> *</small>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label for="communicationstate"><?php echo ('Communication State'); ?></label> <small class="req">
+                      *</small>
 
-                        <select name="communicationstate" id="communicationstate" class="form-control input-lg">
+                    <select name="communicationstate" id="communicationstate" class="form-control input-lg">
 
-                          <option value="">Select State</option>
-                          <?php
-                          foreach ($state as $row) {
-                            echo '<option value="' . $row->state_id . '">' . $row->state_name . '</option>';
-                          }
-                          ?>
-                        </select>
-                        <?php echo form_error("state", '<span class="badge bg-danger p-1">', '</span>'); ?>
+                      <option value="">Select State</option>
+                      <?php
+                      foreach ($state as $row) {
+                        echo '<option value="' . $row->state_id . '">' . $row->state_name . '</option>';
+                      }
+                      ?>
+                    </select>
+                    <?php echo form_error("state", '<span class="badge bg-danger p-1">', '</span>'); ?>
 
-                      </div>
-                    </div>
+                  </div>
+                </div>
 
-                    <div class="col-sm-3">
-                      <div class="form-group">
-                        <label for="communicationdistrict"><?php echo ('Communication District'); ?></label> <small
-                          class="req"> *</small>
-                        <input type="text" name="communicationdistrict" id="communicationdistrict"
-                          value="<?php echo $input->communicationdistrict ?>" />
-                        <!-- <select name="communicationdistrict"  id="communicationdistrict" class="form-control input-lg">
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label for="communicationdistrict"><?php echo ('Communication District'); ?></label> <small
+                      class="req"> *</small>
+                    <input type="text" name="communicationdistrict" id="communicationdistrict"
+                      value="<?php echo $input->communicationdistrict ?>" />
+                    <!-- <select name="communicationdistrict"  id="communicationdistrict" class="form-control input-lg">
                 <option value="">Select District</option>
             </select> -->
-                        <?php echo form_error("communicationdistrict", '<span class="badge bg-danger p-1">', '</span>'); ?>
+                    <?php echo form_error("communicationdistrict", '<span class="badge bg-danger p-1">', '</span>'); ?>
 
-                      </div>
-                    </div>
-
-
-                    <div class="col-sm-3">
-                      <div class="form-group">
-                        <label for="communicationtehsil"><?php echo ('Communication Tehsil'); ?></label> <small
-                          class="req"> *</small>
-                        <input name="communicationtehsil" class="form-control form-control-sm" type="text"
-                          placeholder="<?php echo ('Communication Tehsil') ?>" id="communicationtehsil"
-                          style="padding:18px;" value="<?php echo $input->communicationtehsil ?>">
-                        <?php echo form_error("communicationtehsil", '<span class="badge bg-danger p-1">', '</span>'); ?>
-
-                      </div>
-                    </div>
-                    <div class="col-sm-3">
-                      <div class="form-group">
-                        <label for="communicationcity"><?php echo ('Communication City'); ?></label> <small class="req">
-                          *</small>
-                        <input name="communicationcity" class="form-control form-control-sm" type="text"
-                          placeholder="<?php echo ('Communication City') ?>" id="communicationcity"
-                          style="padding:18px;" value="<?php echo $input->communicationcity ?>">
-                        <?php echo form_error("communicationcity", '<span class="badge bg-danger p-1">', '</span>'); ?>
-
-                      </div>
-                      <<<<<<< HEAD </div>
-
-
-
-                        <div class="col-sm-3">
-                          <div class="form-group">
-                            <label for="communicationpincode"><?php echo ('Communication PINCode'); ?></label> <small
-                              class="req"> *</small>
-                            <input name="communicationpincode" class="form-control form-control-sm" type="text"
-                              placeholder="<?php echo ('Communication PINCode') ?>" id="communicationpincode"
-                              style="padding:18px;" value="<?php echo $input->communicationpincode ?>">
-                            <?php echo form_error("communicationpincode", '<span class="badge bg-danger p-1">', '</span>'); ?>
-                          </div>
-                        </div>
-
-                        <div class="col-sm-3">
-                          <div class="form-group">
-                            <label for="communicationconstituency"><?php echo ('Communication Constituency'); ?></label>
-                            <small class="req"> *</small>
-                            <input name="communicationconstituency" class="form-control form-control-sm" type="text"
-                              placeholder="<?php echo ('Communication Constituency') ?>" id="communicationconstituency"
-                              style="padding:18px;" value="<?php echo $input->communicationconstituency ?>">
-                            <?php echo form_error("communicationconstituency", '<span class="badge bg-danger p-1">', '</span>'); ?>
-                          </div>
-                        </div>
-                        <div class="col-sm-12 ">
-                          <div class="form-group">
-                            <!-- <label>Submit</label> -->
-
-                            <button type="submit" name="save" value="add_station"
-                              class="form-control form-control-sm btn btn-primary btn-sm pull-right checkbox-toggle"><i
-                                class="fa fa-plus"> &nbsp;<?php echo ('Register'); ?></i></button>
-
-
-                          </div>
-                        </div>
-                    </div>
-                    <!-- <hr><hr> -->
-
-                    =======
-                    >>>>>>> fb50908fc99589f9f28e65fa6b173dc60779939c
                   </div>
+                </div>
 
 
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label for="communicationtehsil"><?php echo ('Communication Tehsil'); ?></label> <small class="req">
+                      *</small>
+                    <input name="communicationtehsil" class="form-control form-control-sm" type="text"
+                      placeholder="<?php echo ('Communication Tehsil') ?>" id="communicationtehsil"
+                      style="padding:18px;" value="<?php echo $input->communicationtehsil ?>">
+                    <?php echo form_error("communicationtehsil", '<span class="badge bg-danger p-1">', '</span>'); ?>
 
-                  <div class="col-sm-3">
-                    <div class="form-group">
-                      <label for="communicationpincode"><?php echo ('Communication PINCode'); ?></label> <small
-                        class="req"> *</small>
-                      <input name="communicationpincode" class="form-control form-control-sm" type="text"
-                        placeholder="<?php echo ('Communication PINCode') ?>" id="communicationpincode"
-                        style="padding:18px;" value="<?php echo $input->communicationpincode ?>">
-                      <?php echo form_error("communicationpincode", '<span class="badge bg-danger p-1">', '</span>'); ?>
-                    </div>
                   </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label for="communicationcity"><?php echo ('Communication City'); ?></label> <small class="req">
+                      *</small>
+                    <input name="communicationcity" class="form-control form-control-sm" type="text"
+                      placeholder="<?php echo ('Communication City') ?>" id="communicationcity" style="padding:18px;"
+                      value="<?php echo $input->communicationcity ?>">
+                    <?php echo form_error("communicationcity", '<span class="badge bg-danger p-1">', '</span>'); ?>
 
-                  <div class="col-sm-3">
-                    <div class="form-group">
-                      <label for="communicationconstituency"><?php echo ('Communication Constituency'); ?></label>
-                      <small class="req"> *</small>
-                      <input name="communicationconstituency" class="form-control form-control-sm" type="text"
-                        placeholder="<?php echo ('Communication Constituency') ?>" id="communicationconstituency"
-                        style="padding:18px;" value="<?php echo $input->communicationconstituency ?>">
-                      <?php echo form_error("communicationconstituency", '<span class="badge bg-danger p-1">', '</span>'); ?>
-                    </div>
                   </div>
+                </div>
 
 
 
-
-
-
-
-                  <div class="col-sm-12 ">
-                    <div class="form-group">
-                      <!-- <label>Submit</label> -->
-
-                      <button type="submit" name="save" value="add_station"
-                        class="form-control form-control-sm btn btn-primary btn-sm pull-right checkbox-toggle"><i
-                          class="fa fa-plus"> &nbsp;<?php echo ('Register'); ?></i></button>
-
-
-                    </div>
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label for="communicationpincode"><?php echo ('Communication PINCode'); ?></label> <small
+                      class="req"> *</small>
+                    <input name="communicationpincode" class="form-control form-control-sm" type="text"
+                      placeholder="<?php echo ('Communication PINCode') ?>" id="communicationpincode"
+                      style="padding:18px;" value="<?php echo $input->communicationpincode ?>">
+                    <?php echo form_error("communicationpincode", '<span class="badge bg-danger p-1">', '</span>'); ?>
                   </div>
+                </div>
+
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label for="communicationconstituency"><?php echo ('Communication Constituency'); ?></label>
+                    <small class="req"> *</small>
+                    <input name="communicationconstituency" class="form-control form-control-sm" type="text"
+                      placeholder="<?php echo ('Communication Constituency') ?>" id="communicationconstituency"
+                      style="padding:18px;" value="<?php echo $input->communicationconstituency ?>">
+                    <?php echo form_error("communicationconstituency", '<span class="badge bg-danger p-1">', '</span>'); ?>
+                  </div>
+                </div>
+                <div class="col-sm-12 ">
+                  <div class="form-group">
+                    <!-- <label>Submit</label> -->
+
+                    <button type="submit" name="save" value="add_station"
+                      class="form-control form-control-sm btn btn-primary btn-sm pull-right checkbox-toggle"><i
+                        class="fa fa-plus"> &nbsp;<?php echo ('Register'); ?></i></button>
 
 
+                  </div>
+                </div>
+              </div>
+              <!-- <hr><hr> -->
+            </div>
+
+
+
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="communicationpincode"><?php echo ('Communication PINCode'); ?></label> <small class="req">
+                  *</small>
+                <input name="communicationpincode" class="form-control form-control-sm" type="text"
+                  placeholder="<?php echo ('Communication PINCode') ?>" id="communicationpincode" style="padding:18px;"
+                  value="<?php echo $input->communicationpincode ?>">
+                <?php echo form_error("communicationpincode", '<span class="badge bg-danger p-1">', '</span>'); ?>
+              </div>
+            </div>
+
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="communicationconstituency"><?php echo ('Communication Constituency'); ?></label>
+                <small class="req"> *</small>
+                <input name="communicationconstituency" class="form-control form-control-sm" type="text"
+                  placeholder="<?php echo ('Communication Constituency') ?>" id="communicationconstituency"
+                  style="padding:18px;" value="<?php echo $input->communicationconstituency ?>">
+                <?php echo form_error("communicationconstituency", '<span class="badge bg-danger p-1">', '</span>'); ?>
+              </div>
+            </div>
+
+
+
+
+
+
+
+            <div class="col-sm-12 ">
+              <div class="form-group">
+                <!-- <label>Submit</label> -->
+
+                <button type="submit" name="save" value="add_station"
+                  class="form-control form-control-sm btn btn-primary btn-sm pull-right checkbox-toggle"><i
+                    class="fa fa-plus"> &nbsp;<?php echo ('Register'); ?></i></button>
 
 
               </div>
-              <!-- <hr><hr> -->
-
             </div>
 
+
+
+
           </div>
+          <!-- <hr><hr> -->
 
         </div>
 
       </div>
+
+    </div>
+
+    </div>
   </form>
 
   </div>
 </section>
-<<<<<<< HEAD=======<!-- $('#state').change(function(){ var state_id=$('#state').val(); if(state_id !='' ) { $.ajax({
+<!-- $('#state').change(function(){ var state_id=$('#state').val(); if(state_id !='' ) { $.ajax({
   url:"<?php echo base_url(); ?>/admin/candidate/registration/fetch_district", method:"POST", data:{state_id:state_id},
   success:function(data) { $('#district').html(data); } }); } else { $('#district').html('<option value="">Select
   District</option>');
   }
   }); -->
+<script>
+$(document).ready(function() {
+      var state_name = $("#state").val();
+      var districtset = $('districtset').val();
 
-  >>>>>>> fb50908fc99589f9f28e65fa6b173dc60779939c
-  <script>
-  $(document).ready(function() {
+      $.ajax({
+        url: "<?php echo base_url(); ?>/admin/candidate/registration/fetch_district",
+        method: "POST",
+        data: {
+          state_name: state_name
+        },
+        success: function(data) {
+          // $('#district option[value="' + districtset + '"]').prop('selected', true);
 
-        <<
-        <<
-        <<
-        <
-        HEAD
+          $('#district').html(data);
+        }
+      });
+      // $('$district').prop('selected',districtset);
+
+      // $('#district option[value="' + districtset + '"]').prop('selected', true);
+      // $("#district").val(districtset).attr('selected','selected');
+
+
+      var status = $('#ab_status').val();
+      var idtype = $('#idtype').val();
+      if (idtype == "Aadhar ID") {
+        $('#typeofalternateid').hide();
+        $('#idnos').show();
+      } else {
+        $('#typeofalternateid').show();
+        $('#idno').show();
+
+
+
+      }
+      if (status == "yes") {
+        $('#todisability').show();
+      } else {
+        $('#todisability').hide();
+      }
+      //  $('#typeofalternateid').hide();
+      // $('#idno').hide();
+
+      // ab_status
+      $('#ab_status').change(function() {
+        // ab_status
+
         var state_name = $("#state").val();
-        var districtset = $('districtset').val();
-
         $.ajax({
           url: "<?php echo base_url(); ?>/admin/candidate/registration/fetch_district",
           method: "POST",
@@ -689,17 +681,9 @@
             state_name: state_name
           },
           success: function(data) {
-            // $('#district option[value="' + districtset + '"]').prop('selected', true);
-
             $('#district').html(data);
           }
         });
-        // $('$district').prop('selected',districtset);
-
-        // $('#district option[value="' + districtset + '"]').prop('selected', true);
-        // $("#district").val(districtset).attr('selected','selected');
-
-
         var status = $('#ab_status').val();
         var idtype = $('#idtype').val();
         if (idtype == "Aadhar ID") {
@@ -723,164 +707,124 @@
         // ab_status
         $('#ab_status').change(function() {
           // ab_status
-          ===
-          ===
-          =
-          var state_name = $("#state").val();
-          $.ajax({
-            url: "<?php echo base_url(); ?>/admin/candidate/registration/fetch_district",
-            method: "POST",
-            data: {
-              state_name: state_name
-            },
-            success: function(data) {
-              $('#district').html(data);
-            }
-          }); >>>
-          >>>
-          >
-          fb50908fc99589f9f28e65fa6b173dc60779939c
           var status = $('#ab_status').val();
-          var idtype = $('#idtype').val();
-          if (idtype == "Aadhar ID") {
+          if (status == "yes") {
+            $('#todisability').show()
+          }
+          if (status == "no") {
+            $('#todisability').hide()
+          }
+        });
+
+
+        $('#idtype').change(function() {
+          var type = $('#idtype').val();
+
+          if (type == "") {
             $('#typeofalternateid').hide();
-            $('#idnos').show();
-          } else {
-            $('#typeofalternateid').show();
+            $('#idno').hide();
+          }
+          if (type == "Aadhar ID") {
+            // $('#idno').attr('placeholder','sfefe');
             $('#idno').show();
 
-
+            $('#typeofalternateid').hide();
 
           }
-          if (status == "yes") {
-            $('#todisability').show();
-          } else {
-            $('#todisability').hide();
+          if (type == 'Alternate ID') {
+            $('#typeofalternateid').show();
+            $('#idno').show();
           }
-          //  $('#typeofalternateid').hide();
-          // $('#idno').hide();
 
-          // ab_status
-          $('#ab_status').change(function() {
-            // ab_status
-            var status = $('#ab_status').val();
-            if (status == "yes") {
-              $('#todisability').show()
-            }
-            if (status == "no") {
-              $('#todisability').hide()
-            }
-          });
-
-
-          $('#idtype').change(function() {
-            var type = $('#idtype').val();
-
-            if (type == "") {
-              $('#typeofalternateid').hide();
-              $('#idno').hide();
-            }
-            if (type == "Aadhar ID") {
-              // $('#idno').attr('placeholder','sfefe');
-              $('#idno').show();
-
-              $('#typeofalternateid').hide();
-
-            }
-            if (type == 'Alternate ID') {
-              $('#typeofalternateid').show();
-              $('#idno').show();
-            }
-
-
-          });
-
-
-          $('#comm_address').change(function() {
-            if ($("#comm_address").prop('checked') == true) {
-              // var commad=$('permanentaddress').val();
-              var pa = $("#permanentaddress").val();
-              var st = $("#state").val();
-              var dt = $("#district").val();
-              var pt = $("#permanenttehsil").val();
-              var pc = $("#permanentcity").val();
-              var ppc = $("#permanentpincode").val();
-              var ptc = $("#permanentconstituency").val();
-              //setvalue
-              // alert(value);
-
-              $("#communicationaddress").prop('value', pa);
-              $("#communicationstate").prop('value', st);
-              $("#communicationdistrict").prop('value', dt);
-              $("#communicationtehsil").prop('value', pt);
-              $("#communicationcity").prop('value', pc);
-              $("#communicationpincode").prop('value', ppc);
-              $("#communicationconstituency").prop('value', ptc);
-
-              // $("id:permanentaddress").val("Shadow Cracker");
-
-              // var userId = $(id).find("input[name='permanentaddress']").val();
-              //   alert(userId);
-              // $('#communicationaddress').val(userId);
-
-
-              $("#communicationaddress").prop('disabled', true);
-              // $("#communicationaddress").attr('value',commadd);
-
-
-
-              $("#communicationstate").prop('disabled', true);
-
-              $("#communicationdistrict").prop('disabled', true);
-
-              $("#communicationtehsil").prop('disabled', true);
-
-              $("#communicationcity").prop('disabled', true);
-              $("#communicationpincode").prop('disabled', true);
-
-              $("#communicationconstituency").prop('disabled', true);
-
-
-            } else {
-              $("#communicationaddress").prop('disabled', false);
-              $("#communicationstate").prop('disabled', false);
-
-              $("#communicationdistrict").prop('disabled', false);
-
-              $("#communicationtehsil").prop('disabled', false);
-
-              $("#communicationcity").prop('disabled', false);
-              $("#communicationpincode").prop('disabled', false);
-
-              $("#communicationconstituency").prop('disabled', false);
-
-
-            }
-
-          });
-
-
-          $('#state').change(function() {
-            var state_id = $('#state').val();
-            if (state_id != '') {
-              $.ajax({
-                url: "<?php echo base_url(); ?>/admin/candidate/registration/fetch_district",
-                method: "POST",
-                data: {
-                  state_id: state_id
-                },
-                success: function(data) {
-                  $('#district').html(data);
-                }
-              });
-            } else {
-              $('#district').html('<option value="">Select District</option>');
-            }
-          });
 
         });
-  </script>
 
 
-  <!-- jQuery -->
-  <script src="<?php echo base_url('vendor/almasaeed2010/adminlte/') ?>plugins/jquery/jquery.min.js"></script>
+        $('#comm_address').change(function() {
+          if ($("#comm_address").prop('checked') == true) {
+            // var commad=$('permanentaddress').val();
+            var pa = $("#permanentaddress").val();
+            var st = $("#state").val();
+            var dt = $("#district").val();
+            var pt = $("#permanenttehsil").val();
+            var pc = $("#permanentcity").val();
+            var ppc = $("#permanentpincode").val();
+            var ptc = $("#permanentconstituency").val();
+            //setvalue
+            // alert(value);
+
+            $("#communicationaddress").prop('value', pa);
+            $("#communicationstate").prop('value', st);
+            $("#communicationdistrict").prop('value', dt);
+            $("#communicationtehsil").prop('value', pt);
+            $("#communicationcity").prop('value', pc);
+            $("#communicationpincode").prop('value', ppc);
+            $("#communicationconstituency").prop('value', ptc);
+
+            // $("id:permanentaddress").val("Shadow Cracker");
+
+            // var userId = $(id).find("input[name='permanentaddress']").val();
+            //   alert(userId);
+            // $('#communicationaddress').val(userId);
+
+
+            $("#communicationaddress").prop('disabled', true);
+            // $("#communicationaddress").attr('value',commadd);
+
+
+
+            $("#communicationstate").prop('disabled', true);
+
+            $("#communicationdistrict").prop('disabled', true);
+
+            $("#communicationtehsil").prop('disabled', true);
+
+            $("#communicationcity").prop('disabled', true);
+            $("#communicationpincode").prop('disabled', true);
+
+            $("#communicationconstituency").prop('disabled', true);
+
+
+          } else {
+            $("#communicationaddress").prop('disabled', false);
+            $("#communicationstate").prop('disabled', false);
+
+            $("#communicationdistrict").prop('disabled', false);
+
+            $("#communicationtehsil").prop('disabled', false);
+
+            $("#communicationcity").prop('disabled', false);
+            $("#communicationpincode").prop('disabled', false);
+
+            $("#communicationconstituency").prop('disabled', false);
+
+
+          }
+
+        });
+
+
+        $('#state').change(function() {
+          var state_id = $('#state').val();
+          if (state_id != '') {
+            $.ajax({
+              url: "<?php echo base_url(); ?>/admin/candidate/registration/fetch_district",
+              method: "POST",
+              data: {
+                state_id: state_id
+              },
+              success: function(data) {
+                $('#district').html(data);
+              }
+            });
+          } else {
+            $('#district').html('<option value="">Select District</option>');
+          }
+        });
+
+      });
+</script>
+
+
+<!-- jQuery -->
+<script src="<?php echo base_url('vendor/almasaeed2010/adminlte/') ?>plugins/jquery/jquery.min.js"></script>
