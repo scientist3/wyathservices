@@ -85,18 +85,18 @@ class Registration extends CI_Controller
     $data['title'] = ('Edit Candidate');
     $data['subtitle'] = ('Edit Candidate');
     #-------------------------------#
-    $data['salutation'] = $this->CandidateModel->salutation();
-    $data['state'] = $this->CSD->fetch_state();
-
-    $data['gender'] = $this->CandidateModel->gender();
-    $data['maritalstatus'] = $this->CandidateModel->maritalstatus();
-    $data['education'] = $this->CandidateModel->GetEducation();
-    $data['religion'] = $this->CandidateModel->religion();
-    $data['category'] = $this->CandidateModel->category();
-    $todisability = $this->CandidateModel->todisability();
+    $data['salutation'] = $this->CommonModel->salutation();
+    // $data['state'] = $this->AddressModel->fetch_state();
+    $data['state'] = $this->AddressModel->read_state_country_as_list(101);
+    $data['gender'] = $this->CommonModel->gender();
+    $data['maritalstatus'] = $this->CommonModel->maritalstatus();
+    $data['education'] = $this->CommonModel->GetEducation();
+    $data['religion'] = $this->CommonModel->religion();
+    $data['category'] = $this->CommonModel->category();
+    $todisability = $this->CommonModel->todisability();
     $data['todisability'] = $todisability;
-    $data['idtype'] = $this->CandidateModel->idtype();
-    $data['typeofalternateid'] = $this->CandidateModel->typeofalternateid();
+    $data['idtype'] = $this->CommonModel->idtype();
+    $data['typeofalternateid'] = $this->CommonModel->typeofalternateid();
 
     $input = $this->CandidateModel->read_by_id_as_obj($c_id);
     $data['input'] = (object)$postDataInp = array(

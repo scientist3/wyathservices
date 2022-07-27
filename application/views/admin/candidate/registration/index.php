@@ -524,6 +524,7 @@ $(document).ready(function() {
 
 
   });
+
   $('#comm_address').change(function() {
     if ($("#comm_address").prop('checked') == true) {
       $("#c4communicationaddress").hide();

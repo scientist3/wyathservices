@@ -4,8 +4,6 @@
     <!-- <span> <?php // echo $this->session->flashdata('message'); 
                 ?> </span> -->
   </div>
-
-
   <?php print_r($input); ?>
   <form role="form" action="<?php echo site_url('../admin/candidate/registration/insert') ?>" method="post"
     id="save_type_form" enctype="multipart/form-data">
@@ -382,26 +380,8 @@
                 <div class="form-group">
                   <label for="permanentstate"><?php echo ('Permanent State'); ?></label> <small class="req"> *</small>
 
-                  <select name="state" id="state" class="form-control input-lg">
+                  <?php echo form_dropdown('permanentstate', $state, $input->permanentstate, 'class="form-control" id="permanentstate" '); ?>
 
-                    <option value="">Select State</option>
-
-                    <?php
-
-                    $limit = 36;
-                    for ($i = 0; $i < $limit; $i++) {
-                    ?>
-
-                    <option value="<?php echo $state[$i]->state_name ?>"
-                      <?php if ($state[$i]->state_name == $input->permanentstate) echo 'selected' ?>>
-                      <?php echo $state[$i]->state_name ?>
-                    </option>
-                    <?php
-
-                    }
-
-                    ?>
-                  </select>
                   <?php echo form_error("state", '<span class="badge bg-danger p-1">', '</span>'); ?>
 
                 </div>
@@ -413,7 +393,7 @@
                     *</small>
                   <select name="district" id="district" class="form-control input-lg">
                     <option value="">Select District</option>
-                    
+
                   </select>
                   <?php echo form_error("district", '<span class="badge bg-danger p-1">', '</span>'); ?>
 
@@ -470,7 +450,7 @@
                 </div>
               </div>
 
-              <div class="col-sm-4">
+              <div class="col-sm-4" id="c4communicationaddress">
                 <div class="form-group">
                   <label for="communicationaddress"><?php echo ('Communication Address.'); ?></label> <small
                     class="req"> *</small>
@@ -482,7 +462,7 @@
                 </div>
               </div>
 
-              <div class="col-sm-4">
+              <div class="col-sm-4" id="c4communicationstate">
                 <div class="form-group">
                   <label for="communicationstate"><?php echo ('Communication State'); ?></label> <small class="req">
                     *</small>
@@ -501,7 +481,7 @@
                 </div>
               </div>
 
-              <div class="col-sm-4">
+              <div class="col-sm-4" id="c4communicationdistrict">
                 <div class="form-group">
                   <label for="communicationdistrict"><?php echo ('Communication District'); ?></label> <small
                     class="req">
@@ -514,7 +494,7 @@
                 </div>
               </div>
 
-              <div class="col-sm-3">
+              <div class="col-sm-3" id="c4communicationtehsil">
                 <div class="form-group">
                   <label for="communicationtehsil"><?php echo ('Communication Tehsil'); ?></label> <small class="req">
                     *</small>
@@ -526,7 +506,7 @@
                 </div>
               </div>
 
-              <div class="col-sm-3">
+              <div class="col-sm-3" id="c4communicationcity">
                 <div class="form-group">
                   <label for="communicationcity"><?php echo ('Communication City'); ?></label> <small class="req">
                     *</small>
@@ -538,7 +518,7 @@
                 </div>
               </div>
 
-              <div class="col-sm-3">
+              <div class="col-sm-3" id="c4communicationpincode">
                 <div class="form-group">
                   <label for="communicationpincode"><?php echo ('Communication PINCode'); ?></label> <small class="req">
                     *</small>
@@ -549,7 +529,7 @@
                 </div>
               </div>
 
-              <div class="col-sm-3">
+              <div class="col-sm-3" id="c4communicationconstituency">
                 <div class="form-group">
                   <label for="communicationconstituency"><?php echo ('Communication Constituency'); ?></label> <small
                     class="req"> *</small>
@@ -585,7 +565,22 @@
 </section>
 <script>
 $(document).ready(function() {
+  var state_name = $('#permanentstate').val();
+  if (state_name != '') {
+    $.ajax({
+      url: "<?php echo base_url(); ?>/admin/candidate/registration/fetch_district",
+      method: "POST",
+      data: {
+        state_name: state_name
+      },
+      success: function(data) {
+        $('#district').html(data);
 
+      }
+    });
+  } else {
+    $('#district').html('<option value="">Select District</option>');
+  }
   $('#todisability').hide()
   $('#typeofalternateid').hide();
   $('#idno').hide();
@@ -628,103 +623,29 @@ $(document).ready(function() {
 
   $('#comm_address').change(function() {
     if ($("#comm_address").prop('checked') == true) {
-      // var commad=$('permanentaddress').val();
-      var pa = $("#permanentaddress").val();
-      var st = $("#state").val();
-      var dt = $("#district").val();
-      var pt = $("#permanenttehsil").val();
-      var pc = $("#permanentcity").val();
-      var ppc = $("#permanentpincode").val();
-      var ptc = $("#permanentconstituency").val();
-      //setvalue
-      // alert(value);
-
-      $("#communicationaddress").prop('value', pa);
-      $("#communicationstate").prop('value', st);
-      $("#communicationdistrict").prop('value', dt);
-      $("#communicationtehsil").prop('value', pt);
-      $("#communicationcity").prop('value', pc);
-      $("#communicationpincode").prop('value', ppc);
-      $("#communicationconstituency").prop('value', ptc);
-
-      // $("id:permanentaddress").val("Shadow Cracker");
-
-      // var userId = $(id).find("input[name='permanentaddress']").val();
-      //   alert(userId);
-      // $('#communicationaddress').val(userId);
-
-
-      $("#communicationaddress").prop('disabled', true);
-      // $("#communicationaddress").attr('value',commadd);
-
-
-
-      $("#communicationstate").prop('disabled', true);
-
-      $("#communicationdistrict").prop('disabled', true);
-
-      $("#communicationtehsil").prop('disabled', true);
-
-      $("#communicationcity").prop('disabled', true);
-      $("#communicationpincode").prop('disabled', true);
-
-      $("#communicationconstituency").prop('disabled', true);
-
-
+      $("#c4communicationaddress").hide();
+      $("#c4communicationstate").hide();
+      $("#c4communicationdistrict").hide();
+      $("#c4communicationtehsil").hide();
+      $("#c4communicationcity").hide();
+      $("#c4communicationpincode").hide();
+      $("#c4communicationconstituency").hide();
+      $("#c4communicationaddress").hide();
     } else {
-      $("#communicationaddress").prop('disabled', false);
-      $("#communicationstate").prop('disabled', false);
-
-      $("#communicationdistrict").prop('disabled', false);
-
-      $("#communicationtehsil").prop('disabled', false);
-
-      $("#communicationcity").prop('disabled', false);
-      $("#communicationpincode").prop('disabled', false);
-
-      $("#communicationconstituency").prop('disabled', false);
-
-
+      $("#c4communicationaddress").show();
+      $("#c4communicationstate").show();
+      $("#c4communicationdistrict").show();
+      $("#c4communicationtehsil").show();
+      $("#c4communicationcity").show();
+      $("#c4communicationpincode").show();
+      $("#c4communicationconstituency").show();
+      $("#c4communicationaddress").show();
     }
-
   });
 
+  $('#permanentstate').change(function() {
 
-
-  // Aadhar ID
-  // Alternate ID
-
-
-  //  $('#state').change(function(){
-  //   var state_id = $('#state').val();
-  //   if(state_id != '')
-  //   {
-  //    $.ajax({
-  //     url: // echo base_url(); 
-  //?//
-  //> //CSD / fetch_state ",
-  //     method:"POST",
-  //     data:{state_id:state_id},
-  //     success:function(data)
-  //     {
-  //      $('#state').html(data);
-  //      $('#district').html('<option value="">Select District</option>');
-  //     }
-  //    });
-  //   }
-  //   else
-  //   {
-  //    $('#state').html('<option value="">Select State</option>');
-  //    $('#city').html('<option value="">Select District</option>');
-  //   }
-  //  });
-
-
-
-
-  $('#state').change(function() {
-
-    var state_name = $('#state').val();
+    var state_name = $('#permanentstate').val();
     if (state_name != '') {
       $.ajax({
         url: "<?php echo base_url(); ?>/admin/candidate/registration/fetch_district",
@@ -734,6 +655,24 @@ $(document).ready(function() {
         },
         success: function(data) {
           $('#district').html(data);
+        }
+      });
+    } else {
+      $('#district').html('<option value="">Select District</option>');
+    }
+  });
+  $('#communicationstate').change(function() {
+
+    var state_name = $('#communicationstate').val();
+    if (state_name != '') {
+      $.ajax({
+        url: "<?php echo base_url(); ?>/admin/candidate/registration/fetch_district",
+        method: "POST",
+        data: {
+          state_name: state_name
+        },
+        success: function(data) {
+          $('#communicationdistrict').html(data);
         }
       });
     } else {
