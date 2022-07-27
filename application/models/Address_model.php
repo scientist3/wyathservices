@@ -22,6 +22,23 @@ class Address_model extends CI_Model
 			->result();
 	}
 
+
+	// added by riyaz
+	public function fetch_district($state_id)
+	{
+		$this->db->where('state_id', $state_id);
+		$this->db->order_by('name', 'ASC');
+		$query = $this->db->get('helper_city');
+		$output = '<option value="">Select District</option>';
+		foreach ($query->result() as $row) {
+			$output .= '<option value="' . $row->ID . '">' . $row->name . '</option>';
+		}
+		return $output;
+	}
+
+	// end
+
+
 	public function read_country_as_list()
 	{
 		$result = $this->db->select("*")
@@ -37,8 +54,11 @@ class Address_model extends CI_Model
 		return $list;
 	}
 
-	public function read_state_country_as_list($country_id)
+
+	//default india country id assigned
+	public function read_state_country_as_list()
 	{
+		$country_id = '101';
 		$result = $this->db->select("*")
 			->from($this->state_tbl)
 			->where('country_id', $country_id)
@@ -52,10 +72,10 @@ class Address_model extends CI_Model
 		return !empty($list) ? $list : array();
 	}
 
-	public function read_state_country_as_list_ajax($country_id = null)
+	public function read_state_country_as_list_ajax()
 	{
 		//$department_id = $this->input->post('department_id');
-
+		$country_id = 101;
 		if (!empty($country_id)) {
 			$query = $this->db->select("*")
 				->from($this->state_tbl)
@@ -83,6 +103,9 @@ class Address_model extends CI_Model
 		echo json_encode($data);
 	}
 
+
+
+
 	public function read_city_state_as_list($state_id)
 	{
 		$result = $this->db->select("*")
@@ -98,7 +121,7 @@ class Address_model extends CI_Model
 		return !empty($list) ? $list : array();
 	}
 
-	public function read_city_state_as_list_ajax($state_id = null, $isBootstrapSelect = false,  $datadataBelong = null,	$dataSubtext = null)
+	public function read_city_state_as_list_ajax($state_id = null, $isBootstrapSelect = false,  $datadataBelong = null,  $dataSubtext = null)
 	{
 		//$department_id = $this->input->post('department_id');
 

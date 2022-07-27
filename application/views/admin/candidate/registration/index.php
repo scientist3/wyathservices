@@ -4,33 +4,19 @@
     <!-- <span> <?php // echo $this->session->flashdata('message'); 
                 ?> </span> -->
   </div>
-
   <form role="form" action="<?php echo site_url('../admin/candidate/registration/insert') ?>" method="post"
     id="save_type_form" enctype="multipart/form-data">
     <div class="card">
       <div class="card-header bg-dark">
         <h3 class="card-title"><i class="fa fa-plus"></i> <?php echo $subtitle; ?></h3>
       </div>
-
-
-
       <div class="card-body">
-        <div class="row">
 
-          <!-- salutation -->
-          <div class="col-md-12">
-            <?php //echo form_hidden('ab_id', $input->ab_id) 
-            ?>
+        <!-- user details -->
+        <div class="card" style="background-color:#f0eff0;">
+          <!-- <div class="card-header"> <strong>PERSONAL DETAILS</strong> </div> -->
+          <div class="card-body">
             <div class="row">
-              <div class="input-group mb-1">
-
-
-              </div>
-              <!-- salutation end-->
-
-              <!-- Fullname -->
-              <!-- Gender -->
-              <!-- Dateofbirth -->
               <div class="col-sm-1">
                 <div class="form-group">
                   <label for="salutation"><?php echo ('Salutation'); ?></label> <small class="req"></small>
@@ -56,78 +42,7 @@
 
                 </div>
               </div>
-
-
-              <div class="col-sm-2">
-                <div class="form-group">
-                  <label for="gender"><?php echo ('Gender'); ?></label> <small class="req"> *</small>
-
-                  <select name="gender" id="gender" class="form-control input-lg">
-
-                    <option value="">Select Gender</option>
-                    <?php
-                    foreach ($gender as $row) {
-                      echo '<option value="' . $row . '">' . $row . '</option>';
-                    }
-                    ?>
-                  </select>
-
-
-                  <?php echo form_error("gender", '<span class="badge bg-danger p-1">', '</span>'); ?>
-
-                </div>
-              </div>
-
-              <div class="col-sm-2">
-                <div class="form-group">
-                  <label for="dob"><?php echo ('Date of Birth'); ?></label> <small class="req"> *</small>
-                  <input type="date" name="dob" class="form-control form-control-sm" type="text"
-                    placeholder="<?php echo ('Date od Birth ') ?>" id="dob" style="padding:18px;"
-                    value="<?= set_value('dob') ?>">
-                  <?php echo form_error("dob", '<span class="badge bg-danger p-1">', '</span>'); ?>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="form-group">
-                  <label for="mobilenumber"><?php echo ('Mobile Number'); ?></label> <small class="req"> *</small>
-                  <input name="mobilenumber" class="form-control form-control-sm" type="text"
-                    placeholder="<?php echo ('Mobile Number') ?>" id="mobilenumber" style="padding:18px;"
-                    value="<?= set_value('mobilenumber') ?>">
-                  <?php echo form_error("mobilenumber", '<span class="badge bg-danger p-1">', '</span>'); ?>
-                </div>
-              </div>
-
-
-
               <div class="col-sm-4">
-                <div class="form-group">
-                  <label for="email"><?php echo ('Email'); ?></label> <small class="req"> *</small>
-                  <input name="email" class="form-control form-control-sm" type="email"
-                    placeholder="<?php echo ('Email') ?>" id="email" style="padding:18px;"
-                    value="<?= set_value('email') ?>">
-                  <?php echo form_error("email", '<span class="badge bg-danger p-1">', '</span>'); ?>
-                </div>
-              </div>
-
-              <div class="col-sm-3">
-                <div class="form-group">
-                  <label for="maritalstatus"><?php echo ('Marital Status'); ?></label> <small class="req"> *</small>
-                  <select name="maritalstatus" id="maritalstatus" class="form-control input-lg">
-
-                    <!--               <option value="">Select Marital Status</option> -->
-                    <?php
-                    foreach ($maritalstatus as $row) {
-                      echo '<option value="' . $row . '">' . $row . '</option>';
-                    }
-                    ?>
-                  </select>
-
-                  <?php echo form_error("maritalstatus", '<span class="badge bg-danger p-1">', '</span>'); ?>
-                </div>
-              </div>
-
-
-              <div class="col-sm-5">
                 <div class="form-group">
                   <label for="fathersname"><?php echo ('Fathers/Guardian Name'); ?></label> <small class="req">
                     *</small>
@@ -161,8 +76,107 @@
                   <?php echo form_error("guardianname", '<span class="badge bg-danger p-1">', '</span>'); ?>
                 </div>
               </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label for="mobilenumber"><?php echo ('Mobile Number'); ?></label> <small class="req"> *</small>
+                  <input name="mobilenumber" class="form-control form-control-sm" type="text"
+                    placeholder="<?php echo ('Mobile Number') ?>" id="mobilenumber" style="padding:18px;"
+                    value="<?= set_value('mobilenumber') ?>">
+                  <?php echo form_error("mobilenumber", '<span class="badge bg-danger p-1">', '</span>'); ?>
+                </div>
+              </div>
 
-              <div class="col-sm-2">
+
+
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label for="email"><?php echo ('Email'); ?></label> <small class="req"> *</small>
+                  <input name="email" class="form-control form-control-sm" type="email"
+                    placeholder="<?php echo ('Email') ?>" id="email" style="padding:18px;"
+                    value="<?= set_value('email') ?>">
+                  <?php echo form_error("email", '<span class="badge bg-danger p-1">', '</span>'); ?>
+                </div>
+              </div>
+
+
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="gender"><?php echo ('Gender'); ?></label> <small class="req"> *</small>
+
+                  <select name="gender" id="gender" class="form-control input-lg">
+
+                    <option value="">Select Gender</option>
+                    <?php
+                    foreach ($gender as $row) {
+                      echo '<option value="' . $row . '">' . $row . '</option>';
+                    }
+                    ?>
+                  </select>
+
+
+                  <?php echo form_error("gender", '<span class="badge bg-danger p-1">', '</span>'); ?>
+
+                </div>
+              </div>
+
+
+
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="dob"><?php echo ('Date of Birth'); ?></label> <small class="req"> *</small>
+                  <input type="date" name="dob" class="form-control form-control-sm" type="text"
+                    placeholder="<?php echo ('Date od Birth ') ?>" id="dob" style="padding:18px;"
+                    value="<?= set_value('dob') ?>">
+                  <?php echo form_error("dob", '<span class="badge bg-danger p-1">', '</span>'); ?>
+                </div>
+              </div>
+
+
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="maritalstatus"><?php echo ('Marital Status'); ?></label> <small class="req"> *</small>
+                  <select name="maritalstatus" id="maritalstatus" class="form-control input-lg">
+
+                    <!--               <option value="">Select Marital Status</option> -->
+                    <?php
+                    foreach ($maritalstatus as $row) {
+                      echo '<option value="' . $row . '">' . $row . '</option>';
+                    }
+                    ?>
+                  </select>
+
+                  <?php echo form_error("maritalstatus", '<span class="badge bg-danger p-1">', '</span>'); ?>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="religion"><?php echo ('Religion'); ?></label> <small class="req"> *</small>
+                  <?php //echo form_dropdown('religion', $religion, 0, 'class="form-control" id="gal_event_id" '); 
+                  ?>
+                  <select name="religion" id="religion" class="form-control input-lg">
+
+                    <option value="">Select Religion</option>
+                    <?php
+                    foreach ($religion as $row) {
+                      echo '<option value="' . $row . '">' . $row . '</option>';
+                    }
+                    ?>
+                  </select>
+                  <?php echo form_error("religion", '<span class="badge bg-danger p-1">', '</span>'); ?>
+
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+        <!-- education -->
+        <div class="card" style="background-color:#f0eff0;">
+          <div class="card-body">
+            <div class="row">
+
+              <div class="col-sm-3">
                 <div class="form-group">
                   <label for="education"><?php echo ('Education Level'); ?></label> <small class="req"> *</small>
                   <?php //echo form_dropdown('education', $education, 0, 'class="form-control" id="gal_event_id" '); 
@@ -184,25 +198,6 @@
 
               <div class="col-sm-3">
                 <div class="form-group">
-                  <label for="religion"><?php echo ('Religion'); ?></label> <small class="req"> *</small>
-                  <?php //echo form_dropdown('religion', $religion, 0, 'class="form-control" id="gal_event_id" '); 
-                  ?>
-                  <select name="religion" id="religion" class="form-control input-lg">
-
-                    <option value="">Select Religion</option>
-                    <?php
-                    foreach ($religion as $row) {
-                      echo '<option value="' . $row . '">' . $row . '</option>';
-                    }
-                    ?>
-                  </select>
-                  <?php echo form_error("religion", '<span class="badge bg-danger p-1">', '</span>'); ?>
-
-                </div>
-              </div>
-
-              <div class="col-sm-2">
-                <div class="form-group">
                   <label for="category"><?php echo ('Category '); ?></label> <small class="req"> *</small>
                   <?php //echo form_dropdown('category', $category, 0, 'class="form-control" id="gal_event_id" '); 
                   ?>
@@ -218,7 +213,6 @@
 
                 </div>
               </div>
-
               <div class="col-sm-2">
                 <div class="form-group">
                   <label for="ab_status"><?php echo ('Disability '); ?></label> <small class="req"> *</small>
@@ -246,8 +240,7 @@
 
                 </div>
               </div>
-
-              <div class="col-sm-3">
+              <div class="col-sm-4">
                 <div class="form-group">
                   <label for="idtype"><?php echo ('ID Type'); ?></label> <small class="req"> *</small>
                   <select name="idtype" id="idtype" class="form-control input-lg">
@@ -263,8 +256,7 @@
 
                 </div>
               </div>
-
-              <div class="col-sm-3" id="typeofalternateid">
+              <div class="col-sm-4" id="typeofalternateid">
                 <div class="form-group">
                   <label for="typeofalternateid"><?php echo ('Type of AlternateID'); ?></label> <small class="req">
                     *</small>
@@ -282,7 +274,7 @@
                 </div>
               </div>
 
-              <div class="col-sm-3" id="idno">
+              <div class="col-sm-4" id="idno">
                 <div class="form-group">
                   <label for="idno"><?php echo ('ID No.'); ?></label> <small class="req"> *</small>
                   <input name="idno" class="form-control form-control-sm" type="text"
@@ -294,7 +286,16 @@
                 </div>
               </div>
 
-              <div class="col-sm-6">
+            </div>
+
+          </div>
+        </div>
+        <!-- user Address -->
+        <div class="card" style="background-color:#f0eff0;">
+          <div class="card-body">
+            <div class="row">
+
+              <div class="col-sm-4">
                 <div class="form-group">
                   <label for="permanentaddress"><?php echo ('Permanent Address.'); ?></label> <small class="req">
                     *</small>
@@ -305,26 +306,18 @@
 
                 </div>
               </div>
-
               <div class="col-sm-4">
                 <div class="form-group">
                   <label for="permanentstate"><?php echo ('Permanent State'); ?></label> <small class="req"> *</small>
+                  <?php echo form_dropdown('permanentstate', $state, 0, 'class="form-control" id="permanentstate" '); ?>
 
-                  <select name="state" id="state" class="form-control input-lg">
-
-                    <option value="">Select State</option>
-                    <?php
-                    foreach ($state as $row) {
-                      echo '<option value="' . $row->state_name . '">' . $row->state_name . '</option>';
-                    }
-                    ?>
                   </select>
                   <?php echo form_error("state", '<span class="badge bg-danger p-1">', '</span>'); ?>
 
                 </div>
               </div>
 
-              <div class="col-sm-3">
+              <div class="col-sm-4">
                 <div class="form-group">
                   <label for="permanentdistrict"><?php echo ('Permanent District'); ?></label> <small class="req">
                     *</small>
@@ -347,7 +340,7 @@
                 </div>
               </div>
 
-              <div class="col-sm-2">
+              <div class="col-sm-3">
                 <div class="form-group">
                   <label for="permanentcity"><?php echo ('Permanent City'); ?></label> <small class="req"> *</small>
                   <input name="permanentcity" class="form-control form-control-sm" type="text"
@@ -379,15 +372,14 @@
                   <?php echo form_error("permanentconstituency", '<span class="badge bg-danger p-1">', '</span>'); ?>
                 </div>
               </div>
-
               <div class="col-sm-10">
                 <div class="form-group form-check ">
                   <input type="checkbox" class="form-check-input" name="comm_address" id="comm_address" value="1">
                   <label class="form-check-label" for="comm_address">Communication Same as Permanent Address</label>
                 </div>
               </div>
-
-              <div class="col-sm-5">
+              <!-- adding id suffix with c4 to hide it if checked -->
+              <div class="col-sm-4" id="c4communicationaddress">
                 <div class="form-group">
                   <label for="communicationaddress"><?php echo ('Communication Address.'); ?></label> <small
                     class="req"> *</small>
@@ -399,41 +391,30 @@
                 </div>
               </div>
 
-              <div class="col-sm-4">
+              <div class="col-sm-4" id="c4communicationstate">
                 <div class="form-group">
                   <label for="communicationstate"><?php echo ('Communication State'); ?></label> <small class="req">
                     *</small>
-
-                  <select name="communicationstate" id="communicationstate" class="form-control input-lg">
-
-                    <option value="">Select State</option>
-                    <?php
-                    foreach ($state as $row) {
-                      echo '<option value="' . $row->state_name . '">' . $row->state_name . '</option>';
-                    }
-                    ?>
-                  </select>
-                  <?php echo form_error("state", '<span class="badge bg-danger p-1">', '</span>'); ?>
+                  <?php echo form_dropdown('communicationstate', $state, 0, 'class="form-control" id="communicationstate" '); ?>
+                  <?php echo form_error("communicationstate", '<span class="badge bg-danger p-1">', '</span>'); ?>
 
                 </div>
               </div>
 
-              <div class="col-sm-3">
+              <div class="col-sm-4" id="c4communicationdistrict">
                 <div class="form-group">
                   <label for="communicationdistrict"><?php echo ('Communication District'); ?></label> <small
-                    class="req"> *</small>
-                  <input type="text" name="communicationdistrict" id="communicationdistrict" value="" />
-                  <!-- 
-                    <select name="communicationdistrict"  id="communicationdistrict" class="form-control input-lg">
-                      <option value="">Select District</option>
-                    </select>
-                  -->
+                    class="req">
+                    *</small>
+                  <select name="communicationdistrict" id="communicationdistrict" class="form-control input-lg">
+                    <option value="">Select District</option>
+                  </select>
                   <?php echo form_error("communicationdistrict", '<span class="badge bg-danger p-1">', '</span>'); ?>
 
                 </div>
               </div>
 
-              <div class="col-sm-3">
+              <div class="col-sm-3" id="c4communicationtehsil">
                 <div class="form-group">
                   <label for="communicationtehsil"><?php echo ('Communication Tehsil'); ?></label> <small class="req">
                     *</small>
@@ -445,7 +426,7 @@
                 </div>
               </div>
 
-              <div class="col-sm-3">
+              <div class="col-sm-3" id="c4communicationcity">
                 <div class="form-group">
                   <label for="communicationcity"><?php echo ('Communication City'); ?></label> <small class="req">
                     *</small>
@@ -457,7 +438,7 @@
                 </div>
               </div>
 
-              <div class="col-sm-3">
+              <div class="col-sm-3" id="c4communicationpincode">
                 <div class="form-group">
                   <label for="communicationpincode"><?php echo ('Communication PINCode'); ?></label> <small class="req">
                     *</small>
@@ -468,7 +449,7 @@
                 </div>
               </div>
 
-              <div class="col-sm-3">
+              <div class="col-sm-3" id="c4communicationconstituency">
                 <div class="form-group">
                   <label for="communicationconstituency"><?php echo ('Communication Constituency'); ?></label> <small
                     class="req"> *</small>
@@ -479,26 +460,23 @@
                 </div>
               </div>
 
-              <div class="col-sm-12 ">
-                <div class="form-group">
-                  <!-- <label>Submit</label> -->
-
-                  <button type="submit" name="save" value="add_station"
-                    class="form-control form-control-sm btn btn-primary btn-sm pull-right checkbox-toggle"><i
-                      class="fa fa-plus"> &nbsp;<?php echo ('Register'); ?></i></button>
-
-
-                </div>
-              </div>
-
             </div>
+          </div>
+        </div>
+        <div class="col-sm-12 ">
+          <div class="form-group">
+            <!-- <label>Submit</label> -->
+
+            <button type="submit" name="save" value="add_station"
+              class="form-control form-control-sm btn btn-primary btn-sm pull-right checkbox-toggle"><i
+                class="fa fa-plus">
+                &nbsp;<?php echo ('Register'); ?></i></button>
+
 
           </div>
-
         </div>
 
       </div>
-
     </div>
   </form>
   <!-- Search -->
@@ -547,106 +525,30 @@ $(document).ready(function() {
 
   });
 
-
   $('#comm_address').change(function() {
     if ($("#comm_address").prop('checked') == true) {
-      // var commad=$('permanentaddress').val();
-      var pa = $("#permanentaddress").val();
-      var st = $("#state").val();
-      var dt = $("#district").val();
-      var pt = $("#permanenttehsil").val();
-      var pc = $("#permanentcity").val();
-      var ppc = $("#permanentpincode").val();
-      var ptc = $("#permanentconstituency").val();
-      //setvalue
-      // alert(value);
-
-      $("#communicationaddress").prop('value', pa);
-      $("#communicationstate").prop('value', st);
-      $("#communicationdistrict").prop('value', dt);
-      $("#communicationtehsil").prop('value', pt);
-      $("#communicationcity").prop('value', pc);
-      $("#communicationpincode").prop('value', ppc);
-      $("#communicationconstituency").prop('value', ptc);
-
-      // $("id:permanentaddress").val("Shadow Cracker");
-
-      // var userId = $(id).find("input[name='permanentaddress']").val();
-      //   alert(userId);
-      // $('#communicationaddress').val(userId);
-
-
-      $("#communicationaddress").prop('disabled', true);
-      // $("#communicationaddress").attr('value',commadd);
-
-
-
-      $("#communicationstate").prop('disabled', true);
-
-      $("#communicationdistrict").prop('disabled', true);
-
-      $("#communicationtehsil").prop('disabled', true);
-
-      $("#communicationcity").prop('disabled', true);
-      $("#communicationpincode").prop('disabled', true);
-
-      $("#communicationconstituency").prop('disabled', true);
-
-
+      $("#c4communicationaddress").hide();
+      $("#c4communicationstate").hide();
+      $("#c4communicationdistrict").hide();
+      $("#c4communicationtehsil").hide();
+      $("#c4communicationcity").hide();
+      $("#c4communicationpincode").hide();
+      $("#c4communicationconstituency").hide();
+      $("#c4communicationaddress").hide();
     } else {
-      $("#communicationaddress").prop('disabled', false);
-      $("#communicationstate").prop('disabled', false);
-
-      $("#communicationdistrict").prop('disabled', false);
-
-      $("#communicationtehsil").prop('disabled', false);
-
-      $("#communicationcity").prop('disabled', false);
-      $("#communicationpincode").prop('disabled', false);
-
-      $("#communicationconstituency").prop('disabled', false);
-
-
+      $("#c4communicationaddress").show();
+      $("#c4communicationstate").show();
+      $("#c4communicationdistrict").show();
+      $("#c4communicationtehsil").show();
+      $("#c4communicationcity").show();
+      $("#c4communicationpincode").show();
+      $("#c4communicationconstituency").show();
+      $("#c4communicationaddress").show();
     }
-
   });
+  $('#permanentstate').change(function() {
 
-
-
-  // Aadhar ID
-  // Alternate ID
-
-
-  //  $('#state').change(function(){
-  //   var state_id = $('#state').val();
-  //   if(state_id != '')
-  //   {
-  //    $.ajax({
-  //     url: // echo base_url(); 
-  //?//
-  //> //CSD / fetch_state ",
-  //     method:"POST",
-  //     data:{state_id:state_id},
-  //     success:function(data)
-  //     {
-  //      $('#state').html(data);
-  //      $('#district').html('<option value="">Select District</option>');
-  //     }
-  //    });
-  //   }
-  //   else
-  //   {
-  //    $('#state').html('<option value="">Select State</option>');
-  //    $('#city').html('<option value="">Select District</option>');
-  //   }
-  //  });
-
-
-
-
-  $('#state').change(function() {
-
-    var state_name = $('#state').val();
+    var state_name = $('#permanentstate').val();
     if (state_name != '') {
       $.ajax({
         url: "<?php echo base_url(); ?>/admin/candidate/registration/fetch_district",
@@ -660,6 +562,24 @@ $(document).ready(function() {
       });
     } else {
       $('#district').html('<option value="">Select District</option>');
+    }
+  });
+  $('#communicationstate').change(function() {
+
+    var state_name = $('#communicationstate').val();
+    if (state_name != '') {
+      $.ajax({
+        url: "<?php echo base_url(); ?>/admin/candidate/registration/fetch_district",
+        method: "POST",
+        data: {
+          state_name: state_name
+        },
+        success: function(data) {
+          $('#communicationdistrict').html(data);
+        }
+      });
+    } else {
+      $('#communicationdistrict').html('<option value="">Select District</option>');
     }
   });
 
