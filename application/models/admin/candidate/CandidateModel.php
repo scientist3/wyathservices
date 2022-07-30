@@ -2,19 +2,42 @@
 
 class CandidateModel extends CI_Model
 {
-  // protected $allowedFields = ['name', 'email', 'address'];
-
   private $table = "candidate_tbl";
 
+  // Add new candidate 
+  public function create($data = [])
+  {
+    return $this->db->insert($this->table, $data);
+  }
 
-  public function read_by_id_as_obj($c_id = null)
+  public function read()
   {
     return $this->db->select("*")
       ->from($this->table)
-      ->where('c_id', $c_id)
       ->get()
-      ->row();
+      ->result();
   }
+
+  // Read Student as per the limit and offset
+  public function readAll($limit = null, $start = null)
+  {
+    # code...
+  }
+
+  // Read Student by ID
+  public function readById($c_id, $returnAsArray = false)
+  {
+    $this->db->select("*")
+      ->from($this->table)
+      ->where('c_id', $c_id)
+      ->get();
+    if ($returnAsArray == false)
+      return $this->db->row();
+    else
+      return $this->db->row_array();
+  }
+
+
   public function get_count()
   {
     return $this->db->count_all($this->table);
@@ -31,13 +54,7 @@ class CandidateModel extends CI_Model
       return false;
     }
   }
-  public function read()
-  {
-    return $this->db->select("*")
-      ->from($this->table)
-      ->get()
-      ->result();
-  }
+
 
   public function insert($data = [])
   {

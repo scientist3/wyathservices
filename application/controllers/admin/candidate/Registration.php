@@ -7,7 +7,7 @@ class Registration extends CI_Controller
   {
     parent::__construct();
     $this->load->model([
-      'admin/candidate/CandidateModel',
+      'admin/candidate/CandidateModel' => 'cand_model',
       'admin/candidate/CommonModel',
       'admin/candidate/AddressModel'
     ]);
@@ -98,7 +98,7 @@ class Registration extends CI_Controller
     $data['idtype'] = $this->CommonModel->idtype();
     $data['typeofalternateid'] = $this->CommonModel->typeofalternateid();
 
-    $input = $this->CandidateModel->read_by_id_as_obj($c_id);
+    $input = $this->CandidateModel->readById($c_id);
     $data['input'] = (object)$postDataInp = array(
       'c_id' => $input->c_id,
       'fullname' => $input->c_full_name,
@@ -330,14 +330,16 @@ class Registration extends CI_Controller
     );
 
     if ($this->form_validation->run() === true) {
-
-      $this->db->insert('candidate_tbl', $postDataUser);
-      $this->session->set_flashdata('message', ('Candidate Added Successfully'));
-      $this->session->set_flashdata('class_name', ('alert-success'));
+      if ($this->CandidateModel->create($postDataUser)) {
+        $this->session->set_flashdata('message', ('Candidate Added Successfully'));
+        $this->session->set_flashdata('class_name', ('alert-success'));
+      } else {
+        $this->session->set_flashdata('message', ('Please Try Again'));
+        $this->session->set_flashdata('class_name', ('alert-danger'));
+      }
       redirect('admin/candidate/registration/insert');
     }
-    // // ############################
-    // $data['state'] = $this->CSD->fetch_state();
+
     $data['state'] = $this->AddressModel->read_state_country_as_list(101); //passed indian country id
 
 
