@@ -1,4 +1,6 @@
 <!-- Main content -->
+<?php $input_height = "form-control-sm"; ?>
+
 <section class="content">
   <div class="col-sm-12">
     <!-- <span> <?php // echo $this->session->flashdata('message'); 
@@ -386,11 +388,15 @@
 
                 </div>
               </div>
-
+              <input type="hidden" value="<?php echo $input->permanentdistrict; ?>" id="hdistrict">
               <div class="col-sm-4">
                 <div class="form-group">
+
                   <label for="permanentdistrict"><?php echo ('Permanent District'); ?></label> <small class="req">
                     *</small>
+
+
+
                   <select name="district" id="district" class="form-control input-lg">
                     <option value="">Select District</option>
 
@@ -405,7 +411,7 @@
                   <label for="permanenttehsil"><?php echo ('Permanent Tehsil'); ?></label> <small class="req"> *</small>
                   <input name="permanenttehsil" class="form-control form-control-sm" type="text"
                     placeholder="<?php echo ('Permanent Tehsil') ?>" id="permanenttehsil" style="padding:18px;"
-                    value="<?= set_value('permanenttehsil') ?>">
+                    value="<?php echo $input->permanenttehsil ?>">
                   <?php echo form_error("permanenttehsil", '<span class="badge bg-danger p-1">', '</span>'); ?>
 
                 </div>
@@ -416,7 +422,7 @@
                   <label for="permanentcity"><?php echo ('Permanent City'); ?></label> <small class="req"> *</small>
                   <input name="permanentcity" class="form-control form-control-sm" type="text"
                     placeholder="<?php echo ('Permanent City') ?>" id="permanentcity" style="padding:18px;"
-                    value="<?= set_value('permanentcity') ?>">
+                    value="<?php echo $input->permanentcity ?>">
                   <?php echo form_error("permanentcity", '<span class="badge bg-danger p-1">', '</span>'); ?>
 
                 </div>
@@ -428,7 +434,7 @@
                     *</small>
                   <input name="permanentpincode" class="form-control form-control-sm" type="text"
                     placeholder="<?php echo ('Permanent PINCode') ?>" id="permanentpincode" style="padding:18px;"
-                    value="<?= set_value('permanentpincode') ?>">
+                    value="<?php echo $input->permanentpincode ?>">
                   <?php echo form_error("permanentpincode", '<span class="badge bg-danger p-1">', '</span>'); ?>
                 </div>
               </div>
@@ -439,13 +445,27 @@
                     class="req"> *</small>
                   <input name="permanentconstituency" class="form-control form-control-sm" type="text"
                     placeholder="<?php echo ('Permanent Constituency') ?>" id="permanentconstituency"
-                    style="padding:18px;" value="<?= set_value('permanentconstituency') ?>">
+                    style="padding:18px;" value="<?php echo $input->permanentconstituency ?>">
                   <?php echo form_error("permanentconstituency", '<span class="badge bg-danger p-1">', '</span>'); ?>
                 </div>
               </div>
               <div class="col-sm-10">
                 <div class="form-group form-check ">
+                  <?php
+
+                  if ($input->comm_address == 'Yes') {
+                  ?>
+                  <input type="checkbox" class="form-check-input" name="comm_address" id="comm_address" value="1"
+                    checked>
+                  <?php
+                  } else {
+                  ?>
                   <input type="checkbox" class="form-check-input" name="comm_address" id="comm_address" value="1">
+                  <?php
+                  }
+
+                  ?>
+                  <!-- //  <input type="checkbox" class="form-check-input" name="comm_address" id="comm_address" value="1"> -->
                   <label class="form-check-label" for="comm_address">Communication Same as Permanent Address</label>
                 </div>
               </div>
@@ -575,6 +595,8 @@ $(document).ready(function() {
       },
       success: function(data) {
         $('#district').html(data);
+        var dist = $('#hdistrict').val();
+        $('#district').val(dist);
 
       }
     });

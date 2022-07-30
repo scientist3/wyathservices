@@ -1,8 +1,9 @@
 <!-- Main content -->
+<?php $input_height = "form-control-sm"; ?>
+
 <section class="content">
   <div class="col-sm-12">
-    <!-- <span> <?php // echo $this->session->flashdata('message'); 
-                ?> </span> -->
+
   </div>
   <form role="form" action="<?php echo site_url('../admin/candidate/registration/insert') ?>" method="post"
     id="save_type_form" enctype="multipart/form-data">
@@ -35,7 +36,7 @@
                   <label for="fullname"><?php echo ('Full Name'); ?></label> <small class="req"> *</small>
                   <?php //echo $input->c_full_name 
                   ?>
-                  <input name="fullname" class="form-control form-control-sm" type="text"
+                  <input name="fullname" class="form-control <?= $input_height; ?>" type="text"
                     value="<?= set_value('fullname') ?>" placeholder="<?php echo ('Full Name') ?>" id="fullname"
                     style="padding:18px;" value="<?= set_value('fullname') ?>">
                   <?php echo form_error("fullname", '<span class="badge bg-danger p-1">', '</span>'); ?>
@@ -47,7 +48,7 @@
                   <label for="fathersname"><?php echo ('Fathers/Guardian Name'); ?></label> <small class="req">
                     *</small>
 
-                  <input name="fathersname" class="form-control form-control-sm" type="text"
+                  <input name="fathersname" class="form-control <?= $input_height; ?>" type="text"
                     placeholder="<?php echo ('Fathers/Guardian Name') ?>" id="fathersname" style="padding:18px;"
                     value="<?= set_value('fathersname') ?>">
 
@@ -60,7 +61,7 @@
               <div class="col-sm-3">
                 <div class="form-group">
                   <label for="mothersname"><?php echo ('Mothers Name'); ?></label> <small class="req"> *</small>
-                  <input name="mothersname" class="form-control form-control-sm" type="text"
+                  <input name="mothersname" class="form-control <?= $input_height; ?>" type="text"
                     placeholder="<?php echo ('Mothers Name') ?>" id="mothersname" style="padding:18px;"
                     value="<?= set_value('mothersname') ?>">
                   <?php echo form_error("mothersname", '<span class="badge bg-danger p-1">', '</span>'); ?>
@@ -70,7 +71,7 @@
               <div class="col-sm-4">
                 <div class="form-group">
                   <label for="guardianname"><?php echo ('Guardians Name'); ?></label> <small class="req"> *</small>
-                  <input name="guardianname" class="form-control form-control-sm" type="text"
+                  <input name="guardianname" class="form-control <?= $input_height; ?>" type="text"
                     placeholder="<?php echo ('Guardians Name') ?>" id="guardianname" style="padding:18px;"
                     value="<?= set_value('guardianname') ?>">
                   <?php echo form_error("guardianname", '<span class="badge bg-danger p-1">', '</span>'); ?>
@@ -79,7 +80,7 @@
               <div class="col-sm-4">
                 <div class="form-group">
                   <label for="mobilenumber"><?php echo ('Mobile Number'); ?></label> <small class="req"> *</small>
-                  <input name="mobilenumber" class="form-control form-control-sm" type="text"
+                  <input name="mobilenumber" class="form-control <?= $input_height; ?>" type="text"
                     placeholder="<?php echo ('Mobile Number') ?>" id="mobilenumber" style="padding:18px;"
                     value="<?= set_value('mobilenumber') ?>">
                   <?php echo form_error("mobilenumber", '<span class="badge bg-danger p-1">', '</span>'); ?>
@@ -91,7 +92,7 @@
               <div class="col-sm-4">
                 <div class="form-group">
                   <label for="email"><?php echo ('Email'); ?></label> <small class="req"> *</small>
-                  <input name="email" class="form-control form-control-sm" type="email"
+                  <input name="email" class="form-control <?= $input_height; ?>" type="email"
                     placeholder="<?php echo ('Email') ?>" id="email" style="padding:18px;"
                     value="<?= set_value('email') ?>">
                   <?php echo form_error("email", '<span class="badge bg-danger p-1">', '</span>'); ?>
@@ -124,7 +125,7 @@
               <div class="col-sm-3">
                 <div class="form-group">
                   <label for="dob"><?php echo ('Date of Birth'); ?></label> <small class="req"> *</small>
-                  <input type="date" name="dob" class="form-control form-control-sm" type="text"
+                  <input type="date" name="dob" class="form-control <?= $input_height; ?>" type="text"
                     placeholder="<?php echo ('Date od Birth ') ?>" id="dob" style="padding:18px;"
                     value="<?= set_value('dob') ?>">
                   <?php echo form_error("dob", '<span class="badge bg-danger p-1">', '</span>'); ?>
@@ -277,7 +278,7 @@
               <div class="col-sm-4" id="idno">
                 <div class="form-group">
                   <label for="idno"><?php echo ('ID No.'); ?></label> <small class="req"> *</small>
-                  <input name="idno" class="form-control form-control-sm" type="text"
+                  <input name="idno" class="form-control <?= $input_height; ?>" type="text"
                     placeholder="<?php echo ('ID No.') ?>" id="idno" style="padding:18px;"
                     value="<?= set_value('fullname') ?>">
                   <?php echo form_error("idno", '<span class="badge bg-danger p-1">', '</span>'); ?>
@@ -299,7 +300,7 @@
                 <div class="form-group">
                   <label for="permanentaddress"><?php echo ('Permanent Address.'); ?></label> <small class="req">
                     *</small>
-                  <input name="permanentaddress" class="form-control form-control-sm" type="text"
+                  <input name="permanentaddress" class="form-control <?= $input_height; ?>" type="text"
                     placeholder="<?php echo ('Permanent Address') ?>" id="permanentaddress" style="padding:18px;"
                     value="<?= set_value('permanentaddress') ?>">
                   <?php echo form_error("permanentaddress", '<span class="badge bg-danger p-1">', '</span>'); ?>
@@ -332,7 +333,7 @@
               <div class="col-sm-3">
                 <div class="form-group">
                   <label for="permanenttehsil"><?php echo ('Permanent Tehsil'); ?></label> <small class="req"> *</small>
-                  <input name="permanenttehsil" class="form-control form-control-sm" type="text"
+                  <input name="permanenttehsil" class="form-control <?= $input_height; ?>" type="text"
                     placeholder="<?php echo ('Permanent Tehsil') ?>" id="permanenttehsil" style="padding:18px;"
                     value="<?= set_value('permanenttehsil') ?>">
                   <?php echo form_error("permanenttehsil", '<span class="badge bg-danger p-1">', '</span>'); ?>
@@ -343,7 +344,7 @@
               <div class="col-sm-3">
                 <div class="form-group">
                   <label for="permanentcity"><?php echo ('Permanent City'); ?></label> <small class="req"> *</small>
-                  <input name="permanentcity" class="form-control form-control-sm" type="text"
+                  <input name="permanentcity" class="form-control <?= $input_height; ?>" type="text"
                     placeholder="<?php echo ('Permanent City') ?>" id="permanentcity" style="padding:18px;"
                     value="<?= set_value('permanentcity') ?>">
                   <?php echo form_error("permanentcity", '<span class="badge bg-danger p-1">', '</span>'); ?>
@@ -355,7 +356,7 @@
                 <div class="form-group">
                   <label for="permanentpincode"><?php echo ('Permanent PINCode'); ?></label> <small class="req">
                     *</small>
-                  <input name="permanentpincode" class="form-control form-control-sm" type="text"
+                  <input name="permanentpincode" class="form-control <?= $input_height; ?>" type="text"
                     placeholder="<?php echo ('Permanent PINCode') ?>" id="permanentpincode" style="padding:18px;"
                     value="<?= set_value('permanentpincode') ?>">
                   <?php echo form_error("permanentpincode", '<span class="badge bg-danger p-1">', '</span>'); ?>
@@ -366,7 +367,7 @@
                 <div class="form-group">
                   <label for="permanentconstituency"><?php echo ('Permanent Constituency'); ?></label> <small
                     class="req"> *</small>
-                  <input name="permanentconstituency" class="form-control form-control-sm" type="text"
+                  <input name="permanentconstituency" class="form-control <?= $input_height; ?>" type="text"
                     placeholder="<?php echo ('Permanent Constituency') ?>" id="permanentconstituency"
                     style="padding:18px;" value="<?= set_value('permanentconstituency') ?>">
                   <?php echo form_error("permanentconstituency", '<span class="badge bg-danger p-1">', '</span>'); ?>
@@ -383,7 +384,7 @@
                 <div class="form-group">
                   <label for="communicationaddress"><?php echo ('Communication Address.'); ?></label> <small
                     class="req"> *</small>
-                  <input name="communicationaddress" class="form-control form-control-sm" type="text"
+                  <input name="communicationaddress" class="form-control <?= $input_height; ?>" type="text"
                     placeholder="<?php echo ('Communication Address') ?>" id="communicationaddress"
                     style="padding:18px;" value="<?= set_value('communicationaddress') ?>">
                   <?php echo form_error("communicationaddress", '<span class="badge bg-danger p-1">', '</span>'); ?>
@@ -418,7 +419,7 @@
                 <div class="form-group">
                   <label for="communicationtehsil"><?php echo ('Communication Tehsil'); ?></label> <small class="req">
                     *</small>
-                  <input name="communicationtehsil" class="form-control form-control-sm" type="text"
+                  <input name="communicationtehsil" class="form-control <?= $input_height; ?>" type="text"
                     placeholder="<?php echo ('Communication Tehsil') ?>" id="communicationtehsil" style="padding:18px;"
                     value="<?= set_value('communicationtehsil') ?>">
                   <?php echo form_error("communicationtehsil", '<span class="badge bg-danger p-1">', '</span>'); ?>
@@ -430,7 +431,7 @@
                 <div class="form-group">
                   <label for="communicationcity"><?php echo ('Communication City'); ?></label> <small class="req">
                     *</small>
-                  <input name="communicationcity" class="form-control form-control-sm" type="text"
+                  <input name="communicationcity" class="form-control <?= $input_height; ?>" type="text"
                     placeholder="<?php echo ('Communication City') ?>" id="communicationcity" style="padding:18px;"
                     value="<?= set_value('communicationcity') ?>">
                   <?php echo form_error("communicationcity", '<span class="badge bg-danger p-1">', '</span>'); ?>
@@ -442,7 +443,7 @@
                 <div class="form-group">
                   <label for="communicationpincode"><?php echo ('Communication PINCode'); ?></label> <small class="req">
                     *</small>
-                  <input name="communicationpincode" class="form-control form-control-sm" type="text"
+                  <input name="communicationpincode" class="form-control <?= $input_height; ?>" type="text"
                     placeholder="<?php echo ('Communication PINCode') ?>" id="communicationpincode"
                     style="padding:18px;" value="<?= set_value('communicationpincode') ?>">
                   <?php echo form_error("communicationpincode", '<span class="badge bg-danger p-1">', '</span>'); ?>
@@ -453,7 +454,7 @@
                 <div class="form-group">
                   <label for="communicationconstituency"><?php echo ('Communication Constituency'); ?></label> <small
                     class="req"> *</small>
-                  <input name="communicationconstituency" class="form-control form-control-sm" type="text"
+                  <input name="communicationconstituency" class="form-control <?= $input_height; ?>" type="text"
                     placeholder="<?php echo ('Communication Constituency') ?>" id="communicationconstituency"
                     style="padding:18px;" value="<?= set_value('communicationconstituency') ?>">
                   <?php echo form_error("communicationconstituency", '<span class="badge bg-danger p-1">', '</span>'); ?>
@@ -468,7 +469,7 @@
             <!-- <label>Submit</label> -->
 
             <button type="submit" name="save" value="add_station"
-              class="form-control form-control-sm btn btn-primary btn-sm pull-right checkbox-toggle"><i
+              class="form-control <?= $input_height; ?> btn btn-primary btn-sm pull-right checkbox-toggle"><i
                 class="fa fa-plus">
                 &nbsp;<?php echo ('Register'); ?></i></button>
 

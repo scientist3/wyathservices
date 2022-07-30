@@ -27,6 +27,17 @@ class AddressModel extends CI_Model
     $query = $this->db->get("state");
     return $query->result();
   }
+  public function fetch_editdistrict($state_id)
+  {
+    $this->db->where('state_id', $state_id);
+    $this->db->order_by('name', 'ASC');
+    $query = $this->db->get('helper_city');
+
+
+    // $this->db->order_by("state_name", "ASC");
+    // $query = $this->db->get("state");
+    return $query->result();
+  }
 
   // added by riyaz
   public function fetch_district($state_id)

@@ -137,6 +137,7 @@ class Registration extends CI_Controller
       // ''=>$input->,
     );
 
+    // $data['districts'] = $this->AddressModel->fetch_editdistrict($input->c_perm_state);
     $data['content'] = $this->load->view('admin/candidate/registration/viewstudent', $data, true);
     $this->load->view('admin/layout/wrapper', $data);
   }
@@ -362,13 +363,13 @@ class Registration extends CI_Controller
     $this->load->view('admin/layout/wrapper', $data);
   }
 
-  public function coursevalidate()
-  {
-    # code...
-    $this->form_validation->set_rules('coursename', 'Course Name', 'required');
+  // public function coursevalidate()
+  // {
+  //   # code...
+  //   $this->form_validation->set_rules('coursename', 'Course Name', 'required');
 
-    $dataa['input'] = (object) $postDataInp = array(
-      'coursename' => $this->input->post('coursename'),
-    );
-  }
+  //   $dataa['input'] = (object) $postDataInp = array(
+  //     'coursename' => $this->input->post('coursename'),
+  //   );
+  // }
 }
