@@ -14,19 +14,81 @@ class TrainingCenter extends CI_Controller
 
     $this->user_id = $this->session->userdata('user_id');
   }
+  //index
+  public function index()
+  {
+    $data['title'] = ('Add/View Training Center');
+    $data['subtitle'] = ('Add New Training Center');
+    // $data['aboutus'] = $this->AboutusModel->read();
+    $data['trc'] = ($this->TrainingCenterModel->read());
+    $data['content'] = $this->load->view('admin/candidate/registration/trainingcenter', $data, true);
+    $this->load->view('admin/layout/wrapper', $data);
+  }
 
+  //insert
+  public function insert()
+  {
+    $data['title'] = ('');
+    $data['subtitle'] = ('');
+    $data['trc'] = ($this->TrainingCenterModel->read());
+    $this->form_validation->set_rules('trainingcentername', ('trainingcentername'), 'required');
+    $this->form_validation->set_rules('trainingcenteraddress', ('trainingcenteraddress'), 'required');
+    $this->form_validation->set_rules('trainingcenterdistrict', ('trainingcenterdistrict'), 'required');
+    $this->form_validation->set_rules('trainingcenterpincode', ('trainingcenterpincode'), 'required|regex_match[/^[0-9]{6}$/]');
+    $dataa['input'] = (object) $postDataInp = array(
+      'trainingcentername' => $this->input->post('trainingcentername'),
+      'trainingcenteraddress' => $this->input->post('trainingcenteraddress'),
+      'trainingcenterdistrict' => $this->input->post('trainingcenterdistrict'),
+      'trainingcenterpincode' => $this->input->post('trainingcenterpincode')
+    );
+    $input = $dataa['input'];
+    $trcid = $this->TrainingCenterModel->getlastid();
+    #----------------- User Object -------------#
+    $data['user'] = (object) $postDataUser = array(
+      'tc_id'               => $trcid,
+      'training_center_name' => $input->trainingcentername,
+      'training_center_address' => $input->trainingcenteraddress,
+      'training_center_district' => $input->trainingcenterdistrict,
+      'training_center_pincode' => $input->trainingcenterpincode
+    );
+    if ($this->form_validation->run() === true) {
+      $this->db->insert('training_center_tbl', $postDataUser);
+      $this->session->set_flashdata('message', ('Training Center Added Successfully'));
+      $this->session->set_flashdata('class_name', ('alert-success'));
+      redirect('admin/candidate/trainingcenter/insert');
+    }
 
+    $data['title'] = ('Add/View Training Center');
+    $data['subtitle'] = ('Add New Training Center');
+    $data['input'] = ['ab_title' => ''];
+    $data['content'] = $this->load->view('admin/candidate/registration/trainingcenter', $data, true);
+    $this->load->view('admin/layout/wrapper', $data);
+  }
+
+  //update
+  public function edit($id)
+  {
+    if (empty($id)) {
+      redirect('admin/candidate/trainingcenter');
+    }
+    $data['title'] = ('Training Center');
+    $data['subtitle'] = ('Edit Training Center');
+    $data['trc'] = ($this->TrainingCenterModel->read());
+
+    #-------------------------------#
+    $input = $this->TrainingCenterModel->readid($id);
+    $data["input"] = $input;
+    // $data['boardmember'] = $this->BoardMembersModel->read();
+    $data['content'] = $this->load->view('admin/candidate/registration/editrainingcenter', $data, true);
+    $this->load->view('admin/layout/wrapper', $data);
+  }
 
   public function update()
-
   {
     $this->form_validation->set_rules('trainingcentername', ('trainingcentername'), 'required');
     $this->form_validation->set_rules('trainingcenteraddress', ('trainingcenteraddress'), 'required');
     $this->form_validation->set_rules('trainingcenterdistrict', ('trainingcenterdistrict'), 'required');
     $this->form_validation->set_rules('trainingcenterpincode', ('Pincode'),  'required|max_length[6]|min_length[6]');
-
-
-
     // 
     $data['input'] = (object)$postDataUser = array(
       'id' => $this->input->post('id'),
@@ -36,7 +98,6 @@ class TrainingCenter extends CI_Controller
       'training_center_pincode' => $this->input->post('trainingcenterpincode')
     );
     $data['trc'] = ($this->TrainingCenterModel->read());
-
     // code...
     if ($this->form_validation->run() === true) {
       if ($this->TrainingCenterModel->update($postDataUser)) {
@@ -56,15 +117,7 @@ class TrainingCenter extends CI_Controller
     }
   }
 
-  public function index()
-  {
-    $data['title'] = ('Add/View Training Center');
-    $data['subtitle'] = ('Add New Training Center');
-    // $data['aboutus'] = $this->AboutusModel->read();
-    $data['trc'] = ($this->TrainingCenterModel->read());
-    $data['content'] = $this->load->view('admin/candidate/registration/trainingcenter', $data, true);
-    $this->load->view('admin/layout/wrapper', $data);
-  }
+
 
   public function trcdelete($trc_id = null)
   {
@@ -80,69 +133,5 @@ class TrainingCenter extends CI_Controller
       $this->session->set_flashdata('class_name', ('alert-danger'));
     }
     redirect('admin/candidate/trainingcenter/');
-  }
-  public function edit($id)
-  {
-    if (empty($id)) {
-      redirect('admin/candidate/trainingcenter');
-    }
-    $data['title'] = ('Training Center');
-    $data['subtitle'] = ('Edit Training Center');
-    $data['trc'] = ($this->TrainingCenterModel->read());
-
-    #-------------------------------#
-    $input = $this->TrainingCenterModel->readid($id);
-    $data["input"] = $input;
-    // $data['boardmember'] = $this->BoardMembersModel->read();
-    $data['content'] = $this->load->view('admin/candidate/registration/editrainingcenter', $data, true);
-    $this->load->view('admin/layout/wrapper', $data);
-  }
-
-  public function insert()
-  {
-    $data['title'] = ('');
-    $data['subtitle'] = ('');
-    $data['trc'] = ($this->TrainingCenterModel->read());
-
-
-    $this->form_validation->set_rules('trainingcentername', ('trainingcentername'), 'required');
-    $this->form_validation->set_rules('trainingcenteraddress', ('trainingcenteraddress'), 'required');
-    $this->form_validation->set_rules('trainingcenterdistrict', ('trainingcenterdistrict'), 'required');
-    $this->form_validation->set_rules('trainingcenterpincode', ('trainingcenterpincode'), 'required');
-
-
-
-    $dataa['input'] = (object) $postDataInp = array(
-      'trainingcentername' => $this->input->post('trainingcentername'),
-      'trainingcenteraddress' => $this->input->post('trainingcenteraddress'),
-      'trainingcenterdistrict' => $this->input->post('trainingcenterdistrict'),
-      'trainingcenterpincode' => $this->input->post('trainingcenterpincode')
-    );
-
-    $input = $dataa['input'];
-    $trcid = $this->TrainingCenterModel->getlastid();
-
-    #----------------- User Object -------------#
-    $data['user'] = (object) $postDataUser = array(
-      'tc_id'               => $trcid,
-      'training_center_name' => $input->trainingcentername,
-      'training_center_address' => $input->trainingcenteraddress,
-      'training_center_district' => $input->trainingcenterdistrict,
-      'training_center_pincode' => $input->trainingcenterpincode
-    );
-
-    if ($this->form_validation->run() === true) {
-
-      $this->db->insert('training_center_tbl', $postDataUser);
-      $this->session->set_flashdata('message', ('Training Center Added Successfully'));
-      $this->session->set_flashdata('class_name', ('alert-success'));
-      redirect('admin/candidate/trainingcenter/insert');
-    }
-
-    $data['title'] = ('Add/View Training Center');
-    $data['subtitle'] = ('Add New Training Center');
-    $data['input'] = ['ab_title' => ''];
-    $data['content'] = $this->load->view('admin/candidate/registration/trainingcenter', $data, true);
-    $this->load->view('admin/layout/wrapper', $data);
   }
 }

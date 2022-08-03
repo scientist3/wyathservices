@@ -29,12 +29,13 @@ class CandidateModel extends CI_Model
   {
     $this->db->select("*")
       ->from($this->table)
-      ->where('c_id', $c_id)
-      ->get();
-    if ($returnAsArray == false)
-      return $this->db->row();
-    else
+      ->where('c_id', $c_id);
+    // ->get();
+    if ($returnAsArray == false) {
+      return $this->db->get()->row();
+    } else {
       return $this->db->row_array();
+    }
   }
 
 

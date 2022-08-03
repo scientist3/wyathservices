@@ -6,7 +6,11 @@ class Batch extends CI_Controller
   public function __construct()
   {
     parent::__construct();
-    $this->load->model(array('admin/candidate/BatchModel'));
+    $this->load->model(array(
+      'admin/candidate/BatchModel',
+      'admin/candidate/CourseModel',
+      'admin/candidate/TrainingCenterModel'
+    ));
     //$this->load->library('fileupload');
     if ($this->session->userdata('isLogIn') == false || $this->session->userdata('user_role') != 1) {
       redirect('login/logout');
@@ -21,16 +25,13 @@ class Batch extends CI_Controller
     $data['subtitle'] = ('Add Batch');
 
     $data['batch'] = $this->BatchModel->read();
+    $data['courselist'] = $this->CourseModel->readallcourseid();
+    $data['traininglist'] = $this->TrainingCenterModel->readalltrainingcenterid();
+
     // print($batchread['bch_id']);
     // $data['aboutus'] = $this->AboutusModel->read();
     // CRS-001    Ajaz Sofi    TC-001    Yes    Yes    AS-001
 
-    $data['trainername'] =
-      [
-        "Mohsin",
-        "Riyaz",
-        "Shahid",
-      ];
     $data['trainingcompleted'] =
       [
         "Yes",
@@ -41,31 +42,21 @@ class Batch extends CI_Controller
         "Yes",
         "No",
       ];
-
     $data['content'] = $this->load->view('admin/candidate/registration/batch', $data, true);
     $this->load->view('admin/layout/wrapper', $data);
   }
-  public function batchdelete($batch_id = null)
-  {
-    if (empty($batch_id)) {
-      redirect('admin/candidate/batch/');
-    }
-    if ($this->BatchModel->batchdelete($batch_id)) {
-      // $this->location_model->delete($loc_id);
-      $this->session->set_flashdata('message', ('Deleted Successfully'));
-      $this->session->set_flashdata('class_name', ('alert-success'));
-    } else {
-      $this->session->set_flashdata('message', ('Please Try Again'));
-      $this->session->set_flashdata('class_name', ('alert-danger'));
-    }
-    redirect('admin/candidate/batch/');
-  }
+
+  //insert
+
+
   function batchinsert()
   {
-    $data['title'] = ('');
-    $data['subtitle'] = ('');
-    $data['batch'] = $this->BatchModel->read();
+    $data['title'] = ('Add New Batch');
+    $data['subtitle'] = ('Add Batch');
 
+    $data['batch'] = $this->BatchModel->read();
+    $data['courselist'] = $this->CourseModel->readallcourseid();
+    $data['traininglist'] = $this->TrainingCenterModel->readalltrainingcenterid();
 
     $this->form_validation->set_rules('batchtype', ('Batch Type'), 'required');
     $this->form_validation->set_rules('startdate', ('startdate'), 'required');
@@ -76,8 +67,6 @@ class Batch extends CI_Controller
     $this->form_validation->set_rules('trainingcompleted', ('trainingcompleted'), 'required');
     $this->form_validation->set_rules('assessmentcompleted', ('assessmentcompleted'), 'required');
     $this->form_validation->set_rules('assessmentid', ('assessmentid'), 'required');
-
-
     //##################3
     $dataa['input'] = (object) $postDataInp = array(
       'batchtype' => $this->input->post('batchtype'),
@@ -90,13 +79,10 @@ class Batch extends CI_Controller
       'assessmentcompleted' => $this->input->post('assessmentcompleted'),
       'assessmentid' => $this->input->post('assessmentid')
     );
-
     $bchid = $this->BatchModel->getlastid();
-
     //object
     $input = $dataa['input'];
     #----------------- User Object -------------#
-
     $data['user'] = (object) $postDataUser = array(
       'bch_id' => $bchid,
       'batch_type' => $input->batchtype,
@@ -132,6 +118,22 @@ class Batch extends CI_Controller
     $data['content'] = $this->load->view('admin/candidate/registration/batch', $data, true);
     $this->load->view('admin/layout/wrapper', $data);
   }
+  public function batchdelete($batch_id = null)
+  {
+    if (empty($batch_id)) {
+      redirect('admin/candidate/batch/');
+    }
+    if ($this->BatchModel->batchdelete($batch_id)) {
+      // $this->location_model->delete($loc_id);
+      $this->session->set_flashdata('message', ('Deleted Successfully'));
+      $this->session->set_flashdata('class_name', ('alert-success'));
+    } else {
+      $this->session->set_flashdata('message', ('Please Try Again'));
+      $this->session->set_flashdata('class_name', ('alert-danger'));
+    }
+    redirect('admin/candidate/batch/');
+  }
+
   public function update()
   {
     $data['trainingcompleted'] =

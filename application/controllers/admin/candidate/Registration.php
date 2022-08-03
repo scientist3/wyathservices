@@ -7,7 +7,7 @@ class Registration extends CI_Controller
   {
     parent::__construct();
     $this->load->model([
-      'admin/candidate/CandidateModel' => 'cand_model',
+      'admin/candidate/CandidateModel',
       'admin/candidate/CommonModel',
       'admin/candidate/AddressModel'
     ]);

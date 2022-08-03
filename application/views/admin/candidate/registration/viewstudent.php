@@ -391,12 +391,8 @@
               <input type="hidden" value="<?php echo $input->permanentdistrict; ?>" id="hdistrict">
               <div class="col-sm-4">
                 <div class="form-group">
-
                   <label for="permanentdistrict"><?php echo ('Permanent District'); ?></label> <small class="req">
                     *</small>
-
-
-
                   <select name="district" id="district" class="form-control input-lg">
                     <option value="">Select District</option>
 
@@ -476,7 +472,7 @@
                     class="req"> *</small>
                   <input name="communicationaddress" class="form-control form-control-sm" type="text"
                     placeholder="<?php echo ('Communication Address') ?>" id="communicationaddress"
-                    style="padding:18px;" value="<?= set_value('communicationaddress') ?>">
+                    style="padding:18px;" value="<?php echo $input->communicationaddress ?>">
                   <?php echo form_error("communicationaddress", '<span class="badge bg-danger p-1">', '</span>'); ?>
 
                 </div>
@@ -486,31 +482,21 @@
                 <div class="form-group">
                   <label for="communicationstate"><?php echo ('Communication State'); ?></label> <small class="req">
                     *</small>
-
-                  <select name="communicationstate" id="communicationstate" class="form-control input-lg">
-
-                    <option value="">Select State</option>
-                    <?php
-                    foreach ($state as $row) {
-                      echo '<option value="' . $row->state_name . '">' . $row->state_name . '</option>';
-                    }
-                    ?>
-                  </select>
-                  <?php echo form_error("state", '<span class="badge bg-danger p-1">', '</span>'); ?>
-
+                  <?php echo form_dropdown('communicationstate', $state, $input->communicationstate, 'class="form-control" id="permanentstate" '); ?>
+                  <?php echo form_error("communicationstate", '<span class="badge bg-danger p-1">', '</span>'); ?>
                 </div>
               </div>
-
               <div class="col-sm-4" id="c4communicationdistrict">
                 <div class="form-group">
                   <label for="communicationdistrict"><?php echo ('Communication District'); ?></label> <small
                     class="req">
                     *</small>
-                  <input name="communicationdistrict" class="form-control form-control-sm" type="text"
-                    placeholder="<?php echo ('Communication District') ?>" id="communicationdistrict"
-                    style="padding:18px;" value="<?= set_value('communicationdistrict') ?>">
-                  <?php echo form_error("communicationdistrict", '<span class="badge bg-danger p-1">', '</span>'); ?>
 
+                  <input type="hidden" value="<?php echo $input->communicationdistrict; ?>" id="hcdistrict">
+                  <select name="communicationdistrict" id="communicationdistrict" class="form-control input-lg">
+                    <option value="">Select District</option>
+                  </select>
+                  <?php echo form_error("communicationdistrict", '<span class="badge bg-danger p-1">', '</span>'); ?>
                 </div>
               </div>
 
@@ -520,7 +506,7 @@
                     *</small>
                   <input name="communicationtehsil" class="form-control form-control-sm" type="text"
                     placeholder="<?php echo ('Communication Tehsil') ?>" id="communicationtehsil" style="padding:18px;"
-                    value="<?= set_value('communicationtehsil') ?>">
+                    value="<?php echo $input->communicationtehsil ?>">
                   <?php echo form_error("communicationtehsil", '<span class="badge bg-danger p-1">', '</span>'); ?>
 
                 </div>
@@ -532,7 +518,7 @@
                     *</small>
                   <input name="communicationcity" class="form-control form-control-sm" type="text"
                     placeholder="<?php echo ('Communication City') ?>" id="communicationcity" style="padding:18px;"
-                    value="<?= set_value('communicationcity') ?>">
+                    value="<?php echo $input->communicationcity ?>">
                   <?php echo form_error("communicationcity", '<span class="badge bg-danger p-1">', '</span>'); ?>
 
                 </div>
@@ -544,7 +530,7 @@
                     *</small>
                   <input name="communicationpincode" class="form-control form-control-sm" type="text"
                     placeholder="<?php echo ('Communication PINCode') ?>" id="communicationpincode"
-                    style="padding:18px;" value="<?= set_value('communicationpincode') ?>">
+                    style="padding:18px;" value="<?php echo $input->communicationpincode ?>">
                   <?php echo form_error("communicationpincode", '<span class="badge bg-danger p-1">', '</span>'); ?>
                 </div>
               </div>
@@ -555,7 +541,7 @@
                     class="req"> *</small>
                   <input name="communicationconstituency" class="form-control form-control-sm" type="text"
                     placeholder="<?php echo ('Communication Constituency') ?>" id="communicationconstituency"
-                    style="padding:18px;" value="<?= set_value('communicationconstituency') ?>">
+                    style="padding:18px;" value="<?php echo $input->communicationconstituency ?>">
                   <?php echo form_error("communicationconstituency", '<span class="badge bg-danger p-1">', '</span>'); ?>
                 </div>
               </div>
@@ -600,107 +586,108 @@ $(document).ready(function() {
 
       }
     });
+
   } else {
     $('#district').html('<option value="">Select District</option>');
   }
-  $('#todisability').hide()
-  $('#typeofalternateid').hide();
-  $('#idno').hide();
+  // $('#todisability').hide()
+  // $('#typeofalternateid').hide();
+  // $('#idno').hide();
 
-  // ab_status
-  $('#ab_status').change(function() {
-    // ab_status
-    var status = $('#ab_status').val();
-    if (status == "yes") {
-      $('#todisability').show()
-    }
-    if (status == "no") {
-      $('#todisability').hide()
-    }
-  });
-
-
-  $('#idtype').change(function() {
-    var type = $('#idtype').val();
-
-    if (type == "") {
-      $('#typeofalternateid').hide();
-      $('#idno').hide();
-    }
-    if (type == "Aadhar ID") {
-      // $('#idno').attr('placeholder','sfefe');
-      $('#idno').show();
-
-      $('#typeofalternateid').hide();
-
-    }
-    if (type == 'Alternate ID') {
-      $('#typeofalternateid').show();
-      $('#idno').show();
-    }
+  // // ab_status
+  // $('#ab_status').change(function() {
+  //   // ab_status
+  //   var status = $('#ab_status').val();
+  //   if (status == "yes") {
+  //     $('#todisability').show()
+  //   }
+  //   if (status == "no") {
+  //     $('#todisability').hide()
+  //   }
+  // });
 
 
-  });
+  // $('#idtype').change(function() {
+  //   var type = $('#idtype').val();
+
+  //   if (type == "") {
+  //     $('#typeofalternateid').hide();
+  //     $('#idno').hide();
+  //   }
+  //   if (type == "Aadhar ID") {
+  //     // $('#idno').attr('placeholder','sfefe');
+  //     $('#idno').show();
+
+  //     $('#typeofalternateid').hide();
+
+  //   }
+  //   if (type == 'Alternate ID') {
+  //     $('#typeofalternateid').show();
+  //     $('#idno').show();
+  //   }
 
 
-  $('#comm_address').change(function() {
-    if ($("#comm_address").prop('checked') == true) {
-      $("#c4communicationaddress").hide();
-      $("#c4communicationstate").hide();
-      $("#c4communicationdistrict").hide();
-      $("#c4communicationtehsil").hide();
-      $("#c4communicationcity").hide();
-      $("#c4communicationpincode").hide();
-      $("#c4communicationconstituency").hide();
-      $("#c4communicationaddress").hide();
-    } else {
-      $("#c4communicationaddress").show();
-      $("#c4communicationstate").show();
-      $("#c4communicationdistrict").show();
-      $("#c4communicationtehsil").show();
-      $("#c4communicationcity").show();
-      $("#c4communicationpincode").show();
-      $("#c4communicationconstituency").show();
-      $("#c4communicationaddress").show();
-    }
-  });
+  // });
 
-  $('#permanentstate').change(function() {
 
-    var state_name = $('#permanentstate').val();
-    if (state_name != '') {
-      $.ajax({
-        url: "<?php echo base_url(); ?>/admin/candidate/registration/fetch_district",
-        method: "POST",
-        data: {
-          state_name: state_name
-        },
-        success: function(data) {
-          $('#district').html(data);
-        }
-      });
-    } else {
-      $('#district').html('<option value="">Select District</option>');
-    }
-  });
-  $('#communicationstate').change(function() {
+  // $('#comm_address').change(function() {
+  //   if ($("#comm_address").prop('checked') == true) {
+  //     $("#c4communicationaddress").hide();
+  //     $("#c4communicationstate").hide();
+  //     $("#c4communicationdistrict").hide();
+  //     $("#c4communicationtehsil").hide();
+  //     $("#c4communicationcity").hide();
+  //     $("#c4communicationpincode").hide();
+  //     $("#c4communicationconstituency").hide();
+  //     $("#c4communicationaddress").hide();
+  //   } else {
+  //     $("#c4communicationaddress").show();
+  //     $("#c4communicationstate").show();
+  //     $("#c4communicationdistrict").show();
+  //     $("#c4communicationtehsil").show();
+  //     $("#c4communicationcity").show();
+  //     $("#c4communicationpincode").show();
+  //     $("#c4communicationconstituency").show();
+  //     $("#c4communicationaddress").show();
+  //   }
+  // });
 
-    var state_name = $('#communicationstate').val();
-    if (state_name != '') {
-      $.ajax({
-        url: "<?php echo base_url(); ?>/admin/candidate/registration/fetch_district",
-        method: "POST",
-        data: {
-          state_name: state_name
-        },
-        success: function(data) {
-          $('#communicationdistrict').html(data);
-        }
-      });
-    } else {
-      $('#district').html('<option value="">Select District</option>');
-    }
-  });
+  // $('#permanentstate').change(function() {
+
+  //   var state_name = $('#permanentstate').val();
+  //   if (state_name != '') {
+  //     $.ajax({
+  //       url: "<?php echo base_url(); ?>/admin/candidate/registration/fetch_district",
+  //       method: "POST",
+  //       data: {
+  //         state_name: state_name
+  //       },
+  //       success: function(data) {
+  //         $('#district').html(data);
+  //       }
+  //     });
+  //   } else {
+  //     $('#district').html('<option value="">Select District</option>');
+  //   }
+  // });
+  //   $('#communicationstate').change(function() {
+
+  //     var state_name = $('#communicationstate').val();
+  //     if (state_name != '') {
+  //       $.ajax({
+  //         url: "<?php echo base_url(); ?>/admin/candidate/registration/fetch_district",
+  //         method: "POST",
+  //         data: {
+  //           state_name: state_name
+  //         },
+  //         success: function(data) {
+  //           $('#communicationdistrict').html(data);
+  //         }
+  //       });
+  //     } else {
+  //       $('#district').html('<option value="">Select District</option>');
+  //     }
+  //   });
 
 });
 </script>
