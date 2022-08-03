@@ -18,11 +18,10 @@ class Course extends CI_Controller
 
   public function update()
   {
-
     $this->form_validation->set_rules('coursename', ('coursename'), 'required');
     $this->form_validation->set_rules('coursetype', ('coursetype'), 'required');
     $this->form_validation->set_rules('sectorcovered', ('sectorcovered'), 'required');
-    $this->form_validation->set_rules('coursefee', ('coursefee'), 'required');
+    $this->form_validation->set_rules('coursefee', ('coursefee'), 'required', "regex_match[/^[0-9]$/]");
     $this->form_validation->set_rules('feepaidBy', ('feepaidBy'), 'required');
     $data['input'] = (object)$postDataUser = array(
       'id' => $this->input->post('id'),
@@ -74,14 +73,10 @@ class Course extends CI_Controller
     $data['title'] = ('');
     $data['subtitle'] = ('');
     $data['courselists'] = ($this->CourseModel->read());
-
     $this->form_validation->set_rules('coursename', ('coursename'), 'required');
-    // $this->form_validation->set_rules('trainingcenteraddress', ('trainingcenteraddress'), 'required');
-    // $this->form_validation->set_rules('trainingcenterdistrict', ('trainingcenterdistrict'), 'required');
-    // $this->form_validation->set_rules('trainingcenterpincode', ('trainingcenterpincode'), 'required');
-
-
-
+    $this->form_validation->set_rules('trainingcenteraddress', ('trainingcenteraddress'), 'required');
+    $this->form_validation->set_rules('trainingcenterdistrict', ('trainingcenterdistrict'), 'required');
+    $this->form_validation->set_rules('trainingcenterpincode', ('trainingcenterpincode'), 'required');
     $dataa['input'] = (object) $postDataInp = array(
       'cn' => $this->input->post('coursename'),
       'ct' => $this->input->post('coursetype'),
@@ -89,33 +84,27 @@ class Course extends CI_Controller
       'cf' => $this->input->post('coursefee'),
       'fpb' => $this->input->post('feepaidBy')
     );
-
     $input = $dataa['input'];
     $crid = $this->CourseModel->getlastid();
-
     #----------------- User Object -------------#
     $data['user'] = (object) $postDataUser = array(
-      'course_id'               => $crid,
+      'course_id'    => $crid,
       'course_name' => $input->cn,
       'course_type' => $input->ct,
       'sector_covered' => $input->sc,
       'course_fee' => $input->cf,
       'fee_paid_by' => $input->fpb
-
     );
-
     if ($this->form_validation->run() === true) {
-
       $this->db->insert('course_tbl', $postDataUser);
       $this->session->set_flashdata('message', ('Training Center Added Successfully'));
       $this->session->set_flashdata('class_name', ('alert-success'));
       redirect('admin/candidate/course/');
     }
-
     $data['title'] = ('Add/View Training Center');
     $data['subtitle'] = ('Add New Training Center');
     $data['input'] = ['ab_title' => ''];
-    $data['content'] = $this->load->view('admin/candidate/course/', $data, true);
+    $data['content'] = $this->load->view('admin/candidate/registration/course/', $data, true);
     $this->load->view('admin/layout/wrapper', $data);
   }
 
