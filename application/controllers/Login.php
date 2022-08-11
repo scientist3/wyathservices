@@ -70,7 +70,7 @@ class Login extends CI_Controller
     //$this->save_login_time();
     switch ($user_role) {
       case 1:
-        redirect('admin/banner/index');    // Admin
+        redirect('admin/dashboard');    // Admin
         break;
       case 2:
         break;
