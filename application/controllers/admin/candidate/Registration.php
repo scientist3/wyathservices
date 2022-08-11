@@ -340,15 +340,7 @@ class Registration extends CI_Controller
 
 	private function validationRules()
 	{
-		/* Database Tables
-			c_id c_salutation c_full_name c_gender c_dob c_mobile c_email c_marital_status c_father_name 
-			c_mother_name c_guardian_name c_education c_religion c_catagory c_disablity c_type_of_disablity 
-			c_idtype c_type_of_alternate_id c_idno c_perm_address c_perm_tehsil c_perm_district c_perm_city 
-			c_perm_state c_perm_pincode c_perm_constituency c_comm_same_as_perm c_comm_address c_comm_tehsil
-			c_comm_district c_comm_city c_comm_state c_comm_pincode c_comm_constituency 
-			c_pre_traning_status c_prev_exp_sector c_prev_exp_no_of_months c_employed c_employment_status 
-			c_employement_details c_heard_about_us c_currently_enrolled c_training_status
-			*/
+		// Basic Validation 
 		$this->form_validation->set_rules('c_salutation', ('Salutation'), 'required');
 		$this->form_validation->set_rules('c_full_name', ('Full name'), 'required|max_length[30]');
 		$this->form_validation->set_rules('c_gender', ('Gender'), 'required');
@@ -364,17 +356,18 @@ class Registration extends CI_Controller
 		$this->form_validation->set_rules('c_catagory', ('Category'), 'required');
 		$this->form_validation->set_rules('c_disablity', ('Disability'), 'required');
 
+		// Type of Disablity is required or not 
 		if ($this->input->post('c_disablity') == '1') {
 			$this->form_validation->set_rules('c_type_of_disablity', ('Type Of Disability'), 'required');
 		}
 
+		$this->form_validation->set_rules('c_id_no', ('ID No'), 'required|max_length[30]');
 		$this->form_validation->set_rules('c_id_type', ('ID Type'), 'required');
 
-		if ($this->input->post('c_id_type') == '2') {
+		// Check for alternate id is required or not
+		if ($this->input->post('c_id_type') == 2) {
 			$this->form_validation->set_rules('c_type_of_alternate_id', ('Type Of Alternate ID'), 'required');
 		}
-
-		$this->form_validation->set_rules('c_id_no', ('ID No'), 'required|max_length[30]');
 
 		// Address Validation
 		$this->form_validation->set_rules('c_perm_address', ('Permanent Address'), 'required|max_length[50]');
@@ -385,7 +378,7 @@ class Registration extends CI_Controller
 		$this->form_validation->set_rules('c_perm_pincode', ('Permanent PinCode'), 'required|max_length[7]');
 		$this->form_validation->set_rules('c_perm_constituency', ('Permanent Constituency'), 'required|max_length[50]');
 
-
+		// Check for Communication Addres is required or not
 		if ($this->input->post('c_comm_same_as_perm') == 0) {
 			$this->form_validation->set_rules('c_comm_address', ('Comm Address'), 'required');
 			$this->form_validation->set_rules('c_comm_tehsil', ('Comm Tehsil'), 'required');
@@ -396,10 +389,8 @@ class Registration extends CI_Controller
 			$this->form_validation->set_rules('c_comm_constituency', ('Comm Constituency'), 'required');
 		}
 
-		if ($this->input->post('c_id_type') == 2) {
-			$this->form_validation->set_rules('c_type_of_alternate_id', ('Alternate Id'), 'required');
-		}
 
+		// Check for experince details are required or not
 		if ($this->input->post('c_pre_traning_status') == 2) {
 			$this->form_validation->set_rules('c_prev_exp_sector', ('Prev. Exp. Sector'), 'required');
 			$this->form_validation->set_rules('c_prev_exp_no_of_months', ('Experience Months'), 'required|numeric');
@@ -408,22 +399,13 @@ class Registration extends CI_Controller
 			$this->form_validation->set_rules('c_employement_details', ('Employment Details'), 'required');
 		}
 
-
-
+		// Define Validation delimiter
 		$this->form_validation->set_error_delimiters('<span class="error invalid-feedback is-invalid">', '</span>');
 	}
 
 	private function prepareData()
 	{
-		/* Database Tables
-			c_id c_salutation c_full_name c_gender c_dob c_mobile c_email c_marital_status c_father_name 
-			c_mother_name c_guardian_name c_education c_religion c_catagory c_disablity c_type_of_disablity 
-			c_idtype c_type_of_alternate_id c_idno c_perm_address c_perm_tehsil c_perm_district c_perm_city 
-			c_perm_state c_perm_pincode c_perm_constituency c_comm_same_as_perm c_comm_address c_comm_tehsil
-			c_comm_district c_comm_city c_comm_state c_comm_pincode c_comm_constituency 
-			c_pre_traning_status c_prev_exp_sector c_prev_exp_no_of_months c_employed c_employment_status 
-			c_employement_details c_heard_about_us c_currently_enrolled c_training_status
-		*/
+
 		$boolSameAddress = $this->input->post('c_comm_same_as_perm') == 1 ? true : false;
 		$this->data['input'] = (object) [
 			'c_id' 										=> $this->input->post('c_id'),
@@ -499,3 +481,15 @@ class Registration extends CI_Controller
 		$this->data['heard_about_us_list']	= $this->CommonModel->getHearAboutUsList();
 	}
 }
+
+
+/* 
+	Database Tables
+	c_id c_salutation c_full_name c_gender c_dob c_mobile c_email c_marital_status c_father_name 
+	c_mother_name c_guardian_name c_education c_religion c_catagory c_disablity c_type_of_disablity 
+	c_idtype c_type_of_alternate_id c_idno c_perm_address c_perm_tehsil c_perm_district c_perm_city 
+	c_perm_state c_perm_pincode c_perm_constituency c_comm_same_as_perm c_comm_address c_comm_tehsil
+	c_comm_district c_comm_city c_comm_state c_comm_pincode c_comm_constituency 
+	c_pre_traning_status c_prev_exp_sector c_prev_exp_no_of_months c_employed c_employment_status 
+	c_employement_details c_heard_about_us c_currently_enrolled c_training_status
+*/
