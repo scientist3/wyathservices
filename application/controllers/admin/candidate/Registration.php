@@ -33,9 +33,8 @@ class Registration extends CI_Controller
 		$data['students_list'] 		= $this->CandidateModel->read();
 		$data['title'] 			= ('View Registered Candidate');
 		$data['subtitle'] 	= ('Subtitle');
-		// $data['aboutus'] = $this->AboutusModel->read();
 		$data['alldata'] 		= $this->CandidateModel->read();
-		$data['totaldata'] 	= $this->CandidateModel->get_count();
+		//$data['totaldata'] 	= $this->CandidateModel->get_count();
 		$data['content'] 		= $this->load->view('admin/candidate/registration/viewstudentlist', $data, true);
 		$this->load->view('admin/layout/wrapper', $data);
 	}
@@ -78,6 +77,16 @@ class Registration extends CI_Controller
 		}
 	}
 
+	public function viewStudent($cand_id = null)
+	{
+		if (empty($cand_id) || $cand_id ==  null) {
+			redirect('admin/candidate/registration/index');
+		}
+		$data['title'] = "View Student";
+		$data['content'] = $this->load->view('admin/candidate/registration/view_student', $data, true);
+		$this->load->view('admin/layout/wrapper', $data);
+	}
+
 	public function edit($c_id = null)
 	{
 		$this->data['title']		= ('Registration New Candidate');
@@ -91,104 +100,37 @@ class Registration extends CI_Controller
 		$this->data['content'] = $this->load->view('admin/candidate/registration/form_view', $this->data, true);
 		$this->load->view('admin/layout/wrapper', $this->data);
 	}
-	public function viewStudent($cand_id = null)
-	{
-		if (empty($cand_id) || $cand_id ==  null) {
-			redirect('admin/candidate/registration/index');
-		}
-		$data['title'] = "View Student";
-		$data['content'] = $this->load->view('admin/candidate/registration/view_student', $data, true);
-		$this->load->view('admin/layout/wrapper', $data);
-	}
 
-	public function delete()
-	{
-	}
-
-	public function studentdelete($studentid = null)
-	{
-		if (empty($studentid)) {
-			redirect('admin/candidate/registration/viewstudentlist');
-		}
-		if ($this->CandidateModel->studentdelete($studentid)) {
-			// $this->location_model->delete($loc_id);
-			$this->session->set_flashdata('message', ('Deleted Successfully'));
-			$this->session->set_flashdata('class_name', ('alert-success'));
-		} else {
-			$this->session->set_flashdata('message', ('Please Try Again'));
-			$this->session->set_flashdata('class_name', ('alert-danger'));
-		}
-		redirect('../admin/candidate/registration/viewstudentlist');
-	}
-
-	public function viewstudents($c_id = null)
+	// TODO: Failed to show error in case of foriegn key error
+	public function delete($c_id = null)
 	{
 		if (empty($c_id)) {
-			redirect('admin/candidate/registration/viewstudentlist');
+			$this->session->set_flashdata('message', ('Please try again.'));
+			$this->session->set_flashdata('class_name', ('alert-danger'));
+			redirect('admin/candidate/registration/index');
 		}
-		$data['title'] = ('Edit Candidate');
-		$data['subtitle'] = ('Edit Candidate');
-		#-------------------------------#
-		$data['salutation'] = $this->CommonModel->salutation();
-		// $data['state'] = $this->AddressModel->fetch_state();
-		$data['state'] = $this->AddressModel->read_state_country_as_list(101);
-		$data['gender'] = $this->CommonModel->gender();
-		$data['maritalstatus'] = $this->CommonModel->maritalstatus();
-		$data['education'] = $this->CommonModel->GetEducation();
-		$data['religion'] = $this->CommonModel->religion();
-		$data['category'] = $this->CommonModel->category();
-		$todisability = $this->CommonModel->todisability();
-		$data['todisability'] = $todisability;
-		$data['idtype'] = $this->CommonModel->idtype();
-		$data['typeofalternateid'] = $this->CommonModel->typeofalternateid();
-
-		$input = $this->CandidateModel->read_by_id_as_obj($c_id);
-		$data['input'] = (object)$postDataInp = array(
-			'c_id' => $input->c_id,
-			'fullname' => $input->c_full_name,
-			'c_salutation' => $input->c_salutation,
-			'c_gender'  => $input->c_gender,
-			'dob' => $input->c_dob,
-			'mobile' => $input->c_mobile,
-			'email' => $input->c_email,
-			'maritalstatus' => $input->c_marital_status,
-			'fathersname' => $input->c_father_name,
-			'mothersname' => $input->c_mother_name,
-			'guardianname' => $input->c_guardian_name,
-			'education' => $input->c_education,
-			'religion' => $input->c_religion,
-			'category' => $input->c_catagory,
-			'disability' => $input->c_disablity,
-			'todisability' => $input->c_type_of_disablity,
-			'idtype' => $input->c_idtype,
-			'typeofalternateid' => $input->typeofalternateid,
-			'idno' => $input->c_idno,
-			'permanentaddress' => $input->c_perm_address,
-			'permanentstate' => $input->c_perm_state,
-			'permanentdistrict' => $input->c_perm_district,
-			'permanenttehsil' => $input->c_perm_tehsil,
-			'permanentcity' => $input->c_perm_city,
-			'permanentpincode' => $input->c_perm_pincode,
-			'permanentconstituency' => $input->c_perm_constituency,
-			'comm_address' => $input->c_comm_same_as_perm,
-			'communicationaddress' => $input->c_comm_address,
-			'communicationstate' => $input->c_comm_state,
-			'communicationdistrict' => $input->c_comm_district,
-			'communicationtehsil' => $input->c_comm_tehsil,
-			'communicationcity' => $input->c_comm_city,
-			'communicationpincode' => $input->c_comm_pincode,
-			'communicationconstituency' => $input->c_comm_constituency
-			// ''=>$input->,
-		);
-
-		// $data['districts'] = $this->AddressModel->fetch_editdistrict($input->c_perm_state);
-		$data['content'] = $this->load->view('admin/candidate/registration/viewstudent', $data, true);
-		$this->load->view('admin/layout/wrapper', $data);
+		if ($this->CandidateModel->delete($c_id)) {
+			$this->session->set_flashdata('message', ('delete_successfully'));
+		} else {
+			$fk_check = $this->db->error();
+			if (valArr($fk_check) && isset($fk_check['code']) && $fk_check['code'] == 1451) {
+				$this->session->set_flashdata('exception', 'Failed to delete due to foreign key error!');
+			} else {
+				$this->session->set_flashdata('exception', ('Please try again'));
+			}
+		}
+		redirect('admin/candidate/registration/index');
 	}
 
+	/**
+	 * 
+	 * Other Function
+	 * 
+	 * */
 	private function validationRules()
 	{
 		// Basic Validation 
+		$this->form_validation->set_rules('c_cand_id', ('Candidate Id'), 'required');
 		$this->form_validation->set_rules('c_salutation', ('Salutation'), 'required');
 		$this->form_validation->set_rules('c_full_name', ('Full name'), 'required|max_length[30]');
 		$this->form_validation->set_rules('c_gender', ('Gender'), 'required');
@@ -256,6 +198,7 @@ class Registration extends CI_Controller
 		$boolSameAddress = $this->input->post('c_comm_same_as_perm') == 1 ? true : false;
 		$this->data['input'] = (object) [
 			'c_id' 										=> $this->input->post('c_id'),
+			'c_cand_id' 							=> $this->input->post('c_cand_id'),
 			'c_salutation'						=> $this->input->post('c_salutation'),
 			'c_full_name' 						=> $this->input->post('c_full_name'),
 			'c_father_name'						=> $this->input->post('c_father_name'),
@@ -341,9 +284,9 @@ class Registration extends CI_Controller
 		}
 	}
 }
-
-
-/* 
+// 
+{
+	/* 
 	Database Tables
 	c_id c_salutation c_full_name c_gender c_dob c_mobile c_email c_marital_status c_father_name 
 	c_mother_name c_guardian_name c_education c_religion c_catagory c_disablity c_type_of_disablity 
@@ -353,3 +296,4 @@ class Registration extends CI_Controller
 	c_pre_traning_status c_prev_exp_sector c_prev_exp_no_of_months c_employed c_employment_status 
 	c_employement_details c_heard_about_us c_currently_enrolled c_training_status
 */
+}

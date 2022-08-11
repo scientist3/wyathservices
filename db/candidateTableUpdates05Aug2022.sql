@@ -44,3 +44,6 @@ CREATE TABLE `candidate_tbl` (
   `c_currently_enrolled` tinyint(1) NOT NULL DEFAULT 0,
   `c_training_status` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+ALTER TABLE `candidate_tbl` ADD `c_cand_id` VARCHAR(100) NOT NULL AFTER `c_id`;

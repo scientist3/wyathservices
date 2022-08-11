@@ -25,7 +25,7 @@
                 <?php $sl = 1; ?>
                 <?php foreach ($students_list as $st) { ?>
                   <tr>
-                    <td><?php echo $st->c_id; ?></td>
+                    <td><?php echo $st->c_cand_id; ?></td>
                     <td><?php echo $st->c_full_name; ?></td>
                     <td><?php echo $st->c_father_name; ?></td>
                     <td><?php echo $st->c_perm_address; ?></td>
@@ -33,9 +33,9 @@
                     <td><?php echo $st->c_email; ?></td>
                     <td>
                       <a href="<?php echo base_url("admin/candidate/registration/viewStudent/$st->c_id") ?>" class="btn btn-xs btn-info"><i class="fa fa-eye"></i></a>
-                      <a href="<?php echo base_url("admin/candidate/registration/viewstudent/$st->c_id") ?>" class="btn btn-xs btn-success"><i class="fa fa-edit"></i></a>
+                      <a href="<?php echo base_url("admin/candidate/registration/edit/$st->c_id") ?>" class="btn btn-xs btn-success"><i class="fa fa-edit"></i></a>
 
-                      <a href=" <?php echo base_url("admin/candidate/registration/studentdelete/$st->c_id") ?>" class="btn btn-xs btn-danger" onclick="return confirm('<?php echo ('Are You Sure') ?>') "><i class="fa fa-trash"></i></a>
+                      <a href=" <?php echo base_url("admin/candidate/registration/delete/$st->c_id") ?>" class="btn btn-xs btn-danger" onclick="return confirm('<?php echo ('Are You Sure') ?>') "><i class="fa fa-trash"></i></a>
                     </td>
                   </tr>
                   <?php $sl++; ?>

@@ -9,6 +9,17 @@
     </div>
   </div>
   <div class="card-body">
+
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="form-group form-inline ">
+          <label for="c_cand_id"><?php echo ('Candidate ID :'); ?></label> <small class="req text-red text-md"> </small>
+          <input type="text" name="c_cand_id" class="form-control <?= $input_height; ?> <?= form_error("c_cand_id") ? 'is-invalid' : null; ?> " placeholder="<?php echo ('Candidate ID') ?>" id="c_cand_id" value="<?php echo $input->c_cand_id; ?>">
+          <?php echo form_error("c_cand_id"); ?>
+
+        </div>
+      </div>
+    </div>
     <div class="row">
       <div class="col-sm-1">
         <div class="form-group">
