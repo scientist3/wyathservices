@@ -37,7 +37,7 @@
       <div class="col-sm-3">
         <div class="form-group">
           <label for="c_disablity"><?php echo ('Disability '); ?></label> <small class="req"> *</small>
-          <?php echo form_dropdown('c_disablity', $yes_no_list, $input->c_disablity, 'class="form-control ' . $input_height . '" id="c_disablity" '); ?>
+          <?php echo form_dropdown('c_disablity', $yes_no_list, $input->c_disablity, 'class="form-control ' . $input_height . ' ' . (form_error("c_disablity") ? 'is-invalid' : null) .  '"  id="c_disablity" '); ?>
         </div>
       </div>
 

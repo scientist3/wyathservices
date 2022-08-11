@@ -85,8 +85,10 @@
 
       var showHideCommunicationAddress = () => {
         if ($("#c_comm_same_as_perm").prop('checked') == true) {
+          $('#c_comm_same_as_perm').val(1);
           $('.comm_address_div').hide('slow');
         } else {
+          $('#c_comm_same_as_perm').val(0);
           $('.comm_address_div').show('slow');
         }
       }

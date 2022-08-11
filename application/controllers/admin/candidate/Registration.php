@@ -376,6 +376,7 @@ class Registration extends CI_Controller
 
 		$this->form_validation->set_rules('c_id_no', ('ID No'), 'required|max_length[30]');
 
+		// Address Validation
 		$this->form_validation->set_rules('c_perm_address', ('Permanent Address'), 'required|max_length[50]');
 		$this->form_validation->set_rules('c_perm_state', ('Permanent State'), 'required');
 		$this->form_validation->set_rules('c_perm_district', ('Permanent District'), 'required');
@@ -384,11 +385,22 @@ class Registration extends CI_Controller
 		$this->form_validation->set_rules('c_perm_pincode', ('Permanent PinCode'), 'required|max_length[7]');
 		$this->form_validation->set_rules('c_perm_constituency', ('Permanent Constituency'), 'required|max_length[50]');
 
-		if ($this->input->post('c_id_type') == '2') {
+
+		if ($this->input->post('c_comm_same_as_perm') == 0) {
+			$this->form_validation->set_rules('c_comm_address', ('Comm Address'), 'required');
+			$this->form_validation->set_rules('c_comm_tehsil', ('Comm Tehsil'), 'required');
+			$this->form_validation->set_rules('c_comm_district', ('Comm District'), 'required');
+			$this->form_validation->set_rules('c_comm_city', ('Comm City'), 'required');
+			$this->form_validation->set_rules('c_comm_state', ('Comm State'), 'required');
+			$this->form_validation->set_rules('c_comm_pincode', ('Comm Pincode'), 'required');
+			$this->form_validation->set_rules('c_comm_constituency', ('Comm Constituency'), 'required');
+		}
+
+		if ($this->input->post('c_id_type') == 2) {
 			$this->form_validation->set_rules('c_type_of_alternate_id', ('Alternate Id'), 'required');
 		}
 
-		if ($this->input->post('c_pre_traning_status') == '2') {
+		if ($this->input->post('c_pre_traning_status') == 2) {
 			$this->form_validation->set_rules('c_prev_exp_sector', ('Prev. Exp. Sector'), 'required');
 			$this->form_validation->set_rules('c_prev_exp_no_of_months', ('Experience Months'), 'required|numeric');
 			$this->form_validation->set_rules('c_employed', ('Employed'), 'required');

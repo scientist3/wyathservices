@@ -125,7 +125,7 @@ class AddressModel extends CI_Model
 			->order_by('name', 'asc')
 			->get()
 			->result();
-		//$list['']='Name';
+		$list[''] = 'Select District';
 		foreach ($result as $row) {
 			$list[$row->ID] = $row->name;
 		}
@@ -146,7 +146,7 @@ class AddressModel extends CI_Model
 			if ($isBootstrapSelect == true) {
 				$option = "<option value=\"\">All Cities</option>";
 			} else {
-				$option = "<option value=\"\">" . display('select_option') . "</option>";
+				$option = "<option value=\"\">" . ('select_option') . "</option>";
 			}
 			if ($query->num_rows() > 0) {
 				foreach ($query->result() as $city) {
