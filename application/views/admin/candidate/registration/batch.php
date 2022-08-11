@@ -13,17 +13,14 @@
 
 
               <!-- ?php echo site_url('admin/gallery/create') ?> -->
-              <form role="form" action="<?php echo site_url('../admin/candidate/batch/batchinsert') ?>" method="post"
-                id="save_type_form" enctype="multipart/form-data">
+              <form role="form" action="<?php echo site_url('../admin/candidate/batch/batchinsert') ?>" method="post" id="save_type_form" enctype="multipart/form-data">
 
                 <div class="row">
 
                   <div class="col-sm-12">
                     <div class="form-group">
                       <label for="batchtype"><?php echo ('Batch Type'); ?></label> <small class="req"> *</small>
-                      <input name="batchtype" class="form-control form-control-sm" type="text"
-                        placeholder="<?php echo ('Batch Type') ?>" id="batchtype" style="padding:18px;"
-                        value="<?= set_value('batchtype') ?>">
+                      <input name="batchtype" class="form-control form-control-sm" type="text" placeholder="<?php echo ('Batch Type') ?>" id="batchtype" style="padding:18px;" value="<?php $input->batchtype ?>">
 
                       <?php echo form_error("batchtype", '<span class="badge bg-danger p-1">', '</span>'); ?>
 
@@ -33,9 +30,7 @@
                   <div class="col-sm-12">
                     <div class="form-group">
                       <label for="startdate"><?php echo ('Start Date'); ?></label> <small class="req"> *</small>
-                      <input name="startdate" class="form-control form-control-sm" type="date"
-                        placeholder="<?php echo ('Start Date') ?>" id="startdate" style="padding:18px;"
-                        value="<?= set_value('startdate') ?>">
+                      <input name="startdate" class="form-control form-control-sm" type="date" placeholder="<?php echo ('Start Date') ?>" id="startdate" style="padding:18px;" value="<?php $input->startdate ?>">
                       <?php echo form_error('startdate', '<span class="badge bg-danger p-1">', '</span>'); ?>
                     </div>
                   </div>
@@ -43,9 +38,7 @@
                   <div class="col-sm-12">
                     <div class="form-group">
                       <label for="enddate"><?php echo ('End Date'); ?></label> <small class="req"> *</small>
-                      <input name="enddate" class="form-control form-control-sm" type="date"
-                        placeholder="<?php echo ('End Date') ?>" id="enddate" style="padding:18px;"
-                        value="<?= set_value('enddate') ?>">
+                      <input name="enddate" class="form-control form-control-sm" type="date" placeholder="<?php echo ('End Date') ?>" id="enddate" style="padding:18px;" value="<?php $input->enddate ?>">
                       <?php echo form_error('enddate', '<span class="badge bg-danger p-1">', '</span>'); ?>
                     </div>
                   </div>
@@ -53,7 +46,7 @@
                   <!-- <div class="col-sm-12">
                   <div class="form-group">
                   <label for="courseid"><?php echo ('Course List'); ?></label> <small class="req"> *</small>
-                  <input name="courseid" class="form-control form-control-sm" type="text" placeholder="<?php echo ('Course ID') ?>" id="courseid" style="padding:18px;" value="<?= set_value('courseid') ?>" >
+                  <input name="courseid" class="form-control form-control-sm" type="text" placeholder="<?php echo ('Course ID') ?>" id="courseid" style="padding:18px;" value="<?php $input->courseid ?>" >
                   <?php echo form_error("courseid", '<span class="badge bg-danger p-1">', '</span>'); ?>
   
                 </div>
@@ -69,9 +62,7 @@
                   <div class="col-sm-12">
                     <div class="form-group">
                       <label for="trainername"><?php echo ('Trainer Name'); ?></label> <small class="req"> *</small>
-                      <input name="trainername" class="form-control form-control-sm" type="text"
-                        placeholder="<?php echo ('Trainer Name') ?>" id="trainername" style="padding:18px;"
-                        value="<?= set_value('trainername') ?>">
+                      <input name="trainername" class="form-control form-control-sm" type="text" placeholder="<?php echo ('Trainer Name') ?>" id="trainername" style="padding:18px;" value="<?php $input->trainername ?>">
                       <?php echo form_error("trainername", '<span class="badge bg-danger p-1">', '</span>'); ?>
 
                     </div>
@@ -95,8 +86,7 @@
                   </div>
                   <div class="col-sm-12">
                     <div class="form-group">
-                      <label for="assessmentcompleted"><?php echo ('Assessment Completed'); ?></label> <small
-                        class="req"> *</small>
+                      <label for="assessmentcompleted"><?php echo ('Assessment Completed'); ?></label> <small class="req"> *</small>
                       <?php echo form_dropdown('assessmentcompleted', $assessmentcompleted, 1/*$user->user_role*/, 'class="form-control" id="assessmentcompleted" name="assessmentcompleted" '); ?>
                       <?php echo form_error("assessmentcompleted", '<span class="badge bg-danger p-1">', '</span>'); ?>
                     </div>
@@ -105,9 +95,7 @@
                   <div class="col-sm-12">
                     <div class="form-group">
                       <label for="assessmentid"><?php echo ('Assessment ID'); ?></label> <small class="req"> *</small>
-                      <input name="assessmentid" class="form-control form-control-sm" type="text"
-                        placeholder="<?php echo ('Assessment ID') ?>" id="assessmentid" style="padding:18px;"
-                        value="<?= set_value('assessmentid') ?>">
+                      <input name="assessmentid" class="form-control form-control-sm" type="text" placeholder="<?php echo ('Assessment ID') ?>" id="assessmentid" style="padding:18px;" value="<?php $input->assessmentid ?>">
                       <?php echo form_error("assessmentid", '<span class="badge bg-danger p-1">', '</span>'); ?>
 
                     </div>
@@ -118,13 +106,9 @@
                     <div class="form-group">
                       <!-- <label>Submit</label> -->
                       <?php if ($this->uri->segment(3) != "edit") { ?>
-                      <button type="submit" name="save" value="add_station"
-                        class="form-control form-control-sm btn btn-primary btn-sm pull-right checkbox-toggle"><i
-                          class="fa fa-plus"> &nbsp;<?php echo ('Save'); ?></i></button>
+                        <button type="submit" name="save" value="add_station" class="form-control form-control-sm btn btn-primary btn-sm pull-right checkbox-toggle"><i class="fa fa-plus"> &nbsp;<?php echo ('Save'); ?></i></button>
                       <?php } else { ?>
-                      <button type="submit" name="save" value="edit_station"
-                        class="form-control form-control-sm btn btn-warning btn-sm pull-right checkbox-toggle"><i
-                          class="fa fa-edit"> &nbsp;<?php echo ('Update'); ?></i></button>
+                        <button type="submit" name="save" value="edit_station" class="form-control form-control-sm btn btn-warning btn-sm pull-right checkbox-toggle"><i class="fa fa-edit"> &nbsp;<?php echo ('Update'); ?></i></button>
                       <?php } ?>
                     </div>
                   </div>
@@ -167,52 +151,49 @@
             <tbody>
               <!--  -->
               <?php if (!empty($batch)) { ?>
-              <?php $sl = 1; ?>
-              <?php foreach ($batch as $bt) { ?>
-              <tr>
-                <td><?php echo $bt->bch_id ?></td>
-                <td><?php echo $bt->batch_type ?></td>
-                <td><?php echo $bt->start_date ?></td>
-                <td><?php echo $bt->end_date ?></td>
-                <td><?php echo $bt->course_id ?></td>
+                <?php $sl = 1; ?>
+                <?php foreach ($batch as $bt) { ?>
+                  <tr>
+                    <td><?php echo $bt->bch_id ?></td>
+                    <td><?php echo $bt->batch_type ?></td>
+                    <td><?php echo $bt->start_date ?></td>
+                    <td><?php echo $bt->end_date ?></td>
+                    <td><?php echo $bt->course_id ?></td>
 
-                <td><?php echo $bt->trainer_name ?></td>
-                <td><?php echo $bt->tc_id ?></td>
-                <td>
-                  <?php
+                    <td><?php echo $bt->trainer_name ?></td>
+                    <td><?php echo $bt->tc_id ?></td>
+                    <td>
+                      <?php
                       if ($bt->training_completed == 1) {
                         echo "No";
                       } else {
                         echo "Yes";
                       }
                       ?>
-                </td>
+                    </td>
 
-                <td>
+                    <td>
 
-                  <?php
+                      <?php
                       if ($bt->assessment_completed == 1) {
                         echo "No";
                       } else {
                         echo "Yes";
                       }
                       ?>
-                </td>
-                <td><?php echo $bt->as_id ?></td>
-                <td>
-                  <a href="<?php echo base_url("admin/candidate/batch/edit/$bt->id") ?>"
-                    class="btn btn-xs btn-success"><i class="fa fa-edit"></i></a>
+                    </td>
+                    <td><?php echo $bt->as_id ?></td>
+                    <td>
+                      <a href="<?php echo base_url("admin/candidate/batch/edit/$bt->id") ?>" class="btn btn-xs btn-success"><i class="fa fa-edit"></i></a>
 
-                  <a href="<?php echo base_url("/admin/candidate/batch/batchdelete/$bt->id") ?>"
-                    class="btn btn-xs btn-danger" onclick="return confirm('<?php echo ('Are You Sure') ?>') "><i
-                      class="fa fa-trash"></i></a>
+                      <a href="<?php echo base_url("/admin/candidate/batch/batchdelete/$bt->id") ?>" class="btn btn-xs btn-danger" onclick="return confirm('<?php echo ('Are You Sure') ?>') "><i class="fa fa-trash"></i></a>
 
 
 
 
-              </tr>
-              <?php $sl++; ?>
-              <?php } ?>
+                  </tr>
+                  <?php $sl++; ?>
+                <?php } ?>
               <?php } ?>
               <!--  -->
 
