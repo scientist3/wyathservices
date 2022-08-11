@@ -67,11 +67,14 @@
         </div>
       </div>
 
-      <div class="col-sm-3" id="c_id_no">
+      <div class="col-sm-3">
         <div class="form-group">
           <label for="c_id_no"><?php echo ('ID No.'); ?></label> <small class="req"> *</small>
-          <input name="c_id_no" class="form-control <?= $input_height; ?> <?php echo form_error("c_type_of_disablity") ? 'is-invalid' : null; ?>" type="text" placeholder="<?php echo ('ID No.') ?>" id="c_id_no" value="<?php echo $input->c_id_no ?>">
+          <input name="c_id_no" class="form-control <?= $input_height; ?> <?php echo form_error("c_id_no") ? 'is-invalid' : null; ?>" type="text" placeholder="<?php echo ('ID No.') ?>" id="c_id_no" value="<?php echo $input->c_id_no ?>">
           <?php echo form_error("c_id_no"); ?>
+          <div class="overlay d-none" id="spinning_wheel_for_id_no">
+            <i class="fas fa-2x fa-sync-alt fa-spin"></i>
+          </div>
         </div>
       </div>
     </div>

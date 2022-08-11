@@ -115,9 +115,7 @@
 
     objCreateCandidate.init();
 
-
-
-
+    // On Chnage of Perm State
     $('#c_perm_state').change(function() {
       var state_id = $('#c_perm_state').val();
       if (state_id != '') {
@@ -141,8 +139,6 @@
 
     $('#c_comm_state').change(function() {
       var state_id = $('#c_comm_state').val();
-      //alert(state_id);
-
       if (state_id != '') {
         $.ajax({
           url: "<?php echo base_url(); ?>admin/api/fetch_district",
@@ -156,6 +152,49 @@
         });
       } else {
         $('#c_comm_district').html('<option value="">Select District</option>');
+      }
+    });
+
+    // Duplicate Check
+    $('#c_id_no').off('blur').on('blur', function() {
+      var c_id_no = $('#c_id_no').val();
+      if (c_id_no != '') {
+        $.ajax({
+          url: "<?php echo base_url(); ?>admin/api/checkDuplicateByIdNo",
+          method: "POST",
+          data: {
+            c_id_no: c_id_no
+          },
+          beforeSend: function() {
+            $('#spinning_wheel_for_id_no').removeClass('d-none');
+          },
+          success: function(data) {
+            $('#spinning_wheel_for_id_no').addClass('d-none');
+            try {
+              data = jQuery.parseJSON(data);
+            } catch (error) {
+              $('#c_id_no').removeClass('is-invalid');
+              $('#c_id_no').siblings('span').remove();
+              alert(error)
+              return;
+            }
+            if (data.status == false) {
+              $('#c_id_no').addClass('is-invalid');
+              if ($('#c_id_no').siblings('span').length == 1) {
+                $('#c_id_no').siblings('span').text(data.message)
+              } else {
+                $('#c_id_no').parent().append('<span class="error invalid-feedback is-invalid">' + data.message + '</span>');
+              }
+            } else {
+              $('#c_id_no').removeClass('is-invalid');
+              $('#c_id_no').siblings('span').remove();
+            }
+          },
+          error: function() {
+            $('#spinning_wheel_for_id_no').addClass('d-none');
+            alert('Unable to check duplicate id.');
+          }
+        });
       }
     });
 

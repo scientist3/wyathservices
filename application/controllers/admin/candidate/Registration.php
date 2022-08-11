@@ -42,7 +42,6 @@ class Registration extends CI_Controller
 
 	public function create()
 	{
-		// dd($this->AddressModel->read_state_country_as_list(), false);
 		$this->data['title']		= ('Registration New Candidate');
 		$this->data['subtitle']	= ('Add New Candidate');
 		// Load Common Data
@@ -72,8 +71,16 @@ class Registration extends CI_Controller
 		}
 	}
 
-
-
+	public function edit($c_id = null)
+	{
+		$this->data['title']		= ('Registration New Candidate');
+		$this->data['subtitle']	= ('Add New Candidate');
+		// Load Common Data
+		$this->loadCommonData();
+		$this->data['input'] = $this->CandidateModel->read_by_id_as_obj($c_id);
+		$this->data['content'] = $this->load->view('admin/candidate/registration/form_view', $this->data, true);
+		$this->load->view('admin/layout/wrapper', $this->data);
+	}
 	public function viewStudent($cand_id = null)
 	{
 		if (empty($cand_id) || $cand_id ==  null) {
@@ -169,175 +176,6 @@ class Registration extends CI_Controller
 		$this->load->view('admin/layout/wrapper', $data);
 	}
 
-
-	public function insert()
-	{
-		$data['title'] = ('');
-		$data['subtitle'] = ('');
-
-		$this->validationRules();
-		// extra
-		if ($this->input->post('comm_address')) {
-
-			//copy value for extra
-			$comm_address = $this->input->post('comm_address');
-			$communicationaddress = $this->input->post('permanentaddress');
-			$communicationstate = $this->input->post('permanentstate');
-			$communicationdistrict = $this->input->post('district');
-			$communicationtehsil = $this->input->post('permanenttehsil');
-			$communicationcity = $this->input->post('permanentcity');
-			$communicationpincode = $this->input->post('permanentpincode');
-			$communicationconstituency = $this->input->post('permanentconstituency');
-
-
-			$dataa['input'] = (object) $postDataInp = array(
-				'salutation' => $this->input->post('salutation'),
-				'username' => $this->input->post('fullname'),
-				'gender' => $this->input->post('gender'),
-				'dob' => $this->input->post('dob'),
-				'mobilenumber' => $this->input->post('mobilenumber'),
-				'email' => $this->input->post('email'),
-				'maritalstatus' => $this->input->post('maritalstatus'),
-				'fathersname' => $this->input->post('fathersname'),
-				'mothersname' => $this->input->post('mothersname'),
-				'guardianname' => $this->input->post('guardianname'),
-				'education' => $this->input->post('education'),
-				'religion' => $this->input->post('religion'),
-				'category' => $this->input->post('category'),
-				'ab_status' => $this->input->post('ab_status'),
-				'todisability' => $this->input->post('todisability'),
-				'idtype' => $this->input->post('idtype'),
-				'typeofalternateid' => $this->input->post('typeofalternateid'),
-				'idno' => $this->input->post('idno'),
-				'permanentaddress' => $this->input->post('permanentaddress'),
-				'permanentstate' => $this->input->post('permanentstate'),
-				'permanentdistrict' => $this->input->post('district'),
-				'permanenttehsil' => $this->input->post('permanenttehsil'),
-				'permanentcity' => $this->input->post('permanentcity'),
-				'permanentpincode' => $this->input->post('permanentpincode'),
-				// extra
-				'permanentconstituency' => $this->input->post('permanentconstituency'),
-				'comm_address' => $this->input->post('comm_address'),
-				'communicationaddress' => $communicationaddress,
-				'communicationstate' => $communicationstate,
-				'communicationdistrict' => $communicationdistrict,
-				'communicationtehsil' => $communicationtehsil,
-				'communicationcity' => $communicationcity,
-				'communicationpincode' => $communicationpincode,
-				'communicationconstituency' => $communicationconstituency
-			);
-		} else {
-			$this->form_validation->set_rules('comm_address', ('Communication Sameas Permanent Address'), 'required');
-			$this->form_validation->set_rules('communicationaddress', ('Communication Address'), 'required|max_length[50]');
-			$this->form_validation->set_rules('state', ('Communication State'), 'required');
-			$this->form_validation->set_rules('district', ('Communication District'), 'required');
-			$this->form_validation->set_rules('communicationtehsil', ('Communication Tehsil'), 'required|max_length[30]');
-			$this->form_validation->set_rules('communicationcity', ('Communication City'), 'required|max_length[30]');
-			$this->form_validation->set_rules('communicationpincode', ('Communication PinCode'), 'required|max_length[7]');
-			$this->form_validation->set_rules('communicationconstituency', ('Communication Constituency'), 'required|max_length[50]');
-
-			$dataa['input'] = (object) $postDataInp = array(
-				'salutation' => $this->input->post('salutation'),
-				'username' => $this->input->post('fullname'),
-				'gender' => $this->input->post('gender'),
-				'dob' => $this->input->post('dob'),
-				'mobilenumber' => $this->input->post('mobilenumber'),
-				'email' => $this->input->post('email'),
-				'maritalstatus' => $this->input->post('maritalstatus'),
-				'fathersname' => $this->input->post('fathersname'),
-				'mothersname' => $this->input->post('mothersname'),
-				'guardianname' => $this->input->post('guardianname'),
-				'education' => $this->input->post('education'),
-				'religion' => $this->input->post('religion'),
-				'category' => $this->input->post('category'),
-				'ab_status' => $this->input->post('ab_status'),
-				'todisability' => $this->input->post('todisability'),
-				'idtype' => $this->input->post('idtype'),
-				'typeofalternateid' => $this->input->post('typeofalternateid'),
-				'idno' => $this->input->post('idno'),
-				'permanentaddress' => $this->input->post('permanentaddress'),
-				'permanentstate' => $this->input->post('permanentstate'),
-				'permanentdistrict' => $this->input->post('district'),
-				'permanenttehsil' => $this->input->post('permanenttehsil'),
-				'permanentcity' => $this->input->post('permanentcity'),
-				'permanentpincode' => $this->input->post('permanentpincode'),
-				// extra
-				'permanentconstituency' => $this->input->post('permanentconstituency'),
-				'comm_address' => $this->input->post('comm_address'),
-				'communicationaddress' => $this->input->post('communicationaddress'),
-				'communicationstate' => $this->input->post('communicationstate'),
-				'communicationdistrict' => $this->input->post('communicationdistrict'),
-				'communicationtehsil' => $this->input->post('communicationtehsil'),
-				'communicationcity' => $this->input->post('communicationcity'),
-				'communicationpincode' => $this->input->post('communicationpincode'),
-				'communicationconstituency' => $this->input->post('communicationconstituency')
-
-			);
-		}
-
-
-		$input = $dataa['input'];
-		#----------------- User Object -------------#
-		$data['user'] = (object) $postDataUser = array(
-			'c_salutation' => $input->salutation,
-			'c_full_name' => $input->username,
-			'c_gender' => $input->gender,
-			'c_dob' => $input->dob,
-			'c_mobile' => $input->mobilenumber,
-			'c_email' => $input->email,
-			'c_marital_status' => $input->maritalstatus,
-			'c_father_name' => $input->fathersname,
-			'c_mother_name' => $input->mothersname,
-			'c_guardian_name' => $input->guardianname,
-			'c_education' => $input->education,
-			'c_religion' => $input->religion,
-			'c_catagory' => $input->category,
-			'c_disablity' => $input->ab_status,
-			'c_type_of_disablity' => $input->todisability,
-			'c_idtype' => $input->idtype,
-			'typeofalternateid' => $input->typeofalternateid,
-			'c_idno' => $input->idno,
-			'c_perm_address' => $input->permanentaddress,
-			'c_perm_tehsil' => $input->permanenttehsil,
-			'c_perm_district' => $input->permanentdistrict,
-			'c_perm_city' => $input->permanentcity,
-			'c_perm_state' => $input->permanentstate,
-			'c_perm_pincode' => $input->permanentpincode,
-
-			// extra
-			'c_perm_constituency' => $input->permanentconstituency,
-			'c_comm_same_as_perm' => $input->comm_address,
-			'c_comm_address' => $input->communicationaddress,
-			'c_comm_tehsil' => $input->communicationtehsil,
-			'c_comm_district' => $input->communicationdistrict,
-			'c_comm_city' => $input->communicationcity,
-			'c_comm_state' => $input->communicationstate,
-			'c_comm_pincode' => $input->communicationpincode,
-			'c_comm_constituency' => $input->communicationconstituency,
-
-		);
-
-		if ($this->form_validation->run() === true) {
-
-			$this->db->insert('candidate_tbl', $postDataUser);
-			$this->session->set_flashdata('message', ('Candidate Added Successfully'));
-			$this->session->set_flashdata('class_name', ('alert-success'));
-			redirect('admin/candidate/registration/insert');
-		}
-		// // ############################
-		// $data['state'] = $this->CSD->fetch_state();
-		$data['state'] = $this->AddressModel->read_state_country_as_list(101); //passed indian country id
-
-
-		$data['title'] = ('Candidate Registration');
-
-		$data['subtitle'] = ('Add New Candidate');
-		$this->loadCommonData();
-		$data = array_unique(array_merge($data, $this->data), SORT_REGULAR);
-		$data['content'] = $this->load->view('admin/candidate/registration/index', $data, true);
-		$this->load->view('admin/layout/wrapper', $data);
-	}
-
 	private function validationRules()
 	{
 		// Basic Validation 
@@ -361,7 +199,7 @@ class Registration extends CI_Controller
 			$this->form_validation->set_rules('c_type_of_disablity', ('Type Of Disability'), 'required');
 		}
 
-		$this->form_validation->set_rules('c_id_no', ('ID No'), 'required|max_length[30]');
+		$this->form_validation->set_rules('c_id_no', ('ID No'), 'required|callback_duplicate_check');
 		$this->form_validation->set_rules('c_id_type', ('ID Type'), 'required');
 
 		// Check for alternate id is required or not
@@ -405,7 +243,6 @@ class Registration extends CI_Controller
 
 	private function prepareData()
 	{
-
 		$boolSameAddress = $this->input->post('c_comm_same_as_perm') == 1 ? true : false;
 		$this->data['input'] = (object) [
 			'c_id' 										=> $this->input->post('c_id'),
@@ -479,6 +316,18 @@ class Registration extends CI_Controller
 		$this->data['employment_status_list']	= $this->CommonModel->getEmploymentStatusList();
 
 		$this->data['heard_about_us_list']	= $this->CommonModel->getHearAboutUsList();
+	}
+
+	public function duplicate_check($strId)
+	{
+		$data['c_id_no'] = $strId;
+
+		if ($this->CandidateModel->checkDuplicateStudent($data)) {
+			$this->form_validation->set_message('duplicate_check', 'The {field} id already registered with another student.');
+			return FALSE;
+		} else {
+			return TRUE;
+		}
 	}
 }
 

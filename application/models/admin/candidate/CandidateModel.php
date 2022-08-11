@@ -4,9 +4,23 @@ class CandidateModel extends CI_Model
 {
   private $table = "candidate_tbl";
 
+  // Using
   public function create($data = [])
   {
-    return $this->db->insert($this->table, $data);
+    if (isset($data['c_id']) && !empty($data['c_id'])) {
+      return $this->db->update($this->table, $data)
+        ->where('c_id', $data['c_id']);
+    } else {
+      return $this->db->insert($this->table, $data);
+    }
+  }
+
+  public function read()
+  {
+    return $this->db->select("*")
+      ->from($this->table)
+      ->get()
+      ->result();
   }
 
   public function read_by_id_as_obj($c_id = null)
@@ -17,12 +31,24 @@ class CandidateModel extends CI_Model
       ->get()
       ->row();
   }
-  public function get_count()
+
+  public function checkDuplicateStudent($data = [])
   {
-    return $this->db->count_all($this->table);
+    $result = $this->db->select("c_id_no")
+      ->from($this->table)
+      ->where('c_id_no', $data['c_id_no'])
+      ->get();
+
+    $count_row = $result->num_rows();
+
+    if ($count_row > 0) {
+      return TRUE;
+    } else {
+      return FALSE;
+    }
   }
 
-  public function studentdelete($student_id = null)
+  public function delete($student_id = null)
   {
     $this->db->where('c_id', $student_id)
       ->delete($this->table);
@@ -33,18 +59,9 @@ class CandidateModel extends CI_Model
       return false;
     }
   }
-  public function read()
-  {
-    return $this->db->select("*")
-      ->from($this->table)
-      ->get()
-      ->result();
-  }
 
-  public function insert($data = [])
+  public function get_count()
   {
-    // return $this->db->insert($this->table, $data);
-    // return $this->db->insert($this->table, $data);
-    return $this->db->insert($table, $postDataUser);
+    return $this->db->count_all($this->table);
   }
 }

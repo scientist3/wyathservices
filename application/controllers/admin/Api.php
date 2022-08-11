@@ -8,7 +8,8 @@ class Api extends CI_Controller
   {
     parent::__construct();
     $this->load->model([
-      'AddressModel'
+      'AddressModel',
+      'admin/candidate/CandidateModel',
     ]);
     //$this->load->library('fileupload');
     if ($this->session->userdata('isLogIn') == false || $this->session->userdata('user_role') != 1) {
@@ -24,5 +25,23 @@ class Api extends CI_Controller
     } else {
       $this->output->set_status_header('404');
     }
+  }
+
+  public function checkDuplicateByIdNo()
+  {
+    $data['c_id_no'] = $this->input->post('c_id_no');
+    if ($this->input->post('c_id_no')) {
+      $result =  $this->CandidateModel->checkDuplicateStudent($data);
+      if ($result == true) {
+        $data['status'] = false;
+        $data['message'] = "The Id No is already registered with another student";
+      } else {
+        $data['status'] = true;
+      }
+    } else {
+      $data['status'] = false;
+      $data['message'] = "Please Enter correct Id Number.";
+    }
+    echo json_encode($data);
   }
 }
