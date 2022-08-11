@@ -2,10 +2,12 @@
 
 class CandidateModel extends CI_Model
 {
-  // protected $allowedFields = ['name', 'email', 'address'];
-
   private $table = "candidate_tbl";
 
+  public function create($data = [])
+  {
+    return $this->db->insert($this->table, $data);
+  }
 
   public function read_by_id_as_obj($c_id = null)
   {

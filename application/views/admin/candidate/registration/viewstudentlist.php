@@ -1,23 +1,16 @@
 <!-- Main content -->
 <section class="content">
   <div class="row">
-    <!-- Save -->
-
-    <!-- Search -->
     <!-- Display -->
     <div class="col-sm-12">
-      <div class="card">
-        <?php
-// print_r($totaldata);
-// echo "<br>";
-//  print_r($alldata);
-?>
+      <div class="card card-dark">
+        <div class="card-header">
+          <h3 class="card-title"> <i class="fas fa-list"></i> Registered Candidates</h3>
+        </div>
         <div class="card-body">
           <table width="100%" class="datatable_colvis table table-striped table-bordered table-hover table-sm">
             <thead>
-
               <tr>
-
                 <th><?php echo ('Student Id') ?></th>
                 <th><?php echo ('Student Name') ?></th>
                 <th><?php echo ('Parantage') ?></th>
@@ -28,11 +21,9 @@
               </tr>
             </thead>
             <tbody>
-
-
-                          <?php if (!empty($alldata)) { ?>
+              <?php if (!empty($students_list)) { ?>
                 <?php $sl = 1; ?>
-                <?php foreach ($alldata as $st) { ?>
+                <?php foreach ($students_list as $st) { ?>
                   <tr>
                     <td><?php echo $st->c_id; ?></td>
                     <td><?php echo $st->c_full_name; ?></td>
@@ -40,25 +31,18 @@
                     <td><?php echo $st->c_perm_address; ?></td>
                     <td><?php echo $st->c_mobile; ?></td>
                     <td><?php echo $st->c_email; ?></td>
-                    <td> 
+                    <td>
+                      <a href="<?php echo base_url("admin/candidate/registration/viewStudent/$st->c_id") ?>" class="btn btn-xs btn-info"><i class="fa fa-eye"></i></a>
                       <a href="<?php echo base_url("admin/candidate/registration/viewstudent/$st->c_id") ?>" class="btn btn-xs btn-success"><i class="fa fa-edit"></i></a>
 
-    <a href=" <?php echo base_url("admin/candidate/registration/studentdelete/$st->c_id") ?>" class="btn btn-xs btn-danger" onclick="return confirm('<?php echo ('Are You Sure') ?>') "><i class="fa fa-trash"></i></a></td>
-           
-              
+                      <a href=" <?php echo base_url("admin/candidate/registration/studentdelete/$st->c_id") ?>" class="btn btn-xs btn-danger" onclick="return confirm('<?php echo ('Are You Sure') ?>') "><i class="fa fa-trash"></i></a>
+                    </td>
                   </tr>
                   <?php $sl++; ?>
                 <?php } ?>
               <?php } ?>
-                          <!--  -->
-
-
-
-           
-
             </tbody>
           </table> <!-- /.table-responsive -->
-
         </div>
       </div>
     </div>
