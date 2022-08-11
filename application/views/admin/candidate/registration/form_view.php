@@ -1,12 +1,16 @@
 <!-- jQuery -->
 <script src="<?php echo base_url('vendor/almasaeed2010/adminlte/') ?>plugins/jquery/jquery.min.js"></script>
-<?php echo validation_errors(); ?>
 <!-- Main content -->
 <section class="content">
   <form role="form" action="<?php echo site_url('../admin/candidate/registration/create') ?>" method="post" id="save_type_form" enctype="multipart/form-data">
-    <?php echo form_hidden('c_id ', $input->c_id) ?>
-    <?php echo form_hidden('c_currently_enrolled ', $input->c_currently_enrolled) ?>
-    <?php echo form_hidden('c_training_status ', $input->c_training_status) ?>
+    <?php echo form_input([
+      'type'  => 'hidden',
+      'name'  => 'c_id',
+      'id'    => 'c_id',
+      'value' => '' . $input->c_id,
+    ]) ?>
+    <?php echo form_hidden('c_currently_enrolled', $input->c_currently_enrolled) ?>
+    <?php echo form_hidden('c_training_status', $input->c_training_status) ?>
     <!-- Basic Details -->
     <?php $this->load->view('admin/candidate/registration/partials/basic_details_view'); ?>
 
@@ -158,11 +162,14 @@
     // Duplicate Check
     $('#c_id_no').off('blur').on('blur', function() {
       var c_id_no = $('#c_id_no').val();
+      var c_id = $('#c_id').val();
+      console
       if (c_id_no != '') {
         $.ajax({
           url: "<?php echo base_url(); ?>admin/api/checkDuplicateByIdNo",
           method: "POST",
           data: {
+            c_id: c_id,
             c_id_no: c_id_no
           },
           beforeSend: function() {

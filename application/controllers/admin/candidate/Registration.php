@@ -44,21 +44,28 @@ class Registration extends CI_Controller
 	{
 		$this->data['title']		= ('Registration New Candidate');
 		$this->data['subtitle']	= ('Add New Candidate');
+		$c_id = $this->input->post('c_id');
 		// Load Common Data
 		$this->loadCommonData();
 		// Prepare the submitted data.
 		$this->prepareData();
 		// Define the validation rules.
 		$this->validationRules();
-		// dd($this->data['input'], true);
+		//dd($this->data['input'], true);
 		$postDataUser = (array) $this->data['input'];
 		// Check for validation errors.
 		if ($this->form_validation->run() === true) {
 			if ($this->CandidateModel->create($postDataUser)) {
 				#set success message
-				$this->session->set_flashdata('message', ('Registered Sucessfully'));
-				$this->session->set_flashdata('class_name', ('alert-success'));
-				redirect('admin/candidate/registration/create');
+				if (empty($c_id)) {
+					$this->session->set_flashdata('message', ('Registered Sucessfully'));
+					$this->session->set_flashdata('class_name', ('alert-success'));
+					redirect('admin/candidate/registration/create');
+				} else {
+					$this->session->set_flashdata('message', ('Updated Sucessfully'));
+					$this->session->set_flashdata('class_name', ('alert-success'));
+					redirect('admin/candidate/registration/edit/' . $c_id);
+				}
 			} else {
 				#set exception message
 				$this->session->set_flashdata('message', ('Please Try Again'));
@@ -76,8 +83,11 @@ class Registration extends CI_Controller
 		$this->data['title']		= ('Registration New Candidate');
 		$this->data['subtitle']	= ('Add New Candidate');
 		// Load Common Data
-		$this->loadCommonData();
 		$this->data['input'] = $this->CandidateModel->read_by_id_as_obj($c_id);
+		$_POST['c_perm_state'] =	$this->data['input']->c_perm_state;
+		$_POST['c_comm_state'] =	$this->data['input']->c_comm_state;
+		$this->loadCommonData();
+
 		$this->data['content'] = $this->load->view('admin/candidate/registration/form_view', $this->data, true);
 		$this->load->view('admin/layout/wrapper', $this->data);
 	}
@@ -195,7 +205,7 @@ class Registration extends CI_Controller
 		$this->form_validation->set_rules('c_disablity', ('Disability'), 'required');
 
 		// Type of Disablity is required or not 
-		if ($this->input->post('c_disablity') == '1') {
+		if ($this->input->post('c_disablity') == 1) {
 			$this->form_validation->set_rules('c_type_of_disablity', ('Type Of Disability'), 'required');
 		}
 
@@ -260,9 +270,9 @@ class Registration extends CI_Controller
 			'c_religion'							=> $this->input->post('c_religion'),
 			'c_catagory'							=> $this->input->post('c_catagory'),
 			'c_disablity'							=> $this->input->post('c_disablity'),
-			'c_type_of_disablity'			=> $this->input->post('c_type_of_disablity'),
+			'c_type_of_disablity'			=> $this->input->post('c_disablity') == 1 ? $this->input->post('c_type_of_disablity') : null,
 			'c_id_type'								=> $this->input->post('c_id_type'),
-			'c_type_of_alternate_id'	=> $this->input->post('c_type_of_alternate_id'),
+			'c_type_of_alternate_id'	=> $this->input->post('c_id_type') == 2 ? $this->input->post('c_type_of_alternate_id') : null,
 			'c_id_no'									=> $this->input->post('c_id_no'),
 			'c_perm_address'					=> $this->input->post('c_perm_address'),
 			'c_perm_tehsil'						=> $this->input->post('c_perm_tehsil'),
@@ -296,10 +306,10 @@ class Registration extends CI_Controller
 		// TODO: As of now fetching only States of india.
 		$this->data['state_list']									= $this->AddressModel->read_state_country_as_list(101);
 		// dd($this->data['state_list']);
-		$perm_district_id 															= $this->input->post('c_perm_state') ? $this->input->post('c_perm_state') : 1;
-		$comm_district_id 															= $this->input->post('c_comm_state') ? $this->input->post('c_comm_state') : 1;
-		$this->data['perm_district_list']							= $this->AddressModel->read_city_state_as_list($perm_district_id); //['' => 'Select District'];
-		$this->data['comm_district_list']							= $this->AddressModel->read_city_state_as_list($comm_district_id); //['' => 'Select District'];
+		$perm_district_id 												= !empty($this->input->post('c_perm_state')) ? $this->input->post('c_perm_state') : 1;
+		$comm_district_id 												= !empty($this->input->post('c_comm_state')) ? $this->input->post('c_comm_state') : 1;
+		$this->data['perm_district_list']					= $this->AddressModel->read_city_state_as_list($perm_district_id); //['' => 'Select District'];
+		$this->data['comm_district_list']					= $this->AddressModel->read_city_state_as_list($comm_district_id); //['' => 'Select District'];
 
 		$this->data['yes_no_list']								=	$this->CommonModel->getYesNoList();
 		$this->data['id_type_list']								= $this->CommonModel->getIdType();
@@ -321,6 +331,7 @@ class Registration extends CI_Controller
 	public function duplicate_check($strId)
 	{
 		$data['c_id_no'] = $strId;
+		$data['c_id'] = $this->input->post('c_id');
 
 		if ($this->CandidateModel->checkDuplicateStudent($data)) {
 			$this->form_validation->set_message('duplicate_check', 'The {field} id already registered with another student.');

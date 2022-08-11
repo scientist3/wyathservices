@@ -31,6 +31,15 @@
 				<?php echo $this->session->flashdata('exception'); ?>
 			</div>
 		<?php } ?>
+		<style>
+			.is-invalid~.invalid-feedback,
+			.is-invalid~.invalid-tooltip,
+			.was-validated :invalid~.invalid-feedback,
+			.was-validated :invalid~.invalid-tooltip {
+				display: inline;
+			}
+		</style>
+		<?php echo validation_errors(); ?>
 	</section>
 
 	<?php echo !empty($content) ? $content : null; ?>

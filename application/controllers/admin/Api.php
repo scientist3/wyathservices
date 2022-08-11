@@ -30,6 +30,8 @@ class Api extends CI_Controller
   public function checkDuplicateByIdNo()
   {
     $data['c_id_no'] = $this->input->post('c_id_no');
+    $data['c_id'] = $this->input->post('c_id');
+
     if ($this->input->post('c_id_no')) {
       $result =  $this->CandidateModel->checkDuplicateStudent($data);
       if ($result == true) {

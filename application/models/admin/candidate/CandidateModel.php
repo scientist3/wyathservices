@@ -7,9 +7,8 @@ class CandidateModel extends CI_Model
   // Using
   public function create($data = [])
   {
-    if (isset($data['c_id']) && !empty($data['c_id'])) {
-      return $this->db->update($this->table, $data)
-        ->where('c_id', $data['c_id']);
+    if (!empty($data['c_id'])) {
+      return $this->db->where('c_id', $data['c_id'])->update($this->table, $data);
     } else {
       return $this->db->insert($this->table, $data);
     }
@@ -34,11 +33,18 @@ class CandidateModel extends CI_Model
 
   public function checkDuplicateStudent($data = [])
   {
-    $result = $this->db->select("c_id_no")
-      ->from($this->table)
-      ->where('c_id_no', $data['c_id_no'])
-      ->get();
-
+    if (!empty($data['c_id'])) {
+      $result = $this->db->select("c_id_no")
+        ->from($this->table)
+        ->where('c_id_no', $data['c_id_no'])
+        ->where('c_id !=', $data['c_id'])
+        ->get();
+    } else {
+      $result = $this->db->select("c_id_no")
+        ->from($this->table)
+        ->where('c_id_no', $data['c_id_no'])
+        ->get();
+    }
     $count_row = $result->num_rows();
 
     if ($count_row > 0) {
