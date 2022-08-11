@@ -2,8 +2,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
   <a href="<?= base_url('admin/contact'); ?>" class="brand-link">
-    <img src="<?php echo base_url('vendor/almasaeed2010/adminlte/') ?>dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
-      class="brand-image img-circle elevation-3" style="opacity: .8">
+    <img src="<?php echo base_url('vendor/almasaeed2010/adminlte/') ?>dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
     <span class="brand-text font-weight-light">Wyathservices</span>
   </a>
 
@@ -12,8 +11,7 @@
     <!-- Sidebar user (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <img src="<?php echo base_url('vendor/almasaeed2010/adminlte/') ?>dist/img/user2-160x160.jpg"
-          class="img-circle elevation-2" alt="User Image">
+        <img src="<?php echo base_url('vendor/almasaeed2010/adminlte/') ?>dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
         <a href="#" class="d-block">Wyathservices</a>
@@ -34,25 +32,20 @@
 
     <!-- Sidebar Menu -->
     <nav class="mt-2">
-      <ul class="nav nav-pills nav-sidebar flex-column my-3 text-sm" data-widget="treeview" role="menu"
-        data-accordion="false">
+      <ul class="nav nav-pills nav-sidebar flex-column my-3 text-sm" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
 
         <!-- DASHBOARD -->
-        <li class="nav-item d-none">
-          <a href="<?php echo base_url('admin/banner') ?>" class="nav-link">
+        <li class="nav-item <?php echo ($this->uri->segment(2) == 'dashboard' || $this->uri->segment(3) == 'index') ? "menu-open" : null; ?>">
+          <a href="<?php echo base_url('admin/dashboard') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'dashboard' ? 'active' : null ?>">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>Dashboard</p>
           </a>
         </li>
 
-        <!-- code by shadow -->
-
-
         <li class="nav-header">BackEnd</li>
-        <li
-          class="nav-item <?php echo ($this->uri->segment(4) == "index" || $this->uri->segment(4) == 'viewstudent' || $this->uri->segment(4) == 'viewstudentlist') ? "menu-open" : null; ?>">
-          <a href="#" class="nav-link <?php echo $this->uri->segment(2) == '' ? 'active' : null ?>">
+        <li class="nav-item <?php echo ($this->uri->segment(3) == "registration") ? "menu-open" : null; ?>">
+          <a href="#" class="nav-link <?php echo $this->uri->segment(3) == 'registration' ? 'active' : null ?>">
             <i class="fa fa-user"></i>
             <p>
               Candidate
@@ -61,19 +54,17 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item ">
-              <a href="<?php echo base_url('admin/candidate/registration/index') ?>"
-                class="nav-link <?php echo ($this->uri->segment(3) == 'registration' && $this->uri->segment(4) == 'index') ? 'active' : null ?>">
+              <a href="<?php echo base_url('admin/candidate/registration/create') ?>" class="nav-link <?php echo ($this->uri->segment(3) == 'registration' && ($this->uri->segment(4) == 'create' || $this->uri->segment(4) == 'create')) ? 'active' : null ?>">
                 <i class="far fa-circle nav-icon"></i>
                 <p>
-                  Add Candidate
+                  Register New Candidate
                 </p>
               </a>
 
-              <a href="<?php echo base_url('admin/candidate/registration/viewstudentlist') ?>"
-                class="nav-link <?php echo ($this->uri->segment(3) == 'registration' && $this->uri->segment(4) == 'viewstudentlist') ? 'active' : null ?>">
+              <a href="<?php echo base_url('admin/candidate/registration/index') ?>" class="nav-link <?php echo ($this->uri->segment(3) == 'registration' && ($this->uri->segment(4) == 'index' || $this->uri->segment(4) == '')) ? 'active' : null ?>">
                 <i class="far fa-circle nav-icon"></i>
                 <p>
-                  View Candidate List
+                  View Registered Candidate
                 </p>
               </a>
             </li>
@@ -81,14 +72,9 @@
         </li>
         </li>
 
-        <!-- code by shdow -->
-
-        <!--7/16/2022  -->
-
         <!-- <li class="nav-header">TRAINING CANTERS</li> -->
-
         <li class="nav-item <?php echo ($this->uri->segment(3) == "trainingcenter") ? "menu-open" : null; ?>">
-          <a href="#" class="nav-link <?php echo $this->uri->segment(3) == '' ? 'active' : null ?>">
+          <a href="#" class="nav-link <?php echo ($this->uri->segment(3) == 'trainingcenter' && 1) ? 'active' : null ?>">
             <i class="fas fa-warehouse"></i>
             <p>
               Training Centers
@@ -97,11 +83,10 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item ">
-              <a href="<?php echo base_url('admin/candidate/trainingcenter') ?>"
-                class="nav-link <?php echo ($this->uri->segment(3) == 'trainingcenter' && $this->uri->segment(3) == 'trainingcenter') ? 'active' : null ?>">
+              <a href="<?php echo base_url('admin/candidate/trainingcenter') ?>" class="nav-link <?php echo ($this->uri->segment(3) == 'trainingcenter' && $this->uri->segment(3) == 'trainingcenter') ? 'active' : null ?>">
                 <i class="far fa-circle nav-icon"></i>
                 <p>
-                  Add/View Training Center
+                  Register/View Training Center
                 </p>
               </a>
             </li>
@@ -113,7 +98,7 @@
 
         <!-- after dinner -->
         <li class="nav-item <?php echo ($this->uri->segment(3) == "course") ? "menu-open" : null; ?>">
-          <a href="#" class="nav-link <?php echo $this->uri->segment(3) == '' ? 'active' : null ?>">
+          <a href="#" class="nav-link <?php echo ($this->uri->segment(3) == 'course' && 1) ? 'active' : null ?>">
             <i class="fas fa-warehouse"></i>
             <p>
               Course
@@ -123,11 +108,10 @@
           <ul class="nav nav-treeview">
             <li class="nav-item ">
 
-              <a href="<?php echo base_url('admin/candidate/course') ?>"
-                class="nav-link <?php echo ($this->uri->segment(3) == 'course' && $this->uri->segment(3) == 'course') ? 'active' : null ?>">
+              <a href="<?php echo base_url('admin/candidate/course') ?>" class="nav-link <?php echo ($this->uri->segment(3) == 'course' && $this->uri->segment(3) == 'course') ? 'active' : null ?>">
                 <i class="far fa-circle nav-icon"></i>
                 <p>
-                  Add/View Courses
+                  Register/View Courses
                 </p>
               </a>
             </li>
@@ -136,7 +120,7 @@
         <!--  -->
         <!-- 3:44pm -->
         <li class="nav-item <?php echo ($this->uri->segment(3) == "batch") ? "menu-open" : null; ?>">
-          <a href="#" class="nav-link <?php echo $this->uri->segment(3) == '' ? 'active' : null ?>">
+          <a href="#" class="nav-link <?php echo ($this->uri->segment(3) == 'batch' && 1) ? 'active' : null ?>">
             <i class="fas fa-warehouse"></i>
             <p>
               Batch
@@ -146,11 +130,10 @@
           <ul class="nav nav-treeview">
             <li class="nav-item ">
 
-              <a href="<?php echo base_url('admin/candidate/batch') ?>"
-                class="nav-link <?php echo ($this->uri->segment(3) == 'batch' && $this->uri->segment(3) == 'batch') ? 'active' : null ?>">
+              <a href="<?php echo base_url('admin/candidate/batch') ?>" class="nav-link <?php echo ($this->uri->segment(3) == 'batch' && $this->uri->segment(3) == 'batch') ? 'active' : null ?>">
                 <i class="far fa-circle nav-icon"></i>
                 <p>
-                  Add/View Batch
+                  Register/View Batch
                 </p>
               </a>
             </li>
@@ -171,8 +154,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="<?php echo base_url('admin/contact/index') ?>"
-                class="nav-link <?php echo $this->uri->segment(2) == 'contact' ? 'active' : null ?>">
+              <a href="<?php echo base_url('admin/contact/index') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'contact' ? 'active' : null ?>">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Messages</p>
               </a>
@@ -192,8 +174,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="<?php echo base_url('admin/banner/index') ?>"
-                class="nav-link <?php echo $this->uri->segment(2) == 'banner' ? 'active' : null ?>">
+              <a href="<?php echo base_url('admin/banner/index') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'banner' ? 'active' : null ?>">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Add / View Banner</p>
               </a>
@@ -213,8 +194,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="<?php echo base_url('admin/slider/index') ?>"
-                class="nav-link <?php echo $this->uri->segment(2) == 'slider' ? 'active' : null ?>" class="nav-link">
+              <a href="<?php echo base_url('admin/slider/index') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'slider' ? 'active' : null ?>" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Add / View Slider</p>
               </a>
@@ -234,8 +214,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="<?php echo base_url('admin/projects/index') ?>"
-                class="nav-link <?php echo $this->uri->segment(2) == 'projects' ? 'active' : null ?>" class="nav-link">
+              <a href="<?php echo base_url('admin/projects/index') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'projects' ? 'active' : null ?>" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Add / View Projects</p>
               </a>
@@ -256,8 +235,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item ">
-              <a href="<?php echo base_url('admin/partners/index') ?>"
-                class="nav-link <?php echo $this->uri->segment(2) == 'partners' ? 'active' : null ?>">
+              <a href="<?php echo base_url('admin/partners/index') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'partners' ? 'active' : null ?>">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Add / View Partners</p>
               </a>
@@ -276,8 +254,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="<?php echo base_url('admin/featuredinitiatives/index') ?>"
-                class="nav-link <?php echo $this->uri->segment(2) == 'featuredinitiatives' ? 'active' : null ?>">
+              <a href="<?php echo base_url('admin/featuredinitiatives/index') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'featuredinitiatives' ? 'active' : null ?>">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Add / View Initiatives</p>
               </a>
@@ -295,8 +272,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="<?php echo base_url('admin/services/index') ?>"
-                class="nav-link <?php echo $this->uri->segment(2) == 'services' ? 'active' : null ?>">
+              <a href="<?php echo base_url('admin/services/index') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'services' ? 'active' : null ?>">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Add / View Services</p>
               </a>
@@ -314,8 +290,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="<?php echo base_url('admin/event/index') ?>"
-                class="nav-link <?php echo $this->uri->segment(2) == 'event' ? 'active' : null ?>" class="nav-link">
+              <a href="<?php echo base_url('admin/event/index') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'event' ? 'active' : null ?>" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Add / View News</p>
               </a>
@@ -324,8 +299,7 @@
         </li>
 
         <!-- Gallery -->
-        <li
-          class="nav-item <?php echo ($this->uri->segment(2) == "gallery" || $this->uri->segment(2) == 'eventgallery') ? "menu-open" : null; ?>">
+        <li class="nav-item <?php echo ($this->uri->segment(2) == "gallery" || $this->uri->segment(2) == 'eventgallery') ? "menu-open" : null; ?>">
           <a href="#" class="nav-link">
             <i class=" nav-icon fas fa-images"></i>
             <p>
@@ -336,16 +310,14 @@
           <ul class="nav nav-treeview">
 
             <li class="nav-item">
-              <a href="<?php echo base_url('admin/eventgallery/index') ?>"
-                class="nav-link <?php echo $this->uri->segment(2) == 'eventgallery' ? 'active' : null ?>">
+              <a href="<?php echo base_url('admin/eventgallery/index') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'eventgallery' ? 'active' : null ?>">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Add / View Event Gallery</p>
               </a>
             </li>
 
             <li class="nav-item">
-              <a href="<?php echo base_url('admin/gallery/index') ?>"
-                class="nav-link <?php echo $this->uri->segment(2) == 'gallery' ? 'active' : null ?>">
+              <a href="<?php echo base_url('admin/gallery/index') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'gallery' ? 'active' : null ?>">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Add / View Gallery</p>
               </a>
@@ -364,8 +336,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="<?php echo base_url('admin/aboutus/index') ?>"
-                class="nav-link <?php echo $this->uri->segment(2) == 'aboutus' ? 'active' : null ?>" class="nav-link">
+              <a href="<?php echo base_url('admin/aboutus/index') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'aboutus' ? 'active' : null ?>" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Add / View About Us</p>
               </a>
@@ -384,9 +355,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="<?php echo base_url('admin/contactdetails/index') ?>"
-                class="nav-link <?php echo $this->uri->segment(2) == 'contactdetails' ? 'active' : null ?>"
-                class="nav-link">
+              <a href="<?php echo base_url('admin/contactdetails/index') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'contactdetails' ? 'active' : null ?>" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Add / View Contact Details</p>
               </a>
@@ -405,8 +374,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="<?php echo base_url('admin/pillers/index') ?>"
-                class="nav-link <?php echo $this->uri->segment(2) == 'pillers' ? 'active' : null ?>" class="nav-link">
+              <a href="<?php echo base_url('admin/pillers/index') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'pillers' ? 'active' : null ?>" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Add / View Pillers</p>
               </a>
@@ -425,9 +393,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="<?php echo base_url('admin/keydiffimpact/index') ?>"
-                class="nav-link <?php echo $this->uri->segment(2) == 'keydiffimpact' ? 'active' : null ?>"
-                class="nav-link">
+              <a href="<?php echo base_url('admin/keydiffimpact/index') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'keydiffimpact' ? 'active' : null ?>" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Add / View KeyDiffImpact</p>
               </a>
@@ -445,9 +411,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="<?php echo base_url('admin/boardmembers/index') ?>"
-                class="nav-link <?php echo $this->uri->segment(2) == 'boardmembers' ? 'active' : null ?>"
-                class="nav-link">
+              <a href="<?php echo base_url('admin/boardmembers/index') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'boardmembers' ? 'active' : null ?>" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Add / View Boardmember</p>
               </a>

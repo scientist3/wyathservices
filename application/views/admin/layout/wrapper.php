@@ -20,13 +20,13 @@
 		</div><!-- /.container-fluid -->
 
 		<?php if ($this->session->flashdata('message') != null) {  ?>
-			<div class="alert <?= $this->session->flashdata('class_name') ?> alert-dismissable">
+			<div class="alert <?= $this->session->flashdata('class_name') ?> alert-dismissable is-invalid">
 				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				<?php echo $this->session->flashdata('message'); ?>
 			</div>
 		<?php } ?>
 		<?php if ($this->session->flashdata('exception') != null) {  ?>
-			<div class="alert <?= $this->session->flashdata('class_name') ?> alert-dismissable">
+			<div class="alert <?= $this->session->flashdata('class_name') ?> alert-dismissable is-invalid">
 				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				<?php echo $this->session->flashdata('exception'); ?>
 			</div>
