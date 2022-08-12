@@ -77,12 +77,19 @@ class Registration extends CI_Controller
 		}
 	}
 
+
 	public function viewStudent($cand_id = null)
 	{
 		if (empty($cand_id) || $cand_id ==  null) {
 			redirect('admin/candidate/registration/index');
 		}
 		$data['title'] = "View Student";
+
+		// 2022-08-12 09:56:03
+		// $this->data['input'] = ;
+
+		$data['input'] = $this->CandidateModel->read_by_id_as_obj($cand_id);
+
 		$data['content'] = $this->load->view('admin/candidate/registration/view_student', $data, true);
 		$this->load->view('admin/layout/wrapper', $data);
 	}
