@@ -16,106 +16,70 @@ class Course extends CI_Controller
   }
 
 
-  public function update()
+  function index($edit_id = null)
   {
-    $this->form_validation->set_rules('coursename', ('coursename'), 'required');
-    $this->form_validation->set_rules('coursetype', ('coursetype'), 'required');
-    $this->form_validation->set_rules('sectorcovered', ('sectorcovered'), 'required');
-    $this->form_validation->set_rules('coursefee', ('coursefee'), 'required', "regex_match[/^[0-9]$/]");
-    $this->form_validation->set_rules('feepaidBy', ('feepaidBy'), 'required');
-    $data['input'] = (object)$postDataUser = array(
-      'id' => $this->input->post('id'),
-      'course_name' => $this->input->post('coursename'),
-      'course_type' => $this->input->post('coursetype'),
-      'sector_covered' => $this->input->post('sectorcovered'),
-      'course_fee' => $this->input->post('coursefee'),
-      'fee_paid_by' => $this->input->post('feepaidBy')
-    );
-    $data['courselists'] = ($this->CourseModel->read());
-    echo $this->input->post('coursename');
-    // code...
-    if ($this->form_validation->run() == true) {
-      if ($this->CourseModel->update($postDataUser)) {
-        #set success message
-        $this->session->set_flashdata('message', ('Updated Successfully'));
-        $this->session->set_flashdata('class_name', ('alert-success'));
-      } else {
-        #set exception message
-        $this->session->set_flashdata('message', ('Please Try  database'));
-        $this->session->set_flashdata('class_name', ('alert-danger'));
-      }
-      redirect('../admin/candidate/course/', $data);
-    } else {
-      $this->session->set_flashdata('message', ('Something Went Wrong Try Again!'));
-      $this->session->set_flashdata('class_name', ('alert-danger'));
+    $data['title']        = ('Add/View Course');
+    $data['subtitle']     = (empty($edit_id)) ? 'Add New Course' : 'Edit Course';
+    $data['input_height'] = 'form-control-sm';
 
-
-      redirect('../admin/candidate/course/', $data);
+    // Validation
+    {
+      $this->form_validation->set_rules('crs_course_id', ('Course ID'), 'required');
+      $this->form_validation->set_rules('crs_course_name', ('Course Name'), 'required');
+      $this->form_validation->set_rules('crs_course_type', ('Course Type'), 'required');
+      $this->form_validation->set_rules('crs_sector_covered', ('Sector Covered'), 'required');
+      $this->form_validation->set_rules('crs_course_fee', ('Course Fee'), 'required');
+      $this->form_validation->set_rules('crs_fee_paid_by', ('Fee Paid By'), 'required');
+      // Define Validation delimiter
+      $this->form_validation->set_error_delimiters('<span class="error invalid-feedback is-invalid">', '</span>');
     }
-  }
 
+    // Prepare Data for Listing
+    $data['courses'] = $this->CourseModel->read();
 
-  function index()
-  {
-    $data['courselists'] = ($this->CourseModel->read());
+    // Prepare input Data
+    $data['input'] = (object)$postDataInp = [
+      'crs_id'              => $this->input->post('crs_id'),
+      'crs_course_id'       => $this->input->post('crs_course_id'),
+      'crs_course_name'     => $this->input->post('crs_course_name'),
+      'crs_course_type'     => $this->input->post('crs_course_type'),
+      'crs_sector_covered'  => $this->input->post('crs_sector_covered'),
+      'crs_course_fee'      => $this->input->post('crs_course_fee'),
+      'crs_fee_paid_by'     => $this->input->post('crs_fee_paid_by'),
+    ];
 
-    $data['title'] = ('Add/View Course');
-    $data['subtitle'] = ('Add New Course');
-    // $data['couselist'] = $this->CourseModel->read();
+    // Prepare Data form database if edit mode
+    if (!empty($edit_id)) {
+      $data['input'] = $this->CourseModel->readById($edit_id);
+    }
 
-
-    $data['content'] = $this->load->view('admin/candidate/registration/course', $data, true);
-    $this->load->view('admin/layout/wrapper', $data);
-  }
-
-  public function insert()
-  {
-    $data['title'] = ('');
-    $data['subtitle'] = ('');
-    $data['courselists'] = ($this->CourseModel->read());
-    $this->form_validation->set_rules('coursename', ('coursename'), 'required');
-    $this->form_validation->set_rules('trainingcenteraddress', ('trainingcenteraddress'), 'required');
-    $this->form_validation->set_rules('trainingcenterdistrict', ('trainingcenterdistrict'), 'required');
-    $this->form_validation->set_rules('trainingcenterpincode', ('trainingcenterpincode'), 'required');
-    $dataa['input'] = (object) $postDataInp = array(
-      'cn' => $this->input->post('coursename'),
-      'ct' => $this->input->post('coursetype'),
-      'sc' => $this->input->post('sectorcovered'),
-      'cf' => $this->input->post('coursefee'),
-      'fpb' => $this->input->post('feepaidBy')
-    );
-    $input = $dataa['input'];
-    $crid = $this->CourseModel->getlastid();
-    #----------------- User Object -------------#
-    $data['user'] = (object) $postDataUser = array(
-      'course_id'    => $crid,
-      'course_name' => $input->cn,
-      'course_type' => $input->ct,
-      'sector_covered' => $input->sc,
-      'course_fee' => $input->cf,
-      'fee_paid_by' => $input->fpb
-    );
     if ($this->form_validation->run() === true) {
-      $this->db->insert('course_tbl', $postDataUser);
-      $this->session->set_flashdata('message', ('Training Center Added Successfully'));
-      $this->session->set_flashdata('class_name', ('alert-success'));
-      redirect('admin/candidate/course/');
+      if ($this->CourseModel->create($postDataInp)) {
+        $this->session->set_flashdata('class_name', ('alert-success'));
+        if (empty($this->input->post('crs_id'))) {
+          $this->session->set_flashdata('message', ('Course added sucessfully.'));
+          redirect('admin/candidate/course/');
+        } else {
+          $this->session->set_flashdata('message', ('Course updated sucessfully.'));
+          redirect('admin/candidate/course/');
+        }
+      } else {
+        $this->session->set_flashdata('message', ('Please try again.'));
+        $this->session->set_flashdata('class_name', ('alert-success'));
+        redirect('admin/candidate/course/');
+      }
+    } else {
+      $data['content'] = $this->load->view('admin/candidate/course/index_view', $data, true);
+      $this->load->view('admin/layout/wrapper', $data);
     }
-    $data['title'] = ('Add/View Training Center');
-    $data['subtitle'] = ('Add New Training Center');
-    $data['input'] = ['ab_title' => ''];
-    $data['content'] = $this->load->view('admin/candidate/registration/course/', $data, true);
-    $this->load->view('admin/layout/wrapper', $data);
   }
 
-
-
-  public function delete($id = null)
+  public function delete($crs_id = null)
   {
-    if (empty($id)) {
+    if (empty($crs_id)) {
       redirect('admin/candidate/course/');
     }
-    if ($this->CourseModel->trcdelete($id)) {
+    if ($this->CourseModel->delete($crs_id)) {
       // $this->location_model->delete($loc_id);
       $this->session->set_flashdata('message', ('Deleted Successfully'));
       $this->session->set_flashdata('class_name', ('alert-success'));
@@ -123,25 +87,6 @@ class Course extends CI_Controller
       $this->session->set_flashdata('message', ('Please Try Again'));
       $this->session->set_flashdata('class_name', ('alert-danger'));
     }
-    redirect('admin/candidate/course/');
-  }
-
-  public function edit($id)
-  {
-    if (empty($id)) {
-      redirect('admin/candidate/course');
-    }
-    $data['title'] = ('Course');
-    $data['subtitle'] = ('Edit Course');
-    $data['courselists'] = ($this->CourseModel->read());
-
-    // $data['trc']=($this->CourseModel->read());
-
-    #-------------------------------#
-    $input = $this->CourseModel->readid($id);
-    $data["input"] = $input;
-    // $data['boardmember'] = $this->BoardMembersModel->read();
-    $data['content'] = $this->load->view('admin/candidate/registration/editcourse', $data, true);
-    $this->load->view('admin/layout/wrapper', $data);
+    redirect('admin/candidate/course/index');
   }
 }
