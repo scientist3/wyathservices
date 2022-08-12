@@ -2,47 +2,17 @@
 
 class TrainingCenterModel extends CI_Model
 {
-  // protected $allowedFields = ['name', 'email', 'address'];
 
   private $table = "training_center_tbl";
-
-  //create
-  public function batchinsert($data = [])
+  public function create($data = [])
   {
-    return $this->db->insert($table, $postDataUser);
-  }
-
-  //read
-  public function read_by_id_as_obj($id)
-  {
-    return $this->db->select("*")
-      ->from($this->table)
-      ->where('id', $id)
-      ->get()
-      ->row();
-  }
-
-  // read
-  public function batchread()
-  {
-    $query = $this->db->get('batch_tbl');
-    return $query;
-  }
-  //for batch view 
-  public  function readalltrainingcenterid()
-  {
-    $query = $this->db->query("SELECT training_center_name FROM training_center_tbl");
-    $result = $query->result_array();
-    //return $result;
-    $list[''] = 'Select Training Center';
-
-    foreach ($result as $row) {
-      $list[$row['training_center_name']] = $row['training_center_name'];
+    if (!empty($data['tc_id'])) {
+      return $this->db->where('tc_id', $data['tc_id'])->update($this->table, $data);
+    } else {
+      return $this->db->insert($this->table, $data);
     }
-    return !empty($list) ? $list : array();
   }
 
-  //read#
   public function read()
   {
     return $this->db->select("*")
@@ -50,23 +20,19 @@ class TrainingCenterModel extends CI_Model
       ->get()
       ->result();
   }
-  // read
-  public function readid($id)
+
+  public function readById($tc_id = null)
   {
-    $query = $this->db->query("SELECT * FROM training_center_tbl WHERE id='$id'");
-    $result = $query->result_array();
-    return $result;
+    return $this->db->select("*")
+      ->from($this->table)
+      ->where('tc_id', $tc_id)
+      ->get()
+      ->row();
   }
 
-  //update
-  public function update($data = [])
+  public function delete($tc_id = null)
   {
-    return $this->db->where('id', $data['id'])
-      ->update($this->table, $data);
-  }
-  public function trcdelete($batch_id = null)
-  {
-    $this->db->where('id', $batch_id)
+    $this->db->where('tc_id', $tc_id)
       ->delete($this->table);
 
     if ($this->db->affected_rows() > 0) {
@@ -74,16 +40,5 @@ class TrainingCenterModel extends CI_Model
     } else {
       return false;
     }
-  }
-
-  // fetch last id to create training center id 
-  public function getlastid()
-  {
-    $query = $this->db->query("SELECT * FROM training_center_tbl ORDER BY id DESC LIMIT 1");
-    $result = $query->result_array();
-    //return current new id
-    $s = (string)$result[0]['id'] + 1;
-    $s = "TRC-" . $s;
-    return $s;
   }
 }
