@@ -18,7 +18,11 @@ class Batch extends CI_Controller
 
     $this->user_id = $this->session->userdata('user_id');
   }
-
+  // TODO: If Data id form input make :-> data['input']
+  // TODO: If Data id form database make :-> data['batch'] for single record and data['batches'] 
+  // TODO: Model:
+  //        create, read, readById, readByIdByFilter, update, delete
+  //        $this->BatchModel->readByIdByFilter($id,$filter)
   function index()
   {
     $data['title'] = ('Add New Batch');
@@ -31,7 +35,7 @@ class Batch extends CI_Controller
     // print($batchread['bch_id']);
     // $data['aboutus'] = $this->AboutusModel->read();
     // CRS-001    Ajaz Sofi    TC-001    Yes    Yes    AS-001
-
+    // TODO: Remove this code and used the same form common model
     $data['trainingcompleted'] =
       [
         "Yes",
@@ -45,10 +49,8 @@ class Batch extends CI_Controller
     $data['content'] = $this->load->view('admin/candidate/registration/batch', $data, true);
     $this->load->view('admin/layout/wrapper', $data);
   }
-
-  //insert
-
-
+  // TODO: Make create, edit, view, delete function only
+  // Explaination: batch/edit/2
   function batchinsert()
   {
     $data['title'] = ('Add New Batch');
