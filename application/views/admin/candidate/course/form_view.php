@@ -37,7 +37,7 @@
             <div class="col-sm-12">
               <div class="form-group">
                 <label for="crs_course_type"><?php echo ('Course Type'); ?></label> <small class="req"> *</small>
-                <input name="crs_course_type" class="form-control <?php $input_height ?> <?= form_error("crs_course_type") ? 'is-invalid' : null; ?> " type="text" placeholder="<?php echo ('Course Type') ?>" id="crs_course_type" value="<?php echo $input->crs_course_type ?>" data-toggle="tooltip" title="<?php echo ('Course Type'); ?>">
+                <input name="crs_course_type" class="form-control <?php echo $input_height ?> <?= form_error("crs_course_type") ? 'is-invalid' : null; ?> " type="text" placeholder="<?php echo ('Course Type') ?>" id="crs_course_type" value="<?php echo $input->crs_course_type ?>" data-toggle="tooltip" title="<?php echo ('Course Type'); ?>">
                 <?php echo form_error('crs_course_type'); ?>
               </div>
             </div>
@@ -46,7 +46,7 @@
             <div class="col-sm-12">
               <div class="form-group">
                 <label for="crs_sector_covered"><?php echo ('Sector Covered'); ?></label> <small class="req"> *</small>
-                <input name="crs_sector_covered" class="form-control <?php $input_height ?> <?= form_error("crs_sector_covered") ? 'is-invalid' : null; ?> " type="text" placeholder="<?php echo ('Sector Covered') ?>" id="crs_sector_covered" value="<?php echo $input->crs_sector_covered ?>" data-toggle="tooltip" title="Sector Covered">
+                <input name="crs_sector_covered" class="form-control <?php echo $input_height ?> <?= form_error("crs_sector_covered") ? 'is-invalid' : null; ?> " type="text" placeholder="<?php echo ('Sector Covered') ?>" id="crs_sector_covered" value="<?php echo $input->crs_sector_covered ?>" data-toggle="tooltip" title="Sector Covered">
                 <?php echo form_error('crs_sector_covered'); ?>
               </div>
             </div>
@@ -54,7 +54,7 @@
             <div class="col-sm-12">
               <div class="form-group">
                 <label for="crs_course_fee"><?php echo ('Course Fee'); ?></label> <small class="req"> *</small>
-                <input name="crs_course_fee" class="form-control <?php $input_height ?> <?= form_error("crs_course_fee") ? 'is-invalid' : null; ?> " type="text" placeholder="<?php echo ('Course Fee') ?>" id="crs_course_fee" value="<?php echo $input->crs_course_fee ?>" data-toggle="tooltip" title="<?php echo ('Course Fee'); ?>">
+                <input name="crs_course_fee" class="form-control <?php echo $input_height ?> <?= form_error("crs_course_fee") ? 'is-invalid' : null; ?> " type="text" placeholder="<?php echo ('Course Fee') ?>" id="crs_course_fee" value="<?php echo $input->crs_course_fee ?>" data-toggle="tooltip" title="<?php echo ('Course Fee'); ?>">
                 <?php echo form_error('crs_course_fee'); ?>
               </div>
             </div>
@@ -62,7 +62,7 @@
             <div class="col-sm-12">
               <div class="form-group">
                 <label for="crs_fee_paid_by"><?php echo ('Fee PaidBy'); ?></label> <small class="req"> *</small>
-                <input name="crs_fee_paid_by" class="form-control <?php $input_height ?> <?= form_error("crs_fee_paid_by") ? 'is-invalid' : null; ?> " type="text" placeholder="<?php echo ('Fee PaidBy') ?>" id="crs_fee_paid_by" value="<?php echo $input->crs_fee_paid_by ?>" data-toggle="tooltip" title="<?php echo ('Fee PaidBy'); ?>">
+                <input name="crs_fee_paid_by" class="form-control <?php echo $input_height ?> <?= form_error("crs_fee_paid_by") ? 'is-invalid' : null; ?> " type="text" placeholder="<?php echo ('Fee PaidBy') ?>" id="crs_fee_paid_by" value="<?php echo $input->crs_fee_paid_by ?>" data-toggle="tooltip" title="<?php echo ('Fee PaidBy'); ?>">
                 <?php echo form_error('crs_fee_paid_by'); ?>
               </div>
             </div>
