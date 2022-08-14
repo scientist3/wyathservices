@@ -1,27 +1,46 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
-
 class BatchModel extends CI_Model
 {
-  // protected $allowedFields = ['name', 'email', 'address'];
 
   private $table = "batch_tbl";
-
-
   // create
-
-  public function batchinsert($data = [])
+  public function create($data = [])
   {
-    return $this->db->insert($table, $postDataUser);
+    if (!empty($data['b_id'])) {
+      return $this->db->where('b_id', $data['b_id'])->update($this->table, $data);
+    } else {
+      return $this->db->insert($this->table, $data);
+    }
   }
-  // read
-  public function read_by_id_as_obj($id = null)
+
+  public function read()
   {
     return $this->db->select("*")
       ->from($this->table)
-      ->where('id', $id)
+      ->get()
+      ->result();
+  }
+
+  public function readById($b_id = null)
+  {
+    return $this->db->select("*")
+      ->from($this->table)
+      ->where('b_id', $b_id)
       ->get()
       ->row();
   }
+  public function delete($b_id = null)
+  {
+    $this->db->where('b_id', $b_id)
+      ->delete($this->table);
+
+    if ($this->db->affected_rows() > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   public function getlastid()
   {
     $query = $this->db->query("SELECT * FROM batch_tbl ORDER BY id DESC LIMIT 1");
@@ -36,47 +55,6 @@ class BatchModel extends CI_Model
       $s = (string)$result[0]['id'] + 1;
       $s = "BCH-" . $s;
       return $s;
-    }
-  }
-
-  public function batchread()
-  {
-
-    $query = $this->db->get('batch_tbl');
-
-    return $query;
-  }
-  public function readid($id)
-  {
-    $query = $this->db->query("SELECT * FROM batch_tbl WHERE id='$id'");
-    $result = $query->result_array();
-    return $result;
-  }
-  public function read()
-  {
-    return $this->db->select("*")
-      ->from($this->table)
-      ->get()
-      ->result();
-  }
-
-  //update
-
-  public function update($data = [])
-  {
-    return $this->db->where('id', $data['id'])
-      ->update($this->table, $data);
-  }
-
-  //delete
-  public function batchdelete($batch_id = null)
-  {
-    $this->db->where('id', $batch_id)
-      ->delete($this->table);
-    if ($this->db->affected_rows() > 0) {
-      return true;
-    } else {
-      return false;
     }
   }
 }

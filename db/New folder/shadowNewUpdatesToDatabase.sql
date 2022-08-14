@@ -5,3 +5,4 @@ ALTER TABLE `training_center_tbl` CHANGE `id` `tc_id` INT(25) NOT NULL AUTO_INCR
 
 -- 2022-08-12 16:17:27
 ALTER TABLE `training_center_tbl` CHANGE `tc_id` `tc_id` INT(25) NOT NULL AUTO_INCREMENT, CHANGE `training_center_name` `tc_name` VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL, CHANGE `training_center_address` `tc_address` VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL, CHANGE `training_center_district` `tc_district` VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL, CHANGE `training_center_pincode` `tc_pincode` VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;
+

@@ -30,6 +30,21 @@ class CourseModel extends CI_Model
       ->row();
   }
 
+  public function read_course_as_list()
+  {
+    $result = $this->db->select("*")
+      ->from($this->table)
+      ->order_by('crs_course_name', 'asc')
+      // ->where('status', 1)
+      ->get()
+      ->result();
+    $list[''] = 'Select Course';
+    foreach ($result as $row) {
+      $list[$row->crs_id] = $row->crs_course_id . ' - ' . $row->crs_course_name;
+    }
+    return $list;
+  }
+
   public function delete($crs_id = null)
   {
     $this->db->where('crs_id', $crs_id)

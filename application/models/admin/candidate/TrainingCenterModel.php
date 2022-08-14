@@ -30,6 +30,21 @@ class TrainingCenterModel extends CI_Model
       ->row();
   }
 
+  public function read_trainingcenter_as_list()
+  {
+    $result = $this->db->select("*")
+      ->from($this->table)
+      ->order_by('tc_id', 'asc')
+      // ->where('status', 1)
+      ->get()
+      ->result();
+    $list[''] = 'Select Training Center';
+    foreach ($result as $row) {
+      $list[$row->tc_id] = $row->tc_id . ' - ' . $row->tc_name;
+    }
+    return $list;
+  }
+
   public function delete($tc_id = null)
   {
     $this->db->where('tc_id', $tc_id)
