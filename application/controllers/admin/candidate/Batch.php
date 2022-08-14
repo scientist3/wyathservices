@@ -18,36 +18,21 @@ class Batch extends CI_Controller
     $this->user_id = $this->session->userdata('user_id');
   }
 
-
-  // Full texts	
-  // b_id
-  // b_bch_id
-  // b_batch_type
-  // b_start_date
-  // b_end_date
-  // b_course_id
-  // b_trainer_name
-  // b_tc_id
-  // b_training_completed
-  // b_assessment_completed
-  // b_as_id
-
-
   function index($edit_id = null)
   {
     $data['title'] = ('Add New Batch');
     $data['subtitle']     = (empty($edit_id)) ? 'Add Batch' : 'Edit Batch';
     $data['input_height'] = 'form-control-sm';
 
+    // Prepare Data
+    $data['batchs']               = $this->BatchModel->read();
+    $data['yes_no_list']          = $this->CommonModel->getYesNoList();
+    $data['course_list']          = $this->CourseModel->read_course_as_list();
+    $data['training_center_list'] = $this->TrainingCenterModel->read_trainingcenter_as_list();
 
-    $data['training_completed'] = $this->CommonModel->getYesNoList();
-
-    $data['assessment_completed'] = $this->CommonModel->getYesNoList();
-
-    $data['course_list'] = $this->CourseModel->read_course_as_list();
-    $data['training_center_list'] = $this->TrainingCenterModel->read_trainingcenter_as_list(); {
+    // Validation 
+    {
       $this->form_validation->set_rules('b_bch_id', ('Batch ID'), 'required');
-
       $this->form_validation->set_rules('b_batch_type', ('Batch Type'), 'required');
       $this->form_validation->set_rules('b_start_date', ('Start Date'), 'required');
       $this->form_validation->set_rules('b_end_date', ('End Date'), 'required');
@@ -60,32 +45,33 @@ class Batch extends CI_Controller
       $this->form_validation->set_error_delimiters('<span class="error invalid-feedback is-invalid">', '</span>');
     }
 
-    // Prepare Data for Listing
-    $data['batchs'] = $this->BatchModel->read();
+    // Prepare Input Data
     $data['input'] = (object) $postDataInp = array(
-      'b_bch_id' => $this->input->post('b_bch_id'),
-      'b_batch_type' => $this->input->post('b_batch_type'),
-      'b_start_date' => $this->input->post('b_start_date'),
-      'b_end_date' => $this->input->post('b_end_date'),
-      'b_course_id' => $this->input->post('b_course_id'),
-      'b_trainer_name' => $this->input->post('b_trainer_name'),
-      'b_tc_id' => $this->input->post('b_tc_id'),
-      'b_training_completed' => $this->input->post('b_training_completed'),
-      'b_assessment_completed' => $this->input->post('b_assessment_completed'),
-      'b_as_id' => $this->input->post('b_as_id')
+      'b_id'                    => $this->input->post('b_id'),
+      'b_bch_id'                => $this->input->post('b_bch_id'),
+      'b_batch_type'            => $this->input->post('b_batch_type'),
+      'b_start_date'            => $this->input->post('b_start_date'),
+      'b_end_date'              => $this->input->post('b_end_date'),
+      'b_course_id'             => $this->input->post('b_course_id'),
+      'b_trainer_name'          => $this->input->post('b_trainer_name'),
+      'b_tc_id'                 => $this->input->post('b_tc_id'),
+      'b_training_completed'    => $this->input->post('b_training_completed'),
+      'b_assessment_completed'  => $this->input->post('b_assessment_completed'),
+      'b_as_id'                 => $this->input->post('b_as_id')
     );
 
     if (!empty($edit_id)) {
       $data['input'] = $this->BatchModel->readById($edit_id);
     }
+
     if ($this->form_validation->run() === true) {
       if ($this->BatchModel->create($postDataInp)) {
         $this->session->set_flashdata('class_name', ('alert-success'));
         if (empty($this->input->post('b_id'))) {
-          $this->session->set_flashdata('message', ('Course added sucessfully.'));
+          $this->session->set_flashdata('message', ('Batch added sucessfully.'));
           redirect('admin/candidate/batch/');
         } else {
-          $this->session->set_flashdata('message', ('Course updated sucessfully.'));
+          $this->session->set_flashdata('message', ('Batch updated sucessfully.'));
           redirect('admin/candidate/batch/');
         }
       } else {
@@ -200,33 +186,6 @@ class Batch extends CI_Controller
     $data['title'] = "Batch";
     $data['subtitle'] = "Update Batch";
     // $data['content']
-    $data['content'] = $this->load->view('admin/candidate/registration/editbatch', $data, true);
-    $this->load->view('admin/layout/wrapper', $data);
-  }
-
-  public function edit($id)
-  {
-    if (empty($id)) {
-      redirect('admin/candidate/batch');
-    }
-    $data['trainingcompleted'] =
-      [
-        "No",
-        "Yes",
-      ];
-    $data['assessmentcompleted'] =
-      [
-        "No",
-        "Yes",
-      ];
-    $data['title'] = ('Batch');
-    $data['subtitle'] = ('Edit Batch');
-    $data['batchlist'] = ($this->BatchModel->read());
-    // print_r($data['batchlist']);
-    #-------------------------------#
-    $input = $this->BatchModel->readid($id);
-    $data["input"] = $input;
-    // $data['boardmember'] = $this->BoardMembersModel->read();
     $data['content'] = $this->load->view('admin/candidate/registration/editbatch', $data, true);
     $this->load->view('admin/layout/wrapper', $data);
   }

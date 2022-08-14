@@ -15,17 +15,19 @@ class BatchModel extends CI_Model
 
   public function read()
   {
-    return $this->db->select("*")
+    return $this->db->select($this->table . ".*, course_tbl.crs_course_name")
       ->from($this->table)
+      ->join('course_tbl', 'course_tbl.crs_id = ' . $this->table . '.b_course_id')
       ->get()
       ->result();
   }
 
   public function readById($b_id = null)
   {
-    return $this->db->select("*")
+    return $this->db->select($this->table . ".*, course_tbl.crs_course_name")
       ->from($this->table)
       ->where('b_id', $b_id)
+      ->join('course_tbl', 'course_tbl.crs_id = ' . $this->table . '.b_course_id')
       ->get()
       ->row();
   }
