@@ -16,6 +16,7 @@
                   <th></th>
                   <th><?php echo ('Candidate ID') ?></th>
                   <th><?php echo ('Candidate Name') ?></th>
+                  <!-- TODO:Remove Extra Fields, FIX UI, Check checkbox -->
                   <!-- <th><?php echo ('End Date') ?></th>
                 <th><?php echo ('Course Name') ?></th>
                 <th><?php echo ('Trainer Name') ?></th>

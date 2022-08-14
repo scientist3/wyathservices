@@ -123,7 +123,7 @@ class Batch extends CI_Controller
     }
     // Convert to object
     $data['batch']                  = (object) $data['batch'];
-    $data['enrolled_students']         = $this->BatchMappingModel->readStudentsByBatchId($b_id);
+    $data['enrolled_students']      = $this->BatchMappingModel->readStudentsByBatchId($b_id);
     $data['not_enrolled_students']  = $this->CandidateModel->getNotEnrolledStudents();
 
     $data['content']      = $this->load->view('admin/candidate/batch/batch_view', $data, true);
@@ -133,6 +133,7 @@ class Batch extends CI_Controller
 
   public function addStudentsToBatch()
   {
+    // TODO: Limit Student to 25 that will be added to particular batch.
     $b_id =  $this->input->post('b_id');
     $data['students'] = array();
 
