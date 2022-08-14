@@ -42,21 +42,4 @@ class BatchModel extends CI_Model
       return false;
     }
   }
-
-  public function getlastid()
-  {
-    $query = $this->db->query("SELECT * FROM batch_tbl ORDER BY id DESC LIMIT 1");
-    $result = $query->result_array();
-    //return current new id
-
-    if (empty($result)) {
-      $s = "BCH-1";
-      return $s;
-    } else {
-
-      $s = (string)$result[0]['id'] + 1;
-      $s = "BCH-" . $s;
-      return $s;
-    }
-  }
 }
