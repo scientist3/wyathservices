@@ -14,6 +14,11 @@ class CandidateModel extends CI_Model
     }
   }
 
+  public function updateByColumn($data = [])
+  {
+    return $this->db->where_in('c_id', $data['c_ids'])->update($this->table, $data['set']);
+  }
+
   public function read()
   {
     return $this->db->select("*")
@@ -69,5 +74,30 @@ class CandidateModel extends CI_Model
   public function get_count()
   {
     return $this->db->count_all($this->table);
+  }
+
+  public function getNotEnrolledStudents()
+  {
+    return $this->db->select("c_id,c_cand_id,c_full_name,c_father_name,c_mother_name")
+      ->from($this->table)
+      ->where('c_currently_enrolled', 0)
+      ->get()
+      ->result();
+  }
+
+  public function DemoBulkUpdateExample()
+  {
+    $data = array(
+      array(
+        'c_id' => '1',
+        'c_currently_enrolled' => '11',
+      ),
+      array(
+        'c_id' => '2',
+        'c_currently_enrolled' => '22',
+      )
+    );
+
+    echo $this->db->update_batch('candidate_tbla', $data, 'c_id')->get_compiled_update();
   }
 }

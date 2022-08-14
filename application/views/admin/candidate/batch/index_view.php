@@ -155,6 +155,7 @@
                     <td><?php echo $yes_no_list[$batch->b_assessment_completed]; ?></td>
                     <!-- <td><?php echo $batch->b_as_id ?></td> -->
                     <td>
+                      <a href="<?php echo base_url("admin/candidate/batch/view/$batch->b_id") ?>" class="btn btn-xs btn-info"><i class="fa fa-eye"></i></a>
                       <a href="<?php echo base_url("admin/candidate/batch/index/$batch->b_id/$batch->b_bch_id") ?>" class="btn btn-xs btn-success"><i class="fa fa-edit"></i></a>
                       <a href="<?php echo base_url("/admin/candidate/batch/delete/$batch->b_id/$batch->b_bch_id") ?>" class="btn btn-xs btn-danger" onclick="return confirm('<?php echo ('Are You Sure') ?>') "><i class="fa fa-trash"></i></a>
                   </tr>

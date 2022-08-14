@@ -17,7 +17,7 @@ class BatchModel extends CI_Model
   {
     return $this->db->select($this->table . ".*, course_tbl.crs_course_name")
       ->from($this->table)
-      ->join('course_tbl', 'course_tbl.crs_id = ' . $this->table . '.b_course_id')
+      ->join('course_tbl', 'course_tbl.crs_id = ' . $this->table . '.b_course_id', 'left')
       ->get()
       ->result();
   }
@@ -27,7 +27,7 @@ class BatchModel extends CI_Model
     return $this->db->select($this->table . ".*, course_tbl.crs_course_name")
       ->from($this->table)
       ->where('b_id', $b_id)
-      ->join('course_tbl', 'course_tbl.crs_id = ' . $this->table . '.b_course_id')
+      ->join('course_tbl', 'course_tbl.crs_id = ' . $this->table . '.b_course_id', 'left')
       ->get()
       ->row();
   }

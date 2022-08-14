@@ -7,10 +7,12 @@ class Batch extends CI_Controller
   {
     parent::__construct();
     $this->load->model(array(
+      'admin/candidate/CommonModel',
       'admin/candidate/BatchModel',
       'admin/candidate/CourseModel',
       'admin/candidate/TrainingCenterModel',
-      'admin/candidate/CommonModel'
+      'admin/candidate/BatchMappingModel',
+      'admin/candidate/CandidateModel'
     ));
     if ($this->session->userdata('isLogIn') == false || $this->session->userdata('user_role') != 1) {
       redirect('login/logout');
@@ -84,6 +86,7 @@ class Batch extends CI_Controller
       $this->load->view('admin/layout/wrapper', $data);
     }
   }
+
   public function delete($b_id = null)
   {
     if (empty($b_id)) {
@@ -98,5 +101,94 @@ class Batch extends CI_Controller
       $this->session->set_flashdata('class_name', ('alert-danger'));
     }
     redirect('admin/candidate/batch/index');
+  }
+
+  // Other Functions
+  public function view($b_id)
+  {
+    if (empty($b_id)) {
+      redirect('admin/candidate/batch/');
+    }
+
+    $data['title']        = ('View Batch');
+    $data['subtitle']     = 'Add Student To Batch';
+    $data['input_height'] = 'form-control-sm';
+
+    // Prepare Batch Details 
+    $data['batch']                  = (array)$this->BatchModel->readById($b_id);
+    // Check If Batch Exists or not
+    if (!isset($data['batch']['b_id']) || empty($data['batch']['b_id'])) {
+      redirect('admin/candidate/batch/');
+      exit;
+    }
+    // Convert to object
+    $data['batch']                  = (object) $data['batch'];
+    $data['enrolled_students']         = $this->BatchMappingModel->readStudentsByBatchId($b_id);
+    $data['not_enrolled_students']  = $this->CandidateModel->getNotEnrolledStudents();
+
+    $data['content']      = $this->load->view('admin/candidate/batch/batch_view', $data, true);
+    $this->load->view('admin/layout/wrapper', $data);
+  }
+
+
+  public function addStudentsToBatch()
+  {
+    $b_id =  $this->input->post('b_id');
+    $data['students'] = array();
+
+    if (is_array($this->input->post('students'))) {
+      foreach ($this->input->post('students') as $c_id) {
+        $data['students'][] = [
+          'bsm_b_id' => $b_id,
+          'bsm_c_id' => $c_id
+        ];
+      }
+    }
+
+    $data['update'] = [
+      'c_ids' => array_keys(rekeyArray('bsm_c_id', $data['students'])),
+      'set' => ['c_currently_enrolled' => 1]
+    ];
+
+    $this->db->trans_begin();
+
+    $this->BatchMappingModel->create_batch($data['students']);
+    $this->CandidateModel->updateByColumn($data['update']);
+
+    if ($this->db->trans_status() === FALSE) {
+      $this->db->trans_rollback();
+      redirect('admin/candidate/batch/view/' . $b_id);
+      return false;
+    } else {
+      $this->db->trans_commit();
+      redirect('admin/candidate/batch/view/' . $b_id);
+      return true;
+    }
+  }
+
+  public function removeStudentsFromBatch()
+  {
+    $data['bsm_ids'] = $this->input->post("bsm_ids");
+    $b_id = $this->input->post('b_id');
+
+    $data['update'] = [
+      'c_ids' => $this->input->post("bsm_c_ids"),
+      'set' => ['c_currently_enrolled' => 0]
+    ];
+    $this->db->trans_begin();
+
+    $this->BatchMappingModel->delete_batch($data['bsm_ids']);
+    $this->CandidateModel->updateByColumn($data['update']);
+
+    if ($this->db->trans_status() === FALSE) {
+      $this->db->trans_rollback();
+      redirect('admin/candidate/batch/view/' . $b_id);
+      return false;
+    } else {
+      $this->db->trans_commit();
+      redirect('admin/candidate/batch/view/' . $b_id);
+      return true;
+    }
+    redirect('admin/candidate/batch/view/' . $b_id);
   }
 }
