@@ -118,6 +118,12 @@
                 className: 'btn-sm'
             }]
         });
+
+        // Datatable with Search Only
+        $('.datatable_search_only').DataTable({
+            responsive: true,
+            dom: "<'row'f<'col-sm-12'>>",
+        });
     });
 </script>
 </body>

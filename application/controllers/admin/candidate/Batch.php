@@ -3,6 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Batch extends CI_Controller
 {
+  private $STUDENTS_PER_BATCH_LIMIT;
   public function __construct()
   {
     parent::__construct();
@@ -17,6 +18,8 @@ class Batch extends CI_Controller
     if ($this->session->userdata('isLogIn') == false || $this->session->userdata('user_role') != 1) {
       redirect('login/logout');
     }
+
+    $this->STUDENTS_PER_BATCH_LIMIT = 2;
     $this->user_id = $this->session->userdata('user_id');
   }
 
@@ -110,9 +113,11 @@ class Batch extends CI_Controller
       redirect('admin/candidate/batch/');
     }
 
-    $data['title']        = ('View Batch');
-    $data['subtitle']     = 'Add Student To Batch';
-    $data['input_height'] = 'form-control-sm';
+    $data['title']              = ('View Batch');
+    $data['subtitle']           = 'Add Student To Batch';
+    $data['input_height']       = 'form-control-sm';
+    $data['STUDENTS_PER_BATCH_LIMIT'] = $this->STUDENTS_PER_BATCH_LIMIT;
+    $this->session->set_flashdata('warning', ('Removing students form the batch will delete all record of that student like Assessment, Certificate, Placement and Tracking Details.'));
 
     // Prepare Batch Details 
     $data['batch']                  = (array)$this->BatchModel->readById($b_id);
@@ -133,7 +138,6 @@ class Batch extends CI_Controller
 
   public function addStudentsToBatch()
   {
-    // TODO: Limit Student to 25 that will be added to particular batch.
     $b_id =  $this->input->post('b_id');
     $data['students'] = array();
 
@@ -153,17 +157,23 @@ class Batch extends CI_Controller
 
     $this->db->trans_begin();
 
+    // Add mapping of students to batch
     $this->BatchMappingModel->create_batch($data['students']);
+    // Update student enrolled status to true
     $this->CandidateModel->updateByColumn($data['update']);
 
+    // All or some transaction failed
     if ($this->db->trans_status() === FALSE) {
       $this->db->trans_rollback();
+      $this->session->set_flashdata('class_name', ('alert-danger'));
+      $this->session->set_flashdata('message', ('Student(s) failed to add the batch.'));
       redirect('admin/candidate/batch/view/' . $b_id);
-      return false;
     } else {
+      // All transaction sucessfull
       $this->db->trans_commit();
+      $this->session->set_flashdata('class_name', ('alert-success'));
+      $this->session->set_flashdata('message', ('Student(s) added sucessfully to the batch.'));
       redirect('admin/candidate/batch/view/' . $b_id);
-      return true;
     }
   }
 
@@ -176,20 +186,27 @@ class Batch extends CI_Controller
       'c_ids' => $this->input->post("bsm_c_ids"),
       'set' => ['c_currently_enrolled' => 0]
     ];
+
+    // Transaction Start
     $this->db->trans_begin();
 
+    // Delete Mapping
     $this->BatchMappingModel->delete_batch($data['bsm_ids']);
+    // Update student enrolled to false
     $this->CandidateModel->updateByColumn($data['update']);
 
+    // All or some transaction failed
     if ($this->db->trans_status() === FALSE) {
       $this->db->trans_rollback();
+      $this->session->set_flashdata('class_name', ('alert-danger'));
+      $this->session->set_flashdata('message', ('Student(s) failed to remove form the batch.'));
       redirect('admin/candidate/batch/view/' . $b_id);
-      return false;
     } else {
+      // All transaction sucessfull
       $this->db->trans_commit();
+      $this->session->set_flashdata('class_name', ('alert-success'));
+      $this->session->set_flashdata('message', ('Student(s) removed sucessfully from the batch.'));
       redirect('admin/candidate/batch/view/' . $b_id);
-      return true;
     }
-    redirect('admin/candidate/batch/view/' . $b_id);
   }
 }

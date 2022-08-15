@@ -44,9 +44,10 @@
         </li>
 
         <li class="nav-header">BackEnd</li>
+        <!-- Candidate -->
         <li class="nav-item <?php echo ($this->uri->segment(3) == "registration") ? "menu-open" : null; ?>">
           <a href="#" class="nav-link <?php echo $this->uri->segment(3) == 'registration' ? 'active' : null ?>">
-            <i class="fa fa-user"></i>
+            <i class="nav-icon fa fa-user"></i>
             <p>
               Candidate
               <i class="right fas fa-angle-left"></i>
@@ -72,10 +73,30 @@
         </li>
         </li>
 
+        <!-- Batch -->
+
+        <li class="nav-item <?php echo ($this->uri->segment(3) == "batch") ? "menu-open" : null; ?>">
+          <a href="#" class="nav-link <?php echo ($this->uri->segment(3) == 'batch') ? 'active' : null ?>">
+            <i class="nav-icon fas fa-users"></i>
+            <p> Batch <i class="right fas fa-angle-left"></i> </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item ">
+
+              <a href="<?php echo base_url('admin/candidate/batch') ?>" class="nav-link <?php echo ($this->uri->segment(3) == 'batch' && $this->uri->segment(3) == 'batch') ? 'active' : null ?>">
+                <i class="far fa-circle nav-icon"></i>
+                <p>
+                  Register/View Batch
+                </p>
+              </a>
+            </li>
+          </ul>
+        </li>
+
         <!-- <li class="nav-header">TRAINING CANTERS</li> -->
         <li class="nav-item <?php echo ($this->uri->segment(3) == "trainingcenter") ? "menu-open" : null; ?>">
-          <a href="#" class="nav-link <?php echo ($this->uri->segment(3) == 'trainingcenter' && 1) ? 'active' : null ?>">
-            <i class="fas fa-warehouse"></i>
+          <a href="#" class="nav-link <?php echo ($this->uri->segment(3) == 'trainingcenter') ? 'active' : null ?>">
+            <i class="nav-icon fas fa-chalkboard-teacher"></i>
             <p>
               Training Centers
               <i class="right fas fa-angle-left"></i>
@@ -94,12 +115,10 @@
         </li>
         <!--7/16/2022  -->
 
-
-
-        <!-- after dinner -->
+        <!-- Course -->
         <li class="nav-item <?php echo ($this->uri->segment(3) == "course") ? "menu-open" : null; ?>">
           <a href="#" class="nav-link <?php echo ($this->uri->segment(3) == 'course' && 1) ? 'active' : null ?>">
-            <i class="fas fa-warehouse"></i>
+            <i class="nav-icon fas 	fas fa-graduation-cap"></i>
             <p>
               Course
               <i class="right fas fa-angle-left"></i>
@@ -117,29 +136,6 @@
             </li>
           </ul>
         </li>
-        <!--  -->
-        <!-- 3:44pm -->
-        <li class="nav-item <?php echo ($this->uri->segment(3) == "batch") ? "menu-open" : null; ?>">
-          <a href="#" class="nav-link <?php echo ($this->uri->segment(3) == 'batch' && 1) ? 'active' : null ?>">
-            <i class="fas fa-warehouse"></i>
-            <p>
-              Batch
-              <i class="right fas fa-angle-left"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item ">
-
-              <a href="<?php echo base_url('admin/candidate/batch') ?>" class="nav-link <?php echo ($this->uri->segment(3) == 'batch' && $this->uri->segment(3) == 'batch') ? 'active' : null ?>">
-                <i class="far fa-circle nav-icon"></i>
-                <p>
-                  Register/View Batch
-                </p>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <!-- afternoon -->
 
         <!-- Contact Us -->
         <li class="nav-header"> FrontEnd</li>
