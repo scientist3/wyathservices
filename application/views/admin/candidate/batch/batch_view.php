@@ -79,10 +79,10 @@
                   <tr>
                     <td>
                       <div class="form-group">
-                        <div class="">
+                        <div class="select">
                           <input name="bsm_c_ids[]" class="" id="bsm_c_id" type="checkbox"
                             value="<?php echo $student->bsm_c_id; ?>">
-                          <input name="bsm_ids[]" class="" id="bsm_id" type="hidden"
+                          <input name="bsm_ids[]" class="" id="bsm_id" type="checkbox"
                             value="<?php echo $student->bsm_id; ?>">
                         </div>
                       </div>
@@ -109,11 +109,69 @@
   </div>
 </section>
 
+
+
+
 <script>
-$('input[class=students]').on('change', function(e) {
-  if ($('input[class=students]:checked').length > 0) {
-    $(this).prop('checked', false);
-    alert("allowed only 3");
+var objBatch = (
+  function() {
+    var enrolled_students = <?php echo json_encode($enrolled_students) ?>;
+    var init = function() {
+      // debugger;
+      console.log(objBatch.enrolled_students.length);
+      // total batch limit
+      var batch_limit = 3;
+      // renaining limit
+      var limit = batch_limit - objBatch.enrolled_students.length;
+
+      alert(limit);
+
+      $('input[class=students]').off('change').on('change', function(e) {
+        if ($('input[class=students]:checked').length > limit) {
+          $(this).prop('checked', false);
+          alert("Batch Limit Exceeded");
+        }
+
+
+        console.log(e);
+        console.log(objBatch.enrolled_students.length);
+
+      });
+      $('input[id=bsm_c_id]').off('change').on('change', function(e) {
+        // $(this).prop('checked', false);
+        // alert("Batch Limit Exceeded");
+        if ($(this).prop('checked') == true) {
+          $(this).next('input[type=checkbox]').prop('checked', true);
+
+        } else {
+          $(this).next('input[type=checkbox]').prop('checked', false);
+        }
+
+
+        console.log(e);
+        console.log(objBatch.enrolled_students.length);
+
+      });
+
+
+
+    }
+
+
+    return {
+      init: init,
+      enrolled_students: enrolled_students
+    };
   }
+)();
+$('document').ready(function() {
+  objBatch.init();
+
+
+  // $('input[class=students]').on('change', function(e) {
+  //   if ($('input[class=students]:checked').length > 0) {
+  //     $(this).prop('checked', false);
+  //     alert("allowed only 3");
+  //   }
 });
 </script>
