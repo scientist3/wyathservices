@@ -258,9 +258,14 @@
         // On Selecting Student that you want to be added
         $('input[class=js-student-not-enrolled]').off('change').on('change', function(e) {
           // Exising + checked <= Limit === TRUE then allow Check 
+
           if ((objBatch.arrobjEnrolledStudent.length + $('input[class=js-student-not-enrolled]:checked')
               .length) <= objBatch.STUDENTS_PER_BATCH_LIMIT) {
-            $(this).prop('checked', true);
+            if ($(this).prop('checked') == true) {
+              $(this).prop('checked', true);
+            } else {
+              $(this).prop('checked', false);
+            }
           } else {
             alert('You have selected more candidate then allowed per batch.')
             $(this).prop('checked', false);
