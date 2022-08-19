@@ -118,11 +118,11 @@ class Batch extends CI_Controller
     $data['subtitle']           = 'Add Student To Batch';
     $data['input_height']       = 'form-control-sm';
     $data['STUDENTS_PER_BATCH_LIMIT'] = $this->STUDENTS_PER_BATCH_LIMIT;
-    $this->session->set_flashdata('warning', ('Removing students form the batch will delete all record of that student like Assessment, Certificate, Placement and Tracking Details.'));
+    $data['warning_msg'] = 'Removing students form the batch will delete all record of that student like Assessment, Certificate, Placement and Tracking Details.';
 
     // Prepare Batch Details 
     $data['batch']                  = (array)$this->BatchModel->readById($b_id);
-
+    // dd($data['batch']);
     // Check If Batch Exists or not
     if (!isset($data['batch']['b_id']) || empty($data['batch']['b_id'])) {
       redirect('admin/candidate/batch/');
@@ -137,20 +137,107 @@ class Batch extends CI_Controller
     $this->load->view('admin/layout/wrapper', $data);
   }
 
-  function batchcompletereqest()
+  function batchTrainingComplete()
   {
-    $data['b_id'] = $this->input->post('b_id');
-    $data['b_training_completed'] = '1';
+    $b_id = $this->input->post('b_id');
 
-    $this->BatchModel->create($data);
-    $url = 'admin/candidate/batch/view/' . $data['b_id'];
-    redirect($url);
+    if (empty($b_id)) {
+      $this->session->set_flashdata('class_name', ('alert-danger'));
+      $this->session->set_flashdata('message', ('Unable to find batch id.'));
+      redirect('admin/candidate/batch/');
+    }
+
+    // Input Data
+    $data['batchPostData'] = [
+      'b_id' => $this->input->post('b_id'),
+      'b_training_completed' => '1'
+    ];
+
+    // Prepare Student ids of this batch
+    $data['enrolled_students_ids']      = (array) $this->BatchMappingModel->readStudentsByBatchId($b_id);
+    $data['enrolled_students_ids'] = array_keys(rekeyArray('bsm_c_id', $data['enrolled_students_ids']));
+
+    $data['update'] = [
+      'c_ids' => $data['enrolled_students_ids'],
+      'set' => ['c_training_status' => 1]
+    ];
+
+    // Transaction Start
+    $this->db->trans_begin();
+
+    $this->CandidateModel->updateByColumn($data['update']);
+    $this->BatchModel->create($data['batchPostData']);
+
+    if ($this->db->trans_status() === FALSE) {
+      $this->db->trans_rollback();
+      $this->session->set_flashdata('class_name', ('alert-danger'));
+      $this->session->set_flashdata('message', ('Unable to updated batch students training status.'));
+      redirect('admin/candidate/batch/view/' . $b_id);
+    } else {
+      // All transaction sucessfull
+      $this->db->trans_commit();
+      $this->session->set_flashdata('class_name', ('alert-success'));
+      $this->session->set_flashdata('message', ('Batch Training completed successfully.'));
+      redirect('admin/candidate/batch/view/' . $b_id);
+    }
   }
+
+  function batchTrainingIncomplete()
+  {
+    $b_id = $this->input->post('b_id');
+
+    if (empty($b_id)) {
+      $this->session->set_flashdata('class_name', ('alert-danger'));
+      $this->session->set_flashdata('message', ('Unable to find batch id.'));
+      redirect('admin/candidate/batch/');
+    }
+
+    // Input Data
+    $data['batchPostData'] = [
+      'b_id' => $this->input->post('b_id'),
+      'b_training_completed' => '0'
+    ];
+
+    // Prepare Student ids of this batch
+    $data['enrolled_students_ids']      = (array) $this->BatchMappingModel->readStudentsByBatchId($b_id);
+    $data['enrolled_students_ids'] = array_keys(rekeyArray('bsm_c_id', $data['enrolled_students_ids']));
+
+    $data['update'] = [
+      'c_ids' => $data['enrolled_students_ids'],
+      'set' => ['c_training_status' => 0]
+    ];
+
+    // Transaction Start
+    $this->db->trans_begin();
+
+    $this->CandidateModel->updateByColumn($data['update']);
+    $this->BatchModel->create($data['batchPostData']);
+
+    if ($this->db->trans_status() === FALSE) {
+      $this->db->trans_rollback();
+      $this->session->set_flashdata('class_name', ('alert-danger'));
+      $this->session->set_flashdata('message', ('Unable to updated batch students training status.'));
+      redirect('admin/candidate/batch/view/' . $b_id);
+    } else {
+      // All transaction sucessfull
+      $this->db->trans_commit();
+      $this->session->set_flashdata('class_name', ('alert-success'));
+      $this->session->set_flashdata('message', ('Batch Training Incompleted successfully.'));
+      redirect('admin/candidate/batch/view/' . $b_id);
+    }
+  }
+
 
   public function addStudentsToBatch()
   {
     $b_id =  $this->input->post('b_id');
     $data['students'] = array();
+    // Check if student is selected or not
+    if (!valArr($this->input->post('students'))) {
+      $this->session->set_flashdata('class_name', ('alert-danger'));
+      $this->session->set_flashdata('message', ('No Student Selected.'));
+      redirect('admin/candidate/batch/view/' . $b_id);
+    }
 
     if (is_array($this->input->post('students'))) {
       foreach ($this->input->post('students') as $c_id) {
@@ -165,26 +252,32 @@ class Batch extends CI_Controller
       'c_ids' => array_keys(rekeyArray('bsm_c_id', $data['students'])),
       'set' => ['c_currently_enrolled' => 1]
     ];
-
-    $this->db->trans_begin();
-
-    // Add mapping of students to batch
-    $this->BatchMappingModel->create_batch($data['students']);
-    // Update student enrolled status to true
-    $this->CandidateModel->updateByColumn($data['update']);
-
-    // All or some transaction failed
-    if ($this->db->trans_status() === FALSE) {
-      $this->db->trans_rollback();
+    // Check If Batch is completed
+    if ($this->BatchModel->isBatchTrainingCompleted($b_id)) {
       $this->session->set_flashdata('class_name', ('alert-danger'));
-      $this->session->set_flashdata('message', ('Student(s) failed to add the batch.'));
+      $this->session->set_flashdata('message', ('Batch training is completed, you can\'t add student.'));
       redirect('admin/candidate/batch/view/' . $b_id);
     } else {
-      // All transaction sucessfull
-      $this->db->trans_commit();
-      $this->session->set_flashdata('class_name', ('alert-success'));
-      $this->session->set_flashdata('message', ('Student(s) added sucessfully to the batch.'));
-      redirect('admin/candidate/batch/view/' . $b_id);
+      $this->db->trans_begin();
+
+      // Add mapping of students to batch
+      $this->BatchMappingModel->create_batch($data['students']);
+      // Update student enrolled status to true
+      $this->CandidateModel->updateByColumn($data['update']);
+
+      // All or some transaction failed
+      if ($this->db->trans_status() === FALSE) {
+        $this->db->trans_rollback();
+        $this->session->set_flashdata('class_name', ('alert-danger'));
+        $this->session->set_flashdata('message', ('Student(s) failed to add the batch.'));
+        redirect('admin/candidate/batch/view/' . $b_id);
+      } else {
+        // All transaction sucessfull
+        $this->db->trans_commit();
+        $this->session->set_flashdata('class_name', ('alert-success'));
+        $this->session->set_flashdata('message', ('Student(s) added sucessfully to the batch.'));
+        redirect('admin/candidate/batch/view/' . $b_id);
+      }
     }
   }
 
@@ -197,27 +290,43 @@ class Batch extends CI_Controller
       'c_ids' => $this->input->post("bsm_c_ids"),
       'set' => ['c_currently_enrolled' => 0]
     ];
-
-    // Transaction Start
-    $this->db->trans_begin();
-
-    // Delete Mapping
-    $this->BatchMappingModel->delete_batch($data['bsm_ids']);
-    // Update student enrolled to false
-    $this->CandidateModel->updateByColumn($data['update']);
-
-    // All or some transaction failed
-    if ($this->db->trans_status() === FALSE) {
-      $this->db->trans_rollback();
+    // Check if any student selected 
+    if (!valArr($data['bsm_ids'])) {
       $this->session->set_flashdata('class_name', ('alert-danger'));
-      $this->session->set_flashdata('message', ('Student(s) failed to remove form the batch.'));
+      $this->session->set_flashdata('message', ('No Student Selected.'));
+      redirect('admin/candidate/batch/view/' . $b_id);
+    }
+
+    // Check If Batch is completed
+    if ($this->BatchModel->isBatchTrainingCompleted($b_id)) {
+      $this->session->set_flashdata('class_name', ('alert-danger'));
+      $this->session->set_flashdata('message', ('Batch training is completed, you can\'t remove student.'));
       redirect('admin/candidate/batch/view/' . $b_id);
     } else {
-      // All transaction sucessfull
-      $this->db->trans_commit();
-      $this->session->set_flashdata('class_name', ('alert-success'));
-      $this->session->set_flashdata('message', ('Student(s) removed sucessfully from the batch.'));
-      redirect('admin/candidate/batch/view/' . $b_id);
+      // Transaction Start
+      $this->db->trans_begin();
+      // dd('sdas', 1);
+      // Delete Mapping
+      // dd($data['bsm_ids'], 0);
+      $this->BatchMappingModel->delete_batch($data['bsm_ids']);
+
+      // dd('sdassss', 0);
+      // Update student enrolled to false
+      $this->CandidateModel->updateByColumn($data['update']);
+
+      // All or some transaction failed
+      if ($this->db->trans_status() === FALSE) {
+        $this->db->trans_rollback();
+        $this->session->set_flashdata('class_name', ('alert-danger'));
+        $this->session->set_flashdata('message', ('Student(s) failed to remove form the batch.'));
+        redirect('admin/candidate/batch/view/' . $b_id);
+      } else {
+        // All transaction sucessfull
+        $this->db->trans_commit();
+        $this->session->set_flashdata('class_name', ('alert-success'));
+        $this->session->set_flashdata('message', ('Student(s) removed sucessfully from the batch.'));
+        redirect('admin/candidate/batch/view/' . $b_id);
+      }
     }
   }
 
