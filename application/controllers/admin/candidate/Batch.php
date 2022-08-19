@@ -155,6 +155,13 @@ class Batch extends CI_Controller
 
     // Prepare Student ids of this batch
     $data['enrolled_students_ids']      = (array) $this->BatchMappingModel->readStudentsByBatchId($b_id);
+
+    if (!valArr($data['enrolled_students_ids'])) {
+      $this->session->set_flashdata('class_name', ('alert-danger'));
+      $this->session->set_flashdata('message', ('Batch Has No Student Enrolled yet.'));
+      redirect('admin/candidate/batch/view/' . $b_id);
+      // die();
+    }
     $data['enrolled_students_ids'] = array_keys(rekeyArray('bsm_c_id', $data['enrolled_students_ids']));
 
     $data['update'] = [
@@ -191,6 +198,7 @@ class Batch extends CI_Controller
       $this->session->set_flashdata('message', ('Unable to find batch id.'));
       redirect('admin/candidate/batch/');
     }
+
 
     // Input Data
     $data['batchPostData'] = [
