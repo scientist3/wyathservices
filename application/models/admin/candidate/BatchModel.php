@@ -42,4 +42,18 @@ class BatchModel extends CI_Model
       return false;
     }
   }
+
+  public function isBatchTrainingCompleted($b_id =  null)
+  {
+    $result = $this->db->select($this->table . ".b_training_completed")
+      ->from($this->table)
+      ->where('b_id', $b_id)
+      ->get()
+      ->row();
+    // echo "hii";
+    // dd($b_id);
+    // dd($result);
+    return $result->b_training_completed == 1 ? true : false;
+    // die();
+  }
 }
