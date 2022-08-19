@@ -19,9 +19,10 @@ class Batch extends CI_Controller
       redirect('login/logout');
     }
 
-    $this->STUDENTS_PER_BATCH_LIMIT = 2;
+    $this->STUDENTS_PER_BATCH_LIMIT = 3;
     $this->user_id = $this->session->userdata('user_id');
   }
+
 
   function index($edit_id = null)
   {
@@ -121,6 +122,7 @@ class Batch extends CI_Controller
 
     // Prepare Batch Details 
     $data['batch']                  = (array)$this->BatchModel->readById($b_id);
+
     // Check If Batch Exists or not
     if (!isset($data['batch']['b_id']) || empty($data['batch']['b_id'])) {
       redirect('admin/candidate/batch/');
@@ -135,6 +137,15 @@ class Batch extends CI_Controller
     $this->load->view('admin/layout/wrapper', $data);
   }
 
+  function batchcompletereqest()
+  {
+    $data['b_id'] = $this->input->post('b_id');
+    $data['b_training_completed'] = '1';
+
+    $this->BatchModel->create($data);
+    $url = 'admin/candidate/batch/view/' . $data['b_id'];
+    redirect($url);
+  }
 
   public function addStudentsToBatch()
   {
@@ -208,5 +219,10 @@ class Batch extends CI_Controller
       $this->session->set_flashdata('message', ('Student(s) removed sucessfully from the batch.'));
       redirect('admin/candidate/batch/view/' . $b_id);
     }
+  }
+
+  function restriction_addstudent()
+  {
+    // if()
   }
 }
