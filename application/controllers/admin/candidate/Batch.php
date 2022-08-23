@@ -96,13 +96,23 @@ class Batch extends CI_Controller
     if (empty($b_id)) {
       redirect('admin/candidate/batch/');
     }
-    if ($this->BatchModel->delete($b_id)) {
-      // $this->location_model->delete($loc_id);
-      $this->session->set_flashdata('message', ('Batch Deleted Successfully'));
-      $this->session->set_flashdata('class_name', ('alert-success'));
+    $data['batch']                  = (array)$this->BatchModel->readById($b_id);
+    // Check If Batch Exists or not
+    if (!isset($data['batch']['b_id']) || empty($data['batch']['b_id'])) {
+      setFlash('Batch id not found.', ['class' => 'alert-danger']);
+      redirect('admin/candidate/batch/');
+      exit;
+    }
+
+    if (true == $this->BatchModel->delete($b_id)) {
+      setFlash('Batch Deleted Successfully', ['class' => 'alert-success']);
     } else {
-      $this->session->set_flashdata('message', ('Please Try Again'));
-      $this->session->set_flashdata('class_name', ('alert-danger'));
+      $fk_check = $this->db->error();
+      if (valArr($fk_check) && isset($fk_check['code']) && $fk_check['code'] == 1451) {
+        setFlash('Failed to delete due to foreign key error!', ['class' => 'alert-danger']);
+      } else {
+        setFlash('Please try again', ['class' => 'alert-danger']);
+      }
     }
     redirect('admin/candidate/batch/index');
   }
@@ -341,10 +351,5 @@ class Batch extends CI_Controller
         redirect('admin/candidate/batch/view/' . $b_id);
       }
     }
-  }
-
-  public function assessment()
-  {
-    // sir assessment yehe pay banvoo woh wale controller delete he kartay hai
   }
 }
