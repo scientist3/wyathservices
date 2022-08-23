@@ -38,7 +38,7 @@
                     <span class="">Assessment Completed</span>
                   </div>
                 </div>
-                <button type="button" class="btn btn-sm btn-warning w-100" data-toggle="modal" data-target="#mark_training_incomplete_model"><i class="fas fa-times"></i> Mark Assessment Incompleted</button>
+                <a type="submit" class="btn btn-sm btn-primary w-100" id="mark_assessement_complete_model" href="<?= site_url('../admin/candidate/assessment/index/' . $batch->b_id) ?>"><i class="fas fa-check"></i>Submit Assessment</a>
               <?php } else { ?>
                 <!-- Assessment Incompleted -->
                 <div class="progress mb-3 h-50 rounded">
@@ -46,13 +46,16 @@
                     <span class="">Assessment Incompleted</span>
                   </div>
                 </div>
-                <button type="button" class="btn btn-sm btn-primary w-100" data-toggle="modal" data-target="#mark_training_complete_model"><i class="fas fa-check"></i> Mark Assessment Complete</button>
+
+                <a type="submit" class="btn btn-sm btn-primary w-100" id="mark_assessement_complete_model" href="<?= site_url('../admin/candidate/assessment/index/' . $batch->b_id) ?>"><i class="fas fa-check"></i>Complete Assessment</a>
+
+
               <?php }  ?>
             <?php } else { ?>
               <!-- Traing Not Completed -->
               <div class="progress mb-3 h-50 rounded">
                 <div class="progress-bar bg-gray" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-                  <span class="">Assessment Incompleted</span>
+                  <span class="">Please Complete the training first.</span>
                 </div>
               </div>
             <?php }  ?>
@@ -89,7 +92,7 @@
     </div>
   </div>
 
-  <!-- Compelete Batach Training model -->
+  <!-- Compelete Batch Training model -->
   <div class="modal fade" id="mark_training_incomplete_model" tabindex="-1" role="dialog" aria-labelledby="mark_training_incomplete_model" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered model-dark" role="document">
       <div class="modal-content">
@@ -167,12 +170,8 @@
               <button disabled class="float-right form-control-sm btn btn-primary btn-sm "><i class="fa fa-plus">
                   &nbsp;<?php echo ('Add Students To Batch'); ?></i></button>
             <?php
-
             }
             ?>
-
-
-
           </div>
         </div>
       </form>

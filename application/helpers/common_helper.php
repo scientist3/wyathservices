@@ -370,7 +370,7 @@ if (!function_exists('_generateCaptcha')) {
 }
 
 if (!function_exists('generate_drop_down')) {
-  // this function will create captcha
+  // this function will Generate dropdown.
   function generate_drop_down($rawdata, $arrinput)
   {
     $options = '';
@@ -391,7 +391,7 @@ if (!function_exists('generate_drop_down')) {
 }
 
 if (!function_exists('generate_simple_drop_down')) {
-  // this function will create captcha
+  // this function will Simple dropdown generate
   function generate_simple_drop_down($rawdata, $intinput)
   {
     $options = '';
@@ -408,5 +408,35 @@ if (!function_exists('generate_simple_drop_down')) {
       }
     }
     return $options;
+  }
+}
+
+if (!function_exists('setFlash')) {
+  // this function will Simple dropdown generate
+  function setFlash(string $message, array $extra = []): void
+  {
+    $ci = &get_instance();
+    if (isset($extra['class'])) {
+      $ci->session->set_flashdata('class_name', "" . $extra['class']);
+    }
+    $ci->session->set_flashdata('message', "" . $message);
+  }
+}
+
+if (!function_exists('arrayToObject')) {
+  function arrayToObject($array)
+  {
+    // Create new stdClass object
+    $object = new stdClass();
+
+    // Use loop to convert array into
+    // stdClass object
+    foreach ($array as $key => $value) {
+      if (is_array($value)) {
+        $value = arrayToObject($value);
+      }
+      $object->$key = $value;
+    }
+    return $object;
   }
 }

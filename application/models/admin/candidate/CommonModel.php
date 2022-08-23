@@ -184,4 +184,15 @@ class CommonModel extends CI_Model
       ];
     return $data;
   }
+
+  public function getAssessmentStatusList()
+  {
+    $data =
+      [
+        '' => 'Select Status',
+        '1' => 'Pass',
+        '2' => 'Fail',
+      ];
+    return $data;
+  }
 }

@@ -47,7 +47,7 @@ class Batch extends CI_Controller
       $this->form_validation->set_rules('b_tc_id', ('Training Center ID'), 'required');
       $this->form_validation->set_rules('b_training_completed', ('Training Completed'), 'required');
       $this->form_validation->set_rules('b_assessment_completed', ('Assessment Completed'), 'required');
-      $this->form_validation->set_rules('b_as_id', ('Assessment ID'), 'required');
+      // $this->form_validation->set_rules('b_as_id', ('Assessment ID'), 'required');
       $this->form_validation->set_error_delimiters('<span class="error invalid-feedback is-invalid">', '</span>');
     }
 
@@ -61,9 +61,9 @@ class Batch extends CI_Controller
       'b_course_id'             => $this->input->post('b_course_id'),
       'b_trainer_name'          => $this->input->post('b_trainer_name'),
       'b_tc_id'                 => $this->input->post('b_tc_id'),
-      'b_training_completed'    => $this->input->post('b_training_completed'),
-      'b_assessment_completed'  => $this->input->post('b_assessment_completed'),
-      'b_as_id'                 => $this->input->post('b_as_id')
+      'b_training_completed'    => null, //$this->input->post('b_training_completed'),
+      'b_assessment_completed'  => null, //$this->input->post('b_assessment_completed'),
+      'b_as_id'                 => null //$this->input->post('b_as_id')
     );
 
     if (!empty($edit_id)) {
@@ -130,6 +130,11 @@ class Batch extends CI_Controller
     }
     // Convert to object
     $data['batch']                  = (object) $data['batch'];
+    $data['assessment_status'] = (object)[
+      'status' => $this->BatchMappingModel->checkIsAssessmentCompletedByBatchId($b_id),
+      'message' => 'It Looks like assessment is already completed for all student.'
+    ];
+    // dd($data['assessment_status']);
     $data['enrolled_students']      = $this->BatchMappingModel->readStudentsByBatchId($b_id);
     $data['not_enrolled_students']  = $this->CandidateModel->getNotEnrolledStudents();
 
@@ -203,7 +208,8 @@ class Batch extends CI_Controller
     // Input Data
     $data['batchPostData'] = [
       'b_id' => $this->input->post('b_id'),
-      'b_training_completed' => '0'
+      'b_training_completed' => '0',
+      'b_assessment_completed' =>  '0'
     ];
 
     // Prepare Student ids of this batch
@@ -234,7 +240,6 @@ class Batch extends CI_Controller
       redirect('admin/candidate/batch/view/' . $b_id);
     }
   }
-
 
   public function addStudentsToBatch()
   {
@@ -338,8 +343,8 @@ class Batch extends CI_Controller
     }
   }
 
-  function restriction_addstudent()
+  public function assessment()
   {
-    // if()
+    // sir assessment yehe pay banvoo woh wale controller delete he kartay hai
   }
 }
