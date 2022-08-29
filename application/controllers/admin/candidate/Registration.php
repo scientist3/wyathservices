@@ -77,7 +77,6 @@ class Registration extends CI_Controller
 		}
 	}
 
-
 	public function viewStudent($cand_id = null)
 	{
 		if (empty($cand_id) || $cand_id ==  null) {
@@ -85,11 +84,29 @@ class Registration extends CI_Controller
 		}
 		$data['title'] = "View Student";
 
-		// 2022-08-12 09:56:03
-		// $this->data['input'] = ;
+		// data conversion 
+		$data['state_list']									= $this->AddressModel->read_state_country_as_list(101);
+		// dd($data['state_list']);
+
+		$data['yes_no_list']								=	$this->CommonModel->getYesNoList();
+		$data['id_type_list']								= $this->CommonModel->getIdType();
+		$data['gender_list']								= $this->CommonModel->getGender();
+		$data['category_list']							= $this->CommonModel->getCategory();
+		$data['religion_list']							= $this->CommonModel->getReligion();
+		$data['education_list']							= $this->CommonModel->getEducation();
+		$data['salutation_list']						= $this->CommonModel->getSalutation();
+		$data['todisability_list']					= $this->CommonModel->getDisability();
+		$data['marital_status_list']				= $this->CommonModel->getMaritalStatus();
+		$data['pre_training_status_list']		= $this->CommonModel->getTrainingStatus();
+		$data['type_of_alternate_id_list']	= $this->CommonModel->getTypeOfAlternateId();
+
+		$data['employment_status_list']	= $this->CommonModel->getEmploymentStatusList();
+
+		$data['heard_about_us_list']	= $this->CommonModel->getHearAboutUsList();
+
 
 		$data['input'] = $this->CandidateModel->read_by_id_as_obj($cand_id);
-
+		// TODO::CREATED A TEMP VIEW FILE FOR TESTING 
 		$data['content'] = $this->load->view('admin/candidate/registration/view_student', $data, true);
 		$this->load->view('admin/layout/wrapper', $data);
 	}
