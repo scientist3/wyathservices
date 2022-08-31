@@ -45,8 +45,8 @@ class Batch extends CI_Controller
       $this->form_validation->set_rules('b_course_id', ('Course ID'), 'required');
       $this->form_validation->set_rules('b_trainer_name', ('Trainer Name'), 'required');
       $this->form_validation->set_rules('b_tc_id', ('Training Center ID'), 'required');
-      $this->form_validation->set_rules('b_training_completed', ('Training Completed'), 'required');
-      $this->form_validation->set_rules('b_assessment_completed', ('Assessment Completed'), 'required');
+      // $this->form_validation->set_rules('b_training_completed', ('Training Completed'), 'required');
+      // $this->form_validation->set_rules('b_assessment_completed', ('Assessment Completed'), 'required');
       // $this->form_validation->set_rules('b_as_id', ('Assessment ID'), 'required');
       $this->form_validation->set_error_delimiters('<span class="error invalid-feedback is-invalid">', '</span>');
     }
