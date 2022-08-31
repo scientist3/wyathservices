@@ -143,9 +143,9 @@
                   <?php foreach ($not_enrolled_students as $student) { ?>
                     <tr>
                       <td>
-                        <div class="form-group">
-                          <div class="">
-                            <input name="students[]" class="js-student-not-enrolled" type="checkbox" value="<?php echo $student->c_id; ?>">
+                        <div class="form-groupp d-flex justify-content-center align-items-center">
+                          <div class="select">
+                            <input name="students[]" class="js-student-not-enrolled form-control ml-1 mr-1" type="checkbox" value="<?php echo $student->c_id; ?>">
                           </div>
                         </div>
                       </td>
@@ -199,9 +199,9 @@
                   <?php foreach ($enrolled_students as $student) { ?>
                     <tr>
                       <td>
-                        <div class="form-group">
+                        <div class="form-groupp d-flex justify-content-center align-items-center">
                           <div class="select">
-                            <input name="bsm_c_ids[]" class="js-student-id" id="bsm_c_id" type="checkbox" value="<?php echo $student->bsm_c_id; ?>" />
+                            <input name="bsm_c_ids[]" class="js-student-id form-control ml-1 mr-1" id="bsm_c_id" type="checkbox" value="<?php echo $student->bsm_c_id; ?>" />
                             <input name="bsm_ids[]" class="js-batch-mapping-id d-none" id="bsm_id" type="checkbox" value="<?php echo $student->bsm_id; ?>" />
                           </div>
                         </div>
