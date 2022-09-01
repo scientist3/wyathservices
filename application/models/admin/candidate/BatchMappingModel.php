@@ -18,7 +18,8 @@ class BatchMappingModel extends CI_Model
   {
     return $this->db->select($this->table . ".*, 
     candidate_tbl.c_cand_id,
-    candidate_tbl.c_full_name
+    candidate_tbl.c_full_name,
+    candidate_tbl.c_training_status,
     ")
       ->from($this->table)
       ->where('bsm_b_id', $b_id)

@@ -4,7 +4,7 @@
     <div class="col-md-4 col-sm-12">
       <div class="card">
         <div class="card-header bg-dark">
-          <h3 class="card-title"><i class="fa fa-plus"></i> <?php echo "Assemmsnt"; ?></h3>
+          <h3 class="card-title"><i class="fa fa-plus"></i> <?php echo "Assessment"; ?></h3>
         </div>
         <div class="card-body">
           <div class="row">
@@ -112,6 +112,14 @@
         <div class="card">
           <div class="card-header bg-dark">
             <h3 class="card-title"><i class="fa fa-list"></i> Student Assessment Details</h3>
+            <div class="card-tools">
+              <ul class="nav nav-pills ml-auto">
+                <li class="nav-item">
+                  <!-- <a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a> -->
+                  <a class="nav-link active" href="<?php echo site_url('../admin/candidate/batch/view/' . $batch->b_id) ?>">Batch View</a>
+                </li>
+              </ul>
+            </div>
           </div>
           <div class="card-body">
             <table width="100%" class="datatable_colvisw table table-striped table-bordered table-hover table-sm">

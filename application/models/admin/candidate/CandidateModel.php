@@ -27,6 +27,11 @@ class CandidateModel extends CI_Model
       ->result();
   }
 
+  public function update_batch($data)
+  {
+    return $this->db->update_batch($this->table . "", $data, 'c_id');
+  }
+
   public function read_by_id_as_obj($c_id = null)
   {
     return $this->db->select("*")
@@ -84,6 +89,32 @@ class CandidateModel extends CI_Model
       ->get()
       ->result();
   }
+
+  public function checkIsTrainingCompletedByCandidateIds($arrCandIds = [])
+  {
+    $result = $this->db->select('c_training_status')
+      ->from($this->table)
+      ->where_in('c_id', $arrCandIds)
+      ->get()
+      ->result();
+
+    $data['status'] = 1;
+    $data['message'] = "It looks like training is already completed for all student.";
+    if (valArr($result)) {
+      foreach ($result as $student) {
+        if (empty($student->c_training_status)) {
+          $data['status'] = 0;
+          $data['message'] = 'Please select the training details of all students.';
+          break;
+        }
+      }
+    } else {
+      $data['status'] = 0;
+      $data['message'] = 'Please complete the training of all students.';
+    }
+    return $data;
+  }
+
 
   public function DemoBulkUpdateExample()
   {

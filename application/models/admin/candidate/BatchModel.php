@@ -33,6 +33,7 @@ class BatchModel extends CI_Model
       ->get()
       ->row();
   }
+
   public function delete($b_id = null)
   {
     $this->db->where('b_id', $b_id)

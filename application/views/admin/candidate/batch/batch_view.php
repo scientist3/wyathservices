@@ -18,14 +18,16 @@
                   <span class="">Training Completed</span>
                 </div>
               </div>
-              <button type="button" class="btn btn-sm btn-warning w-100" data-toggle="modal" data-target="#mark_training_incomplete_model" data-toggle="tooltip" title="If you want to add more student please mark training status to incomplete."><i class="fas fa-times"></i> Mark Training Incompleted</button>
+              <a type="submit" class="btn btn-sm btn-primary w-100" id="mark_assessement_complete_model" href="<?= site_url('../admin/candidate/batch/training/' . $batch->b_id) ?>"><i class="fas fa-check"></i>Submit Training</a>
+              <!-- <button type="button" class="btn btn-sm btn-warning w-100" data-toggle="modal" data-target="#mark_training_incomplete_model" data-toggle="tooltip" title="If you want to add more student please mark training status to incomplete."><i class="fas fa-times"></i> Mark Training Incompleted</button> -->
             <?php } else { ?>
               <div class="progress mb-3 h-50 rounded">
                 <div class="progress-bar bg-gray" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
                   <span class="">Training Incompleted</span>
                 </div>
               </div>
-              <button type="button" class="btn btn-sm btn-primary w-100" data-toggle="modal" data-target="#mark_training_complete_model" data-toggle="tooltip" title="If you mark training status complete, then you can't add/remove students to/from batch."><i class="fas fa-check"></i> Mark Training Complete</button>
+              <a type="submit" class="btn btn-sm btn-primary w-100" id="mark_assessement_complete_model" href="<?= site_url('../admin/candidate/batch/training/' . $batch->b_id) ?>"><i class="fas fa-check"></i>Submit Training</a>
+              <!-- <button type="button" class="btn btn-sm btn-primary w-100" data-toggle="modal" data-target="#mark_training_complete_model" data-toggle="tooltip" title="If you mark training status complete, then you can't add/remove students to/from batch."><i class="fas fa-check"></i> Mark Training Complete</button> -->
             <?php }  ?>
           </div>
           <div class="col-sm-6 pb-5">
@@ -61,57 +63,6 @@
             <?php }  ?>
 
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- Compelete Batch Training model -->
-  <div class="modal fade" id="mark_training_complete_model" tabindex="-1" role="dialog" aria-labelledby="mark_training_complete_model" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered model-dark" role="document">
-      <div class="modal-content">
-        <div class="modal-header bg-dark">
-          <h5 class="modal-title" id="exampleModalLongTitle">Update training status as completed.</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form method="post" action="<?php echo site_url('../admin/candidate/batch/batchTrainingComplete') ?>">
-            <input type="hidden" name="b_id" value="<?php echo $batch->b_id ?>">
-            <input type="hidden" name="studentlist[]" value="<?php print_r($enrolled_students) ?>">
-            Do you want to change batch training status to completed
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          <button type="submit" class="btn btn-primary">Yes</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Compelete Batch Training model -->
-  <div class="modal fade" id="mark_training_incomplete_model" tabindex="-1" role="dialog" aria-labelledby="mark_training_incomplete_model" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered model-dark" role="document">
-      <div class="modal-content">
-        <div class="modal-header bg-dark">
-          <h5 class="modal-title" id="exampleModalLongTitle">Update training status as Incompleted.</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form method="post" action="<?php echo site_url('../admin/candidate/batch/batchTrainingIncomplete') ?>">
-            <input type="hidden" name="b_id" value="<?php echo $batch->b_id ?>">
-            <input type="hidden" name="studentlist[]" value="<?php print_r($enrolled_students) ?>">
-            Do you want to change batch training status to Incompleted
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          <button type="submit" class="btn btn-primary">Yes</button>
-          </form>
         </div>
       </div>
     </div>

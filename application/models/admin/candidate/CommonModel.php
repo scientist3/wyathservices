@@ -195,4 +195,15 @@ class CommonModel extends CI_Model
       ];
     return $data;
   }
+
+  public function getTrainingStatusList()
+  {
+    $data = [
+      '' => 'Select Training Status',
+      '1' => 'Completed',
+      '0' => 'Dropout',
+    ];
+
+    return $data;
+  }
 }

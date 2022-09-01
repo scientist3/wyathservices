@@ -4,6 +4,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Batch extends CI_Controller
 {
   private $STUDENTS_PER_BATCH_LIMIT;
+  private $data;
+
   public function __construct()
   {
     parent::__construct();
@@ -19,7 +21,7 @@ class Batch extends CI_Controller
       redirect('login/logout');
     }
 
-    $this->STUDENTS_PER_BATCH_LIMIT = 3;
+    $this->STUDENTS_PER_BATCH_LIMIT = 30;
     $this->user_id = $this->session->userdata('user_id');
   }
 
@@ -61,8 +63,8 @@ class Batch extends CI_Controller
       'b_course_id'             => $this->input->post('b_course_id'),
       'b_trainer_name'          => $this->input->post('b_trainer_name'),
       'b_tc_id'                 => $this->input->post('b_tc_id'),
-      'b_training_completed'    => null, //$this->input->post('b_training_completed'),
-      'b_assessment_completed'  => null, //$this->input->post('b_assessment_completed'),
+      // 'b_training_completed'    => null, //$this->input->post('b_training_completed'),
+      // 'b_assessment_completed'  => null, //$this->input->post('b_assessment_completed'),
       'b_as_id'                 => null //$this->input->post('b_as_id')
     );
 
@@ -150,6 +152,94 @@ class Batch extends CI_Controller
 
     $data['content']      = $this->load->view('admin/candidate/batch/batch_view', $data, true);
     $this->load->view('admin/layout/wrapper', $data);
+  }
+
+  public function training($b_id = null)
+  {
+    if ($b_id == null || empty($b_id)) {
+      setFlash('Invalid batch id.', ['class' => 'alert-danger']);
+      redirect('admin/candidate/batch/');
+    }
+
+    // Fetch Batch Details
+    $this->data['batch'] = (array)$this->BatchModel->readById($b_id);
+
+    // Check If Batch Exists or not
+    if (!isset($this->data['batch']['b_id']) || empty($this->data['batch']['b_id'])) {
+      setFlash('Batch doesn\'t exist.', ['class' => 'alert-danger']);
+      redirect('admin/candidate/batch/');
+    }
+
+    // Read Student training details
+    $this->data['student_training_details'] = $this->BatchMappingModel->readStudentsByBatchId($b_id);
+
+    $this->data['training_status'] = $training_status =  (object)$this->CandidateModel->checkIsTrainingCompletedByCandidateIds(array_keys(rekeyArray('bsm_c_id', $this->data['student_training_details'])));
+
+    // ====================================
+    if (isset($_POST['update_student_training_details_form']) && $_POST['update_student_training_details_form'] == 'update_student_training_details') {
+
+      $c_training_status      = $this->input->post('c_training_status');
+
+      $data = [];
+
+      if (valArr($c_training_status)) {
+        foreach ($c_training_status as $c_id =>  $training_status) {
+          $data[] = [
+            'c_id' => $c_id,
+            'c_training_status' => $training_status == null ? null : $training_status,
+          ];
+        }
+      }
+      // dd($data, 0);
+      if ($this->CandidateModel->update_batch($data)) {
+        setFlash('Student training details has been updated successfully.', ['class' => 'alert-success']);
+        // Check if 
+        if ($training_status->status == 1) {
+          $batchPostData = [
+            'b_id' => $b_id,
+            'b_training_completed' =>  "1"
+          ];
+          $this->BatchModel->create($batchPostData);
+        } else {
+          $batchPostData = [
+            'b_id' => $b_id,
+            'b_training_completed' =>  "0"
+          ];
+          $this->BatchModel->create($batchPostData);
+        }
+        redirect('admin/candidate/batch/training/' . $b_id);
+      } else {
+        setFlash('Please try again.', ['class' => 'alert-danger']);
+        redirect('admin/candidate/batch/training/' . $b_id);
+      }
+    }
+    // Check if 
+    if ($training_status->status == 1) {
+      $batchPostData = [
+        'b_id' => $b_id,
+        'b_training_completed' =>  "1"
+      ];
+      $this->BatchModel->create($batchPostData);
+    } else {
+      $batchPostData = [
+        'b_id' => $b_id,
+        'b_training_completed' =>  "0"
+      ];
+      $this->BatchModel->create($batchPostData);
+    }
+    // ====================================
+
+    // Fetch training status list
+    $this->data['training_status_list'] = $this->CommonModel->getTrainingStatusList();
+
+    // Convert Input array back to Object 
+    $this->data['batch'] = (object)  $this->data['batch'];
+
+    $this->data['title'] = ('Training');
+    $this->data['input_height'] = 'form-control-sm';
+
+    $this->data['content'] = $this->load->view('admin/candidate/training/index_view', $this->data, true);
+    $this->load->view('admin/layout/wrapper', $this->data);
   }
 
   function batchTrainingComplete()

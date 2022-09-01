@@ -32,10 +32,12 @@
                     <td><?php echo $st->c_mobile; ?></td>
                     <td><?php echo $st->c_email; ?></td>
                     <td>
-                      <a href="<?php echo base_url("admin/candidate/registration/viewStudent/$st->c_id") ?>" class="btn btn-xs btn-info"><i class="fa fa-eye"></i></a>
-                      <a href="<?php echo base_url("admin/candidate/registration/edit/$st->c_id") ?>" class="btn btn-xs btn-success"><i class="fa fa-edit"></i></a>
+                      <div class="btn-group" role="group" aria-label="Basic example">
+                        <a href="<?php echo base_url("admin/candidate/registration/viewStudent/$st->c_id") ?>" class="btn btn-sm btn-info"><i class="fa fa-eye"></i></a>
+                        <a href="<?php echo base_url("admin/candidate/registration/edit/$st->c_id") ?>" class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>
 
-                      <a href=" <?php echo base_url("admin/candidate/registration/delete/$st->c_id") ?>" class="btn btn-xs btn-danger" onclick="return confirm('<?php echo ('Are You Sure') ?>') "><i class="fa fa-trash"></i></a>
+                        <a href=" <?php echo base_url("admin/candidate/registration/delete/$st->c_id") ?>" class="btn btn-sm btn-danger" onclick="return confirm('<?php echo ('Are You Sure') ?>') "><i class="fa fa-trash"></i></a>
+                      </div>
                     </td>
                   </tr>
                   <?php $sl++; ?>
