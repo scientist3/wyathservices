@@ -142,6 +142,8 @@
                   <th>#</th>
                   <th><?php echo ('Candidate ID') ?></th>
                   <th><?php echo ('Candidate Name') ?></th>
+                  <th><?php echo ('Training Status') ?></th>
+                  <th><?php echo ('Assessment Status') ?></th>
                 </tr>
               </thead>
               <tbody>
@@ -159,6 +161,16 @@
                       </td>
                       <td><?php echo $student->c_cand_id ?></td>
                       <td><?php echo $student->c_full_name ?></td>
+                      <td>
+                        <div class="badge badge-<?php echo $student->c_training_status == 1 ? "success" : "danger"; ?> p-2">
+                          <?php echo $training_status_list[$student->c_training_status]; ?>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="badge badge-<?php echo $student->bsm_assessment_status == 1 ? "success" : "danger"; ?> p-2">
+                          <?php echo ($student->bsm_assessment_status != null) ? $assessment_status_list[$student->bsm_assessment_status] : "NA"; ?>
+                        </div>
+                      </td>
                     </tr>
                     <?php $sl++; ?>
                   <?php } ?>

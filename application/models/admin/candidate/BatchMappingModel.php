@@ -28,6 +28,21 @@ class BatchMappingModel extends CI_Model
       ->result();
   }
 
+  public function readPassedStudentsByBatchId($b_id)
+  {
+    return $this->db->select($this->table . ".*, 
+    candidate_tbl.c_cand_id,
+    candidate_tbl.c_full_name,
+    candidate_tbl.c_training_status,
+    ")
+      ->from($this->table)
+      ->where('bsm_b_id', $b_id)
+      ->where('c_training_status', 1)
+      ->join('candidate_tbl', 'candidate_tbl.c_id = ' . $this->table . '.	bsm_c_id')
+      ->get()
+      ->result();
+  }
+
   public function update_batch($data)
   {
     return $this->db->update_batch($this->table, $data, 'bsm_id');

@@ -78,7 +78,7 @@ class Assessment extends CI_Controller
     $this->data['assessment_status'] =  $this->BatchMappingModel->checkIsAssessmentCompletedByBatchId($b_id);
 
     // Read Student assessment details
-    $this->data['student_assessment_details'] = $this->BatchMappingModel->readStudentsByBatchId($b_id);
+    $this->data['student_assessment_details'] = $this->BatchMappingModel->readPassedStudentsByBatchId($b_id);
 
     // Fetch Assessment status list
     $this->data['assessment_status_list'] = $this->CommonModel->getAssessmentStatusList();

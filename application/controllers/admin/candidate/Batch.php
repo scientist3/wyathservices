@@ -149,6 +149,10 @@ class Batch extends CI_Controller
     // dd($data['assessment_status']);
     $data['enrolled_students']      = $this->BatchMappingModel->readStudentsByBatchId($b_id);
     $data['not_enrolled_students']  = $this->CandidateModel->getNotEnrolledStudents();
+    // Fetch Traimimg status list
+    $data['training_status_list'] = $this->CommonModel->getTrainingStatusList();
+    // Fetch Assessment status list
+    $data['assessment_status_list'] = $this->CommonModel->getAssessmentStatusList();
 
     $data['content']      = $this->load->view('admin/candidate/batch/batch_view', $data, true);
     $this->load->view('admin/layout/wrapper', $data);

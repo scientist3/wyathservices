@@ -201,7 +201,7 @@ class CommonModel extends CI_Model
     $data = [
       '' => 'Select Training Status',
       '1' => 'Completed',
-      '0' => 'Dropout',
+      '2' => 'Dropout',
     ];
 
     return $data;
