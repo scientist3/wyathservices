@@ -146,7 +146,11 @@ class Batch extends CI_Controller
       'status' => $this->BatchMappingModel->checkIsAssessmentCompletedByBatchId($b_id),
       'message' => 'It Looks like assessment is already completed for all student.'
     ];
-    // dd($data['assessment_status']);
+
+    // Check if Certificate is completed to all students or not (Optional)
+    $data['certificate_status'] =  (object)$this->BatchMappingModel->checkIsCertificationCompletedByBatchId($b_id);
+
+    dd($data['certificate_status']);
     $data['enrolled_students']      = $this->BatchMappingModel->readStudentsByBatchId($b_id);
     $data['not_enrolled_students']  = $this->CandidateModel->getNotEnrolledStudents();
     // Fetch Traimimg status list
@@ -246,6 +250,7 @@ class Batch extends CI_Controller
     $this->load->view('admin/layout/wrapper', $this->data);
   }
 
+  // TODO: Can be Removed
   function batchTrainingComplete()
   {
     $b_id = $this->input->post('b_id');
@@ -298,6 +303,7 @@ class Batch extends CI_Controller
     }
   }
 
+  // TODO: Can be Removed
   function batchTrainingIncomplete()
   {
     $b_id = $this->input->post('b_id');

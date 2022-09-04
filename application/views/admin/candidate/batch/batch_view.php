@@ -1,72 +1,7 @@
 <!-- Main content -->
 <section class="content">
-  <!-- Batch Progress -->
-  <div class="col-md-12">
-    <div class="card card-dark">
-      <div class="card-header">
-        <h3 class="card-title">
-          <i class="fas fa-spinner float-sm-left"> Batch Progress/Status</i>
-        </h3>
-      </div>
 
-      <div class="card-body">
-        <div class="row">
-          <div class="col-sm-6 pb-5">
-            <?php if ($batch->b_training_completed == 1) { ?>
-              <div class="progress mb-3 h-50 rounded">
-                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-                  <span class="">Training Completed</span>
-                </div>
-              </div>
-              <a type="submit" class="btn btn-sm btn-primary w-100" id="mark_assessement_complete_model" href="<?= site_url('../admin/candidate/batch/training/' . $batch->b_id) ?>"><i class="fas fa-check"></i>Submit Training</a>
-              <!-- <button type="button" class="btn btn-sm btn-warning w-100" data-toggle="modal" data-target="#mark_training_incomplete_model" data-toggle="tooltip" title="If you want to add more student please mark training status to incomplete."><i class="fas fa-times"></i> Mark Training Incompleted</button> -->
-            <?php } else { ?>
-              <div class="progress mb-3 h-50 rounded">
-                <div class="progress-bar bg-gray" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-                  <span class="">Training Incompleted</span>
-                </div>
-              </div>
-              <a type="submit" class="btn btn-sm btn-primary w-100" id="mark_assessement_complete_model" href="<?= site_url('../admin/candidate/batch/training/' . $batch->b_id) ?>"><i class="fas fa-check"></i>Submit Training</a>
-              <!-- <button type="button" class="btn btn-sm btn-primary w-100" data-toggle="modal" data-target="#mark_training_complete_model" data-toggle="tooltip" title="If you mark training status complete, then you can't add/remove students to/from batch."><i class="fas fa-check"></i> Mark Training Complete</button> -->
-            <?php }  ?>
-          </div>
-          <div class="col-sm-6 pb-5">
-            <!-- Traing Completed -->
-            <?php if ($batch->b_training_completed == 1) { ?>
-              <!-- Assessment Completed -->
-              <?php if ($batch->b_assessment_completed == 1) { ?>
-                <div class="progress mb-3 h-50 rounded">
-                  <div class="progress-bar bg-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-                    <span class="">Assessment Completed</span>
-                  </div>
-                </div>
-                <a type="submit" class="btn btn-sm btn-primary w-100" id="mark_assessement_complete_model" href="<?= site_url('../admin/candidate/assessment/index/' . $batch->b_id) ?>"><i class="fas fa-check"></i>Submit Assessment</a>
-              <?php } else { ?>
-                <!-- Assessment Incompleted -->
-                <div class="progress mb-3 h-50 rounded">
-                  <div class="progress-bar bg-gray" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-                    <span class="">Assessment Incompleted</span>
-                  </div>
-                </div>
-
-                <a type="submit" class="btn btn-sm btn-primary w-100" id="mark_assessement_complete_model" href="<?= site_url('../admin/candidate/assessment/index/' . $batch->b_id) ?>"><i class="fas fa-check"></i>Complete Assessment</a>
-
-
-              <?php }  ?>
-            <?php } else { ?>
-              <!-- Traing Not Completed -->
-              <div class="progress mb-3 h-50 rounded">
-                <div class="progress-bar bg-gray" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-                  <span class="">Please Complete the training first.</span>
-                </div>
-              </div>
-            <?php }  ?>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <?php $this->load->view('admin/candidate/batch/partials/batch_status_part'); ?>
 
   <div class="row">
     <!-- Save -->
@@ -128,6 +63,7 @@
       </form>
     </div>
 
+    <!-- Existing Batch Students -->
     <div class="col-sm-8">
       <form role="form" action="<?php echo site_url('../admin/candidate/batch/removeStudentsFromBatch/' . $batch->b_id) ?>" method="post" id="save_type_form" enctype="multipart/form-data">
         <?php echo form_hidden('b_id', $batch->b_id) ?>
@@ -163,7 +99,7 @@
                       <td><?php echo $student->c_full_name ?></td>
                       <td>
                         <div class="badge badge-<?php echo $student->c_training_status == 1 ? "success" : "danger"; ?> p-2">
-                          <?php echo $training_status_list[$student->c_training_status]; ?>
+                          <?php echo ($student->c_training_status != null) ? $training_status_list[$student->c_training_status] : "NA"; ?>
                         </div>
                       </td>
                       <td>

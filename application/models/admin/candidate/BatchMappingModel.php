@@ -34,11 +34,31 @@ class BatchMappingModel extends CI_Model
     candidate_tbl.c_cand_id,
     candidate_tbl.c_full_name,
     candidate_tbl.c_training_status,
+    certification_tbl.*,
     ")
       ->from($this->table)
       ->where('bsm_b_id', $b_id)
       ->where('c_training_status', 1)
       ->join('candidate_tbl', 'candidate_tbl.c_id = ' . $this->table . '.	bsm_c_id')
+      ->join('certification_tbl', 'certification_tbl.cer_id = ' . $this->table . '.	bsm_cer_id', "left")
+      ->get()
+      ->result();
+  }
+
+  public function readPassedAndAssessmentCompletedStudentsByBatchId($b_id)
+  {
+    return $this->db->select($this->table . ".*, 
+    candidate_tbl.c_cand_id,
+    candidate_tbl.c_full_name,
+    candidate_tbl.c_training_status,
+    certification_tbl.*,
+    ")
+      ->from($this->table)
+      ->where('bsm_b_id', $b_id)
+      ->where('c_training_status', 1)
+      ->where('bsm_assessment_status', 1)
+      ->join('candidate_tbl', 'candidate_tbl.c_id = ' . $this->table . '.	bsm_c_id')
+      ->join('certification_tbl', 'certification_tbl.cer_id = ' . $this->table . '.	bsm_cer_id', "left")
       ->get()
       ->result();
   }
@@ -65,6 +85,8 @@ class BatchMappingModel extends CI_Model
     $result = $this->db->select('bsm_assessment_status, bsm_assessment_percentage')
       ->from($this->table)
       ->where('bsm_b_id', $b_id)
+      ->where('c_training_status', 1)
+      ->join('candidate_tbl', 'candidate_tbl.c_id = ' . $this->table . '.	bsm_c_id')
       ->get()
       ->result();
 
@@ -81,6 +103,34 @@ class BatchMappingModel extends CI_Model
     } else {
       $data['status'] = 0;
       $data['message'] = 'Please complete the assessment of all students.';
+    }
+    return $data;
+  }
+
+  public function checkIsCertificationCompletedByBatchId($b_id = null)
+  {
+    $result = $this->db->select('bsm_assessment_status, bsm_cer_id')
+      ->from($this->table)
+      ->where('bsm_b_id', $b_id)
+      ->where('c_training_status', 1)
+      ->where('bsm_assessment_status', 1)
+      ->join('candidate_tbl', 'candidate_tbl.c_id = ' . $this->table . '.	bsm_c_id')
+      ->get()
+      ->result();
+
+    $data['status'] = 1;
+    $data['message'] = "It looks like certification is already completed for all student.";
+    if (valArr($result)) {
+      foreach ($result as $assessement) {
+        if (empty($assessement->bsm_cer_id) || $assessement->bsm_cer_id == null) {
+          $data['status'] = 0;
+          $data['message'] = 'Please complete the certification of all students.';
+          break;
+        }
+      }
+    } else {
+      $data['status'] = 0;
+      $data['message'] = 'Please complete the certification of all students.';
     }
     return $data;
   }
