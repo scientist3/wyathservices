@@ -172,6 +172,22 @@ class CommonModel extends CI_Model
     return $data;
   }
 
+  public function getEmploymentList()
+  {
+    $data = [
+      '0' => [
+        '1' => 'Upskilled',
+        '2' => 'Opted for Higher Studies',
+      ],
+      '1' => [
+        '3' => 'Salaried or Waged',
+        '4' => 'Self Employed',
+        '5' => 'Apprenticeship',
+      ]
+    ];
+    return $data;
+  }
+
   public function getHearAboutUsList()
   {
     $data =

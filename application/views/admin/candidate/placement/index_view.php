@@ -1,18 +1,17 @@
 <!-- Main content -->
 <section class="content">
   <div class="row">
-    <!-- Save -->
-    <!-- Course Form -->
-    <div class="col-sm-3">
-      <?php $this->load->view('admin/candidate/placement/form_view'); ?>
+    <div class="col-sm-12 pb-2">
+      <a href="<?php echo base_url("admin/candidate/batch/view/$batch->b_id") ?>" class="btn btn-md btn-success"><i class="fa fa-arrow-left"></i> Return to Batch</a>
     </div>
-    <!-- Search -->
+  </div>
+  <div class="row">
     <!-- Display -->
-    <div class="col-sm-9">
+    <div class="col-sm-12">
       <div class="card">
         <div class="card-header bg-dark">
           <h3 class="card-title">
-            <i class="fa fa-list"></i> View placement
+            <i class="fa fa-list"></i> Add/Update Placement
           </h3>
         </div>
         <div class="card-body">
@@ -20,28 +19,42 @@
             <thead>
               <tr>
                 <th><?php echo ('Unique Id') ?></th>
-                <th><?php echo ('Course Name') ?></th>
-                <th><?php echo ('Course Type') ?></th>
-                <th><?php echo ('Sector Covered') ?></th>
-                <th><?php echo ('Course Fee') ?></th>
-                <th><?php echo ('Fee PaidBy') ?></th>
+                <th><?php echo ('Candidate Name') ?></th>
+                <th><?php echo ('Training Status') ?></th>
+                <th><?php echo ('Assessment Status') ?></th>
+                <th><?php echo ('Assessment Percentage') ?></th>
+                <th><?php echo ('Certified') ?></th>
                 <th><?php echo ('Action') ?></th>
               </tr>
             </thead>
             <tbody>
-              <?php if (!empty($courses)) { ?>
+              <?php if (!empty($student_placement_details)) { ?>
                 <?php $sl = 1; ?>
-                <?php foreach ($courses as $course) { ?>
+                <?php foreach ($student_placement_details as $student) { ?>
                   <tr>
-                    <td><?php echo $course->crs_course_id; ?></td>
-                    <td><?php echo $course->crs_course_name; ?></td>
-                    <td><?php echo $course->crs_course_type; ?></td>
-                    <td><?php echo $course->crs_sector_covered; ?></td>
-                    <td><?php echo $course->crs_course_fee; ?></td>
-                    <td><?php echo $course->crs_fee_paid_by; ?></td>
+                    <td><?php echo $sl; ?></td>
+                    <td><?php echo $student->c_full_name; ?></td>
                     <td>
-                      <a href="<?php echo base_url("admin/candidate/course/index/$course->crs_id") ?>" class="btn btn-xs btn-success"><i class="fa fa-edit"></i></a>
-                      <a href=" <?php echo base_url("admin/candidate/course/delete/$course->crs_id") ?>" class="btn btn-xs btn-danger" onclick="return confirm('<?php echo ('Are You Sure') ?>') "><i class="fa fa-trash"></i></a>
+                      <div class="badge badge-<?php echo $student->c_training_status == 1 ? "success" : "danger"; ?> p-2">
+                        <?php echo ($student->c_training_status != null) ? $training_status_list[$student->c_training_status] : "NA"; ?>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="badge badge-<?php echo $student->bsm_assessment_status == 1 ? "success" : "danger"; ?> p-2">
+                        <?php echo ($student->bsm_assessment_status != null) ? $assessment_status_list[$student->bsm_assessment_status] : "NA"; ?>
+                      </div>
+                    </td>
+                    <td><?php echo $student->bsm_assessment_percentage; ?></td>
+                    <td>
+                      <div class="badge badge-<?php echo $student->cer_certified == 1 ? "success" : "danger"; ?> p-2">
+                        <?php echo ($student->cer_certified != null) ? $yes_no_list[$student->cer_certified] : "NA"; ?>
+                      </div>
+                    </td>
+                    <td>
+                      <?php
+                      $boolIsAdd = ($student->bsm_pd_id == null) || empty($student->bsm_pd_id);
+                      ?>
+                      <a href="<?php echo base_url("admin/candidate/placement/create/$batch->b_id/$student->bsm_pd_id") ?>" class="btn btn-sm btn-<?php echo ($boolIsAdd) ? 'success' : 'warning'; ?>"><i class="fa fa-<?php echo ($boolIsAdd) ? 'plus' : 'edit'; ?>"></i> <?php echo ($boolIsAdd) ? 'Add' : 'Update'; ?></a>
                     </td>
                   </tr>
                   <?php $sl++; ?>

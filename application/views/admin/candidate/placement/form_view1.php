@@ -4,34 +4,46 @@
     <div class="col-md-12 col-sm-12">
       <div class="card">
         <div class="card-header bg-dark">
-          <h3 class="card-title"><i class="fa fa-plus"></i> <?php echo $title; ?></h3>
+          <h3 class="card-title"><i class="fa fa-plus"></i> aaa<?php echo $title; ?></h3>
         </div>
         <div class="card-body">
           <div class="row">
             <div class="col-md-12">
-              <form role="form" action="<?php echo site_url('../admin/candidate/placement/index/' . $batch->b_id) ?>" method="post" id="save_assessment_details_form">
+              <form role="form" action="<?php echo site_url('../admin/candidate/placement/create/' . $batch->b_id . '/' . $input->pd_id) ?>" method="post" id="save_assessment_details_form">
                 <div class="row">
                   <!-- Batch ID -->
                   <?php echo form_hidden('b_id', $batch->b_id) ?>
-                  <?php echo form_hidden('as_id', $input->as_id) ?>
+                  <?php echo form_hidden('pd_id', $input->pd_id) ?>
+                  <?php // echo form_hidden('as_id', $input->as_id) 
+                  ?>
 
-                  <!-- Assessment ID -->
-                  <div class="col-sm-12">
+                  <!-- Placement ID -->
+                  <div class="col-sm-3">
                     <div class="form-group">
-                      <label for="as_as_id"><?php echo ('Assessment ID'); ?></label> <small class="req"> *</small>
-                      <input name="as_as_id" class="form-control  <?= $input_height . ' ' . (form_error("as_as_id") ? 'is-invalid' : null);  ?> " type="text" placeholder="<?php echo ('Assessment ID') ?>" id="as_as_id" value="<?php echo $input->as_as_id ?>">
-                      <?php echo form_error("as_as_id"); ?>
+                      <label for="pd_pd_id"><?php echo ('Placement ID'); ?></label> <small class="req"> *</small>
+                      <input name="pd_pd_id" class="form-control  <?= $input_height . ' ' . (form_error("pd_pd_id") ? 'is-invalid' : null);  ?> " type="text" placeholder="<?php echo ('Placement ID') ?>" id="pd_pd_id" value="<?php echo $input->pd_pd_id ?>">
+                      <?php echo form_error("pd_pd_id"); ?>
                     </div>
                   </div>
 
-                  <!-- Assessment Mode -->
-                  <div class="col-sm-12">
+                  <!-- Placement Status -->
+                  <div class="col-sm-3">
                     <div class="form-group">
-                      <label for="as_mode"><?php echo ('Assessment Mode'); ?></label> <small class="req"> *</small>
-                      <input name="as_mode" class="form-control  <?= $input_height . ' ' . (form_error("as_mode") ? 'is-invalid' : null);  ?>" type="text" placeholder="<?php echo ('Assessment Mode') ?>" id="as_mode" value="<?php echo $input->as_mode ?>">
-                      <?php echo form_error("as_mode"); ?>
+                      <label for="pd_placement_status"><?php echo ('Placement Status'); ?></label> <small class="req"> *</small>
+                      <?php echo form_dropdown('pd_placement_status', $yes_no_list, $input->pd_placement_status, 'class="form-control ' . $input_height . ' ' . (form_error("pd_placement_status") ? 'is-invalid' : null) . ' " id="pd_placement_status_dropdown"'); ?>
+                      <?php echo form_error("pd_placement_status"); ?>
                     </div>
                   </div>
+
+                  <!-- Employement Type -->
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="pd_employment_type"><?php echo ('Placement Status'); ?></label> <small class="req"> *</small>
+                      <?php echo form_dropdown('pd_employment_type', '', $input->pd_employment_type, 'class="form-control ' . $input_height . ' ' . (form_error("pd_employment_type") ? 'is-invalid' : null) . ' " id="pd_employment_type_dropdown"'); ?>
+                      <?php echo form_error("pd_employment_type"); ?>
+                    </div>
+                  </div>
+
 
                   <!-- Assessment Agency ID -->
                   <div class="col-sm-12">
@@ -171,55 +183,132 @@
 </section>
 
 <script>
-  var objAssessment = (
+  var objPlacement = (
     function() {
       var assessment_status;
+      var arr_employement_type_by_placement_status;
       var init = function() {
-        // On Selecting Student that you want to be added bind change event
-        $('.js-assessment-status-dropdown').off('change').on('change', function() {
-          let bsm_id = this.id.split('_').pop();
-          if (this.value == 2) {
-            $("#bsm_assessment_percentage_" + bsm_id).val('');
-            $("#bsm_assessment_percentage_" + bsm_id).prop('disabled', 'disabled');
-          } else {
-            $("#bsm_assessment_percentage_" + bsm_id).removeAttr('disabled');
-          }
+
+        // Placement Status change event
+        $('#pd_placement_status_dropdown').off('change').on('change', function() {
+          onPlacementStatusChangeHandler();
+          onEmploymentTypeChangeHandler();
+          showHideTypeOfProof();
+          showHideDateOfJoining();
         });
 
-        // Show Info message
-        if (objAssessment.assessment_status.status == 1) {
-          $(document).Toasts('create', {
-            class: 'bg-info',
-            title: 'Assessment Status',
-            subtitle: '',
-            autohide: true,
-            delay: 5000,
-            body: objAssessment.assessment_status.message
-          })
-        }
-        objAssessment.enableDisableAssessmentStatus();
+        // Employment Type change event
+        $('#pd_employment_type_dropdown').off('change').on('change', function() {
+          onEmploymentTypeChangeHandler();
+          showHideTypeOfProof();
+        });
+
+        onPlacementStatusChangeHandler();
+        onEmploymentTypeChangeHandler();
+        showHideTypeOfProof();
       }
 
-      var enableDisableAssessmentStatus = () => {
-        $('.js-assessment-status-dropdown').map((e, el) => {
-          if (el.value == 2) {
-            $("#bsm_assessment_percentage_" + el.id.split('_').pop()).prop('disabled', 'disabled');
+      function onPlacementStatusChangeHandler() {
+        // Set Employment type based on placement status
+        var objPSD = $('#pd_placement_status_dropdown').val();
+        const eType = objPlacement.arr_employement_type_by_placement_status[objPSD]
+        var strOptionsForEmploymentTypeHtml = "";
+        Object.keys(eType).map(
+          (key) => {
+            if (key == objPlacement.inputEmploymentStatus) {
+              return strOptionsForEmploymentTypeHtml += `<option value="${key}" selected="selected">${eType[key]}</option>`;
+            } else {
+              return strOptionsForEmploymentTypeHtml += `<option value="${key}">${eType[key]}</option>`;
+            }
           }
-        })
+        );
+        $('#pd_employment_type_dropdown').html(strOptionsForEmploymentTypeHtml);
+
+        // Show hide Proof in case of Placement status is NO
+        if (0 == objPSD) {
+          // Show ProofOfUpskillingSelfEmployedOptedForHigherStudiesProvided
+          console.log('Show Proof')
+        } else {
+          // Hide ProofOfUpskillingSelfEmployedOptedForHigherStudiesProvided
+          console.log('Hide Proof');
+        }
       }
+
+      function onEmploymentTypeChangeHandler() {
+        /**
+         * If Placement status is YES & Employment Type is Self EMployed then
+         *  show UndertakingForSelfEmployedCollectedFromCandidate
+         * else{
+         *  hide Undertaking
+         */
+        var placementStatusValue = $('#pd_placement_status_dropdown').val();
+        var employmentTypeValue = $('#pd_employment_type_dropdown').val();
+        if (1 == placementStatusValue && 4 == employmentTypeValue) {
+          // Show Undertaking file
+          console.log('Show Undertaking');
+        } else {
+          // hode undertaking
+          console.log('Hide Undertaking');
+        }
+      }
+
+      function showHideTypeOfProof() {
+        var placementStatusValue = $('#pd_placement_status_dropdown').val();
+        var employmentTypeValue = $('#pd_employment_type_dropdown').val();
+        if (1 == placementStatusValue && 3 == employmentTypeValue) {
+          // Show Undertaking file
+          console.log('Show Type of Proof');
+        } else {
+          // hide undertaking
+          console.log('Hide Type of Proof');
+        }
+      }
+
+      function showHideDateOfJoining() {
+        var placementStatusValue = $('#pd_placement_status_dropdown').val();
+        if (1 == placementStatusValue) {
+          // Show DOJ
+          console.log('Show DOJ');
+        } else {
+          // hide DOJ
+          console.log('Hide DOJ');
+        }
+      }
+
+      function showHideEmployerName() {
+        var placementStatusValue = $('#pd_placement_status_dropdown').val();
+        var employmentTypeValue = $('#pd_employment_type_dropdown').val();
+        if (1 == placementStatusValue && 3 == employmentTypeValue) {
+          // Show Employer Name
+          console.log('Show Employer Name');
+        } else {
+          // Hide Employer Name
+          console.log('Hide Employer Name');
+        }
+      }
+
+      // var enableDisableAssessmentStatus = () => {
+      //   $('.js-assessment-status-dropdown').map((e, el) => {
+      //     if (el.value == 2) {
+      //       $("#bsm_assessment_percentage_" + el.id.split('_').pop()).prop('disabled', 'disabled');
+      //     }
+      //   })
+      // }
 
       return {
         init: init,
-        assessment_status: assessment_status,
-        enableDisableAssessmentStatus: enableDisableAssessmentStatus
+        arr_employement_type_by_placement_status: arr_employement_type_by_placement_status
       };
     }
   )();
 
   $('document').ready(function() {
     // Prepare data
-    objAssessment.assessment_status = <?php echo json_encode($assessment_status); ?>
+    // objPlacement.placement_status = < ?php echo json_encode($yes); ?>
+    debugger
+    objPlacement.arr_employement_type_by_placement_status = <?php echo json_encode($employement_type_by_placement_status); ?>;
+    objPlacement.inputEmploymentStatus = <?php echo json_encode($input->pd_employment_type); ?>;
     // Initialization
-    objAssessment.init();
+    objPlacement.init();
   });
 </script>

@@ -264,7 +264,7 @@ class Registration extends CI_Controller
 			'c_employement_details'		=> $this->input->post('c_employement_details'),
 			'c_heard_about_us'				=> $this->input->post('c_heard_about_us'),
 			'c_currently_enrolled'		=> !empty($this->input->post('c_currently_enrolled'))  ? $this->input->post('c_currently_enrolled') : 0,
-			'c_training_status'				=> !empty($this->input->post('c_training_status')) ? $this->input->post('c_training_status') : 0,
+			'c_training_status'				=> !empty($this->input->post('c_training_status')) ? $this->input->post('c_training_status') : null,
 		];
 	}
 

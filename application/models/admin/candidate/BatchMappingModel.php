@@ -63,6 +63,27 @@ class BatchMappingModel extends CI_Model
       ->result();
   }
 
+  public function readPassedAndAssessmentAndPlacementCompletedStudentsByBatchId($b_id)
+  {
+    return $this->db->select($this->table . ".*, 
+    candidate_tbl.c_cand_id,
+    candidate_tbl.c_full_name,
+    candidate_tbl.c_training_status,
+    certification_tbl.cer_certified,
+    placement_detail_tbl.*,
+    ")
+      ->from($this->table)
+      ->where('bsm_b_id', $b_id)
+      ->where('c_training_status', 1)
+      ->where('bsm_assessment_status', 1)
+      ->where('cer_certified', 1)
+      ->join('candidate_tbl', 'candidate_tbl.c_id = ' . $this->table . '.	bsm_c_id')
+      ->join('certification_tbl', 'certification_tbl.cer_id = ' . $this->table . '.	bsm_cer_id', "left")
+      ->join('placement_detail_tbl', 'placement_detail_tbl.pd_id = ' . $this->table . '.	bsm_pd_id', "left")
+      ->get()
+      ->result();
+  }
+
   public function update_batch($data)
   {
     return $this->db->update_batch($this->table, $data, 'bsm_id');
@@ -131,6 +152,34 @@ class BatchMappingModel extends CI_Model
     } else {
       $data['status'] = 0;
       $data['message'] = 'Please complete the certification of all students.';
+    }
+    return $data;
+  }
+
+  public function checkIsPlacementCompletedByBatchId($b_id = null)
+  {
+    $result = $this->db->select('bsm_assessment_status, bsm_cer_id, bsm_pd_id')
+      ->from($this->table)
+      ->where('bsm_b_id', $b_id)
+      ->where('c_training_status', 1)
+      ->where('bsm_assessment_status', 1)
+      ->join('candidate_tbl', 'candidate_tbl.c_id = ' . $this->table . '.	bsm_c_id')
+      ->get()
+      ->result();
+
+    $data['status'] = 1;
+    $data['message'] = "It looks like placement is already completed for all student.";
+    if (valArr($result)) {
+      foreach ($result as $assessement) {
+        if (empty($assessement->bsm_pd_id) || $assessement->bsm_pd_id == null) {
+          $data['status'] = 0;
+          $data['message'] = 'Please complete the placement of all students.';
+          break;
+        }
+      }
+    } else {
+      $data['status'] = 0;
+      $data['message'] = 'Please complete the placement of all students.';
     }
     return $data;
   }

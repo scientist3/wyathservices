@@ -83,6 +83,10 @@
                 </tr>
               </thead>
               <tbody>
+                <? //= dd($enrolled_students[0]) 
+                ?>
+                <? //= dd($training_status_list) 
+                ?>
                 <?php if (!empty($enrolled_students)) { ?>
                   <?php $sl = 1; ?>
                   <?php foreach ($enrolled_students as $student) { ?>
