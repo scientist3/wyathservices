@@ -124,8 +124,20 @@ class Front extends CI_Controller
 		$this->load->view('frontsite/layout/wrapper_view', $data);
 	}
 
+	public  function verify_captcha($inputCaptcha = null)
+	{
+		$isValidCaptcha =  $inputCaptcha == $this->session->userdata('captchaWord') ? true : false;
+		if (false == $isValidCaptcha) {
+			$this->form_validation->set_message('verify_captcha', 'The {field} is invalid');
+			return FALSE;
+		} else {
+			return TRUE;
+		}
+	}
 	public function contact()
 	{
+		$this->load->helper(array('captcha'));
+
 		#----------- Validation ----------------#
 		{
 			$this->form_validation->set_rules('con_us_name', ('Name'),  'required');
@@ -133,7 +145,9 @@ class Front extends CI_Controller
 			$this->form_validation->set_rules('con_us_phoneno', ('Phone No'),  'required');
 			$this->form_validation->set_rules('con_us_subject', ('Subject'),  'required');
 			$this->form_validation->set_rules('con_us_message', ('Message'),  'required');
+			$this->form_validation->set_rules('input_captcha', ('Captcha'),  'required|callback_verify_captcha');
 		}
+
 		// ?con_us_name=&con_us_email=&con_us_phoneno=&con_us_subject=&con_us_message=
 		// Prepare date
 		$data['input'] = (object)$postDataInp = array(
@@ -155,6 +169,7 @@ class Front extends CI_Controller
 			}
 			redirect('front/contact');
 		} else {
+			$data['captcha'] = _generateCaptcha($this);
 			$data['title']		= "Contact";
 			$data['contact_details'] = $this->front_model->get_contact_details();
 			$data['content']	= $this->load->view('frontsite/contact/contact', $data, true);
