@@ -137,66 +137,37 @@
           </ul>
         </li>
 
-        <!-- Contact Us -->
         <li class="nav-header"> FrontEnd</li>
 
-        <li class="nav-item <?php echo ($this->uri->segment(2) == "contact") ? "menu-open" : null; ?>">
-          <a href="#" class="nav-link <?php echo $this->uri->segment(2) == 'contact' ? 'active' : null ?>">
+
+        <!-- Contact Us -->
+        <li class="nav-item">
+          <a href="<?php echo base_url('admin/contact/index') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'contact' ? 'active' : null ?>">
             <i class="nav-icon fas fa-envelope"></i>
             <p>
               Messages
-              <i class="right fas fa-angle-left"></i>
             </p>
           </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="<?php echo base_url('admin/contact/index') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'contact' ? 'active' : null ?>">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Messages</p>
-              </a>
-            </li>
-          </ul>
         </li>
 
-
         <!-- Banner -->
-        <li class="nav-item <?php echo ($this->uri->segment(2) == "banner") ? "menu-open" : null; ?>">
-          <a href="#" class="nav-link <?php echo ($this->uri->segment(2) == "banner") ? "active" : null; ?>">
+        <li class="nav-item">
+          <a href="<?php echo base_url('admin/banner/index') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'banner' ? 'active' : null ?>">
             <i class="nav-icon fas fa-ad"></i>
             <p>
               Banner
-              <i class="right fas fa-angle-left"></i>
             </p>
           </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="<?php echo base_url('admin/banner/index') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'banner' ? 'active' : null ?>">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Add / View Banner</p>
-              </a>
-            </li>
-
-          </ul>
         </li>
 
         <!-- Slider -->
-        <li class="nav-item <?php echo ($this->uri->segment(2) == "slider") ? "menu-open" : null; ?>">
-          <a href="#" class="nav-link <?php echo $this->uri->segment(2) == 'slider' ? 'active' : null ?>">
+        <li class="nav-item">
+          <a href="<?php echo base_url('admin/slider/index') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'slider' ? 'active' : null ?>">
             <i class="nav-icon fas fa-photo-video"></i>
             <p>
               Slider
-              <i class="right fas fa-angle-left"></i>
             </p>
           </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="<?php echo base_url('admin/slider/index') ?>" class="nav-link <?php echo $this->uri->segment(2) == 'slider' ? 'active' : null ?>" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Add / View Slider</p>
-              </a>
-            </li>
-
-          </ul>
         </li>
 
         <!-- Projects -->
