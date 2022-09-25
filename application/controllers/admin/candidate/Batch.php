@@ -180,8 +180,14 @@ class Batch extends CI_Controller
 
     // Read Student training details
     $this->data['student_training_details'] = $this->BatchMappingModel->readStudentsByBatchId($b_id);
-
-    $this->data['training_status'] = $training_status =  (object)$this->CandidateModel->checkIsTrainingCompletedByCandidateIds(array_keys(rekeyArray('bsm_c_id', $this->data['student_training_details'])));
+    // If batch has no student then redirect to view batch
+    $arrintCandidateIds = array_keys(rekeyArray('bsm_c_id', $this->data['student_training_details']));
+    if (valArr($arrintCandidateIds)) {
+      $this->data['training_status'] = $training_status =  (object)$this->CandidateModel->checkIsTrainingCompletedByCandidateIds();
+    } else {
+      setFlash('Batch Has No Student Enrolled yet.', ['class' => 'alert-danger']);
+      redirect('admin/candidate/batch/view/' . $b_id);
+    }
 
     // ====================================
     if (isset($_POST['update_student_training_details_form']) && $_POST['update_student_training_details_form'] == 'update_student_training_details') {
