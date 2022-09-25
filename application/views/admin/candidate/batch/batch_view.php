@@ -158,7 +158,8 @@
         $('[data-toggle="tooltip"]').tooltip();
 
         // On Selecting Student that you want to be added
-        $('input[class=js-student-not-enrolled]').off('change').on('change', function(e) {
+        // $('input[class=js-student-not-enrolled]').off('change').on('change', function(e) {
+        $('input.js-student-not-enrolled').off('change').on('change', function(e) {
           // Exising + checked <= Limit === TRUE then allow Check 
 
           if ((objBatch.arrobjEnrolledStudent.length + $('input[class=js-student-not-enrolled]:checked')
@@ -175,7 +176,8 @@
         });
 
         // Toggle Checkbox of bsm_id(Mapping) with bsm_c_id(candidate)
-        $('input[class=js-student-id]').off('change').on('change', function(e) {
+        // $('input[class=js-student-id]').off('change').on('change', function(e) {
+        $('input.js-student-id').off('change').on('change', function(e) {
           //  debugger , input[class=js-batch-mapping-id]
           if ($(this).prop('checked') == true) {
             $(this).siblings('input#bsm_id.js-batch-mapping-id').prop('checked', true);
