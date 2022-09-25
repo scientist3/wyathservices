@@ -93,6 +93,19 @@
                     <?php echo form_error('con_us_message', '<small class="form-text text-danger bg-danger label">', '</small>'); ?>
                   </div>
 
+                  <!-- Captcha -->
+                  <div class="form-group col-sm-2 col-12">
+                    <label for="input_captcha">Captcha</label>
+                    <div class="">
+                      <?php echo $captcha['image']; ?>
+                    </div>
+                  </div>
+                  <div class="form-group col-sm-offset-2 col-sm-8 col-12">
+                    <label for="input_captcha">&nbsp;</label>
+                    <input type="text" class="form-control" id="input_captcha" aria-describedby="input_captcha_help" placeholder="Enter the captcha word" name="input_captcha" value="">
+                    <?php echo form_error('input_captcha', '<small class="form-text text-danger bg-danger label">', '</small>'); ?>
+                  </div>
+
                   <div class="form-check col-sm-offset-10 col-sm-2 pull-right">
                     <button type="submit" class="btn btn-primary">Submit</button>
                   </div>
