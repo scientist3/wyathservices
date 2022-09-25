@@ -1,5 +1,10 @@
 <section class="content">
   <div class="row">
+    <div class="col-sm-12 pb-2">
+      <a href="<?php echo base_url("admin/candidate/batch/view/$batch->b_id") ?>" class="btn btn-md btn-success"><i class="fa fa-arrow-left"></i> Return to Batch</a>
+    </div>
+  </div>
+  <div class="row">
 
     <!-- Student training Details -->
     <div class="col-md-12 col-sm-12">
@@ -11,14 +16,6 @@
         <div class="card">
           <div class="card-header bg-dark">
             <h3 class="card-title"><i class="fa fa-list"></i> Student training Details</h3>
-            <div class="card-tools">
-              <ul class="nav nav-pills ml-auto">
-                <li class="nav-item">
-                  <!-- <a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a> -->
-                  <a class="nav-link active" href="<?php echo site_url('../admin/candidate/batch/view/' . $batch->b_id) ?>">Batch View</a>
-                </li>
-              </ul>
-            </div>
           </div>
           <div class="card-body">
             <table width="100%" class="datatable_colvisw table table-striped table-bordered table-hover table-sm">
