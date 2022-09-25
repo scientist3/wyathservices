@@ -89,6 +89,11 @@ class BatchMappingModel extends CI_Model
     return $this->db->update_batch($this->table, $data, 'bsm_id');
   }
 
+  public function update($data)
+  {
+    return $this->db->where('bsm_id', $data['bsm_id'])->update($this->table, $data);
+  }
+
   public function delete_batch($bsm_ids = [])
   {
     $this->db->where_in('bsm_id', $bsm_ids)

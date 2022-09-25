@@ -54,7 +54,7 @@
                       <?php
                       $boolIsAdd = ($student->bsm_pd_id == null) || empty($student->bsm_pd_id);
                       ?>
-                      <a href="<?php echo base_url("admin/candidate/placement/create/$batch->b_id/$student->bsm_pd_id") ?>" class="btn btn-sm btn-<?php echo ($boolIsAdd) ? 'success' : 'warning'; ?>"><i class="fa fa-<?php echo ($boolIsAdd) ? 'plus' : 'edit'; ?>"></i> <?php echo ($boolIsAdd) ? 'Add' : 'Update'; ?></a>
+                      <a href="<?php echo base_url("admin/candidate/placement/create/$batch->b_id/$student->bsm_id/$student->bsm_pd_id") ?>" class="btn btn-sm btn-<?php echo ($boolIsAdd) ? 'success' : 'warning'; ?>"><i class="fa fa-<?php echo ($boolIsAdd) ? 'plus' : 'edit'; ?>"></i> <?php echo ($boolIsAdd) ? 'Add' : 'Update'; ?></a>
                     </td>
                   </tr>
                   <?php $sl++; ?>

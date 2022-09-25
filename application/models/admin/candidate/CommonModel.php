@@ -222,4 +222,15 @@ class CommonModel extends CI_Model
 
     return $data;
   }
+  public function getFrequencyFeedback()
+  {
+    $data = [
+      '' => 'Select Feedback Frequency',
+      '1' => 'Monthly',
+      '2' => 'Quarterly',
+      '3' => 'Bi-Annually',
+    ];
+
+    return $data;
+  }
 }

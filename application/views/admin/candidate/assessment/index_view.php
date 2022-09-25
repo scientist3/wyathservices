@@ -90,7 +90,7 @@
                   <!-- Save Button -->
                   <div class="col-sm-12 ">
                     <div class="form-group">
-                      <button type="submit" name="save_assessment_details_form" value="add_update_assessment" class="form-control  <?= $input_height; ?> form-control-sm btn btn-primary btn-sm pull-right checkbox-toggle"><i class="fa fa-plus"> &nbsp;Save</i></button>
+                      <button type="submit" name="save_assessment_details_form" value="add_update_assessment" class="form-control <?= $input_height; ?> form-control-sm btn btn-primary btn-sm pull-right checkbox-toggle"><i class="fa fa-plus"> &nbsp;Save</i></button>
                     </div>
                   </div>
 

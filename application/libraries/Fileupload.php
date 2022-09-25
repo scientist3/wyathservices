@@ -101,7 +101,7 @@ class Fileupload
             $config = [
                 'upload_path'   => $file_path,
                 'allowed_types' => 'gif|jpg|png|jpeg|ico|doc|docx|pdf',
-                'max_filename'  => 5,
+                // 'max_filename'  => 5, //removed => because this overwrites the name of file
                 'overwrite'     => false,
                 'maintain_ratio' => true,
                 'encrypt_name'  => false,
