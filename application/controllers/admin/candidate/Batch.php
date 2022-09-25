@@ -183,7 +183,7 @@ class Batch extends CI_Controller
     // If batch has no student then redirect to view batch
     $arrintCandidateIds = array_keys(rekeyArray('bsm_c_id', $this->data['student_training_details']));
     if (valArr($arrintCandidateIds)) {
-      $this->data['training_status'] = $training_status =  (object)$this->CandidateModel->checkIsTrainingCompletedByCandidateIds();
+      $this->data['training_status'] = $training_status =  (object)$this->CandidateModel->checkIsTrainingCompletedByCandidateIds($arrintCandidateIds);
     } else {
       setFlash('Batch Has No Student Enrolled yet.', ['class' => 'alert-danger']);
       redirect('admin/candidate/batch/view/' . $b_id);
