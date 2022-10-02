@@ -327,8 +327,11 @@ if (!function_exists('_generateCaptcha')) {
   // this function will create captcha
   function _generateCaptcha($thiss)
   {
+    $file_path = "./uploads/captcha_images/";
+    if (!is_dir($file_path))
+      mkdir($file_path, 0755, true);
     $vals = array(
-      'img_path' => './uploads/captcha_images/',
+      'img_path' => $file_path,
       'img_url' => base_url('uploads/captcha_images/'),
       'img_width' => '150',
       'img_height' => 30,
@@ -336,7 +339,7 @@ if (!function_exists('_generateCaptcha')) {
     );
     $vals = array(
       //'word'          => 'Random word',
-      'img_path'      => './uploads/captcha_images/',
+      'img_path'      => $file_path,
       'img_url'       => base_url('uploads/captcha_images/'),
       'font_path'     => './path/to/fonts/texb.ttf',
       'img_width'     => '150',
@@ -359,7 +362,7 @@ if (!function_exists('_generateCaptcha')) {
     /* Generate the captcha */
     $data =  create_captcha($vals);
     // $data['fullfilepath'] =  base_url('uploads/captcha_images/') . $data['filename'];
-    // $data['relativefilepath'] =  './uploads/captcha_images/' . $data['filename'];
+    // $data['relativefilepath'] =  $file_path . $data['filename'];
     if ($thiss->session->has_userdata('captchafile')) {
       unlink($thiss->session->userdata('captchafile'));
     }
