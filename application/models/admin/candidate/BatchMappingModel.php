@@ -84,6 +84,29 @@ class BatchMappingModel extends CI_Model
       ->result();
   }
 
+  public function readStudentsForPlacementTrackingByBatchId($intBatchId)
+  {
+    return $this->db->select($this->table . ".*, 
+    candidate_tbl.c_cand_id,
+    candidate_tbl.c_full_name,
+    candidate_tbl.c_training_status,
+    certification_tbl.cer_certified,
+    placement_detail_tbl.pd_placement_status,
+    ")
+      ->from($this->table)
+      ->where('bsm_b_id', $intBatchId)
+      ->where('c_training_status', 1)
+      ->where('bsm_assessment_status', 1)
+      ->where('cer_certified', 1)
+      ->where('pd_placement_status', 1)
+      ->where_in('pd_employment_type', [1, 2, 3])
+      ->join('candidate_tbl', 'candidate_tbl.c_id = ' . $this->table . '.	bsm_c_id')
+      ->join('certification_tbl', 'certification_tbl.cer_id = ' . $this->table . '.	bsm_cer_id', "left")
+      ->join('placement_detail_tbl', 'placement_detail_tbl.pd_id = ' . $this->table . '.	bsm_pd_id', "left")
+      ->get()
+      ->result();
+  }
+
   public function update_batch($data)
   {
     return $this->db->update_batch($this->table, $data, 'bsm_id');
