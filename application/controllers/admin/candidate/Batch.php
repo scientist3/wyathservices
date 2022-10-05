@@ -151,6 +151,10 @@ class Batch extends CI_Controller
     $data['certificate_status'] =  (object)$this->BatchMappingModel->checkIsCertificationCompletedByBatchId($b_id);
 
     // dd($data['certificate_status']);
+
+    // Check if Certificate is completed to all students or not (Optional)
+    $data['placement_status'] =  (object)$this->BatchMappingModel->checkIsPlacementCompletedByBatchId($b_id);
+
     $data['enrolled_students']      = $this->BatchMappingModel->readStudentsByBatchId($b_id);
     $data['not_enrolled_students']  = $this->CandidateModel->getNotEnrolledStudents();
     // Fetch Traimimg status list

@@ -149,6 +149,18 @@ class CommonModel extends CI_Model
     return $data;
   }
 
+  // For Placement Tracking Details 
+  public function getYesNoNullList()
+  {
+    $data =
+      [
+        '' => 'NA',
+        '1' => 'Yes',
+        '0' => 'No'
+      ];
+    return $data;
+  }
+
   public function getTrainingStatus()
   {
     $data =

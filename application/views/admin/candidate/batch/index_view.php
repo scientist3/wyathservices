@@ -123,8 +123,15 @@
               <?php if (!empty($batchs)) { ?>
                 <?php $sl = 1; ?>
                 <?php foreach ($batchs as $batch) { ?>
+                  <!-- 
+                    <tr data-batch-id="< ?php echo $batch->b_id; ?>" class="batch_row">
+                   -->
                   <tr>
-                    <td><?php echo $batch->b_bch_id ?></td>
+                    <td>
+                      <a href="<?php echo base_url("admin/candidate/batch/view/$batch->b_id") ?>" class="">
+                        <?php echo $batch->b_bch_id ?>
+                      </a>
+                    </td>
                     <td><?php echo $batch->b_batch_type ?></td>
                     <td><?php echo $batch->b_start_date ?></td>
                     <td><?php echo $batch->b_end_date ?></td>
@@ -160,3 +167,12 @@
 
 <!-- jQuery -->
 <script src="<?php echo base_url('vendor/almasaeed2010/adminlte/') ?>plugins/jquery/jquery.min.js"></script>
+<!-- <script>
+  $(document).ready(function() {
+    $('.batch_row').off('click').on('click', function(e) {
+      // alert($(this).data('batch-id'));
+      location.href = ' http://127.0.0.1/wyathservices_1/admin/candidate/batch/view/' + $(this).data('batch-id');
+      e.stopPropagation();
+    });
+  });
+</script> -->

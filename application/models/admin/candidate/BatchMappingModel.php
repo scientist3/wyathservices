@@ -92,6 +92,7 @@ class BatchMappingModel extends CI_Model
     candidate_tbl.c_training_status,
     certification_tbl.cer_certified,
     placement_detail_tbl.pd_placement_status,
+    placement_tracking_detail_tbl.*
     ")
       ->from($this->table)
       ->where('bsm_b_id', $intBatchId)
@@ -103,6 +104,7 @@ class BatchMappingModel extends CI_Model
       ->join('candidate_tbl', 'candidate_tbl.c_id = ' . $this->table . '.	bsm_c_id')
       ->join('certification_tbl', 'certification_tbl.cer_id = ' . $this->table . '.	bsm_cer_id', "left")
       ->join('placement_detail_tbl', 'placement_detail_tbl.pd_id = ' . $this->table . '.	bsm_pd_id', "left")
+      ->join('placement_tracking_detail_tbl', 'placement_tracking_detail_tbl.ptd_id = ' . $this->table . '.	bsm_ptd_id', "left")
       ->get()
       ->result();
   }
@@ -186,12 +188,22 @@ class BatchMappingModel extends CI_Model
 
   public function checkIsPlacementCompletedByBatchId($b_id = null)
   {
-    $result = $this->db->select('bsm_assessment_status, bsm_cer_id, bsm_pd_id')
+    $result = $this->db->select(
+      'c_training_status,
+      bsm_assessment_status, 
+      bsm_cer_id, 
+      cer_certified, 
+      bsm_pd_id
+      '
+    )
       ->from($this->table)
       ->where('bsm_b_id', $b_id)
       ->where('c_training_status', 1)
       ->where('bsm_assessment_status', 1)
+      ->where('cer_certified', 1)
       ->join('candidate_tbl', 'candidate_tbl.c_id = ' . $this->table . '.	bsm_c_id')
+      ->join('certification_tbl', 'certification_tbl.cer_id = ' . $this->table . '.	bsm_cer_id', "left")
+      ->join('placement_detail_tbl', 'placement_detail_tbl.pd_id = ' . $this->table . '.	bsm_pd_id', "left")
       ->get()
       ->result();
 

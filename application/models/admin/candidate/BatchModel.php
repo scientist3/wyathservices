@@ -22,6 +22,16 @@ class BatchModel extends CI_Model
       ->result();
   }
 
+  // public function readRecentFirst()
+  // {
+  //   return $this->db->select($this->table . ".*, course_tbl.crs_course_name")
+  //     ->from($this->table)
+  //     ->order_by('b_id', 'desc')
+  //     ->join('course_tbl', 'course_tbl.crs_id = ' . $this->table . '.b_course_id', 'left')
+  //     ->get()
+  //     ->result();
+  // }
+
   public function readById($b_id = null)
   {
     /**, assessment_tbl.* */

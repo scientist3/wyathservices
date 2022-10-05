@@ -1,6 +1,10 @@
 <!-- Main content -->
 <section class="content">
-
+  <div class="row">
+    <div class="col-sm-12 pb-2">
+      <a href="<?php echo base_url("admin/candidate/batch/") ?>" class="btn btn-md btn-success float-right"><i class="fa fa-arrow-left"></i> Batch List</a>
+    </div>
+  </div>
   <?php $this->load->view('admin/candidate/batch/partials/batch_status_part'); ?>
 
   <div class="row">
