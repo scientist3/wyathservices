@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class PlacementTracking extends CI_Controller
+class Placementtracking extends CI_Controller
 {
 	private $data;
 	public function __construct()
