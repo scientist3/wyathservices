@@ -1,4 +1,4 @@
-<?php print_r($input) ?>
+<!-- <?php print_r($input) ?> -->
 
 <section class="content">
   <div class="container-fluid">
@@ -179,7 +179,7 @@
                   <dt class="col-sm-4">ID Type</dt>
                   <dd class="col-sm-8"><?php echo $id_type_list[$input->c_id_type] ?></dd>
                   <dt class="col-sm-4">Type of AlternateID</dt>
-                  <dd class="col-sm-8"><?php echo $type_of_alternate_id_list[$input->c_type_of_alternate_id] ?></dd>
+                  <dd class="col-sm-8"><?php echo isset($type_of_alternate_id_list[$input->c_type_of_alternate_id]) ? $type_of_alternate_id_list[$input->c_type_of_alternate_id] : "NA" ?></dd>
                   <dt class="col-sm-4">ID No</dt>
                   <dd class="col-sm-8"><?php echo $input->c_id_no ?></dd>
 
