@@ -70,7 +70,7 @@ class Certificate extends CI_Controller
 		$b_id                         = $this->input->post('b_id');
 		$arr_bsm_id                   = $this->input->post('bsm_id');
 		$arr_cer_id                   = $this->input->post('cer_id');
-		$arr_cer_cer_id               = $this->input->post('cer_cer_id');
+		// $arr_cer_cer_id               = $this->input->post('cer_cer_id');
 		$arr_cer_agency               = $this->input->post('cer_agency');
 		$arr_cer_certified            = $this->input->post('cer_certified');
 		$arr_cer_date                 = $this->input->post('cer_date');
@@ -84,7 +84,7 @@ class Certificate extends CI_Controller
 			foreach ($arr_cer_id as $bsm_c_id =>  $cer_id) {
 				$postDataCertificate[$bsm_c_id] = [
 					'cer_id'									=> $cer_id,
-					'cer_cer_id'							=> $arr_cer_cer_id[$bsm_c_id],
+					// 'cer_cer_id'							=> $arr_cer_cer_id[$bsm_c_id],
 					'cer_agency'							=> $arr_cer_agency[$bsm_c_id],
 					'cer_certified'						=> $arr_cer_certified[$bsm_c_id],
 					'cer_date'								=> $arr_cer_date[$bsm_c_id],
@@ -116,6 +116,7 @@ class Certificate extends CI_Controller
 		// dd($postDataBSM);
 
 		$this->BatchMappingModel->update_batch($postDataBSM);
+		// TODO: We need to check if update Batch Fails
 		// if ($this->db->trans_status() === FALSE) {
 		// $this->db->trans_rollback();
 		setFlash('Student certificate details has been updated successfully.', ['class' => 'alert-success']);

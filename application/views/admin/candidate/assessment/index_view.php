@@ -20,11 +20,11 @@
                   <?php echo form_hidden('b_id', $batch->b_id) ?>
                   <?php echo form_hidden('as_id', $input->as_id) ?>
 
-                  <!-- Assessment ID -->
+                  <!-- Batch ID -->
                   <div class="col-sm-12">
                     <div class="form-group">
-                      <label for="as_as_id"><?php echo ('Assessment ID'); ?></label> <small class="req"> *</small>
-                      <input name="as_as_id" class="form-control  <?= $input_height . ' ' . (form_error("as_as_id") ? 'is-invalid' : null);  ?> " type="text" placeholder="<?php echo ('Assessment ID') ?>" id="as_as_id" value="<?php echo $input->as_as_id ?>">
+                      <label for="as_as_id"><?php echo ('Batch ID'); ?></label> <small class="req"> *</small>
+                      <input name="as_as_id" class="form-control  <?= $input_height . ' ' . (form_error("as_as_id") ? 'is-invalid' : null);  ?> " type="text" placeholder="<?php echo ('Batch ID') ?>" id="as_as_id" value="<?php echo $input->as_as_id ?>">
                       <?php echo form_error("as_as_id"); ?>
                     </div>
                   </div>
@@ -56,20 +56,20 @@
                     </div>
                   </div>
 
-                  <!-- Assessment Assessor ID -->
+                  <!-- Assessor ID -->
                   <div class="col-sm-12">
                     <div class="form-group">
-                      <label for="as_assessor_id"><?php echo ('Assessment Assessor ID'); ?></label> <small class="req"> *</small>
-                      <input name="as_assessor_id" class="form-control  <?= $input_height . ' ' . (form_error("as_assessor_id") ? 'is-invalid' : null);  ?>" type="text" placeholder="<?php echo ('Assessment Assessor ID') ?>" id="as_assessor_id" value="<?php echo $input->as_assessor_id ?>">
+                      <label for="as_assessor_id"><?php echo ('Assessor ID'); ?></label> <small class="req"> *</small>
+                      <input name="as_assessor_id" class="form-control  <?= $input_height . ' ' . (form_error("as_assessor_id") ? 'is-invalid' : null);  ?>" type="text" placeholder="<?php echo ('Assessor ID') ?>" id="as_assessor_id" value="<?php echo $input->as_assessor_id ?>">
                       <?php echo form_error("as_assessor_id"); ?>
                     </div>
                   </div>
 
-                  <!-- Assessment Assessor -->
+                  <!-- Assessor Name -->
                   <div class="col-sm-12">
                     <div class="form-group">
-                      <label for="as_assessor"><?php echo ('Assessment Assessor'); ?></label> <small class="req"> *</small>
-                      <input name="as_assessor" class="form-control  <?= $input_height . ' ' . (form_error("as_assessor") ? 'is-invalid' : null);  ?>" type="text" placeholder="<?php echo ('Assessment Assessor') ?>" id="as_assessor" value="<?php echo $input->as_assessor ?>">
+                      <label for="as_assessor"><?php echo ('Assessor Name'); ?></label> <small class="req"> *</small>
+                      <input name="as_assessor" class="form-control  <?= $input_height . ' ' . (form_error("as_assessor") ? 'is-invalid' : null);  ?>" type="text" placeholder="<?php echo ('Assessor Name') ?>" id="as_assessor" value="<?php echo $input->as_assessor ?>">
                       <?php echo form_error("as_assessor") ?>
                     </div>
                   </div>

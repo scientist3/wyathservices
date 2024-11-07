@@ -23,7 +23,7 @@
                   <th>#</th>
                   <th><?php echo ('Candidate ID') ?></th>
                   <th><?php echo ('Candidate Name') ?></th>
-                  <th><?php echo ('Certificate ID') ?></th>
+                  <!-- <th><?php echo ('Certificate ID') ?></th> -->
                   <th><?php echo ('Agency') ?></th>
                   <th><?php echo ('Certified') ?></th>
                   <th><?php echo ('Date') ?></th>
@@ -48,9 +48,9 @@
                       <td><?php echo $student->c_cand_id ?></td>
                       <td><?php echo $student->c_full_name ?></td>
                       <!-- Certificate ID -->
-                      <td>
-                        <input name="cer_cer_id[<?= $student->bsm_c_id; ?>]" class="form-control <?= $input_height . " " . (form_error("cer_cer_id[" . $student->bsm_c_id . "]") ? "is-invalid" : null);  ?>" type="text" placeholder="<?php echo ('Certificate ID') ?>" id="cer_cer_id_<?= $student->bsm_c_id; ?>" value="<?php echo $student->cer_cer_id ?>">
-                      </td>
+                      <!-- <td>
+                        <input name="cer_cer_id[< ?= $student->bsm_c_id; ?>]" class="form-control < ?= $input_height . " " . (form_error("cer_cer_id[" . $student->bsm_c_id . "]") ? "is-invalid" : null);  ?>" type="text" placeholder="< ?php echo ('Certificate ID') ?>" id="cer_cer_id_< ?= $student->bsm_c_id; ?>" value="< ?php echo $student->cer_cer_id ?>">
+                      </td> -->
                       <!-- Certificate Agency -->
                       <td>
                         <input name="cer_agency[<?= $student->bsm_c_id; ?>]" class="form-control <?= $input_height . " " . (form_error("cer_agency[" . $student->bsm_c_id . "]") ? "is-invalid" : null);  ?>" type="text" placeholder="<?php echo ('Agency') ?>" id="cer_agency_<?= $student->bsm_c_id; ?>" value="<?php echo $student->cer_agency ?>">
