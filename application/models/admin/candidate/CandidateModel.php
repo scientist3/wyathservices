@@ -81,6 +81,72 @@ class CandidateModel extends CI_Model
     return $this->db->count_all($this->table);
   }
 
+  public function getTotalStudents()
+  {
+    return $this->db->count_all($this->table);
+  }
+
+  public function getTotalEnrolledStudents()
+  {
+    return $this->db->where('c_currently_enrolled', 1)
+      ->count_all_results($this->table);
+  }
+
+  public function getTotalMaleStudents()
+  {
+    return $this->db->where('c_gender', 1)
+      ->count_all_results($this->table);
+  }
+
+  public function getTotalFemaleStudents()
+  {
+    return $this->db->where('c_gender', 2)
+      ->count_all_results($this->table);
+  }
+
+  public function getCompletedTrainingCount()
+  {
+    return $this->db->where('c_training_status', 1)
+      ->count_all_results($this->table);
+  }
+
+  public function getCompletedAssessmentCount()
+  {
+    return $this->db->where('bsm_assessment_status', 1)
+      ->join('batch_student_mapping_tbl', 'bsm_c_id = ' . $this->table . '.c_id')
+      ->count_all_results($this->table);
+  }
+
+  public function getCompletedCertifiedCount()
+  {
+    // Assuming there's a column for certificate status, e.g., 'c_certificate_status'.
+    return $this->db->where('cer_certified', 1)
+      ->join('batch_student_mapping_tbl', 'bsm_c_id = ' . $this->table . '.c_id')
+      ->join('certification_tbl', 'certification_tbl.cer_id = batch_student_mapping_tbl.bsm_cer_id')
+      ->count_all_results($this->table);
+  }
+
+  public function getPlacementCompletedCount()
+  {
+    // Assuming placement status is stored in 'c_employment_status' with a value of 1 indicating placement.
+    return $this->db->where('pd_placement_status', 1)
+      ->join('batch_student_mapping_tbl', 'bsm_c_id = ' . $this->table . '.c_id')
+      ->join('placement_detail_tbl', 'placement_detail_tbl.pd_id = batch_student_mapping_tbl.bsm_pd_id')
+      ->count_all_results($this->table);
+  }
+
+  public function getPlacementTrackingCompletedCount()
+  {
+    // Assuming placement status is stored in 'c_employment_status' with a value of 1 indicating placement.
+    return $this->db
+      ->where('ptd_status_1', 1)
+      ->where('ptd_status_2', 1)
+      ->where('ptd_status_3', 1)
+      ->join('batch_student_mapping_tbl', 'bsm_c_id = ' . $this->table . '.c_id')
+      ->join('placement_tracking_detail_tbl', 'placement_tracking_detail_tbl.ptd_id = batch_student_mapping_tbl.bsm_ptd_id')
+      ->count_all_results($this->table);
+  }
+
   public function getNotEnrolledStudents()
   {
     return $this->db->select("c_id,c_cand_id,c_full_name,c_father_name,c_mother_name")

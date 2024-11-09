@@ -37,7 +37,21 @@ class Batch extends CI_Controller
     $data['yes_no_list']          = $this->CommonModel->getYesNoList();
     $data['course_list']          = $this->CourseModel->read_course_as_list();
     $data['training_center_list'] = $this->TrainingCenterModel->read_trainingcenter_as_list();
-
+    // Fetch candidate details from CandidateModel
+    // type hinting for $this->CandidateModel
+    /** @var CandidateModel $this->CandidateModel */
+    $candidateStats = [
+      'total_students'						=> $this->CandidateModel->getTotalStudents(),
+      'total_enrolled_students'		=> $this->CandidateModel->getTotalEnrolledStudents(),
+      'total_male_students'				=> $this->CandidateModel->getTotalMaleStudents(),
+      'total_female_students'			=> $this->CandidateModel->getTotalFemaleStudents(),
+      'completed_training'				=> $this->CandidateModel->getCompletedTrainingCount(),
+      'completed_assessment'			=> $this->CandidateModel->getCompletedAssessmentCount(),
+      'completed_certified'				=> $this->CandidateModel->getCompletedCertifiedCount(),
+      'placement_completed'				=> $this->CandidateModel->getPlacementCompletedCount(),
+      'tracking_completed'				=> $this->CandidateModel->getPlacementTrackingCompletedCount(),
+    ];
+    $data['candidate_stats'] = $candidateStats;
     // Validation 
     {
       $this->form_validation->set_rules('b_bch_id', ('Batch ID'), 'required');

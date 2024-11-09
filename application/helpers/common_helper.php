@@ -206,6 +206,18 @@ if (!function_exists('ddisplay')) {
   }
 }
 
+if (!function_exists('number')) {
+
+  function number($text = null)
+  {
+    if (!empty($text)) {
+      return preg_replace("/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i", "$1,", $text);
+    } else {
+      return 0;
+    }
+  }
+}
+
 // Object Related funtions
 
 if (!function_exists('valStr')) {

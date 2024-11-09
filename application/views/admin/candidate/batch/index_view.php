@@ -1,5 +1,97 @@
 <!-- Main content -->
 <section class="content">
+  <div class="row">
+    <div class="col-md-3 col-sm-6 col-12">
+      <div class="info-box">
+        <span class="info-box-icon bg-info"><i class="fas fa-users"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Total Students</span>
+          <span class="info-box-number"><?php echo number($candidate_stats['total_students'] ?? 0); ?></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 col-sm-6 col-12">
+      <div class="info-box">
+        <span class="info-box-icon bg-success"><i class="fas fa-graduation-cap"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Total Entolled</span>
+          <span class="info-box-number"><?php echo number($candidate_stats['total_enrolled_students'] ?? 0); ?></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 col-sm-6 col-12">
+      <div class="info-box">
+        <span class="info-box-icon bg-success"><i class="fas fa-graduation-cap"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Training Completed</span>
+          <span class="info-box-number"><?php echo number($candidate_stats['completed_training'] ?? 0); ?></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 col-sm-6 col-12">
+      <div class="info-box">
+        <span class="info-box-icon bg-lime"><i class="fas fa-clipboard-check"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Assessment Completed</span>
+          <span class="info-box-number"><?php echo number($candidate_stats['completed_assessment'] ?? 0); ?></span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="col-md-3 col-sm-6 col-12">
+      <div class="info-box">
+        <span class="info-box-icon bg-olive"><i class="fas fa-certificate"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Certificate Completed</span>
+          <span class="info-box-number"><?php echo number($candidate_stats['completed_certified'] ?? 0); ?></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 col-sm-6 col-12">
+      <div class="info-box">
+        <span class="info-box-icon bg-teal"><i class="fas fa-briefcase"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Placement Completed</span>
+          <span class="info-box-number"><?php echo number($candidate_stats['placement_completed'] ?? 0); ?></span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-6 col-12">
+      <div class="info-box">
+        <span class="info-box-icon bg-navy"><i class="fas fa-map-marker-alt"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Tracking Completed</span>
+          <span class="info-box-number"><?php echo number($candidate_stats['tracking_completed'] ?? 0); ?></span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-6 col-12">
+      <div class="info-box">
+        <span class="info-box-icon bg-pink"><i class="fas fa-child"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Total Males</span>
+          <span class="info-box-number"><?php echo number($candidate_stats['total_male_students'] ?? 0); ?></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 col-sm-6 col-12">
+      <div class="info-box">
+        <span class="info-box-icon bg-purple"><i class="fas fa-female"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Total Females</span>
+          <span class="info-box-number"><?php echo number($candidate_stats['total_female_students'] ?? 0); ?></span>
+        </div>
+      </div>
+    </div>
+
+  </div>
   <!-- Add Batch -->
   <div class="row">
     <div class="col-sm-12">
@@ -7,6 +99,11 @@
         <div class="card">
           <div class="card-header bg-dark">
             <h3 class="card-title"><i class="fa fa-plus"></i> <?php echo $subtitle; ?></h3>
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+              </button>
+            </div>
           </div>
           <div class="card-body">
             <div class="row">
@@ -95,11 +192,16 @@
   <!-- Batch List -->
   <div class="row">
     <div class="col-sm-12">
-      <div class="card">
+      <div class="card collapsed-card">
         <div class="card-header bg-dark">
           <h3 class="card-title">
             <i class="fa fa-list"></i> View Batch
           </h3>
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
         </div>
         <div class="card-body">
           <table width="100%" class="datatable table table-striped table-bordered table-hover table-sm">
