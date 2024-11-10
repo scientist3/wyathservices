@@ -103,6 +103,9 @@
 								<li>
 									<a class="<?= ($this->uri->segment(2) == 'partners') ? 'c-font-brown-3' : null; ?>" href="<?= base_url('front/partners'); ?>">Corporate Partners</a>
 								</li>
+								<li>
+									<a class="<?= ($this->uri->segment(2) == 'stastics') ? 'c-font-brown-3' : null; ?>" href="<?= base_url('front/stastics'); ?>">Student Stats</a>
+								</li>
 								<!--
                   <li>
                     <a href="eof.php">Areas Covered</a>
