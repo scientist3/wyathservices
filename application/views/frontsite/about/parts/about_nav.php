@@ -81,12 +81,12 @@
           }
         </style>
 
-        <li class="d-none">
+        <li>
           |
         </li>
 
-        <li class="c-state_active d-none">
-          <a href="<?= base_url('front/areacovered'); ?>" <?php echo ($this->uri->segment(2) == "areacovered") ? 'class="c-font-brown-3"' : null; ?>>Areas Covered</a>
+        <li class="c-state_active">
+          <a href="<?= base_url('front/stastics'); ?>" <?php echo ($this->uri->segment(2) == "stastics") ? 'class="c-font-brown-3"' : null; ?>>Student Stastics</a>
         </li>
         <li class="d-none">
           |

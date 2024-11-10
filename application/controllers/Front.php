@@ -92,6 +92,26 @@ class Front extends CI_Controller
 		$this->load->view('frontsite/layout/wrapper_view', $data);
 	}
 
+	public function stastics()
+	{
+		$data['title']		= "Student Stats";
+		$this->load->model('admin/candidate/CandidateModel');
+		$data['candidateStats'] = [
+			'total_students'						=> $this->CandidateModel->getTotalStudents(),
+			'total_enrolled_students'		=> $this->CandidateModel->getTotalEnrolledStudents(),
+			'total_male_students'				=> $this->CandidateModel->getTotalMaleStudents(),
+			'total_female_students'			=> $this->CandidateModel->getTotalFemaleStudents(),
+			'total_trans_students'			=> $this->CandidateModel->getTotalTransagenderStudents(),
+			'completed_training'				=> $this->CandidateModel->getCompletedTrainingCount(),
+			'completed_assessment'			=> $this->CandidateModel->getCompletedAssessmentCount(),
+			'completed_certified'				=> $this->CandidateModel->getCompletedCertifiedCount(),
+			'placement_completed'				=> $this->CandidateModel->getPlacementCompletedCount(),
+			'tracking_completed'				=> $this->CandidateModel->getPlacementTrackingCompletedCount(),
+		];
+		$data['content']	= $this->load->view('frontsite/about/studentstastics', $data, true);
+		$this->load->view('frontsite/layout/wrapper_view', $data);
+	}
+
 	public function areacovered()
 	{
 		$data['title']		= "Area Covered";

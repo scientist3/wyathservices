@@ -104,6 +104,12 @@ class CandidateModel extends CI_Model
       ->count_all_results($this->table);
   }
 
+  public function getTotalTransagenderStudents()
+  {
+    return $this->db->where('c_gender', 3)
+      ->count_all_results($this->table);
+  }
+
   public function getCompletedTrainingCount()
   {
     return $this->db->where('c_training_status', 1)

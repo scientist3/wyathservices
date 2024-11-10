@@ -41,15 +41,16 @@ class Batch extends CI_Controller
     // type hinting for $this->CandidateModel
     /** @var CandidateModel $this->CandidateModel */
     $candidateStats = [
-      'total_students'						=> $this->CandidateModel->getTotalStudents(),
-      'total_enrolled_students'		=> $this->CandidateModel->getTotalEnrolledStudents(),
-      'total_male_students'				=> $this->CandidateModel->getTotalMaleStudents(),
-      'total_female_students'			=> $this->CandidateModel->getTotalFemaleStudents(),
-      'completed_training'				=> $this->CandidateModel->getCompletedTrainingCount(),
-      'completed_assessment'			=> $this->CandidateModel->getCompletedAssessmentCount(),
-      'completed_certified'				=> $this->CandidateModel->getCompletedCertifiedCount(),
-      'placement_completed'				=> $this->CandidateModel->getPlacementCompletedCount(),
-      'tracking_completed'				=> $this->CandidateModel->getPlacementTrackingCompletedCount(),
+      'total_students'            => $this->CandidateModel->getTotalStudents(),
+      'total_enrolled_students'    => $this->CandidateModel->getTotalEnrolledStudents(),
+      'total_male_students'        => $this->CandidateModel->getTotalMaleStudents(),
+      'total_female_students'      => $this->CandidateModel->getTotalFemaleStudents(),
+      'total_trans_students'      => $this->CandidateModel->getTotalTransagenderStudents(),
+      'completed_training'        => $this->CandidateModel->getCompletedTrainingCount(),
+      'completed_assessment'      => $this->CandidateModel->getCompletedAssessmentCount(),
+      'completed_certified'        => $this->CandidateModel->getCompletedCertifiedCount(),
+      'placement_completed'        => $this->CandidateModel->getPlacementCompletedCount(),
+      'tracking_completed'        => $this->CandidateModel->getPlacementTrackingCompletedCount(),
     ];
     $data['candidate_stats'] = $candidateStats;
     // Validation 

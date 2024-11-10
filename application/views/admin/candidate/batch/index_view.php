@@ -91,6 +91,16 @@
       </div>
     </div>
 
+    <div class="col-md-3 col-sm-6 col-12">
+      <div class="info-box">
+        <span class="info-box-icon bg-purple"><i class="fas fa-female"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Total Transgenders</span>
+          <span class="info-box-number"><?php echo number($candidate_stats['total_trans_students'] ?? 0); ?></span>
+        </div>
+      </div>
+    </div>
+
   </div>
   <!-- Add Batch -->
   <div class="row">
