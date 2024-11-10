@@ -60,7 +60,7 @@ class Placement extends CI_Controller
 		/*-----------CHECK ID -----------*/
 		if (empty($pd_id)) {
 			/** Validation */ {
-				$this->form_validation->set_rules('pd_pd_id', ('Placement ID'),  'required');
+				// $this->form_validation->set_rules('pd_pd_id', ('Placement ID'),  'required');
 			}
 			/*-----------CREATE A NEW RECORD-----------*/
 			if ($this->form_validation->run() === true) {
@@ -90,7 +90,7 @@ class Placement extends CI_Controller
 			}
 		} else {
 			/** Validation */ {
-				$this->form_validation->set_rules('pd_pd_id', ('Placement ID'),  'required');
+				// $this->form_validation->set_rules('pd_pd_id', ('Placement ID'),  'required');
 			}
 			/*-----------UPDATE A RECORD-----------*/
 			if ($this->form_validation->run() === true) {
@@ -131,7 +131,7 @@ class Placement extends CI_Controller
 		$this->data['input'] = (object) [
 			'bsm_id' => $this->data['paramData']['bsm_id'],
 			'pd_id' => $this->input->post('pd_id'),
-			'pd_pd_id' => $this->input->post('pd_pd_id'),
+			// 'pd_pd_id' => $this->input->post('pd_pd_id'),
 			'pd_placement_status' => $this->input->post('pd_placement_status'),
 			'pd_employment_type' => $this->input->post('pd_employment_type'),
 			'pd_undertaking_self_employed' => $this->input->post('pd_undertaking_self_employed'),
@@ -155,7 +155,7 @@ class Placement extends CI_Controller
 		// Prepare data for database
 		$this->data['placement_detail_tbl'] = [
 			'pd_id' 								=> $this->data['input']->pd_id,
-			'pd_pd_id' 							=> $this->data['input']->pd_pd_id,
+			// 'pd_pd_id' 							=> $this->data['input']->pd_pd_id,
 			'pd_placement_status' 	=> $this->data['input']->pd_placement_status,
 			'pd_employment_type' 		=> $this->data['input']->pd_employment_type,
 		];

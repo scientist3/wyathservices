@@ -23,16 +23,16 @@
 									?>
 
 									<!-- Placement ID -->
-									<div class="col-sm-4">
+									<!-- <div class="col-sm-4">
 										<div class="form-group">
-											<label for="pd_pd_id"><?php echo ('Placement ID'); ?></label> <small class="req"> *</small>
-											<input name="pd_pd_id" class="form-control  <?= $input_height . ' ' . (form_error("pd_pd_id") ? 'is-invalid' : null);  ?> " type="text" placeholder="<?php echo ('Placement ID') ?>" id="pd_pd_id" value="<?php echo $input->pd_pd_id ?>">
-											<?php echo form_error("pd_pd_id"); ?>
+											<label for="pd_pd_id">< ?php echo ('Placement ID'); ?></label> <small class="req"> *</small>
+											<input name="pd_pd_id" class="form-control  < ?= $input_height . ' ' . (form_error("pd_pd_id") ? 'is-invalid' : null);  ?> " type="text" placeholder="< ?php echo ('Placement ID') ?>" id="pd_pd_id" value="< ?php echo $input->pd_pd_id ?>">
+											< ?php echo form_error("pd_pd_id"); ?>
 										</div>
-									</div>
+									</div> -->
 
 									<!-- Placement Status -->
-									<div class="col-sm-4">
+									<div class="col-sm-6">
 										<div class="form-group">
 											<label for="pd_placement_status"><?php echo ('Placement Status'); ?></label> <small class="req"> *</small>
 											<?php echo form_dropdown('pd_placement_status', $yes_no_list, $input->pd_placement_status, 'class="form-control ' . $input_height . ' ' . (form_error("pd_placement_status") ? 'is-invalid' : null) . ' " id="pd_placement_status_dropdown"'); ?>
@@ -41,7 +41,7 @@
 									</div>
 
 									<!-- Employement Type -->
-									<div class="col-sm-4">
+									<div class="col-sm-6">
 										<div class="form-group">
 											<label for="pd_employment_type"><?php echo ('Employement Type'); ?></label> <small class="req"> *</small>
 											<?php echo form_dropdown('pd_employment_type', '', $input->pd_employment_type, 'class="form-control ' . $input_height . ' ' . (form_error("pd_employment_type") ? 'is-invalid' : null) . ' " id="pd_employment_type_dropdown"'); ?>

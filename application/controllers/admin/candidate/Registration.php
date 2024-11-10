@@ -86,7 +86,7 @@ class Registration extends CI_Controller
 
 		// data conversion 
 		$data['state_list']									= $this->AddressModel->read_state_country_as_list(101);
-		// dd($data['state_list']);
+		$data['input']											= $this->CandidateModel->getAllStudentDetails($cand_id);
 
 		$data['yes_no_list']								=	$this->CommonModel->getYesNoList();
 		$data['id_type_list']								= $this->CommonModel->getIdType();
@@ -100,12 +100,14 @@ class Registration extends CI_Controller
 		$data['pre_training_status_list']		= $this->CommonModel->getTrainingStatus();
 		$data['type_of_alternate_id_list']	= $this->CommonModel->getTypeOfAlternateId();
 
-		$data['employment_status_list']	= $this->CommonModel->getEmploymentStatusList();
+		$data['employment_status_list']			= $this->CommonModel->getEmploymentStatusList();
+		$data['heard_about_us_list']				= $this->CommonModel->getHearAboutUsList();
+		$data['frequency_feedback_list'] 		= $this->CommonModel->getFrequencyFeedback();
+		$data['state_list']									= $this->AddressModel->read_state_country_as_list(101);
+		$pd_district_id 										= $data['input']->pd_state ?? 1;
+		$data['district_list']							= $this->AddressModel->read_city_state_as_list($pd_district_id);
+		// dd($this->data);
 
-		$data['heard_about_us_list']	= $this->CommonModel->getHearAboutUsList();
-
-
-		$data['input'] = $this->CandidateModel->read_by_id_as_obj($cand_id);
 		// TODO::CREATED A TEMP VIEW FILE FOR TESTING 
 		$data['content'] = $this->load->view('admin/candidate/registration/view_student', $data, true);
 		$this->load->view('admin/layout/wrapper', $data);
