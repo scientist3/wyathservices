@@ -31,6 +31,7 @@ class Certificate extends CI_Controller
 			$this->UpdateStudentCertificateDetails($b_id);
 		}
 
+		$this->data['title'] = ('Certificate: ' . $this->data['batch']->b_bch_id);
 		$this->data['content'] = $this->load->view('admin/candidate/certificate/index_view', $this->data, true);
 		$this->load->view('admin/layout/wrapper', $this->data);
 	}

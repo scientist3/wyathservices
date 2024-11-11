@@ -32,7 +32,7 @@ class Placementtracking extends CI_Controller
 			dd($_POST);
 			$this->UpdateStudentPlacementDetails($b_id);
 		}
-
+		$this->data['title'] = ('Placement Tracking: ' . $this->data['batch']->b_bch_id);
 		$this->data['content'] = $this->load->view('admin/candidate/placement_tracking/index_view', $this->data, true);
 		$this->load->view('admin/layout/wrapper', $this->data);
 	}

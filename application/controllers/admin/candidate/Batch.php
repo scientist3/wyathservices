@@ -176,7 +176,7 @@ class Batch extends CI_Controller
     $data['training_status_list'] = $this->CommonModel->getTrainingStatusList();
     // Fetch Assessment status list
     $data['assessment_status_list'] = $this->CommonModel->getAssessmentStatusList();
-
+    $data['title']              = ('View Batch: ' . $data['batch']->b_bch_id);
     $data['content']      = $this->load->view('admin/candidate/batch/batch_view', $data, true);
     $this->load->view('admin/layout/wrapper', $data);
   }
@@ -268,7 +268,7 @@ class Batch extends CI_Controller
     // Convert Input array back to Object 
     $this->data['batch'] = (object)  $this->data['batch'];
 
-    $this->data['title'] = ('Training');
+    $this->data['title'] = ('Training: ' . $this->data['batch']->b_bch_id);
     $this->data['input_height'] = 'form-control-sm';
 
     $this->data['content'] = $this->load->view('admin/candidate/training/index_view', $this->data, true);

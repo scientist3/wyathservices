@@ -35,7 +35,7 @@ class Placement extends CI_Controller
 		// 	dd($_POST);
 		// 	$this->UpdateStudentPlacementDetails($b_id);
 		// }
-
+		$this->data['title'] = ('Placement: ' . $this->data['batch']->b_bch_id);
 		$this->data['content'] = $this->load->view('admin/candidate/placement/index_view', $this->data, true);
 		$this->load->view('admin/layout/wrapper', $this->data);
 	}
@@ -154,10 +154,10 @@ class Placement extends CI_Controller
 
 		// Prepare data for database
 		$this->data['placement_detail_tbl'] = [
-			'pd_id' 								=> $this->data['input']->pd_id,
+			'pd_id'                 => $this->data['input']->pd_id,
 			// 'pd_pd_id' 							=> $this->data['input']->pd_pd_id,
-			'pd_placement_status' 	=> $this->data['input']->pd_placement_status,
-			'pd_employment_type' 		=> $this->data['input']->pd_employment_type,
+			'pd_placement_status'   => $this->data['input']->pd_placement_status,
+			'pd_employment_type'     => $this->data['input']->pd_employment_type,
 		];
 
 		switch ($this->data['input']->pd_placement_status) {
@@ -167,14 +167,14 @@ class Placement extends CI_Controller
 					'uploads/docs/SelfemployedHigherstudies/',
 					'pd_proof_of_self_employed_or_opt_higher_studies'
 				);
-				$this->data['placement_detail_tbl']['pd_proof_of_self_employed_or_opt_higher_studies'] 		= (!empty($file_pd_proof_of_self_employed_or_opt_higher_studies) ? $file_pd_proof_of_self_employed_or_opt_higher_studies : $this->input->post('pd_proof_of_self_employed_or_opt_higher_studies_old'));
+				$this->data['placement_detail_tbl']['pd_proof_of_self_employed_or_opt_higher_studies']     = (!empty($file_pd_proof_of_self_employed_or_opt_higher_studies) ? $file_pd_proof_of_self_employed_or_opt_higher_studies : $this->input->post('pd_proof_of_self_employed_or_opt_higher_studies_old'));
 				// Update Input data as well 
 				$this->data['input']->pd_proof_of_self_employed_or_opt_higher_studies = $this->data['placement_detail_tbl']['pd_proof_of_self_employed_or_opt_higher_studies'];
 				/** ======================================= End file upload for Self Employed or Higher Studies ===================================== */
 				break;
 			case 1: // Placement Status = Yes
-				$this->data['placement_detail_tbl']['pd_date_of_joining'] 	= $this->data['input']->pd_date_of_joining;
-				$this->data['placement_detail_tbl']['pd_ctc_current'] 			= $this->data['input']->pd_ctc_current;
+				$this->data['placement_detail_tbl']['pd_date_of_joining']   = $this->data['input']->pd_date_of_joining;
+				$this->data['placement_detail_tbl']['pd_ctc_current']       = $this->data['input']->pd_ctc_current;
 				// Employment Type Switched
 				switch ($this->data['input']->pd_employment_type) {
 					case 3: // Waged
@@ -183,21 +183,21 @@ class Placement extends CI_Controller
 							'uploads/docs/typeofproof/',
 							'pd_type_of_proof'
 						);
-						$this->data['placement_detail_tbl']['pd_type_of_proof'] 		= (!empty($file_pd_type_of_proof) ? $file_pd_type_of_proof : $this->input->post('pd_type_of_proof_old'));
+						$this->data['placement_detail_tbl']['pd_type_of_proof']     = (!empty($file_pd_type_of_proof) ? $file_pd_type_of_proof : $this->input->post('pd_type_of_proof_old'));
 						// Update Input data as well 
 						$this->data['input']->pd_type_of_proof = $this->data['placement_detail_tbl']['pd_type_of_proof'];
 						/** ======================================= file upload for Type of proof ===================================== */
-						$this->data['placement_detail_tbl']['pd_type_of_proof'] 								= $this->data['input']->pd_type_of_proof;
-						$this->data['placement_detail_tbl']['pd_employer_name'] 								= $this->data['input']->pd_employer_name;
-						$this->data['placement_detail_tbl']['pd_employer_contact_person_name'] 	= $this->data['input']->pd_employer_contact_person_name;
-						$this->data['placement_detail_tbl']['pd_employer_cp_designation'] 			= $this->data['input']->pd_employer_cp_designation;
-						$this->data['placement_detail_tbl']['pd_employer_contact_no'] 					= $this->data['input']->pd_employer_contact_no;
-						$this->data['placement_detail_tbl']['pd_employer_address'] 							= $this->data['input']->pd_employer_address;
-						$this->data['placement_detail_tbl']['pd_feedback_collected_employer'] 	= $this->data['input']->pd_feedback_collected_employer;
-						$this->data['placement_detail_tbl']['pd_feedback_frequency']					 	= $this->data['input']->pd_feedback_frequency;
-						$this->data['placement_detail_tbl']['pd_state']					 								= $this->data['input']->pd_state;
-						$this->data['placement_detail_tbl']['pd_district']										 	= $this->data['input']->pd_district;
-						$this->data['placement_detail_tbl']['pd_ctc_before']										= $this->data['input']->pd_ctc_before;
+						$this->data['placement_detail_tbl']['pd_type_of_proof']                 = $this->data['input']->pd_type_of_proof;
+						$this->data['placement_detail_tbl']['pd_employer_name']                 = $this->data['input']->pd_employer_name;
+						$this->data['placement_detail_tbl']['pd_employer_contact_person_name']   = $this->data['input']->pd_employer_contact_person_name;
+						$this->data['placement_detail_tbl']['pd_employer_cp_designation']       = $this->data['input']->pd_employer_cp_designation;
+						$this->data['placement_detail_tbl']['pd_employer_contact_no']           = $this->data['input']->pd_employer_contact_no;
+						$this->data['placement_detail_tbl']['pd_employer_address']               = $this->data['input']->pd_employer_address;
+						$this->data['placement_detail_tbl']['pd_feedback_collected_employer']   = $this->data['input']->pd_feedback_collected_employer;
+						$this->data['placement_detail_tbl']['pd_feedback_frequency']             = $this->data['input']->pd_feedback_frequency;
+						$this->data['placement_detail_tbl']['pd_state']                           = $this->data['input']->pd_state;
+						$this->data['placement_detail_tbl']['pd_district']                       = $this->data['input']->pd_district;
+						$this->data['placement_detail_tbl']['pd_ctc_before']                    = $this->data['input']->pd_ctc_before;
 
 						break;
 					case 4: // Self Employed
@@ -206,12 +206,12 @@ class Placement extends CI_Controller
 							'uploads/docs/undertaking/',
 							'pd_undertaking_self_employed'
 						);
-						$this->data['placement_detail_tbl']['pd_undertaking_self_employed'] 		= (!empty($file_pd_undertaking_self_employed) ? $file_pd_undertaking_self_employed : $this->input->post('pd_undertaking_self_employed_old'));
+						$this->data['placement_detail_tbl']['pd_undertaking_self_employed']     = (!empty($file_pd_undertaking_self_employed) ? $file_pd_undertaking_self_employed : $this->input->post('pd_undertaking_self_employed_old'));
 						// Update Input data as well 
 						$this->data['input']->pd_undertaking_self_employed = $this->data['placement_detail_tbl']['pd_undertaking_self_employed'];
 						/** ======================================= End file upload for undertaking ===================================== */
 
-						$this->data['placement_detail_tbl']['pd_ctc_before'] 										= $this->data['input']->pd_ctc_before;
+						$this->data['placement_detail_tbl']['pd_ctc_before']                     = $this->data['input']->pd_ctc_before;
 
 						break;
 					case 5: // Apprenticeship
@@ -221,30 +221,30 @@ class Placement extends CI_Controller
 							'pd_undertaking_self_employed'
 						);
 
-						$this->data['placement_detail_tbl']['pd_undertaking_self_employed'] 		= (!empty($file_pd_undertaking_self_employed) ? $file_pd_undertaking_self_employed : $this->input->post('pd_undertaking_self_employed_old'));
+						$this->data['placement_detail_tbl']['pd_undertaking_self_employed']     = (!empty($file_pd_undertaking_self_employed) ? $file_pd_undertaking_self_employed : $this->input->post('pd_undertaking_self_employed_old'));
 
 						/** ======================================= file upload for Type of proof ===================================== */
 						$file_pd_type_of_proof = $this->fileupload->doc_upload(
 							'uploads/docs/typeofproof/',
 							'pd_type_of_proof'
 						);
-						$this->data['placement_detail_tbl']['pd_type_of_proof'] 		= (!empty($file_pd_type_of_proof) ? $file_pd_type_of_proof : $this->input->post('pd_type_of_proof_old'));
+						$this->data['placement_detail_tbl']['pd_type_of_proof']     = (!empty($file_pd_type_of_proof) ? $file_pd_type_of_proof : $this->input->post('pd_type_of_proof_old'));
 						// Update Input data as well 
 						$this->data['input']->pd_type_of_proof = $this->data['placement_detail_tbl']['pd_type_of_proof'];
 						/** ======================================= file upload for Type of proof ===================================== */
 
 						// Update Input data as well 
 						$this->data['input']->pd_undertaking_self_employed = $this->data['placement_detail_tbl']['pd_undertaking_self_employed'];
-						$this->data['placement_detail_tbl']['pd_type_of_proof'] 								= $this->data['input']->pd_type_of_proof;
-						$this->data['placement_detail_tbl']['pd_employer_name'] 								= $this->data['input']->pd_employer_name;
-						$this->data['placement_detail_tbl']['pd_employer_contact_person_name'] 	= $this->data['input']->pd_employer_contact_person_name;
-						$this->data['placement_detail_tbl']['pd_employer_cp_designation'] 			= $this->data['input']->pd_employer_cp_designation;
-						$this->data['placement_detail_tbl']['pd_employer_contact_no'] 					= $this->data['input']->pd_employer_contact_no;
-						$this->data['placement_detail_tbl']['pd_employer_address'] 							= $this->data['input']->pd_employer_address;
-						$this->data['placement_detail_tbl']['pd_feedback_collected_employer'] 	= $this->data['input']->pd_feedback_collected_employer;
-						$this->data['placement_detail_tbl']['pd_feedback_frequency']					 	= $this->data['input']->pd_feedback_frequency;
-						$this->data['placement_detail_tbl']['pd_state']					 								= $this->data['input']->pd_state;
-						$this->data['placement_detail_tbl']['pd_district']										 	= $this->data['input']->pd_district;
+						$this->data['placement_detail_tbl']['pd_type_of_proof']                 = $this->data['input']->pd_type_of_proof;
+						$this->data['placement_detail_tbl']['pd_employer_name']                 = $this->data['input']->pd_employer_name;
+						$this->data['placement_detail_tbl']['pd_employer_contact_person_name']   = $this->data['input']->pd_employer_contact_person_name;
+						$this->data['placement_detail_tbl']['pd_employer_cp_designation']       = $this->data['input']->pd_employer_cp_designation;
+						$this->data['placement_detail_tbl']['pd_employer_contact_no']           = $this->data['input']->pd_employer_contact_no;
+						$this->data['placement_detail_tbl']['pd_employer_address']               = $this->data['input']->pd_employer_address;
+						$this->data['placement_detail_tbl']['pd_feedback_collected_employer']   = $this->data['input']->pd_feedback_collected_employer;
+						$this->data['placement_detail_tbl']['pd_feedback_frequency']             = $this->data['input']->pd_feedback_frequency;
+						$this->data['placement_detail_tbl']['pd_state']                           = $this->data['input']->pd_state;
+						$this->data['placement_detail_tbl']['pd_district']                       = $this->data['input']->pd_district;
 
 						break;
 				}
@@ -279,22 +279,22 @@ class Placement extends CI_Controller
 		$this->data['batch'] = (object)  $this->data['batch'];
 
 		// Check if Placement is completed to all students or not (Optional)
-		$this->data['placement_status'] 					=  $this->BatchMappingModel->checkIsPlacementCompletedByBatchId($b_id);
+		$this->data['placement_status']           =  $this->BatchMappingModel->checkIsPlacementCompletedByBatchId($b_id);
 
 		// Read Student Placement details
-		$this->data['student_placement_details'] 	= $this->BatchMappingModel->readPassedAndAssessmentAndPlacementCompletedStudentsByBatchId($b_id);
+		$this->data['student_placement_details']   = $this->BatchMappingModel->readPassedAndAssessmentAndPlacementCompletedStudentsByBatchId($b_id);
 
-		$this->data['yes_no_list']          			= $this->CommonModel->getYesNoList();
+		$this->data['yes_no_list']                = $this->CommonModel->getYesNoList();
 		$this->data['employement_type_by_placement_status'] = $this->CommonModel->getEmploymentList();
 		// Fetch Traimimg status list
-		$this->data['training_status_list'] 			= $this->CommonModel->getTrainingStatusList();
+		$this->data['training_status_list']       = $this->CommonModel->getTrainingStatusList();
 		// Fetch Assessment status list
-		$this->data['assessment_status_list'] 		= $this->CommonModel->getAssessmentStatusList();
-		$this->data['frequency_feedback_list'] 		= $this->CommonModel->getFrequencyFeedback();
+		$this->data['assessment_status_list']     = $this->CommonModel->getAssessmentStatusList();
+		$this->data['frequency_feedback_list']     = $this->CommonModel->getFrequencyFeedback();
 		// State list
-		$this->data['state_list']							 		= $this->AddressModel->read_state_country_as_list(101);
-		$pd_district_id 										 			= !empty($this->input->post('pd_state')) ? $this->input->post('pd_state') : 1;
-		$this->data['district_list']					= $this->AddressModel->read_city_state_as_list($pd_district_id); //['' => 'Select District'];
+		$this->data['state_list']                   = $this->AddressModel->read_state_country_as_list(101);
+		$pd_district_id                            = !empty($this->input->post('pd_state')) ? $this->input->post('pd_state') : 1;
+		$this->data['district_list']          = $this->AddressModel->read_city_state_as_list($pd_district_id); //['' => 'Select District'];
 	}
 
 	private function UpdateStudentPlacementDetails()
@@ -317,13 +317,13 @@ class Placement extends CI_Controller
 		if (valArr($arr_cer_id)) {
 			foreach ($arr_cer_id as $bsm_c_id =>  $cer_id) {
 				$postDataCertificate[$bsm_c_id] = [
-					'cer_id'									=> $cer_id,
-					'cer_cer_id'							=> $arr_cer_cer_id[$bsm_c_id],
-					'cer_agency'							=> $arr_cer_agency[$bsm_c_id],
-					'cer_certified'						=> $arr_cer_certified[$bsm_c_id],
-					'cer_date'								=> $arr_cer_date[$bsm_c_id],
-					'cer_certificate_issued'	=> $arr_cer_certificate_issued[$bsm_c_id],
-					'cer_certificate_no'			=> $arr_cer_certificate_no[$bsm_c_id],
+					'cer_id'                  => $cer_id,
+					'cer_cer_id'              => $arr_cer_cer_id[$bsm_c_id],
+					'cer_agency'              => $arr_cer_agency[$bsm_c_id],
+					'cer_certified'            => $arr_cer_certified[$bsm_c_id],
+					'cer_date'                => $arr_cer_date[$bsm_c_id],
+					'cer_certificate_issued'  => $arr_cer_certificate_issued[$bsm_c_id],
+					'cer_certificate_no'      => $arr_cer_certificate_no[$bsm_c_id],
 				];
 				$postDataBSM[$bsm_c_id] = [
 					'bsm_id' => $arr_bsm_id[$bsm_c_id],

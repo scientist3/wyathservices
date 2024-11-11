@@ -29,7 +29,7 @@ class Assessment extends CI_Controller
     if (isset($_POST['update_student_assessment_details_form']) && $_POST['update_student_assessment_details_form'] == 'update_student_assessment_details') {
       $this->UpdateStudentAssessmentDetails($b_id);
     }
-    $this->data['title'] = ('Assessment');
+    $this->data['title'] = ('Assessment: ' . $this->data['batch']->b_bch_id);
     $this->data['input_height'] = 'form-control-sm';
 
     $this->data['content'] = $this->load->view('admin/candidate/assessment/index_view', $this->data, true);
