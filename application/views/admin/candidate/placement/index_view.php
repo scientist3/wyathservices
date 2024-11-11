@@ -18,7 +18,7 @@
           <table width="100%" class="datatable_colvis table table-striped table-bordered table-hover table-sm">
             <thead>
               <tr>
-                <th><?php echo ('Unique Id') ?></th>
+                <th><?php echo ('Candidate Id') ?></th>
                 <th><?php echo ('Candidate Name') ?></th>
                 <th><?php echo ('Training Status') ?></th>
                 <th><?php echo ('Assessment Status') ?></th>
@@ -32,7 +32,7 @@
                 <?php $sl = 1; ?>
                 <?php foreach ($student_placement_details as $student) { ?>
                   <tr>
-                    <td><?php echo $sl; ?></td>
+                    <td><?php echo $student->c_cand_id; ?></td>
                     <td><?php echo $student->c_full_name; ?></td>
                     <td>
                       <div class="badge badge-<?php echo $student->c_training_status == 1 ? "success" : "danger"; ?> p-2">
