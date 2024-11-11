@@ -23,13 +23,14 @@
 									?>
 
 									<!-- Placement ID -->
-									<!-- <div class="col-sm-4">
+									<!-- TODO: We need to remove this column in the database as well. -->
+									<?php /* <div class="col-sm-4">
 										<div class="form-group">
-											<label for="pd_pd_id">< ?php echo ('Placement ID'); ?></label> <small class="req"> *</small>
-											<input name="pd_pd_id" class="form-control  < ?= $input_height . ' ' . (form_error("pd_pd_id") ? 'is-invalid' : null);  ?> " type="text" placeholder="< ?php echo ('Placement ID') ?>" id="pd_pd_id" value="< ?php echo $input->pd_pd_id ?>">
-											< ?php echo form_error("pd_pd_id"); ?>
+											<label for="pd_pd_id"><?php echo ('Placement ID'); ?></label> <small class="req"> *</small>
+											<input name="pd_pd_id" class="form-control  <?= $input_height . ' ' . (form_error("pd_pd_id") ? 'is-invalid' : null);  ?> " type="text" placeholder="<?php echo ('Placement ID') ?>" id="pd_pd_id" value="<?php echo $input->pd_pd_id ?>">
+											<?php echo form_error("pd_pd_id"); ?>
 										</div>
-									</div> -->
+									</div> */ ?>
 
 									<!-- Placement Status -->
 									<div class="col-sm-6">
