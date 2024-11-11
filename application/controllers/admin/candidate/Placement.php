@@ -61,7 +61,7 @@ class Placement extends CI_Controller
 		/*-----------CHECK ID -----------*/
 		if (empty($pd_id)) {
 			/** Validation */ {
-				// $this->form_validation->set_rules('pd_pd_id', ('Placement ID'),  'required');
+				 $this->form_validation->set_rules('pd_pd_id', ('Placement ID'),  'required');
 			}
 			/*-----------CREATE A NEW RECORD-----------*/
 			if ($this->form_validation->run() === true) {
