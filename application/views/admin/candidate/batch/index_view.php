@@ -33,7 +33,7 @@
 
     <div class="col-md-3 col-sm-6 col-12">
       <div class="info-box">
-        <span class="info-box-icon bg-lime"><i class="fas fa-clipboard-check"></i></span>
+        <span class="info-box-icon bg-dark"><i class="fas fa-clipboard-check"></i></span>
         <div class="info-box-content">
           <span class="info-box-text">Assessment Completed</span>
           <span class="info-box-number"><?php echo number($candidate_stats['completed_assessment'] ?? 0); ?></span>
@@ -73,7 +73,7 @@
     </div>
     <div class="col-md-3 col-sm-6 col-12">
       <div class="info-box">
-        <span class="info-box-icon bg-pink"><i class="fas fa-child"></i></span>
+        <span class="info-box-icon bg-teal"><i class="fas fa-child"></i></span>
         <div class="info-box-content">
           <span class="info-box-text">Total Males</span>
           <span class="info-box-number"><?php echo number($candidate_stats['total_male_students'] ?? 0); ?></span>
@@ -93,7 +93,7 @@
 
     <div class="col-md-3 col-sm-6 col-12">
       <div class="info-box">
-        <span class="info-box-icon bg-purple"><i class="fas fa-female"></i></span>
+        <span class="info-box-icon bg-blue"><i class="fas fa-transgender"></i></span>
         <div class="info-box-content">
           <span class="info-box-text">Total Transgenders</span>
           <span class="info-box-number"><?php echo number($candidate_stats['total_trans_students'] ?? 0); ?></span>

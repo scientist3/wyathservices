@@ -8,7 +8,7 @@
           <h3 class="card-title"> <i class="fas fa-list"></i> Registered Candidates</h3>
         </div>
         <div class="card-body">
-          <table width="100%" class="datatable_colvis table table-striped table-bordered table-hover table-sm">
+          <table width="100%" class="datatable table table-striped table-bordered table-hover table-sm">
             <thead>
               <tr>
                 <th><?php echo ('Student Id') ?></th>
