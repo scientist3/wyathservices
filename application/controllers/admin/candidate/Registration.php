@@ -1,9 +1,18 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-
+/**
+ * @property CI_Session $session
+ * @property CandidateModel $CandidateModel
+ * @property CommonModel $CommonModel
+ * @property AddressModel $AddressModel
+ * @property CI_Input $input
+ * @property CI_Form_validation $form_validation
+ * @property CI_DB_query_builder $db
+ */
 class Registration extends CI_Controller
 {
 	private $data;
+	private $user_id;
 
 	public function __construct()
 	{

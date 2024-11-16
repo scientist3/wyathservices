@@ -1,10 +1,23 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-
+/**
+ * @property CI_Session $session
+ * @property CI_Input $input
+ * @property CI_Form_validation $form_validation
+ * @property CI_DB_query_builder $db
+ * @property CommonModel $CommonModel
+ * @property BatchModel $BatchModel
+ * @property CourseModel $CourseModel
+ * @property TrainingCenterModel $TrainingCenterModel
+ * @property BatchModel $BatchModel
+ * @property BatchMappingModel $BatchMappingModel
+ * @property CandidateModel $CandidateModel
+ */
 class Batch extends CI_Controller
 {
   private $STUDENTS_PER_BATCH_LIMIT;
   private $data;
+  private $user_id;
 
   public function __construct()
   {

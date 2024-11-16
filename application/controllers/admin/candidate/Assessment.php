@@ -1,6 +1,15 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-
+/**
+ * @property CI_Session $session
+ * @property BatchModel $BatchModel
+ * @property CommonModel $CommonModel
+ * @property AssessmentModel $AssessmentModel
+ * @property BatchMappingModel $BatchMappingModel
+ * @property CI_Input $input
+ * @property CI_Form_validation $form_validation
+ * @property CI_DB_query_builder $db
+ */
 class Assessment extends CI_Controller
 {
   private $data;
