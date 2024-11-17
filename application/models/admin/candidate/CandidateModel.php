@@ -40,6 +40,7 @@ class CandidateModel extends CI_Model
 			->get()
 			->row();
 	}
+
 	public function getAllStudentDetails($student_id)
 	{
 		return $this->db->select('

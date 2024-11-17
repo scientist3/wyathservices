@@ -490,4 +490,30 @@ class Batch extends CI_Controller
 			}
 		}
 	}
+
+	public function export()
+	{
+		$batch_id = $this->input->get('batch_id');
+
+		// Page data
+		$data['title'] = 'Filter Students by Batch';
+		$data['subtitle'] = 'Student List';
+
+		// Fetch batches
+		$data['batches_list'] = $this->BatchModel->read();
+
+		// Fetch students based on batch
+		$data['students'] = $this->BatchMappingModel->readCompleteStudentDetailsByBatchId($batch_id);
+		if ($batch_id) {
+			$data['selected_batch'] = $this->BatchModel->readById($batch_id);
+		} else {
+			$data['selected_batch'] = null; // No batch selected
+		}
+		// dd($data['students'][0]);
+		// Load the AdminLTE layout
+
+		// Load the AdminLTE layout
+		$data['content'] = $this->load->view('admin/candidate/batch/export_view', $data, true);
+		$this->load->view('admin/layout/wrapper', $data);
+	}
 }
