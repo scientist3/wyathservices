@@ -350,7 +350,7 @@ class Registration extends CI_Controller
 							'c_salutation' => $row['Salutation'],
 							'c_full_name' => $row['Full name'],
 							'c_gender' => $row['Gender'],
-							'c_dob' => $row['DOB'],
+							'c_dob' => date('Y-m-d', strtotime($row['DOB'])),
 							'c_mobile' => $row['Mobile No'],
 							'c_email' => $row['Email'],
 							'c_marital_status' => $row['Marital status'],
@@ -426,8 +426,8 @@ class Registration extends CI_Controller
 	{
 		$this->load->helper('download');
 		$csv_data = "Candidate Id,Salutation,Full name,Gender,DOB,Mobile No,Email,Marital status,Fathers Name,Mothers Name,Guardian Name,Education,Religion,Category,Disability,Type Of Disability,ID Type,ID No,Permanent Address,Permanent Tehsil,Permanent District,Permanent City,Permanent State,Permanent PinCode,Permanent Constituency,Pre Traning Status,Prev Exp Sector,Prev Exp No Of Months,Employed,Employment Status,Employment Details,Heard About Us\n";
-		$csv_data .= "JK00FE1-0000001,2,Amreat Majeed,2,1995-14-04,7051599652,amreat.wyath@gmail.com,1,Abdul Majeed Lone,,,1,4,1,0,,1,3.94E+11,Abu Baker Colony(Kulangam),Handwara,12,Handwara,15,193221,Baramulla,1,,0,0,0,,5\n";
-		$csv_data .= "JK00FE1-0000002,2,Zahida Akhter,2,09-08-96,9797158739,zahida.wyath@gmail.com,1,Jalal u din khan,,,1,4,1,0,,1,7.76E+11,Puhrupath Kupwara,Handwara,12,Handwara,15,193302,Baramulla,1,,0,0,0,,5\n";
+		$csv_data .= "JK00FE1-00000011,2,Amreat Majeed,2,20-10-1995,7051599652,amreat.wyath@gmail.com,1,Abdul Majeed Lone,,,1,4,1,0,,1,123456789123,Abu Baker Colony(Kulangam),Handwara,12,Handwara,15,193221,Baramulla,1,,0,0,0,,5\n";
+		$csv_data .= "JK00FE1-00000021,2,Zahida Akhter,2,20-10-1992,9797158739,zahida.wyath@gmail.com,1,Jalal u din khan,,,1,4,1,0,,1,123456789123,Puhrupath Kupwara,Handwara,12,Handwara,15,193302,Baramulla,1,,0,0,0,,5\n";
 		force_download('SampleFileWyath.csv', $csv_data);
 	}
 }
