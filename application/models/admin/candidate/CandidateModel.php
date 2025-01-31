@@ -111,7 +111,6 @@ class CandidateModel extends CI_Model
 			->row();
 	}
 
-
 	public function checkDuplicateStudent($data = [])
 	{
 		if (!empty($data['c_id'])) {
@@ -126,6 +125,21 @@ class CandidateModel extends CI_Model
 				->where('c_id_no', $data['c_id_no'])
 				->get();
 		}
+		$count_row = $result->num_rows();
+
+		if ($count_row > 0) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
+	public function checkDuplicateCandidateId($data = [])
+	{
+		$result = $this->db->select("c_cand_id")
+			->from($this->table)
+			->where('c_cand_id', $data['c_cand_id']) // Ensure correct key
+			->get();
+
 		$count_row = $result->num_rows();
 
 		if ($count_row > 0) {

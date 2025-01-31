@@ -68,6 +68,13 @@
 									View Registered Candidate
 								</p>
 							</a>
+
+							<a href="<?php echo base_url('admin/candidate/registration/import') ?>" class="nav-link <?php echo ($this->uri->segment(3) == 'registration' && ($this->uri->segment(4) == 'import' || $this->uri->segment(4) == '')) ? 'active' : null ?>">
+								<i class="far fa-circle nav-icon"></i>
+								<p>
+									Import Candidate
+								</p>
+							</a>
 						</li>
 					</ul>
 				</li>

@@ -144,6 +144,15 @@
 			}]
 		});
 
+		$('.datatable_addtobatch').DataTable({
+			responsive: true,
+			dom: "<'row'<'col-sm-4'l><'col-sm-4'f>>tp",
+			"lengthMenu": [
+				[10, 25, 50, -1],
+				[10, 25, 50, "All"]
+			],
+		});
+
 		// Datatable with Search Only
 		$('.datatable_search_only').DataTable({
 			responsive: true,

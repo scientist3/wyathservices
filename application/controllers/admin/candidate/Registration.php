@@ -22,6 +22,7 @@ class Registration extends CI_Controller
 			'admin/candidate/CommonModel',
 			'AddressModel'
 		]);
+		$this->load->library('csvimport'); // Load the csvimport library
 
 		//$this->load->library('fileupload');
 		if ($this->session->userdata('isLogIn') == false || $this->session->userdata('user_role') != 1) {
@@ -317,6 +318,117 @@ class Registration extends CI_Controller
 		} else {
 			return TRUE;
 		}
+	}
+
+	public function import()
+	{
+		$this->data['title'] = 'Import Candidates';
+		$this->data['subtitle'] = 'Upload CSV File';
+
+		if ($this->input->post('submit')) {
+			$config['upload_path'] = './uploads/';
+			$config['allowed_types'] = 'csv';
+			$config['max_size'] = 1000;
+
+			$this->load->library('upload', $config);
+
+			if (!$this->upload->do_upload('csv_file')) {
+				$this->data['error'] = $this->upload->display_errors();
+			} else {
+				$file_data = $this->upload->data();
+				$file_path = './uploads/' . $file_data['file_name'];
+
+				if ($this->csvimport->get_array($file_path)) {
+					$csv_array = $this->csvimport->get_array($file_path);
+
+					// Start transaction
+					$this->db->trans_start();
+
+					foreach ($csv_array as $row) {
+						$insert_data = array(
+							'c_cand_id' => $row['Candidate Id'],
+							'c_salutation' => $row['Salutation'],
+							'c_full_name' => $row['Full name'],
+							'c_gender' => $row['Gender'],
+							'c_dob' => $row['DOB'],
+							'c_mobile' => $row['Mobile No'],
+							'c_email' => $row['Email'],
+							'c_marital_status' => $row['Marital status'],
+							'c_father_name' => $row['Fathers Name'],
+							'c_mother_name' => $row['Mothers Name'],
+							'c_guardian_name' => $row['Guardian Name'],
+							'c_education' => $row['Education'],
+							'c_religion' => $row['Religion'],
+							'c_catagory' => $row['Category'],
+							'c_disablity' => $row['Disability'],
+							'c_type_of_disablity' => $row['Type Of Disability'],
+							'c_id_type' => $row['ID Type'],
+							'c_id_no' => $row['ID No'],
+							'c_perm_address' => $row['Permanent Address'],
+							'c_perm_tehsil' => $row['Permanent Tehsil'],
+							'c_perm_district' => $row['Permanent District'],
+							'c_perm_city' => $row['Permanent City'],
+							'c_perm_state' => $row['Permanent State'],
+							'c_perm_pincode' => $row['Permanent PinCode'],
+							'c_perm_constituency' => $row['Permanent Constituency'],
+							'c_comm_same_as_perm' => 0, // $row['Comm Same As Perm'],
+							'c_comm_address' => $row['Permanent Address'], // $row['Comm Address'],
+							'c_comm_tehsil' => $row['Permanent Tehsil'], //$row['Comm Tehsil'],
+							'c_comm_district' => $row['Permanent District'], //$row['Comm District'],
+							'c_comm_city' => $row['Permanent City'], // $row['Comm City'],
+							'c_comm_state' => $row['Permanent State'], // $row['Comm State'],
+							'c_comm_pincode' => $row['Permanent PinCode'], // $row['Comm Pincode'],
+							'c_comm_constituency' => $row['Permanent Constituency'], // $row['Comm Constituency'],
+							'c_pre_traning_status' => $row['Pre Traning Status'],
+							'c_prev_exp_sector' => $row['Prev Exp Sector'],
+							'c_prev_exp_no_of_months' => $row['Prev Exp No Of Months'],
+							'c_employed' => $row['Employed'],
+							'c_employment_status' => $row['Employment Status'],
+							'c_employement_details' => $row['Employment Details'],
+							'c_heard_about_us' => $row['Heard About Us'],
+							'c_currently_enrolled' => 0, //  $row['Currently Enrolled'],
+							'c_training_status' => NULL // $row['Training Status']
+						);
+
+						if ($this->CandidateModel->checkDuplicateCandidateId(['c_cand_id' => $row['Candidate Id']])) {
+							$this->data['error'] = 'Duplicate data found: ' . $row['Candidate Id'];
+							break;
+						} else {
+							if (!$this->CandidateModel->create($insert_data)) {
+								$this->data['error'] = 'Error occurred while importing data';
+								break;
+							}
+						}
+					}
+
+					// Complete the transaction
+					$this->db->trans_complete();
+
+					if ($this->db->trans_status() === FALSE) {
+						$this->data['error'] = 'Transaction failed. No data was imported.';
+					} else {
+						if (!isset($this->data['error'])) {
+							$this->session->set_flashdata('message', 'Candidates imported successfully');
+							redirect('admin/candidate/registration/import');
+						}
+					}
+				} else {
+					$this->data['error'] = 'Error occurred while importing data';
+				}
+			}
+		}
+
+		$this->data['content'] = $this->load->view('admin/candidate/import/import_view', $this->data, true);
+		$this->load->view('admin/layout/wrapper', $this->data);
+	}
+
+	public function downloadSampleCSV()
+	{
+		$this->load->helper('download');
+		$csv_data = "Candidate Id,Salutation,Full name,Gender,DOB,Mobile No,Email,Marital status,Fathers Name,Mothers Name,Guardian Name,Education,Religion,Category,Disability,Type Of Disability,ID Type,ID No,Permanent Address,Permanent Tehsil,Permanent District,Permanent City,Permanent State,Permanent PinCode,Permanent Constituency,Pre Traning Status,Prev Exp Sector,Prev Exp No Of Months,Employed,Employment Status,Employment Details,Heard About Us\n";
+		$csv_data .= "JK00FE1-0000001,2,Amreat Majeed,2,1995-14-04,7051599652,amreat.wyath@gmail.com,1,Abdul Majeed Lone,,,1,4,1,0,,1,3.94E+11,Abu Baker Colony(Kulangam),Handwara,12,Handwara,15,193221,Baramulla,1,,0,0,0,,5\n";
+		$csv_data .= "JK00FE1-0000002,2,Zahida Akhter,2,09-08-96,9797158739,zahida.wyath@gmail.com,1,Jalal u din khan,,,1,4,1,0,,1,7.76E+11,Puhrupath Kupwara,Handwara,12,Handwara,15,193302,Baramulla,1,,0,0,0,,5\n";
+		force_download('SampleFileWyath.csv', $csv_data);
 	}
 }
 // 
